@@ -29,7 +29,7 @@ const LangSwitcher = () => {
       };
   return (
      <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="bg-[#07153b] border-2 border-[#EC3B3B] hover:bg-[#07153b] hover:border-2 hover:scale-3d transition-transform duration-300 cursor-pointer">
         <Button variant="outline" className="flex items-center gap-2 text-[#DAE6EA] hover:text-[#DAE6EA]!">
           {currentLocaleData.icon}
           <span className="hidden sm:inline">{currentLocaleData.label}</span>
@@ -38,11 +38,11 @@ const LangSwitcher = () => {
       <DropdownMenuContent align="end" className="min-w-[100px]">
         {locales.map(({ code, label, icon }) => (
           <DropdownMenuItem
-            className={`text-[#DAE6EA] cursor-pointer ${code === currentLocale ? 'bg-gray-800' : ''}`}
+            className={`text-[#07153b] cursor-pointer hover:text-[#EC3B3B]! ${code === currentLocale ? 'bg-[#07153b] text-white hover:bg-[#07153b]!' : ''}`}
             key={code}
             onClick={() => handleLocaleChange(code)}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               {icon}
               {label}
             </div>

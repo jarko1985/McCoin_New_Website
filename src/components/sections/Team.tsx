@@ -22,7 +22,7 @@ const Team = () => {
                       shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-[#07153B] hover:border-[#EC3B3B]/50"
           >
             {/* Glow effect */}
-            <div className="absolute inset-0 rounded-xl bg-[#EC3B3B]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {/* <div className="absolute inset-0 rounded-xl bg-[#EC3B3B]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> */}
             
             {/* Image container with border animation */}
             <div className="relative mb-4 rounded-full p-1 bg-gradient-to-br from-[#EC3B3B] to-[#EC3B3B]/70 group-hover:rotate-3 transition-transform duration-300">

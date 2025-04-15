@@ -24,7 +24,7 @@ const OurGoals = () => {
             data-aos="flip-left"
             key={card.id}
             className="min-h-[300px] flex flex-col justify-between 
-                bg-[#1A2A3A] border border-[#2A3B4C]/70
+                bg-[#07153b] border border-[#2A3B4C]/70
                 transition-all duration-300 ease-in-out
                 hover:scale-[1.02] hover:shadow-xl hover:border-[#EC3B3B]/30
                 group overflow-hidden relative cursor-pointer"
@@ -37,7 +37,7 @@ const OurGoals = () => {
 
             <CardHeader className="z-10">
               <CardTitle>
-                <div className="p-3 rounded-full bg-[#2A3B4C] group-hover:bg-[#EC3B3B]/20 transition-colors duration-300">
+                <div className="p-3 rounded-full bg-[#07153b]  transition-colors duration-300">
                   <Image
                     src={card.src}
                     width={50}

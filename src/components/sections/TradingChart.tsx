@@ -9,11 +9,9 @@ export default function TradingViewCryptoScreener() {
   useEffect(() => {
     const loadWidget = () => {
       try {
-        // Clear previous widget if exists
         const container = document.querySelector('.tradingview-widget-container__widget');
         if (container) container.innerHTML = '';
 
-        // Create script element
         const script = document.createElement('script');
         script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-screener.js';
         script.async = true;
@@ -68,7 +66,9 @@ export default function TradingViewCryptoScreener() {
   }, []);
 
   return (
-    <div className='container mx-auto xl:w-[70%] py-12' data-aos="fade-zoom-in">
+    <div className='container mx-auto xl:w-[70%]'>
+      <h1 className='text-center text-[#DAE6EA] font-[600] xl:text-[2.225rem]'>Market Trend</h1>
+      <p className='text-center text-[#DAE6EA] font-[400] xl:text-[1.5rem] mt-6 mb-12'>Crypto market leaderboard express</p>
       <div className="tradingview-widget-container relative min-h-[550px]">
         <div className="
           bg-[#07153b]

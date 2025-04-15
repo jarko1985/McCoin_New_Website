@@ -1,7 +1,24 @@
 {
-    "HomePage": {
-      "title": "Mccoin Virtual Assets",
-      "about": "Go to the Home page",
-      "para":"Its not only writers who can benefit from this free online tool. If youre a programmer whos working on a project where blocks of text are needed this tool can be a great way to get that. Its a good way to test your programming and that the tool being created is working well.Above are a few examples of how the random paragraph generator can be beneficial. The best way to see if this random paragraph picker will be useful for your intended purposes is to give it a try. Generate a number of paragraphs to see if they are beneficial to your current project.If you do find this paragraph tool useful please do us a favor and let us know how you're using it. It's greatly beneficial for us to know the different ways this tool is being used so we can improve it with updates. This is especially since there are times when the generators we create get used in completely unanticipated ways from when we initially created them. If you have the time please send us a quick note on what youd like to see changed or added to make it better in the future"
-    }
+  "HomePage": {
+    "title": "Mccoin Virtual Assets Market",
+    "famous_crypto":"Famous Cryptocurrencies"
+  },
+  "Contact":{
+    "full_name":"Full Name",
+    "email":"Email",
+    "phone":"Phone",
+    "subject":"Subject",
+    "message":"Message",
+    "enter_your_full_name":"Enter your full name",
+    "enter_your_email":"Enter your email",
+    "enter_your_phone_number":"Enter your phone number",
+    "enter_the_subject":"Enter the subject",
+    "enter_your_message":"Enter your message",
+    "send_message":"Send Message",
+    "name_error":"must be at least 2 characters.",
+    "email_error":"Invalid email address.",
+    "phone_error":"must be at least 10 characters.",
+    "subject_error":"must be at least 5 characters.",
+    "message_error":"must be at least 10 characters."
   }
+}

@@ -43,14 +43,14 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 flex flex-col items-end">
+    <div className="fixed bottom-5 right-5 flex flex-col items-end z-10">
       {/* Small Bar (Collapsed Chat) */}
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition"
+          className="flex items-center gap-2 bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition"
         >
-          <MessageSquare size={18} />
+          <MessageSquare size={18}  />
           <span className="text-white">Ask me anything...</span>
         </button>
       )}
@@ -60,7 +60,7 @@ export default function ChatWidget() {
         <div className="w-80 bg-white shadow-lg rounded-md border p-4">
           <div className="flex justify-between items-center border-b pb-2">
             <h3 className="text-lg font-semibold text-white">Chat Assistant</h3>
-            <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700">
+            <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700 cursor-pointer">
               <X size={20} />
             </button>
           </div>

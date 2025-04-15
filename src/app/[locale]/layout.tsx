@@ -8,6 +8,7 @@
   import ChatWidget from "@/components/custom/ChatWidget";
   import Footer from "@/components/custom/Footer";
   import AOSWrapper from "@/components/custom/AosWrapper";
+import CookieBanner from "@/components/custom/CookieBanner";
 
   const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -35,7 +36,7 @@
     }
     return (
       <html lang={locale} dir={direction} suppressHydrationWarning>
-        <body className={`${montserrat.variable} antialiased`}>
+        <body className={`${montserrat.variable} antialiased bg-[#07153b]`}>
           <NextIntlClientProvider>
             <Navbar />
             <main className="h-full">
@@ -43,6 +44,7 @@
             </main>
             <Footer />
             <ChatWidget />
+            {/* <CookieBanner /> */}
           </NextIntlClientProvider>
         </body>
       </html>
