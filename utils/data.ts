@@ -20,6 +20,9 @@ import THREE from '@/../public/images/three.svg';
 import AVATAR from '@/../public/images/avatar.svg';
 import COINHAND from '@/../public/images/coins_hand.svg';
 import EXPORT from '@/../public/images/export.svg';
+import NEWS1 from '@/../public/images/news1_pic.png';
+import NEWS2 from '@/../public/images/news2_pic.png';
+import NEWS3 from '@/../public/images/news3_pic.png';
 
 
 
@@ -292,4 +295,51 @@ export const StepsData = [
     title:"Start Trading",
     subTitle:"Use all our advanced strategy tools to get the most of your trades."
   }
+];
+
+export const NewsData = [
+  {
+    id:1,
+    imgSRC:NEWS1,
+    category:"Marketing",
+    difficutly:"Easy",
+    title:"The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
+    description:"CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
+    author:"By Warner Vermaak",
+    date:"2h ago",
+    ret:"4m"
+  },
+  {
+    id:2,
+    imgSRC:NEWS2,
+    category:"Crypto News",
+    difficutly:"Moderate",
+    title:"The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
+    description:"CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
+    author:"By Warner Vermaak",
+    date:"2h ago",
+    ret:"4m"
+  },
+  {
+    id:3,
+    imgSRC:NEWS3,
+    category:"Crypto News",
+    difficutly:"Hard",
+    title:"The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
+    description:"CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
+    author:"By Warner Vermaak",
+    date:"2h ago",
+    ret:"4m"
+  },
+  {
+    id:4,
+    imgSRC:NEWS1,
+    category:"Marketing",
+    difficutly:"Begginer",
+    title:"The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
+    description:"CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
+    author:"By Warner Vermaak",
+    date:"2h ago",
+    ret:"4m"
+  },
 ]

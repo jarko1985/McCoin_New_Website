@@ -1,4 +1,5 @@
 import About from "@/components/sections/About";
+import CompanyNews from "@/components/sections/CompanyNews";
 import Hero from "@/components/sections/Hero";
 import OurGoals from "@/components/sections/OurGoals";
 import OurPartners from "@/components/sections/OurPartners";
@@ -19,6 +20,7 @@ export default function Home() {
       <WhyMccoin/>
       <Steps/>
      <OurPartners/> 
+     <CompanyNews/>
     <OurGoals/>
     <Team/>
     <About/>

@@ -57,7 +57,7 @@ const Navbar = () => {
               </NavigationMenuItem>
               <NavigationMenuItem className="cursor-pointer">
                 <NavigationMenuTrigger className=" text-[#EC3B3B]! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                  How to
+                 Learn
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[420px]">
