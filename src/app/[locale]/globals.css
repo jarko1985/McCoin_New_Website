@@ -126,6 +126,8 @@
   }
 }
 
+
+/* Trading Chart Widget */
 .tradingview-widget-container {
   height: 550px;
   width: 100%;
@@ -139,6 +141,17 @@
 .tv-embed-widget-wrapper .tv-screener, .tv-feed .tv-screener{
   background-color: #07153b !important;
 }
+/* Trading Chart Widget */
+
+/* Trading Ticker Widget */
+.tradingview-ticker-container{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Trading Ticker Widget */
 
 .navigation-menu [data-state="open"] {
   background-color: #07153b !important;

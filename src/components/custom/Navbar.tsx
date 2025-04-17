@@ -13,8 +13,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -28,6 +26,22 @@ import {
 import { Button } from "../ui/button";
 import LangSwitcher from "./LangSwitcher";
 import { Menu } from "lucide-react";
+import { TbArticle } from "react-icons/tb";
+import { FaBlog } from "react-icons/fa";
+import { TbDeviceAnalytics } from "react-icons/tb";
+import { FaGraduationCap } from "react-icons/fa";
+import { ImNewspaper } from "react-icons/im";
+import { GiSattelite } from "react-icons/gi";
+import { LiaHotjar } from "react-icons/lia";
+import { FaPodcast } from "react-icons/fa";
+import { TiUserAddOutline } from "react-icons/ti";
+import { RiVerifiedBadgeLine } from "react-icons/ri";
+import { PiHandDeposit } from "react-icons/pi";
+import { RiExchangeLine } from "react-icons/ri";
+import { PiHandWithdraw } from "react-icons/pi";
+import { LuMailQuestion } from "react-icons/lu";
+import { GrContact } from "react-icons/gr";
+import { FaHandsHelping } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -39,66 +53,61 @@ const Navbar = () => {
         <div className="md:block hidden">
           <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
             <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className=" text-[#EC3B3B]! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                  About
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[#07153b]! hover:bg-[#07153b]">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[420px]">
-                    <li>
-                      <Link href='/company'>
-                      McCoin Company
-                      </Link>
-                      </li>
-                    <li>McCoin Team</li>
-                    <li>Contact us</li>
-                  </ul>
-                </NavigationMenuContent>
+              <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+              About
+              </NavigationMenuItem>
+              <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+              Markets
               </NavigationMenuItem>
               <NavigationMenuItem className="cursor-pointer">
-                <NavigationMenuTrigger className=" text-[#EC3B3B]! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                <NavigationMenuTrigger className=" text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
                  Learn
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[420px]">
-                    <li>Create Account</li>
-                    <li>Verify Your Account</li>
-                    <li>Trade</li>
-                    <li>Deposit/Withdrawal</li>
-                    <li>Transfer</li>
-                    <li>Manage Your Wallets</li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbArticle size={25}/> Articles</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaBlog size={25} /> Blog</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbDeviceAnalytics size={25} /> Market Sentiment</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaGraduationCap size={25} /> Crypto 101</Link></li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-[#EC3B3B]! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                  Trading
+                <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                McCoin insider
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[420px]">
-                    <li>Comming Soon</li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                  <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <ImNewspaper size={25}/> Top News</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <GiSattelite size={25}/>Newsroom</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LiaHotjar size={25}/>Hot Topics</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaPodcast size={25} />Podcasts</Link></li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-[#EC3B3B]! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                  Media
+                <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                 How to
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[420px]">
-                    <li>Crypto News</li>
-                    <li>Feeds</li>
-                    <li>Market News</li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                  <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"><TiUserAddOutline size={25}/> Create an Account</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <RiVerifiedBadgeLine size={25}/>Verify Your Identity (KYC)</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <PiHandDeposit size={25}/>Deposit Funds</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <RiExchangeLine size={25} />Trade Cryptocurrency</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <PiHandWithdraw size={25} />Withdraw Funds</Link></li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-[#EC3B3B]! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                    Resources
+                <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                  Support center
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[420px]">
-                    <li><Link href='/faqs'>Frequently Asked Questions (FAQs)</Link></li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LuMailQuestion size={25} />Frequently Asked Questions (FAQs)</Link></li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <GrContact size={25} />Contact Us</Link></li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaHandsHelping size={25} />Help Topics</Link></li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -106,6 +115,11 @@ const Navbar = () => {
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2">
+          <div className="flex flex-row items-center justify-center gap-2">
+          <Link href="#" className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all">Sign up</Link>
+          <Link href="#" className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all">Log in</Link>
+          </div>
+          
           <LangSwitcher />
           <Sheet >
             <SheetTrigger asChild>

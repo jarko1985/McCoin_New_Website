@@ -114,17 +114,6 @@ export default function TradingViewCryptoScreener() {
               }}
             ></div>
           </div>
-          
-          <div className="tradingview-widget-copyright text-xs text-center mt-2 text-gray-400 pb-2 px-2">
-            <a 
-              href="https://www.tradingview.com/" 
-              rel="noopener nofollow" 
-              target="_blank"
-              className="text-blue-400 hover:text-blue-300"
-            >
-              Track all markets on TradingView
-            </a>
-          </div>
         </div>
       </div>
     </div>

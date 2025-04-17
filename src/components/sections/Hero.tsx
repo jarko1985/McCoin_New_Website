@@ -4,12 +4,14 @@ import PRICECHANGE from "@/../public/images/price_change.svg";
 import TOTALVALUE from "@/../public/images/total_value.svg";
 import TOTALMARKET from "@/../public/images/total_market.svg";
 import HISTORICALMARKET from "@/../public/images/historical_value.svg";
+import TradingTicker from "./TradingTicker";
 export default function HeroSection() {
   return (
-    <section className="container mx-auto xl:w-[70%] min-h-screen flex flex-col lg:flex-row justify-between">
+    <section className="container mx-auto xl:w-[70%] min-h-screen overflow-hidden">
+      <div className="flex flex-col lg:flex-row justify-between">
       <div className="flex flex-col xl:pt-12">
         <div className="space-y-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#DAE6EA]/80">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl md:text-left text-center font-bold leading-tight text-[#DAE6EA]/80">
             Invest in <span className="text-[#EC3B3B]">McCoin</span>
             <br /> Way to Trade
           </h1>
@@ -74,6 +76,8 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+      </div>
+      <TradingTicker/>
     </section>
   );
 }

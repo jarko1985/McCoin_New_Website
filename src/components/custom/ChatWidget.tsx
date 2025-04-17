@@ -35,7 +35,11 @@ export default function ChatWidget() {
       });
 
       const data = await res.json();
-      setMessages((prev) => [...prev, newMessage, { role: "assistant", content: data.response }]);
+      setMessages((prev) => [
+        ...prev,
+        newMessage,
+        { role: "assistant", content: data.response },
+      ]);
     } catch (error) {
       console.error("Error sending message", error);
     }
@@ -43,15 +47,18 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 flex flex-col items-end z-10">
+    <div className="fixed bottom-16 right-2 flex flex-col items-end z-10">
       {/* Small Bar (Collapsed Chat) */}
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="flex items-center gap-2 bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition"
+          className="flex items-center group gap-2 bg-[#07153b] border border-white cursor-pointer text-white 
+          px-4 py-2 rounded-full shadow-lg hover:bg-white hover:text-[#07153b] hover:-translate-y-1 duration-300 transition-all"
         >
-          <MessageSquare size={18}  />
-          <span className="text-white">Ask me anything...</span>
+          <MessageSquare size={18} />
+          <span className="text-white group-hover:text-[#07153b]">
+            Ask me anything...
+          </span>
         </button>
       )}
 
@@ -59,16 +66,20 @@ export default function ChatWidget() {
       {isOpen && (
         <div className="w-80 bg-white shadow-lg rounded-md border p-4">
           <div className="flex justify-between items-center border-b pb-2">
-            <h3 className="text-lg font-semibold text-white">Chat Assistant</h3>
-            <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700 cursor-pointer">
+            <h3 className="text-lg font-semibold text-[#07153b]">Chat Assistant</h3>
+            <button
+              onClick={toggleChat}
+              className="text-gray-500 hover:text-gray-700 cursor-pointer"
+            >
               <X size={20} />
             </button>
           </div>
 
           <div className="h-64 overflow-y-auto p-2">
             {messages.map((msg, idx) => (
-              <div key={idx} className={`mb-2 text-white`}>
-                <strong>{msg.role === "user" ? "You" : "Bot"}:</strong> {msg.content}
+              <div key={idx} className={`mb-2 text-[#07153b]`}>
+                <strong>{msg.role === "user" ? "You" : "Bot"}:</strong>{" "}
+                {msg.content}
               </div>
             ))}
           </div>
@@ -78,13 +89,13 @@ export default function ChatWidget() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="border p-2 flex-1 rounded text-white"
+              className="border p-2 flex-1 rounded text-[#07153b]"
               placeholder="Type your question..."
               disabled={loading}
             />
             <button
               onClick={sendMessage}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+              className="bg-[#07153b] border border-transparent text-white px-4 py-2 rounded hover:bg-white hover:text-[#07153b] hover:border-[#07153b] transition-all duration-300 disabled:opacity-50"
               disabled={loading}
             >
               {loading ? "..." : "Send"}

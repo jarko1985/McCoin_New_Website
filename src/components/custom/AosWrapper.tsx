@@ -16,6 +16,7 @@ export default function AOSWrapper({ children }: AOSWrapperProps) {
       easing: 'ease-in-out',
       once: true,
       mirror: false,
+      disable:"tablet"
     });
   }, []);
 

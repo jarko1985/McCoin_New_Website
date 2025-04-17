@@ -9,6 +9,7 @@
   import Footer from "@/components/custom/Footer";
   import AOSWrapper from "@/components/custom/AosWrapper";
 import CookieBanner from "@/components/custom/CookieBanner";
+import { Providers } from "./providers";
 
   const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -38,6 +39,7 @@ import CookieBanner from "@/components/custom/CookieBanner";
       <html lang={locale} dir={direction} suppressHydrationWarning>
         <body className={`${montserrat.variable} antialiased bg-[#07153b]`}>
           <NextIntlClientProvider>
+            <Providers params={params}>
             <Navbar />
             <main className="h-full">
               <AOSWrapper>{children}</AOSWrapper>
@@ -45,6 +47,7 @@ import CookieBanner from "@/components/custom/CookieBanner";
             <Footer />
             <ChatWidget />
             {/* <CookieBanner /> */}
+            </Providers>
           </NextIntlClientProvider>
         </body>
       </html>
