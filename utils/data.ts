@@ -1,4 +1,3 @@
-import { Image } from 'lucide-react';
 import ARROW_UP from '../public/images/arrow_up.svg';
 import EDUCATION from '../public/images/graduation.svg';
 import VISION from '../public/images/vision.svg';
@@ -23,63 +22,65 @@ import EXPORT from '@/../public/images/export.svg';
 import NEWS1 from '@/../public/images/news1_pic.png';
 import NEWS2 from '@/../public/images/news2_pic.png';
 import NEWS3 from '@/../public/images/news3_pic.png';
+import { TbArticle } from "react-icons/tb";
+import { FaBlog } from "react-icons/fa";
+import { TbDeviceAnalytics } from "react-icons/tb";
+import { FaGraduationCap } from "react-icons/fa";
+import { ImNewspaper } from "react-icons/im";
+import { GiSattelite } from "react-icons/gi";
+import { LiaHotjar } from "react-icons/lia";
+import { FaPodcast } from "react-icons/fa";
+import { TiUserAddOutline } from "react-icons/ti";
+import { RiVerifiedBadgeLine } from "react-icons/ri";
+import { PiHandDeposit } from "react-icons/pi";
+import { RiExchangeLine } from "react-icons/ri";
+import { PiHandWithdraw } from "react-icons/pi";
+import { LuMailQuestion } from "react-icons/lu";
+import { GrContact } from "react-icons/gr";
+import { FaHandsHelping } from "react-icons/fa";
 
 
-
-export const MenuData = {
-    group1: [
-      {
-        title: "Crypto Trading",
-        link: "#",
-      },
-      {
-        title: "Crypto Advice",
-        link: "#",
-      },
-      {
-        title: "Open Live Account",
-        link: "#",
-      },
-      {
-        title: "Open Demo Account",
-        link: "#",
-      },
-      {
-        title: "Tabs",
-        link: "#",
-      },
-      {
-        title: "Tooltip",
-        link: "#",
-      },
+export const NAV_DATA = [
+  { title: "About", href: "/about" },
+  { title: "Markets", href: "/markets" },
+  {
+    title: "Learn",
+    children: [
+      { title: "Articles", icon: TbArticle, href: "/learn/articles" },
+      { title: "Blog", icon: FaBlog, href: "/learn/blog" },
+      { title: "Market Sentiment", icon: TbDeviceAnalytics, href: "/learn/market-sentiment" },
+      { title: "Crypto 101", icon: FaGraduationCap, href: "/learn/crypto-101" },
     ],
-    group2: [
-      {
-        title: "Crypto",
-        link: "#",
-      },
-      {
-        title: "Forex",
-        link: "#",
-      },
-      {
-        title: "Indices",
-        link: "#",
-      },
-      {
-        title: "Commodoties",
-        link: "#",
-      },
-      {
-        title: "Stocks",
-        link: "#",
-      },
-      {
-        title: "Shares",
-        link: "#",
-      },
+  },
+  {
+    title: "McCoin insider",
+    children: [
+      { title: "Top News", icon: ImNewspaper, href: "/insider/top-news" },
+      { title: "Newsroom", icon: GiSattelite, href: "/insider/newsroom" },
+      { title: "Hot Topics", icon: LiaHotjar, href: "/insider/hot-topics" },
+      { title: "Podcasts", icon: FaPodcast, href: "/insider/podcasts" },
     ],
-  };
+  },
+  {
+    title: "How to",
+    children: [
+      { title: "Create an Account", icon: TiUserAddOutline, href: "/how-to/create-account" },
+      { title: "Verify Your Identity (KYC)", icon: RiVerifiedBadgeLine, href: "/how-to/verify-identity" },
+      { title: "Deposit Funds", icon: PiHandDeposit, href: "/how-to/deposit" },
+      { title: "Trade Cryptocurrency", icon: RiExchangeLine, href: "/how-to/trade" },
+      { title: "Withdraw Funds", icon: PiHandWithdraw, href: "/how-to/withdraw" },
+    ],
+  },
+  {
+    title: "Support center",
+    children: [
+      { title: "Frequently Asked Questions (FAQs)", icon: LuMailQuestion, href: "/support/faqs" },
+      { title: "Contact Us", icon: GrContact, href: "/support/contact" },
+      { title: "Help Topics", icon: FaHandsHelping, href: "/support/help-topics" },
+    ],
+  },
+];
+;
 
 export const OurGoalsData = [
     {

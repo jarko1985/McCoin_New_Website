@@ -1,5 +1,5 @@
 import React from "react";
-import NewsSwiper from "../custom/NewsSwiper";
+
 
 const CompanyNews = () => {
   return (
@@ -7,7 +7,7 @@ const CompanyNews = () => {
       <h1 className="text-center text-[#DAE6EA] font-[600] text-3xl sm:text-4xl xl:text-[2.225rem] mb-12">
         Company News
       </h1>
-      <NewsSwiper/>
+     
     </section>
   );
 };

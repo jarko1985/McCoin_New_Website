@@ -2,6 +2,14 @@ import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
+    images:{
+        remotePatterns:[
+            {
+                protocol:'https',
+                hostname:'**'
+            }
+        ]
+    },
     webpack: (config, options) => {
         // Add canvas to externals
         config.externals = [...(config.externals || []), { canvas: "canvas" }];

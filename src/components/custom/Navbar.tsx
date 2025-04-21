@@ -26,22 +26,17 @@ import {
 import { Button } from "../ui/button";
 import LangSwitcher from "./LangSwitcher";
 import { Menu } from "lucide-react";
-import { TbArticle } from "react-icons/tb";
-import { FaBlog } from "react-icons/fa";
-import { TbDeviceAnalytics } from "react-icons/tb";
-import { FaGraduationCap } from "react-icons/fa";
+import { NAV_DATA } from "../../../utils/data";
+import { TbArticle, TbDeviceAnalytics } from "react-icons/tb";
+import { FaBlog, FaGraduationCap, FaHandsHelping, FaPodcast } from "react-icons/fa";
 import { ImNewspaper } from "react-icons/im";
 import { GiSattelite } from "react-icons/gi";
 import { LiaHotjar } from "react-icons/lia";
-import { FaPodcast } from "react-icons/fa";
 import { TiUserAddOutline } from "react-icons/ti";
-import { RiVerifiedBadgeLine } from "react-icons/ri";
-import { PiHandDeposit } from "react-icons/pi";
-import { RiExchangeLine } from "react-icons/ri";
-import { PiHandWithdraw } from "react-icons/pi";
+import { RiExchangeLine, RiVerifiedBadgeLine } from "react-icons/ri";
+import { PiHandDeposit, PiHandWithdraw } from "react-icons/pi";
 import { LuMailQuestion } from "react-icons/lu";
 import { GrContact } from "react-icons/gr";
-import { FaHandsHelping } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -53,7 +48,7 @@ const Navbar = () => {
         <div className="md:block hidden">
           <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
             <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
-              <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+            <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
               About
               </NavigationMenuItem>
               <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
@@ -65,7 +60,7 @@ const Navbar = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbArticle size={25}/> Articles</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/articles"> <TbArticle size={25}/> Articles</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaBlog size={25} /> Blog</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbDeviceAnalytics size={25} /> Market Sentiment</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaGraduationCap size={25} /> Crypto 101</Link></li>
@@ -116,64 +111,83 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-2">
           <div className="flex flex-row items-center justify-center gap-2">
-          <Link href="#" className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all">Sign up</Link>
-          <Link href="#" className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all">Log in</Link>
+            <Link
+              href="#"
+              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+            >
+              Sign up
+            </Link>
+            <Link
+              href="#"
+              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+            >
+              Log in
+            </Link>
           </div>
-          
+
           <LangSwitcher />
-          <Sheet >
+          <Sheet>
             <SheetTrigger asChild>
-              <Button className="md:hidden text-[#EC3B3B] bg-[#07153b] border-2 border-[#EC3B3B] hover:text-[#EC3B3B] cursor-pointer" variant="outline">
+              <Button
+                className="md:hidden text-[#EC3B3B] bg-[#07153b] border-2 border-[#EC3B3B] hover:text-[#EC3B3B] cursor-pointer"
+                variant="outline"
+              >
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent className="md:hidden bg-[#07153b]">
+
+            <SheetContent className="md:hidden bg-[#07153b] text-white overflow-y-auto">
               <SheetHeader>
-                <Link href="/">
-                <Image src={LOGO} alt="Logo Image" />
+                <Link href="/" className="block py-4">
+                  <Image src={LOGO} alt="Logo Image" width={120} height={40} />
                 </Link>
               </SheetHeader>
-              <SheetTitle></SheetTitle>
-
+              <div className="flex flex-row items-center justify-start gap-2">
+            <Link
+              href="#"
+              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+            >
+              Sign up
+            </Link>
+            <Link
+              href="#"
+              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+            >
+              Log in
+            </Link>
+          </div>
               <Accordion className="p-4" type="single" collapsible>
-                <AccordionItem className="text-white" value="item-1">
-                  <AccordionTrigger className="justify-items-start!">About</AccordionTrigger>
-                  <AccordionContent className="flex flex-col gap-y-4">
-                    <Link href="/company">Mccoin Company</Link>
-                    <Link href="/team">Mccoin Team</Link>
-                    <Link href="/contact">Contact US</Link>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem className="text-white" value="item-2">
-                  <AccordionTrigger>How to</AccordionTrigger>
-                  <AccordionContent className="flex flex-col gap-y-4">
-                    <Link href="/company">Create Account</Link>
-                    <Link href="/team">Verify Your Account</Link>
-                    <Link href="/contact">Deposit/Withdrawal</Link>
-                    <Link href="/company">Transfer</Link>
-                    <Link href="/contact">Manage your Wallets</Link>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem className="text-white" value="item-3">
-                <AccordionTrigger>Trading</AccordionTrigger>
-                <AccordionContent className="flex flex-col gap-y-4">
-                  <Link href='#'>Comming Soon</Link>
-                </AccordionContent>
-                </AccordionItem>
-                <AccordionItem className="text-white" value="item-4">
-                  <AccordionTrigger>Media</AccordionTrigger>
-                  <AccordionContent className="flex flex-col gap-y-4">
-                    <Link href="/company">Crypto News</Link>
-                    <Link href="/team">Market News</Link>
-                    <Link href="/contact">Feeds</Link>
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem className="text-white" value="item-5">
-                <AccordionTrigger>Resources</AccordionTrigger>
-                <AccordionContent>
-                <Link href="/faqs">Frequently Asked Questions (FAQs)</Link>
-                </AccordionContent>
-                </AccordionItem>
+                {NAV_DATA.map((item, index) =>
+                  item.children ? (
+                    <AccordionItem
+                      key={index}
+                      value={`item-${index}`}
+                      className="text-white"
+                    >
+                      <SheetTitle></SheetTitle>
+
+                      <AccordionTrigger>{item.title}</AccordionTrigger>
+                      <AccordionContent className="flex flex-col gap-y-3 pl-2">
+                        {item.children.map((child, idx) => (
+                          <Link
+                            key={idx}
+                            href={child.href}
+                            className="flex items-center gap-x-2 hover:underline"
+                          >
+                            <child.icon className="w-4 h-4" />
+                            {child.title}
+                          </Link>
+                        ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ) : (
+                    <div key={index} className="py-2">
+                      <Link href={item.href} className="hover:underline">
+                        {item.title}
+                      </Link>
+                    </div>
+                  )
+                )}
               </Accordion>
             </SheetContent>
           </Sheet>

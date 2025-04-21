@@ -8,7 +8,8 @@
   import ChatWidget from "@/components/custom/ChatWidget";
   import Footer from "@/components/custom/Footer";
   import AOSWrapper from "@/components/custom/AosWrapper";
-import CookieBanner from "@/components/custom/CookieBanner";
+  import LOGO from '@/../public/images/logo.svg'
+
 import { Providers } from "./providers";
 
   const montserrat = Montserrat({
@@ -20,7 +21,24 @@ import { Providers } from "./providers";
 
   export const metadata: Metadata = {
     title: "Mccoin Virtual Assets",
-    description: "Mccoin Virtual Assets",
+    description: "Your trusted crypto exchange platform",
+    openGraph:{
+      title: "Mccoin Virtual Assets",
+      description: "Your trusted crypto exchange platform",
+      url: "https://mc-coin-new-website.vercel.app/en",
+      siteName: "Mccoin",
+      images: [
+        {
+          url: "/banner1.png",
+          width: 1200,
+          height: 630,
+          alt: "Mccoin Banner",
+        },
+      ],
+    },
+    icons:{
+      icon: "/favicon.ico",
+    },
   };
 
   export default async function LocaleLayout({
@@ -46,7 +64,6 @@ import { Providers } from "./providers";
             </main>
             <Footer />
             <ChatWidget />
-            {/* <CookieBanner /> */}
             </Providers>
           </NextIntlClientProvider>
         </body>
