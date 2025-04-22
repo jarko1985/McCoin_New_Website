@@ -20,13 +20,14 @@ const LangSwitcher = () => {
     const router = useRouter();
     const pathname = usePathname();
     const [isPending, startTransition] = useTransition();
-    const currentLocale = pathname.split('/')[1] || 'en';
+    const currentLocale = pathname ? pathname.split('/')[1] : 'en';
     const currentLocaleData = locales.find(locale => locale.code === currentLocale) || locales[0];
     const handleLocaleChange = (locale: string) => {
-        startTransition(() => {
-          router.replace(`/${locale}${pathname.substring(3)}`);
-        });
-      };
+      const safePath = pathname?.substring(3) || "";
+      startTransition(() => {
+        router.replace(`/${locale}${safePath}`);
+      });
+    };
   return (
      <DropdownMenu>
       <DropdownMenuTrigger asChild className="bg-[#07153b] border-2 border-[#EC3B3B] hover:bg-[#07153b] hover:border-2 hover:scale-3d transition-transform duration-300 cursor-pointer">

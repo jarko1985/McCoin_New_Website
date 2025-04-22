@@ -12,7 +12,7 @@ const labelsByLocale: Record<string, { detecting: string; retry: string; detect:
 };
 
 export default function LocationDisplay() {
-  const { locale } = useParams();
+  const { locale } = useParams() as { locale: string };
   const { location, isLoading, error, refresh } = useLocation();
   console.log(location);
   

@@ -33,8 +33,8 @@ export function LocationProvider({
   children: React.ReactNode;
   serverLocation: LocationData;
 }) {
-  const params = useParams();
-  const locale = params.locale as string;
+  const params = useParams() as { locale: string };
+  const locale = params.locale;
   const [location, setLocation] = useState<LocationData>(serverLocation);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

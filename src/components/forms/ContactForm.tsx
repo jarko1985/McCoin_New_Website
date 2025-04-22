@@ -23,7 +23,7 @@ import { usePathname } from "next/navigation";
 const ContactForm = () => {
   const t = useTranslations("Contact");
   const pathname = usePathname();
-  const locale = pathname.split("/")[1];
+  const locale = pathname?.split("/")[1] ?? "en";
   const formSchema = z.object({
     name: z.string().min(2, {
       message: t("name_error"),

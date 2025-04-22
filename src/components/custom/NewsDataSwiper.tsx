@@ -42,7 +42,7 @@ interface NewsArticle {
 
 const NewsDataSection = () => {
   const params = useParams();
-  const locale = params.locale;
+  const { locale } = useParams() as { locale?: string };
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -172,16 +172,14 @@ const NewsDataSection = () => {
                   )}
                   <span>{article.source_name}</span>
                 </div>
-
+                <Link href={`/${locale}/top-news/${article.article_id}?source=newsdata`}>
+               
                 <h2 className="text-lg text-white font-bold mb-3 line-clamp-2">
-                  <Link
-                    href={article.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  
                     {article.title}
-                  </Link>
+                 
                 </h2>
+                </Link>
 
                 <p className="text-gray-400 text-sm mb-4 line-clamp-3">
                   {article.description}

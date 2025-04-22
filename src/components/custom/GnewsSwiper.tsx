@@ -26,7 +26,7 @@ interface NewsArticle {
 
 const GnewsSwiper = () => {
   const params = useParams();
-  const locale = params.locale;
+  const locale = (useParams() as { locale?: string })?.locale ?? "en";
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -104,7 +104,7 @@ const GnewsSwiper = () => {
         {articles.map((article) => (
           <SwiperSlide key={article.url} className="pb-10">
             <Link
-              href="#"
+              href={`http://localhost:3000/${locale}/top-news/${encodeURIComponent(article.url)}?source=gnews`}
               className="flex flex-col h-full bg-[#07153b] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-500"
               style={{ height: "100%" }}
             >

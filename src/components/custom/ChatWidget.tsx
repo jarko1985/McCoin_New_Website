@@ -14,8 +14,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const pathname = usePathname();
-  const locale = pathname.split("/")[1];
+  const locale = usePathname()?.split("/")[1] ?? "en";
 
   const toggleChat = () => setIsOpen(!isOpen);
 
