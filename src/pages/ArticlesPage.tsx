@@ -1,10 +1,12 @@
 "use client";
-
-import { NewsList, NewsListSkeleton } from "@/components/articles/ArticlesList";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { NewsItem } from "@/types/Messari";
-import { FeaturedArticles } from "@/components/articles/FeaturedArticles";
+import NewsHero from "@/components/articles/ArticlesHero";
+import DefiNews from "@/components/articles/DefiNews";
+import BitcoinNews from "@/components/articles/BitcoinNews";
+import MarketAndTradingNews from "@/components/articles/MarketAndTradingNews";
+import AllArticlesNews from "@/components/articles/AllArticles";
 
 export default function ArticlesPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -59,25 +61,12 @@ export default function ArticlesPage() {
   }
 
   return (
-    <div className="container py-8 mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-white text-center mb-4">Crypto News</h1>
-        <p className="text-white text-center">
-          Latest updates from the crypto world
-        </p>
-      </div>
-
-      {loading ? (
-        <>
-          <div className="mb-8 h-96 w-full rounded-xl bg-muted animate-pulse" />
-          <NewsListSkeleton />
-        </>
-      ) : (
-        <>
-          {featuredNews && <FeaturedArticles news={featuredNews} />}
-          <NewsList news={news.filter(item => item.id !== featuredNews?.id)} />
-        </>
-      )}
-    </div>
+    <>
+    <NewsHero news={news}/>
+    <DefiNews marketNews={news}/>
+    <BitcoinNews newsItems={news}/>
+    <MarketAndTradingNews newsItems={news}/>
+    <AllArticlesNews newsItems={news}/>
+    </>
   );
 }

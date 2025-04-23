@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const apikey = process.env.MESSARI_API_KEY;
-  const url = `https://data.messari.io/api/v1/news?limit=20`;
+  const url = `https://data.messari.io/api/v1/news`;
   try {
     const response = await fetch(url, {
       headers: {

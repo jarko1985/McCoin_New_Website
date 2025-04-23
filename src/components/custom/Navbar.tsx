@@ -40,12 +40,12 @@ import { GrContact } from "react-icons/gr";
 
 const Navbar = () => {
   return (
-    <nav className="container mx-auto w-full bg-[#07153b] py-10">
-      <div className="flex justify-around">
+    <nav className="mx-auto container w-full bg-[#07153b] py-10">
+      <div className="flex justify-between px-5 lg:justify-around">
         <Link href="/">
           <Image src={LOGO} alt="Logo Image" />
         </Link>
-        <div className="md:block hidden">
+        <div className="lg:block hidden">
           <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
             <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
             <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
@@ -59,7 +59,7 @@ const Navbar = () => {
                  Learn
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/articles"> <TbArticle size={25}/> Articles</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaBlog size={25} /> Blog</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbDeviceAnalytics size={25} /> Market Sentiment</Link></li>
@@ -69,10 +69,10 @@ const Navbar = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                McCoin insider
+                 insider
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <ImNewspaper size={25}/> Top News</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <GiSattelite size={25}/>Newsroom</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LiaHotjar size={25}/>Hot Topics</Link></li>
@@ -85,7 +85,7 @@ const Navbar = () => {
                  How to
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"><TiUserAddOutline size={25}/> Create an Account</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <RiVerifiedBadgeLine size={25}/>Verify Your Identity (KYC)</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <PiHandDeposit size={25}/>Deposit Funds</Link></li>
@@ -96,10 +96,10 @@ const Navbar = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                  Support center
+                  Support
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[565px] leading-normal tracking-widest">
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LuMailQuestion size={25} />Frequently Asked Questions (FAQs)</Link></li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <GrContact size={25} />Contact Us</Link></li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaHandsHelping size={25} />Help Topics</Link></li>
@@ -110,7 +110,7 @@ const Navbar = () => {
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex flex-row items-center justify-center gap-2">
+          <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
             <Link
               href="#"
               className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
@@ -129,20 +129,20 @@ const Navbar = () => {
           <Sheet>
             <SheetTrigger asChild>
               <Button
-                className="md:hidden text-[#EC3B3B] bg-[#07153b] border-2 border-[#EC3B3B] hover:text-[#EC3B3B] cursor-pointer"
+                className="lg:hidden text-[#EC3B3B] bg-[#07153b] border-2 border-[#EC3B3B] hover:text-[#EC3B3B] cursor-pointer"
                 variant="outline"
               >
                 <Menu />
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="md:hidden bg-[#07153b] text-white overflow-y-auto">
+            <SheetContent className="lg:hidden bg-[#07153b] text-white overflow-y-auto">
               <SheetHeader>
                 <Link href="/" className="block py-4">
                   <Image src={LOGO} alt="Logo Image" width={120} height={40} />
                 </Link>
               </SheetHeader>
-              <div className="flex flex-row items-center justify-start gap-2">
+              <div className="flex flex-row items-center justify-start gap-x-2 pl-3">
             <Link
               href="#"
               className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
@@ -156,7 +156,7 @@ const Navbar = () => {
               Log in
             </Link>
           </div>
-              <Accordion className="p-4" type="single" collapsible>
+              <Accordion className="px-4" type="single" collapsible>
                 {NAV_DATA.map((item, index) =>
                   item.children ? (
                     <AccordionItem

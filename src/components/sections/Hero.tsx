@@ -7,19 +7,19 @@ import HISTORICALMARKET from "@/../public/images/historical_value.svg";
 import TradingTicker from "./TradingTicker";
 export default function HeroSection() {
   return (
-    <section className="container mx-auto xl:w-[70%] min-h-screen overflow-hidden">
+    <section className="container mx-auto xl:w-[73%] min-h-screen overflow-hidden">
       <div className="flex flex-col lg:flex-row justify-between">
       <div className="flex flex-col xl:pt-12">
         <div className="space-y-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl md:text-left text-center font-bold leading-tight text-[#DAE6EA]/80">
+          <h1 className="text-4xl lg:text-5xl text-center lg:text-left font-bold leading-tight text-[#DAE6EA]/80">
             Invest in <span className="text-[#EC3B3B]">McCoin</span>
             <br /> Way to Trade
           </h1>
 
-          <p className="text-xl md:text-2xl text-[#DAE6EA]/80">
+          <p className="text-xl md:text-2xl text-[#DAE6EA]/80 text-center lg:text-left">
             The global crypto currency exchange
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md">
+          <div className="flex flex-col lg:flex-row gap-4 mx-auto lg:m-0 max-w-md">
             <input
               type="email"
               placeholder="Email address"
@@ -32,7 +32,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-4 xl:pt-12">
+      <div className="flex flex-col items-center gap-y-4 pt-6 xl:pt-12 px-4 md:px-0">
         <div>
           <Image
             src={PRICECHANGE}
@@ -61,8 +61,9 @@ export default function HeroSection() {
             alt="Historical Value"
             width={521}
             height={515}
+            className="hidden xl:block"
           />
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none hidden xl:block">
             <div
               className="absolute bottom-0 left-0 right-0 h-2/5 
                     bg-gradient-to-t from-[#07153b] to-transparent"
