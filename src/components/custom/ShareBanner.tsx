@@ -30,7 +30,7 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         title={title}
         className="Demo__some-network__share-button"
       >
-        <FacebookIcon size={32} round />
+        <FacebookIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
       </FacebookShareButton>
 
       <TwitterShareButton
@@ -38,7 +38,7 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         title={title}
         className="Demo__some-network__share-button"
       >
-        <XIcon size={32} round />
+        <XIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
       </TwitterShareButton>
 
       <TelegramShareButton
@@ -46,7 +46,7 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         title={title}
         className="Demo__some-network__share-button"
       >
-        <TelegramIcon size={32} round />
+        <TelegramIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
       </TelegramShareButton>
 
       <WhatsappShareButton
@@ -55,7 +55,7 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         separator=":: "
         className="Demo__some-network__share-button"
       >
-        <WhatsappIcon size={32} round />
+        <WhatsappIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
       </WhatsappShareButton>
 
       <LinkedinShareButton
@@ -65,7 +65,7 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         source="YourWebsiteName"
         className="Demo__some-network__share-button"
       >
-        <LinkedinIcon size={32} round />
+        <LinkedinIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
       </LinkedinShareButton>
     </div>
   );

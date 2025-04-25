@@ -1,60 +1,63 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { NewsItem } from '@/types/Messari';
+"use client";
 
-async function getArticle(id: string): Promise<NewsItem | null> {
-  try {
-    const res = await fetch(`https://data.messari.io/api/v1/news/${id}`, {
-      headers: {
-        'x-messari-api-key': process.env.MESSARI_API_KEY || '',
+import { useEffect, useState } from "react";
+import { useParams, notFound } from "next/navigation";
+import Image from "next/image";
+import { NewsItem } from "@/types/Messari";
+
+export default function ArticleDetail() {
+  const { id, locale }: { id?: string; locale?: string } = useParams() as any;
+  const [article, setArticle] = useState<NewsItem | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id || !locale) return;
+
+    async function getArticle() {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${locale}/api/messari`, {
+          cache: "no-store",
+        });
+
+        if (!res.ok) {
+          setArticle(null);
+          return;
+        }
+
+        const articles: NewsItem[] = await res.json();
+        const found = articles.find((a) => a.id === id) || null;
+        setArticle(found);
+      } catch (error) {
+        console.error("Error fetching article:", error);
+        setArticle(null);
+      } finally {
+        setLoading(false);
       }
-    });
+    }
 
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.data;
-  } catch (error) {
-    console.error('Error fetching article:', error);
-    return null;
-  }
-}
+    getArticle();
+  }, [id, locale]);
 
-// Update the type definition to use Promise
-type Params = Promise<{ id: string }>;
-
-export default async function ArticleDetail({
-  params,
-}: {
-  params: Params;
-}) {
-  const resolvedParams = await params;
-  const article = await getArticle(resolvedParams.id);
-
-  if (!article) {
-    notFound();
-  }
+  if (loading) return <p className="text-center py-12">Loading...</p>;
+  if (!article) return notFound();
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      {/* Article Header */}
       <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#07153b] mb-4">
-          {article.title}
-        </h1>
-        
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{article.title}</h1>
+
         <div className="flex items-center space-x-4 text-sm text-gray-500 mb-6">
-          <span>by {article.author?.name || 'Unknown Author'}</span>
+          <span>by {article.author?.name || "Unknown Author"}</span>
           <span>•</span>
           <span>
-            {new Date(article.published_at).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
+            {new Date(article.published_at).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
             })}
           </span>
         </div>
 
-        {/* Tags */}
         {article.tags?.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-6">
             {article.tags.map((tag) => (
@@ -81,12 +84,10 @@ export default async function ArticleDetail({
         </div>
       )}
 
-      {/* Article Content */}
-      <article className="prose prose-lg max-w-none">
+      <article className="prose prose-lg max-w-none text-white">
         <div dangerouslySetInnerHTML={{ __html: article.content }} />
       </article>
 
-      {/* Source Link */}
       {article.url && (
         <div className="mt-8 pt-6 border-t border-gray-200">
           <a

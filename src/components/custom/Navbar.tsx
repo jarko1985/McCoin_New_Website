@@ -63,7 +63,7 @@ const Navbar = () => {
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/articles"> <TbArticle size={25}/> Articles</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaBlog size={25} /> Blog</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbDeviceAnalytics size={25} /> Market Sentiment</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaGraduationCap size={25} /> Crypto 101</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/crypto101"> <FaGraduationCap size={25} /> Crypto 101</Link></li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -74,7 +74,7 @@ const Navbar = () => {
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <ImNewspaper size={25}/> Top News</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <GiSattelite size={25}/>Newsroom</Link></li>
+                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/news-room"> <GiSattelite size={25}/>Newsroom</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LiaHotjar size={25}/>Hot Topics</Link></li>
                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaPodcast size={25} />Podcasts</Link></li>
                   </ul>

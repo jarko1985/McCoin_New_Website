@@ -7,6 +7,7 @@ import DefiNews from "@/components/articles/DefiNews";
 import BitcoinNews from "@/components/articles/BitcoinNews";
 import MarketAndTradingNews from "@/components/articles/MarketAndTradingNews";
 import AllArticlesNews from "@/components/articles/AllArticles";
+import { Loader2 } from "lucide-react";
 
 export default function ArticlesPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -28,8 +29,7 @@ export default function ArticlesPage() {
 
         const data = await res.json();
         setNews(data);
-        
-        // Set the first news item with an image as featured
+
         const firstWithImage = data.find((item: NewsItem) => item.previewImage);
         setFeaturedNews(firstWithImage || data[0]);
       } catch (err) {
@@ -60,13 +60,22 @@ export default function ArticlesPage() {
     );
   }
 
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <Loader2 className="h-12 w-12 text-[#EC3B3B] animate-spin mb-4" />
+        <p className="text-[#07153B] font-semibold text-lg animate-pulse">Loading articles...</p>
+      </div>
+    );
+  }
+
   return (
     <>
-    <NewsHero news={news}/>
-    <DefiNews marketNews={news}/>
-    <BitcoinNews newsItems={news}/>
-    <MarketAndTradingNews newsItems={news}/>
-    <AllArticlesNews newsItems={news}/>
+      <NewsHero news={news} />
+      <DefiNews marketNews={news} />
+      <BitcoinNews newsItems={news} />
+      <MarketAndTradingNews newsItems={news} />
+      <AllArticlesNews newsItems={news} />
     </>
   );
 }

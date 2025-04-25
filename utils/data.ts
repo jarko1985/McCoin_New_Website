@@ -46,37 +46,37 @@ export const NAV_DATA = [
   {
     title: "Learn",
     children: [
-      { title: "Articles", icon: TbArticle, href: "/learn/articles" },
-      { title: "Blog", icon: FaBlog, href: "/learn/blog" },
-      { title: "Market Sentiment", icon: TbDeviceAnalytics, href: "/learn/market-sentiment" },
-      { title: "Crypto 101", icon: FaGraduationCap, href: "/learn/crypto-101" },
+      { title: "Articles", icon: TbArticle, href: "/articles" },
+      { title: "Blog", icon: FaBlog, href: "/blog" },
+      { title: "Market Sentiment", icon: TbDeviceAnalytics, href: "/market-sentiment" },
+      { title: "Crypto 101", icon: FaGraduationCap, href: "/crypto101" },
     ],
   },
   {
     title: "McCoin insider",
     children: [
-      { title: "Top News", icon: ImNewspaper, href: "/insider/top-news" },
-      { title: "Newsroom", icon: GiSattelite, href: "/insider/newsroom" },
-      { title: "Hot Topics", icon: LiaHotjar, href: "/insider/hot-topics" },
-      { title: "Podcasts", icon: FaPodcast, href: "/insider/podcasts" },
+      { title: "Top News", icon: ImNewspaper, href: "/top-news" },
+      { title: "Newsroom", icon: GiSattelite, href: "/news-room" },
+      { title: "Hot Topics", icon: LiaHotjar, href: "/hot-topics" },
+      { title: "Podcasts", icon: FaPodcast, href: "/podcasts" },
     ],
   },
   {
     title: "How to",
     children: [
-      { title: "Create an Account", icon: TiUserAddOutline, href: "/how-to/create-account" },
-      { title: "Verify Your Identity (KYC)", icon: RiVerifiedBadgeLine, href: "/how-to/verify-identity" },
-      { title: "Deposit Funds", icon: PiHandDeposit, href: "/how-to/deposit" },
-      { title: "Trade Cryptocurrency", icon: RiExchangeLine, href: "/how-to/trade" },
-      { title: "Withdraw Funds", icon: PiHandWithdraw, href: "/how-to/withdraw" },
+      { title: "Create an Account", icon: TiUserAddOutline, href: "/create-account" },
+      { title: "Verify Your Identity (KYC)", icon: RiVerifiedBadgeLine, href: "/verify-identity" },
+      { title: "Deposit Funds", icon: PiHandDeposit, href: "/deposit" },
+      { title: "Trade Cryptocurrency", icon: RiExchangeLine, href: "/trade" },
+      { title: "Withdraw Funds", icon: PiHandWithdraw, href: "/withdraw" },
     ],
   },
   {
     title: "Support center",
     children: [
-      { title: "Frequently Asked Questions (FAQs)", icon: LuMailQuestion, href: "/support/faqs" },
-      { title: "Contact Us", icon: GrContact, href: "/support/contact" },
-      { title: "Help Topics", icon: FaHandsHelping, href: "/support/help-topics" },
+      { title: "Frequently Asked Questions (FAQs)", icon: LuMailQuestion, href: "/faqs" },
+      { title: "Contact Us", icon: GrContact, href: "/contact" },
+      { title: "Help Topics", icon: FaHandsHelping, href: "/help-topics" },
     ],
   },
 ];
@@ -344,3 +344,103 @@ export const NewsData = [
     ret:"4m"
   },
 ]
+
+export const PopularPostsData = [
+  {
+    id: 1,
+    title: "Underwhelming Conference",
+    description: "Cuts Ripple Price",
+    date: "26 APRIL 2017",
+    category: "Market News",
+    bg: "bg-[url('/images/bitcoin.jpg')]"
+  },
+  {
+      id: 2,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin2.jpg')]"
+    },
+    {
+      id: 3,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin3.jpg')]"
+    },
+    {
+      id: 4,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin4.jpg')]"
+    },
+    {
+      id: 5,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin5.jpg')]"
+    },
+    {
+      id: 6,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin6.jpg')]"
+    },
+    {
+      id: 7,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin7.jpg')]"
+    },
+    {
+      id: 8,
+      title: "Underwhelming Conference",
+      description: "Cuts Ripple Price",
+      date: "26 APRIL 2017",
+      category: "Market News",
+      bg: "bg-[url('/images/bitcoin8.jpg')]"
+    },
+];
+
+export const dummyEvents = [
+  {
+    id: 1,
+    title: "Blockchain Expo, London",
+    startDate: new Date(2018, 3, 12), // April 12, 2018
+    endDate: new Date(2018, 4, 10),   // May 10, 2018
+    venue: "LONDON",
+    price: "Free",
+    description: "Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.",
+    imageUrl: "/images/event1.jpg"
+  },
+  {
+    id: 2,
+    title: "Tech Innovation Summit",
+    startDate: new Date(2024, 5, 5),  // June 5, 2024
+    endDate: new Date(2024, 5, 7),    // June 7, 2024
+    venue: "SAN FRANCISCO",
+    price: "Free",
+    description: "Explore the latest in technology innovation with industry leaders. This summit brings together the brightest minds in tech to discuss emerging trends and future directions.",
+    imageUrl: "/images/event2.jpg"
+  },
+  {
+    id: 3,
+    title: "Digital Marketing Conference",
+    startDate: new Date(2024, 6, 15),  // July 15, 2024
+    endDate: new Date(2024, 6, 17),    // July 17, 2024
+    venue: "NEW YORK",
+    price: "By Invite",
+    description: "Learn cutting-edge digital marketing strategies from top experts in the field. Perfect for marketers looking to stay ahead of the curve.",
+    imageUrl: "/images/event3.jpg"
+  }
+];

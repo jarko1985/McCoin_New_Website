@@ -1,10 +1,11 @@
+import Crypto101Page from "@/pages/Crypto101Page";
 
 
 const CryptoPage = () => {
   return (
-    <section className='text-white'>
-    <h1 className='text-center text-3xl'>  Crypto 101 Page</h1>
-    </section>
+    <div className='container mx-auto xl:w-[70%]'>
+      <Crypto101Page/>
+    </div>
   )
 }
 

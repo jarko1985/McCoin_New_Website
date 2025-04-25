@@ -1,11 +1,10 @@
+import NewsRoomPage from "@/pages/NewsRoomPage";
 
 
-const NewsRoomPage = () => {
+const page = () => {
   return (
-    <section className="container py-12 xl:max-w-[70%] mx-auto">
-        <h1 className="text-center text-white lg:text-3xl" >News Room</h1>
-    </section>
+  <NewsRoomPage/>
   )
 }
 
-export default NewsRoomPage;
+export default page;
