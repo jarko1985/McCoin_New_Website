@@ -31,13 +31,19 @@ import { RiExchangeLine } from "react-icons/ri";
 import { PiHandWithdraw } from "react-icons/pi";
 import { LuMailQuestion } from "react-icons/lu";
 import { GrContact } from "react-icons/gr";
-import { FaHandsHelping } from "react-icons/fa";
+import { FaHandsHelping, FaLandmark } from "react-icons/fa";
 import { FooterLink } from '@/types/FooterLink';
+import { MdOutlineExplore } from "react-icons/md";
 
 
 export const NAV_DATA = [
   { title: "About", href: "/about" },
-  { title: "Markets", href: "/markets" },
+  { title: "Markets", 
+    children: [
+      { title: "Overview", icon: FaLandmark, href: "/market-overview" },
+      { title: "Market Explorer", icon: MdOutlineExplore, href: "/market-explorer" },
+    ],
+   },
   {
     title: "Learn",
     children: [

@@ -5,13 +5,11 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -28,7 +26,14 @@ import LangSwitcher from "./LangSwitcher";
 import { Menu } from "lucide-react";
 import { NAV_DATA } from "../../../utils/data";
 import { TbArticle, TbDeviceAnalytics } from "react-icons/tb";
-import { FaBlog, FaGraduationCap, FaHandsHelping, FaPodcast } from "react-icons/fa";
+import {
+  FaBlog,
+  FaGraduationCap,
+  FaHandsHelping,
+  FaPodcast,
+  FaLandmark
+} from "react-icons/fa";
+import { MdOutlineExplore } from "react-icons/md";
 import { ImNewspaper } from "react-icons/im";
 import { GiSattelite } from "react-icons/gi";
 import { LiaHotjar } from "react-icons/lia";
@@ -39,61 +44,175 @@ import { LuMailQuestion } from "react-icons/lu";
 import { GrContact } from "react-icons/gr";
 import AnimatedLogo from "./AnimatedLogo";
 
+
 const Navbar = () => {
   return (
     <nav className="mx-auto container w-full bg-[#07153b] py-10">
       <div className="flex justify-between px-5 lg:justify-around">
         <Link href="/">
-         <AnimatedLogo/>
+          <AnimatedLogo />
         </Link>
         <div className="lg:block hidden">
           <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
             <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
-            <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-              <Link href='/about'>
-              About
-              </Link>
+              <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                <Link href="/about">About</Link>
               </NavigationMenuItem>
               <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-              Markets
+                <NavigationMenuTrigger className=" text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                  Markets
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-[#07153b]!">
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/market-overview"
+                      >
+                        <FaLandmark size={25} /> Overview
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/market-explorer"
+                      >
+                        <MdOutlineExplore size={25} /> Market Explorer
+                      </Link>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem className="cursor-pointer">
                 <NavigationMenuTrigger className=" text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                 Learn
+                  Learn
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/articles"> <TbArticle size={25}/> Articles</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaBlog size={25} /> Blog</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <TbDeviceAnalytics size={25} /> Market Sentiment</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/crypto101"> <FaGraduationCap size={25} /> Crypto 101</Link></li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/articles"
+                      >
+                        {" "}
+                        <TbArticle size={25} /> Articles
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="/blog">
+                        {" "}
+                        <FaBlog size={25} /> Blog
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="/market-sentiment">
+                        {" "}
+                        <TbDeviceAnalytics size={25} /> Market Sentiment
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/crypto101"
+                      >
+                        {" "}
+                        <FaGraduationCap size={25} /> Crypto 101
+                      </Link>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                 insider
+                  insider
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
-                  <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <ImNewspaper size={25}/> Top News</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/news-room"> <GiSattelite size={25}/>Newsroom</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LiaHotjar size={25}/>Hot Topics</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaPodcast size={25} />Podcasts</Link></li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <ImNewspaper size={25} /> Top News
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/news-room"
+                      >
+                        {" "}
+                        <GiSattelite size={25} />
+                        Newsroom
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <LiaHotjar size={25} />
+                        Hot Topics
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <FaPodcast size={25} />
+                        Podcasts
+                      </Link>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                 How to
+                  How to
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
-                  <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"><TiUserAddOutline size={25}/> Create an Account</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <RiVerifiedBadgeLine size={25}/>Verify Your Identity (KYC)</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <PiHandDeposit size={25}/>Deposit Funds</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <RiExchangeLine size={25} />Trade Cryptocurrency</Link></li>
-                   <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <PiHandWithdraw size={25} />Withdraw Funds</Link></li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        <TiUserAddOutline size={25} /> Create an Account
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <RiVerifiedBadgeLine size={25} />
+                        Verify Your Identity (KYC)
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <PiHandDeposit size={25} />
+                        Deposit Funds
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <RiExchangeLine size={25} />
+                        Trade Cryptocurrency
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="#">
+                        {" "}
+                        <PiHandWithdraw size={25} />
+                        Withdraw Funds
+                      </Link>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -102,10 +221,37 @@ const Navbar = () => {
                   Support
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/faqs"> <LuMailQuestion size={25} />Frequently Asked Questions (FAQs)</Link></li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/contact"> <GrContact size={25} />Contact Us</Link></li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/help-topics"> <FaHandsHelping size={25} />Help Topics</Link></li>
+                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link className="flex gap-x-1 items-center" href="/faqs">
+                        {" "}
+                        <LuMailQuestion size={25} />
+                        Frequently Asked Questions (FAQs)
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/contact"
+                      >
+                        {" "}
+                        <GrContact size={25} />
+                        Contact Us
+                      </Link>
+                    </li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                      {" "}
+                      <Link
+                        className="flex gap-x-1 items-center"
+                        href="/help-topics"
+                      >
+                        {" "}
+                        <FaHandsHelping size={25} />
+                        Help Topics
+                      </Link>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -115,7 +261,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
             <Link
-            target="_blank"
+              target="_blank"
               href="https://app.cryptomarketplace.com/register"
               className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
             >
@@ -147,19 +293,19 @@ const Navbar = () => {
                 </Link>
               </SheetHeader>
               <div className="flex flex-row items-center justify-start gap-x-2 pl-3">
-            <Link
-              href="#"
-              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
-            >
-              Sign up
-            </Link>
-            <Link
-              href="#"
-              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
-            >
-              Log in
-            </Link>
-          </div>
+                <Link
+                  href="#"
+                  className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+                >
+                  Sign up
+                </Link>
+                <Link
+                  href="#"
+                  className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+                >
+                  Log in
+                </Link>
+              </div>
               <Accordion className="px-4" type="single" collapsible>
                 {NAV_DATA.map((item, index) =>
                   item.children ? (
