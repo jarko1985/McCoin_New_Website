@@ -103,9 +103,9 @@ const Navbar = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[450px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <LuMailQuestion size={25} />Frequently Asked Questions (FAQs)</Link></li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <GrContact size={25} />Contact Us</Link></li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="#"> <FaHandsHelping size={25} />Help Topics</Link></li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/faqs"> <LuMailQuestion size={25} />Frequently Asked Questions (FAQs)</Link></li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/contact"> <GrContact size={25} />Contact Us</Link></li>
+                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!"> <Link className="flex gap-x-1 items-center" href="/help-topics"> <FaHandsHelping size={25} />Help Topics</Link></li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>

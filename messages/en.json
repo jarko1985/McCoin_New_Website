@@ -20,5 +20,11 @@
     "phone_error":"must be at least 10 characters.",
     "subject_error":"must be at least 5 characters.",
     "message_error":"must be at least 10 characters."
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "Sorry, we couldn’t find the page you’re looking for.",
+    "cta": "Go back home",
+    "imageAlt": "Page not found"
   }
 }
