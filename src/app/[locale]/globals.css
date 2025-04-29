@@ -180,3 +180,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+
+.vertical-swiper {
+  height: 375px !important; /* Adjust based on your needs */
+}
+.horizontal-swiper {
+  width: 100%;
+}

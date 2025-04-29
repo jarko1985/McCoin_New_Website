@@ -2,10 +2,8 @@ import LocationDisplay from "@/components/custom/LocationDisplay";
 import About from "@/components/sections/About";
 import CompanyNews from "@/components/sections/CompanyNews";
 import Hero from "@/components/sections/Hero";
-import OurGoals from "@/components/sections/OurGoals";
 import OurPartners from "@/components/sections/OurPartners";
 import Steps from "@/components/sections/Steps";
-import Team from "@/components/sections/Team";
 import TradingViewWidget from "@/components/sections/TradingChart";
 import WhyMccoin from "@/components/sections/WhyMccoin";
 
@@ -23,8 +21,6 @@ export default function Home() {
       <Steps/>
      <OurPartners/> 
      <CompanyNews/>
-    {/* <OurGoals/> */}
-    {/* <Team/> */}
     <About/>
     <LocationDisplay/>
   </div>

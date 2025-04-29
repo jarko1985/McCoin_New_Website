@@ -1,14 +1,14 @@
-import GnewsSwiper from '@/components/custom/GnewsSwiper'
-import NewsDataSection from '@/components/custom/NewsDataSwiper'
-import React from 'react'
+// import GnewsSwiper from '@/components/custom/GnewsSwiper'
 
-const TopNewsPage = () => {
+import TopNewsPage from "@/pages/TopNewsPage"
+
+// import NewsDataSection from '@/components/custom/NewsDataSwiper'
+const page = () => {
   return (
-    <section className='mx-auto container xl:w-[70%] py-12'>
-        <GnewsSwiper/>
-        <NewsDataSection/>
+    <section>
+       <TopNewsPage/>
     </section>
   )
 }
 
-export default TopNewsPage
+export default page

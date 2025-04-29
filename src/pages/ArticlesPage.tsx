@@ -8,6 +8,7 @@ import BitcoinNews from "@/components/articles/BitcoinNews";
 import MarketAndTradingNews from "@/components/articles/MarketAndTradingNews";
 import AllArticlesNews from "@/components/articles/AllArticles";
 import { Loader2 } from "lucide-react";
+import AnimatedLogo from "@/components/custom/AnimatedLogo";
 
 export default function ArticlesPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -63,7 +64,8 @@ export default function ArticlesPage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <Loader2 className="h-12 w-12 text-[#EC3B3B] animate-spin mb-4" />
+        {/* <Loader2 className="h-12 w-12 text-[#EC3B3B] animate-spin mb-4" /> */}
+        <AnimatedLogo/>
         <p className="text-[#07153B] font-semibold text-lg animate-pulse">Loading articles...</p>
       </div>
     );

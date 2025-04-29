@@ -37,19 +37,22 @@ import { RiExchangeLine, RiVerifiedBadgeLine } from "react-icons/ri";
 import { PiHandDeposit, PiHandWithdraw } from "react-icons/pi";
 import { LuMailQuestion } from "react-icons/lu";
 import { GrContact } from "react-icons/gr";
+import AnimatedLogo from "./AnimatedLogo";
 
 const Navbar = () => {
   return (
     <nav className="mx-auto container w-full bg-[#07153b] py-10">
       <div className="flex justify-between px-5 lg:justify-around">
         <Link href="/">
-          <Image src={LOGO} alt="Logo Image" />
+         <AnimatedLogo/>
         </Link>
         <div className="lg:block hidden">
           <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
             <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
             <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+              <Link href='/about'>
               About
+              </Link>
               </NavigationMenuItem>
               <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
               Markets
@@ -112,7 +115,8 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
             <Link
-              href="#"
+            target="_blank"
+              href="https://app.cryptomarketplace.com/register"
               className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
             >
               Sign up

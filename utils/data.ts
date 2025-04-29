@@ -2,12 +2,6 @@ import ARROW_UP from '../public/images/arrow_up.svg';
 import EDUCATION from '../public/images/graduation.svg';
 import VISION from '../public/images/vision.svg';
 import MISSION from '../public/images/mission.svg';
-import GREGGY from '../public/images/greggy.png';
-import KASRA from '../public/images/kasra.png';
-import KIYAN from '../public/images/kiyan.png';
-import SUNIL from '../public/images/sunil.png';
-import VAHID from '../public/images/vahid.png';
-import MOE from '../public/images/moe.png';
 import ZEROFEE from '@/../public/images/zero_fee_icon.svg';
 import ULTIMATE from '@/../public/images/ultimate_icon.svg';
 import SAFTEY from '@/../public/images/shield_icon.svg';
@@ -38,6 +32,7 @@ import { PiHandWithdraw } from "react-icons/pi";
 import { LuMailQuestion } from "react-icons/lu";
 import { GrContact } from "react-icons/gr";
 import { FaHandsHelping } from "react-icons/fa";
+import { FooterLink } from '@/types/FooterLink';
 
 
 export const NAV_DATA = [
@@ -110,77 +105,7 @@ export const OurGoalsData = [
   ]
 
 
-export const TeamData = [
-  {
-    id:1,
-    imgSrc:KASRA,
-    name:"Kasra Taghavi",
-    position:"Founder | Director"
-  },
-  {
-    id:2,
-    imgSrc:KIYAN,
-    name:"Kiyan Taghavi",
-    position:"Founder | General Manager"
-  },
-  {
-    id:3,
-    imgSrc:SUNIL,
-    name:"Sunil Nair",
-    position:"Chief Information Security Officer | Data Protection Officer"
-  },
-  {
-    id:4,
-    imgSrc:VAHID,
-    name:"Vahid Sobati",
-    position:"COO"
-  },
-  {
-    id:5,
-    imgSrc:GREGGY,
-    name:"Greggy Caguete",
-    position:"Chief Compliance Officer | MLRO"
-  },
-  {
-    id:6,
-    imgSrc:MOE,
-    name:"Mohamed Elsayed",
-    position:"Chief Information Officer"
-  }
-];
 
-export const FooterLinks = [
-  {
-    id:1,
-    label:"Contact",
-    href:"contact"
-  },
-  {
-    id:2,
-    label:"Privacy Policy",
-    href:"privacy-policy"
-  },
-  {
-    id:3,
-    label:"Terms",
-    href:"terms"
-  },
-  {
-    id:4,
-    label:"Disclosure",
-    href:"disclosure"
-  },
-  {
-    id:5,
-    label:"Law Enforcement",
-    href:"law-enforcement"
-  },
-  {
-    id:6,
-    label:"FAQ",
-    href:"faq"
-  },
-]
 
 export const Faqs = [
   {
@@ -443,4 +368,67 @@ export const dummyEvents = [
     description: "Learn cutting-edge digital marketing strategies from top experts in the field. Perfect for marketers looking to stay ahead of the curve.",
     imageUrl: "/images/event3.jpg"
   }
+];
+export const FooterLinks: FooterLink[] = [
+  {
+    id: 1,
+    label: "Learn",
+    href: "learn",
+    iconName: "BookOpen",
+    subLinks: [
+      { id: 31, label: "Articles", href: "articles", iconName: "FileText" },
+      { id: 32, label: "Blog", href: "blog", iconName: "Bookmark" },
+      { id: 33, label: "Market-Sentiment", href: "market-sentiment", iconName: "Briefcase" },
+      { id: 34, label: "Crypto101", href: "crypto101", iconName: "Home" }
+    ]
+  },
+  {
+    id: 2,
+    label: "Insider",
+    href: "insider",
+    iconName: "User",
+    subLinks: [
+      { id: 41, label: "Top-news", href: "top-news", iconName: "Newspaper" },
+      { id: 42, label: "Newsroom", href: "newsroom", iconName: "MessageSquare" },
+      { id: 43, label: "Hot-Topics", href: "hot-topics", iconName: "TrendingUp" },
+      { id: 44, label: "Podcasts", href: "podcasts", iconName: "Podcast" }
+    ]
+  },
+  {
+    id: 3,
+    label: "How to",
+    href: "how-to",
+    iconName: "Settings",
+    subLinks: [
+      { id: 51, label: "Create-an-Account", href: "create-an-account", iconName: "PlusCircle" },
+      { id: 52, label: "Verify-your-Account(KYC)", href: "verify-your-account", iconName: "User" },
+      { id: 53, label: "Deposit-Funds", href: "deposit-funds", iconName: "Wallet" },
+      { id: 54, label: "Withdraw-Funds", href: "withdraw-funds", iconName: "Wallet" },
+      { id: 55, label: "Trade-Cryptocurrency", href: "trade-cryptocurrency", iconName: "TrendingUp" }
+    ]
+  },
+  {
+    id: 4,
+    label: "Support",
+    href: "support",
+    iconName: "CircleHelp",
+    subLinks: [
+      { id: 61, label: "Frequently-asked-questions(FAQ)", href: "faq", iconName: "FileText" },
+      { id: 62, label: "Contact-us", href: "contact-us", iconName: "Mail" },
+      { id: 63, label: "Help-Topics", href: "help-topics", iconName: "CircleHelp" }
+    ]
+  },
+  {
+    id: 5,
+    label: "Resources",
+    href: "resources",
+    iconName: "Info",
+    subLinks: [
+      { id: 64, label: "Privacy Policy", href: "privacy-policy", iconName: "FileText" },
+      { id: 65, label: "Terms & Conditions", href: "terms", iconName: "Mail" },
+      { id: 66, label: "Disclosure", href: "disclosure", iconName: "CircleHelp" },
+      { id: 66, label: "Virtual Assets Standard Policy", href: "virtual-assets", iconName: "CircleHelp" },
+      { id: 66, label: "Others", href: "others", iconName: "CircleHelp" }
+    ]
+  },
 ];

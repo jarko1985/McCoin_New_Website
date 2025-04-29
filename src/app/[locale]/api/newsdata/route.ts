@@ -6,9 +6,6 @@ export async function GET(
 ) {
   const apiKey = process.env.NEWSDATA_API_KEY;
   const url = `https://newsdata.io/api/1/latest?apikey=${apiKey}&country=ae&language=en`;
-
-  const { locale } = await params;
-
   try {
     const response = await fetch(url, {
       next: { revalidate: 3600 },
