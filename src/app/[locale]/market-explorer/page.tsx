@@ -1,9 +1,10 @@
-import UnderConstruction from '@/components/custom/UnderConstruction'
+  
+import MarketExplorerPage from '@/pages/MarketExplorerPage'
 import React from 'react'
 
 const page = () => {
   return (
-    <UnderConstruction/>
+    <MarketExplorerPage/>
   )
 }
 

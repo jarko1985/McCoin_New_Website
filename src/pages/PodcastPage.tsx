@@ -3,9 +3,9 @@ import React from 'react'
 
 const PodcastPage = () => {
   return (
-    <>
+    <div className='relative'>
     <PodcastHero/>
-    </>
+    </div>
   )
 }
 

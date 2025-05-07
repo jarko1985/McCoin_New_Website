@@ -5,7 +5,7 @@ const PODCHASER_API_KEY = process.env.PODCHASER_API_KEY_DEVELOPMENT;
 
 const QUERY = `
   query {
-    podcasts(searchTerm: "crypto", filters: {rating: {minRating: 4, maxRating: 5}}) {
+    podcasts(searchTerm: "crypto", filters: {rating: {minRating: 2, maxRating: 5}}) {
       paginatorInfo {
         currentPage,
         hasMorePages,
@@ -40,7 +40,7 @@ export async function GET() {
     });
 
     const result = await response.json();
-    console.log(result);
+    console.log(result.data.podcasts.data);
     
     if (!response.ok || result.errors) {
       return NextResponse.json({ error: result.errors || 'Failed to fetch podcasts' }, { status: 500 });

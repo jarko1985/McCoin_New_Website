@@ -64,7 +64,7 @@ export default function PodcastHero() {
   }
 
   return (
-    <div className="relative w-full">
+    <div className="w-full">
       {/* Background image with tint - full width */}
       <div 
         className="h-[50vh] w-full bg-cover bg-no-repeat bg-center transition-opacity duration-500"
@@ -130,10 +130,10 @@ export default function PodcastHero() {
                     </div>
                     
                     <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                      <Button className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-6 py-4 rounded-full">
+                      <Button className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-6 py-4 rounded-full cursor-pointer">
                         <Play className="mr-2 h-4 w-4" /> PLAY EPISODE
                       </Button>
-                      <Button variant="outline" className="text-white border-white hover:bg-white/10 px-6 py-4 rounded-full">
+                      <Button variant="outline" className="text-[#07153b] hover:text-white hover:bg-[#07153b] px-6 py-4 rounded-full cursor-pointer">
                         <Plus className="mr-2 h-4 w-4" /> SUBSCRIBE
                       </Button>
                     </div>
@@ -145,9 +145,9 @@ export default function PodcastHero() {
         </div>
       </div>
 
-      {/* Pagination positioned below the background */}
-      <div className="relative -mt-8 z-10 flex justify-center">
-        <div className="swiper-pagination !relative bottom-0" />
+
+      <div className="-mt-8 z-10 flex justify-center">
+        <div className="swiper-pagination bottom-0" />
       </div>
     </div>
   );

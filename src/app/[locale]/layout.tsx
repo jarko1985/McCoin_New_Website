@@ -11,6 +11,7 @@
   import LOGO from '@/../public/images/logo.svg'
 
 import { Providers } from "./providers";
+import { CookieConsent } from "@/components/cookies/CookieConsent";
 
   const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -60,7 +61,10 @@ import { Providers } from "./providers";
             <Providers params={params}>
             <Navbar />
             <main className="h-full">
-              <AOSWrapper>{children}</AOSWrapper>
+              <AOSWrapper>
+                {children}
+                <CookieConsent/>
+                </AOSWrapper>
             </main>
             <Footer />
             <ChatWidget />
