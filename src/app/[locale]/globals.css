@@ -236,3 +236,11 @@
 .animate-accordion-up {
   animation: accordion-up 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

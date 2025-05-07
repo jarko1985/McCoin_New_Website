@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import { Hash, ToyBrick } from "lucide-react";
 import { useParams } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 interface Block {
-  hash: string;
-  height: number;
-  time: number;
-  block_index: number;
+  Number: number;
+  Hash: string;
+  Mined: string;
+  rawHash: string;
 }
 
 export function BlocksRow() {
@@ -20,10 +22,10 @@ export function BlocksRow() {
   useEffect(() => {
     const fetchBlocks = async () => {
       try {
-        const response = await fetch(`/${locale}/api/blocks`);
+        const response = await fetch(`/${locale}/api/blocks?page=1&limit=15`);
         if (!response.ok) throw new Error("Failed to fetch blocks");
         const data = await response.json();
-        setBlocks(data.slice(0, 15));
+        setBlocks(data.blocks); // Access the blocks array from the response
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -32,17 +34,11 @@ export function BlocksRow() {
     };
 
     fetchBlocks();
-  }, []);
+  }, [locale]);
 
-  if (loading)
-    return (
-      <div className="p-4 text-center text-[#07153b]">Loading blocks...</div>
-    );
-  if (error)
-    return <div className="p-4 text-center text-red-500">Error: {error}</div>;
+  const skeletons = Array.from({ length: 12 }, (_, i) => i);
 
-  // Calculate min/max for fill scaling
-  const heights = blocks.map((block) => block.height);
+  const heights = blocks.map((block) => block.Number); // Use Number instead of height
   const maxHeight = Math.max(...heights, 1);
   const minHeight = Math.min(...heights, maxHeight);
 
@@ -53,59 +49,98 @@ export function BlocksRow() {
       </h2>
 
       <div className="relative">
-        <div className="flex gap-0 overflow-x-auto pb-4 relative z-10">
-          {blocks.map((block, index) => {
-            const fillPercentage =
-              ((block.height - minHeight) / (maxHeight - minHeight)) * 100;
-            const isNotLast = index < blocks.length - 1;
+        <div className="flex gap-0 pb-4 relative z-10 w-full overflow-x-auto scrollbar-hide">
+          <div className="flex items-end min-w-max space-x-0 px-4">
+            {(loading ? skeletons : blocks).map(
+              (block: Block | number, index) => {
+                const isLoading = loading;
+                const typedBlock = block as Block;
+                const formattedHash = isLoading
+                  ? ""
+                  : typedBlock.Hash; // Already formatted in API
+                const isLast =
+                  index === (isLoading ? skeletons.length : blocks.length) - 1;
+                const fillPercentage = isLoading
+                  ? 100
+                  : ((typedBlock.Number - minHeight) /
+                      (maxHeight - minHeight)) *
+                    100;
 
-            return (
-              <div key={block.hash} className="flex items-end">
-                {/* Block container */}
-                <div className="flex flex-col items-center group px-4">
-                  {/* Block number */}
-                  <div className="text-white text-xs mb-2 font-mono">
-                    #{block.height}
-                  </div>
-
-                  {/* ToyBrick icon with fill */}
-                  <div className="relative">
-                    {/* Red fill (behind everything) */}
-                    <div
-                      className="absolute inset-0 overflow-hidden"
-                      style={{
-                        clipPath:
-                          "inset(0 0 " + (100 - fillPercentage) + "% 0)",
-                      }}
-                    >
-                      <ToyBrick
-                        className="w-15 h-15 text-[#EC3B3B]"
-                        strokeWidth={1}
-                        fill="#EC3B3B"
-                      />
+                const blockContent = (
+                  <div className="flex flex-col items-center group px-2">
+                    <div className="text-white text-xs mb-2 font-mono">
+                      {isLoading ? (
+                        <Skeleton className="h-4 w-8" />
+                      ) : (
+                        `#${typedBlock.Number}`
+                      )}
                     </div>
-                    <ToyBrick
-                      className="w-15 h-15 text-white relative z-10"
-                      strokeWidth={1}
-                      fill="transparent"
-                    />
-                  </div>
 
-                  <div className="mt-2 bg-white/10 px-2 py-1 rounded">
-                    <div className="flex items-center">
-                      <Hash className="h-3 w-3 mr-1 text-gray-300" />
-                      <span className="text-white text-xs font-mono">
-                        {block.hash.slice(0, 6)}...
-                      </span>
+                    <div className="relative w-12 h-12">
+                      {isLoading ? (
+                        <Skeleton className="w-full h-full rounded" />
+                      ) : (
+                        <>
+                          <div
+                            className="absolute inset-0 overflow-hidden"
+                            style={{
+                              clipPath: `inset(0 0 ${100 - fillPercentage}% 0)`,
+                            }}
+                          >
+                            <ToyBrick
+                              className="w-full h-full text-[#EC3B3B]"
+                              strokeWidth={1}
+                              fill="#EC3B3B"
+                            />
+                          </div>
+                          <ToyBrick
+                            className="w-full h-full text-white relative z-10"
+                            strokeWidth={1}
+                            fill="transparent"
+                          />
+                        </>
+                      )}
+                    </div>
+
+                    <div className="mt-2 bg-[#07153b] px-2 py-1 rounded border border-[#DAE6EA]/20">
+                      {isLoading ? (
+                        <Skeleton className="h-4 w-16" />
+                      ) : (
+                        <div className="flex items-center">
+                          <Hash className="h-3 w-3 mr-1 text-gray-300" />
+                          <span className="text-white text-xs font-mono">
+                            {formattedHash}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                {isNotLast && (
-                  <div className="relative h-0.5 bg-gray-400 w-8 mb-6 self-center"></div>
-                )}
-              </div>
-            );
-          })}
+                );
+
+                return (
+                  <div
+                    key={isLoading ? index : typedBlock.Hash}
+                    className="flex items-end"
+                  >
+                    {isLoading ? (
+                      blockContent
+                    ) : (
+                      <Link
+                        href={`/market-explorer/${typedBlock.rawHash}`}
+                        className="hover:opacity-90 transition"
+                      >
+                        {blockContent}
+                      </Link>
+                    )}
+
+                    {!isLast && (
+                      <div className="relative h-0.5 bg-[#DAE6EA]/40 w-6 mb-8 self-center"></div>
+                    )}
+                  </div>
+                );
+              }
+            )}
+          </div>
         </div>
       </div>
     </div>
