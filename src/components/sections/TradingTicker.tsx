@@ -4,9 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 
 interface TradingTickerProps {
   className?: string;
+  onLoad?: () => void; // Added onLoad prop
 }
 
-const TradingTicker: React.FC<TradingTickerProps> = ({ className = '' }) => {
+
+const TradingTicker: React.FC<TradingTickerProps> = ({ className = ''}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,12 +38,11 @@ const TradingTicker: React.FC<TradingTickerProps> = ({ className = '' }) => {
         script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
         script.async = true;
         
-        // Add event handlers
         script.onload = () => {
           setLoaded(true);
         };
         script.onerror = () => {
-          setError('Failed to load TradingView ticker widget');
+          setError('Failed to load Ticker widget');
         };
         
         // Widget configuration
@@ -187,7 +188,7 @@ const TradingTicker: React.FC<TradingTickerProps> = ({ className = '' }) => {
           )}
 
           <div 
-            className="tradingview-ticker-container__widget" 
+            className="tradingview-ticker-container__widget pointer-events-none" 
             style={{ 
               display: loaded ? 'block' : 'none',
               backgroundColor: 'transparent',

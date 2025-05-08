@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function TradingViewCryptoScreener() {
+export default function TradingViewCryptoScreener({ onLoad }: { onLoad: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,9 +17,14 @@ export default function TradingViewCryptoScreener() {
         script.async = true;
         script.onload = () => {
           setLoaded(true);
-          setTimeout(applyCustomStyles, 500);
+          applyCustomStyles();
+          onLoad();
+          
         };
-        script.onerror = () => setError('Failed to load TradingView widget');
+        script.onerror = () => {
+          setError('Failed to load TradingView table widget');
+          onLoad();
+        };
         
         script.innerHTML = JSON.stringify({
           "width": "100%",
@@ -38,6 +43,7 @@ export default function TradingViewCryptoScreener() {
       } catch (err) {
         setError('Error initializing widget');
         console.error(err);
+        onLoad();
       }
     };
 
@@ -63,7 +69,7 @@ export default function TradingViewCryptoScreener() {
         document.querySelector('.tradingview-widget-container__widget')?.removeChild(script);
       }
     };
-  }, []);
+  }, [onLoad]);
 
   return (
     <div className='container mx-auto xl:w-[70%]'>

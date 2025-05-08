@@ -64,7 +64,6 @@ export default function ArticlesPage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        {/* <Loader2 className="h-12 w-12 text-[#EC3B3B] animate-spin mb-4" /> */}
         <AnimatedLogo/>
         <p className="text-[#07153B] font-semibold text-lg animate-pulse">Loading articles...</p>
       </div>

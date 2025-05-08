@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { JSX, useEffect, useState } from "react";
+import About from "../sections/About";
 
 const FloatingCryptoSymbols = () => {
   const [symbols, setSymbols] = useState<
@@ -286,8 +287,11 @@ const AboutHero = () => {
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
             Secure, fast, and transparent trading for the future of finance
           </p>
-          <Button className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-8 py-6 text-lg">
-            Meet The McCoiners
+          <Button asChild className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-8 py-6 text-lg">
+            <a href="#team" className="flex items-center gap-2">
+          
+            Meet The McCoin Team
+            </a>
           </Button>
         </div>
       </section>
@@ -425,6 +429,7 @@ const AboutHero = () => {
           ))}
         </div>
       </section>
+      <About/>
     </div>
   );
 };

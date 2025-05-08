@@ -3,7 +3,7 @@ import RotatingIcons from "../custom/RotatingIcons";
 
 const About = () => {
   return (
-    <section className="container mx-auto py-20 xl:w-[70%] bg-[#050e27]! p-24 z-10 rounded-lg">
+    <section id="about" className="container mx-auto py-20 xl:w-[70%] bg-[#050e27]! p-24 z-10 rounded-lg">
       <h2 className="text-left text-xl md:text-2xl lg:text-3xl text-[#DAE6EA] font-[600] pb-8  bg-[#050e27]!">
         About Us
       </h2>

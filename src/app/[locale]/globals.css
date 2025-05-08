@@ -129,7 +129,6 @@
 
 /* Trading Chart Widget */
 .tradingview-widget-container {
-  height: 550px;
   width: 100%;
   position: relative;
 }
