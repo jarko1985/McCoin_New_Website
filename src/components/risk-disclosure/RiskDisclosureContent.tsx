@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { riskDisclosureData } from '../../../utils/data';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaMinus, FaPlus } from 'react-icons/fa';
+import DownloadPDF from '../shared/DownloadPDF';
 
 const RiskDisclosureContent = () => {
      const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -12,6 +13,7 @@ const RiskDisclosureContent = () => {
       };
   return (
     <section className='container mx-auto py-12'>
+       <div className='flex items-end justify-end mb-6'><DownloadPDF fileName='risk_disclosure_statement.pdf' buttonText='Download PDF'/></div>
            <div className="w-full space-y-4">
         {riskDisclosureData.map((faq, index) => (
           <motion.div

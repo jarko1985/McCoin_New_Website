@@ -26,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setMinDelayPassed(true);
-    }, 2500);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 

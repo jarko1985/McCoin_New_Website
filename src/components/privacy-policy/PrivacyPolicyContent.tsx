@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FiChevronRight } from 'react-icons/fi';
 import { privacyPolicyData, PrivacyPolicyItem } from '../../../utils/data';
 import { VscDebugBreakpointLog } from "react-icons/vsc";
+import DownloadPDF from '../shared/DownloadPDF';
 const PrivacyPolicyContent = () => {
   return (
     <section className="container xl:max-w-[70%] mx-auto py-12 px-4 lg:px-0">
@@ -22,7 +23,9 @@ const PrivacyPolicyContent = () => {
         part of this policy, we recommend that you refrain from using our
         services.
       </p>
+      
       <div className="mx-auto py-12 space-y-8">
+      <div className='pt-2 flex items-end justify-end'><DownloadPDF fileName='privacy-policy.pdf' buttonText='Download PDF'/></div>
       {privacyPolicyData.map((section:PrivacyPolicyItem) => (
         <div
           key={section.id}

@@ -1,11 +1,12 @@
 "use client"
-import { motion } from 'framer-motion'
 import { FiArrowRight } from 'react-icons/fi'
 import { termsAndConditionsData } from '../../../utils/data'
+import DownloadPDF from '../shared/DownloadPDF'
 
 const TermsContent = () => {
   return (
     <section className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+       <div className='flex items-end justify-end mb-6'><DownloadPDF fileName='terms-and-conditions.pdf' buttonText='Download PDF'/></div>
       <div className="flex flex-col gap-8">
         {termsAndConditionsData.map((para) => (
           <div
