@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { RiArticleFill } from "react-icons/ri";
 
 interface CryptoBox {
   title: string;
@@ -48,7 +50,23 @@ export default function Crypto101Hero() {
   ];
 
   return (
+    <>
+    <div className="relative h-96 w-full bg-gray-600">
+            <Image
+              src="/images/crypto101_bg.avif"
+              alt="Crypto101 background"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <h1 className="text-4xl text-white flex items-center font-semibold">
+                <RiArticleFill color="gold" className="mr-2" />
+                Articles
+              </h1>
+            </div>
+          </div>
     <header className="w-full overflow-hidden py-4 md:h-[60vh]">
+      
       <div className="grid grid-cols-4 grid-rows-[repeat(3,minmax(180px,1fr))] md:grid-rows-2 gap-4 px-4 h-full">
         {boxes.map((box, index) => (
           <Link 
@@ -128,5 +146,6 @@ export default function Crypto101Hero() {
         ))}
       </div>
     </header>
+    </>
   );
 }

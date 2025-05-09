@@ -3,7 +3,7 @@ import Crypto101Page from "@/pages/Crypto101Page";
 
 const CryptoPage = () => {
   return (
-    <div className='container mx-auto xl:w-[70%]'>
+    <div>
       <Crypto101Page/>
     </div>
   )
