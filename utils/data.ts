@@ -34,6 +34,8 @@ import { GrContact } from "react-icons/gr";
 import { FaHandsHelping, FaLandmark } from "react-icons/fa";
 import { FooterLink } from "@/types/FooterLink";
 import { MdOutlineExplore } from "react-icons/md";
+
+
 export type PolicySubsection = {
   title?: string; // Now optional
   bullets: string[];
@@ -548,9 +550,9 @@ export const FooterLinks: FooterLink[] = [
       },
       {
         id: 66,
-        label: "Virtual Assets Standard Policy",
-        href: "virtual-assets",
-        iconName: "CircleHelp",
+        label: "Careers",
+        href: "careers",
+        iconName: "CgWorkAlt",
       },
       { id: 66, label: "Others", href: "others", iconName: "CircleHelp" },
     ],
@@ -1221,5 +1223,56 @@ export const privacyPolicyData = [
         ]
       }
     ]
+  }
+];
+
+export const popularSearches = [
+  "Technology jobs",
+  "Compliance roles",
+  "HR positions",
+  "Marketing careers",
+  "Customer support"
+];
+
+export const availableJobs = [
+  {
+    id: 1,
+    title: "IT Engineer",
+    description: "Design, implement, and maintain our technology infrastructure and systems.",
+    skills: ["Networking", "System Administration", "Cloud Computing", "Cybersecurity"],
+    iconName: "Code",
+    tags: ["technology", "engineering", "development"]
+  },
+  {
+    id: 2,
+    title: "Compliance Officer",
+    description: "Ensure company operations comply with regulatory requirements and internal policies.",
+    skills: ["Regulatory Knowledge", "Risk Assessment", "Auditing", "Policy Development"],
+    iconName: "ShieldCheck",
+    tags: ["compliance", "legal", "regulation"]
+  },
+  {
+    id: 3,
+    title: "HR Executive",
+    description: "Manage human resources functions including recruitment, training, and employee relations.",
+    skills: ["Recruitment", "Employee Relations", "Training", "Performance Management"],
+    iconName: "Users",
+    tags: ["human resources", "recruitment", "management"]
+  },
+  {
+    id: 4,
+    title: "Marketing Specialist",
+    description: "Develop and implement marketing strategies to promote our products and services.",
+    skills: ["Digital Marketing", "Content Creation", "SEO", "Social Media"],
+    iconName: "Megaphone",
+    tags: ["marketing", "advertising", "branding"]
+  },
+  {
+    id: 5,
+    title: "Customer Service Professional",
+    description: "Provide exceptional support to our clients and resolve their inquiries efficiently.",
+    skills: ["Communication", "Problem Solving", "Product Knowledge", "Patience"],
+    iconName: "Headset",
+    tags: ["customer service", "support", "communication"]
   }
 ];
