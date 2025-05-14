@@ -11,10 +11,10 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const images = [
-  '/images/event1.jpg',
-  '/images/event2.jpg',
-  '/images/event3.jpg',
-  '/images/event1.jpg',
+  '/images/scr1.png',
+  '/images/scr2.png',
+  '/images/scr3.png',
+  '/images/scr4.png',
 ];
 
 export default function RetroCinemaSwiper() {
@@ -72,7 +72,7 @@ export default function RetroCinemaSwiper() {
                   alt={`Slide ${idx + 1}`}
                   width={500}
                   height={200}
-                  className="object-cover w-[500px] h-[300px]"
+                  className="object-contain w-[500px] h-[300px]"
                 />
                 <div className="pointer-events-none absolute inset-0 z-10">
                   <Image

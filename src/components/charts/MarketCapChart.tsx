@@ -1,306 +1,141 @@
-// components/CryptoMarketCapChart.tsx
+// components/MarketCapChart.tsx
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import {
-  LineChart,
-  Line,
+  AreaChart,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
-  Legend,
-  ResponsiveContainer
+  Area,
+  Bar,
+  CartesianGrid,
+  ResponsiveContainer,
+  ComposedChart,
 } from 'recharts';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
-import { RefreshCw, Check, X } from 'lucide-react';
 import { useParams } from 'next/navigation';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface CryptoData {
-  id: number;
-  name: string;
-  symbol: string;
-  quote: {
-    USD: {
-      market_cap: number;
-      percent_change_24h: number;
-    };
-  };
+interface DataPoint {
+  date: string;
+  marketCap: number;
+  volume: number;
 }
 
-interface ChartData {
-  name: string;
-  [key: string]: number | string;
-}
+const ranges = ['30d', '1y', 'all'] as const;
 
-const CRYPTO_COLORS: Record<string, string> = {
-  BTC: '#F7931A',
-  ETH: '#627EEA',
-  BNB: '#F3BA2F',
-  SOL: '#00FFA3',
-  XRP: '#27A2DB',
-  ADA: '#0033AD',
-  DOGE: '#CBAE5B',
-  DOT: '#E6007A',
-  AVAX: '#E84142',
-  SHIB: '#FFC72C'
-};
+type Range = typeof ranges[number];
 
-const ALL_CRYPTOS = Object.keys(CRYPTO_COLORS);
-
-const CryptoMarketCapChart = () => {
-  const locale = (useParams() as { locale?: string })?.locale ?? 'en';  
-  const [apiData, setApiData] = useState<CryptoData[]>([]);
+export default function MarketCapChart() {
+  const [data, setData] = useState<DataPoint[]>([]);
+  const [range, setRange] = useState<Range>('30d');
   const [loading, setLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedCryptos, setSelectedCryptos] = useState<string[]>(['BTC', 'ETH', 'BNB']);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en'; 
 
-  // Fetch data with caching
-  const fetchData = async (forceRefresh = false) => {
+  const fetchData = async (selectedRange: Range) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      setError(null);
-      
-      const cacheKey = 'cryptoMarketData';
-      const cache = localStorage.getItem(cacheKey);
-      const cacheExpiry = 5 * 60 * 1000; // 5 minutes
-      
-      if (cache && !forceRefresh) {
-        const parsed = JSON.parse(cache);
-        if (Date.now() - parsed.timestamp < cacheExpiry) {
-          setApiData(parsed.data);
-          setLastUpdated(new Date(parsed.timestamp));
-          setLoading(false);
-          return;
-        }
-      }
-      
-      setRefreshing(true);
-      const response = await fetch(`/${locale}/api/crypto`);
-      
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      
-      const result = await response.json();
-      const newData = result.data;
-      
-      setApiData(newData);
-      setLastUpdated(new Date());
-      localStorage.setItem(cacheKey, JSON.stringify({
-        data: newData,
-        timestamp: Date.now()
-      }));
-    } catch (err) {
-      console.error('Error fetching data:', err);
-      setError('Failed to fetch cryptocurrency data');
+      const res = await fetch(`/${locale}/api/crypto?range=${selectedRange}`);
+      const json = await res.json();
+      setData(json);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+      setData([]);
     } finally {
       setLoading(false);
-      setRefreshing(false);
     }
   };
 
-  // Initial data fetch
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(range);
+  }, [locale, range]);
 
-  // Generate chart data
-  const chartData = useMemo(() => {
-    if (!apiData.length) return [];
-
-    const days = 30;
-    const generatedData: ChartData[] = [];
-
-    for (let i = 0; i < days; i++) {
-      const dayData: ChartData = { name: `Day ${i + 1}` };
-      
-      apiData.forEach(crypto => {
-        if (selectedCryptos.includes(crypto.symbol)) {
-          const fluctuation = crypto.quote.USD.percent_change_24h / 100;
-          const randomFactor = 1 + (Math.random() * 0.1 - 0.05);
-          dayData[crypto.symbol] = crypto.quote.USD.market_cap * 
-            (1 - (days - i) / days * fluctuation) * randomFactor;
-        }
-      });
-      
-      generatedData.push(dayData);
-    }
-
-    return generatedData;
-  }, [apiData, selectedCryptos]);
-
-  // Toggle cryptocurrency
-  const toggleCrypto = (symbol: string) => {
-    setSelectedCryptos(prev => 
-      prev.includes(symbol)
-        ? prev.filter(s => s !== symbol)
-        : [...prev, symbol]
-    );
-  };
-
-  // Toggle all/none
-  const toggleAllCryptos = (select: boolean) => {
-    setSelectedCryptos(select ? [...ALL_CRYPTOS] : []);
-  };
-
-  if (error) {
+  if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="text-red-500 text-center py-8">{error}</div>
-        <Button 
-          onClick={() => fetchData()} 
-          className="w-full mt-4"
-          variant="outline"
-        >
-          <RefreshCw className="mr-2 h-4 w-4" />
-          Retry
-        </Button>
+      <div className="bg-[#07153b] rounded-xl p-6 shadow-md w-full">
+        <Skeleton className="h-10 w-48 mb-4" />
+        <Skeleton className="h-[320px] w-full" />
       </div>
     );
   }
 
-  return (
-    <div className="bg-white rounded-lg shadow p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-800">
-          Cryptocurrency Market Cap (Last 30 Days)
-        </h2>
-        <div className="flex items-center gap-2">
-          <Button 
-            onClick={() => fetchData(true)}
-            size="sm"
-            variant="outline"
-            disabled={refreshing}
-          >
-            <RefreshCw className={`mr-2 h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
-          {lastUpdated && (
-            <span className="text-xs text-muted-foreground">
-              Updated: {lastUpdated.toLocaleTimeString()}
-            </span>
-          )}
-        </div>
-      </div>
-      
-      <div className="flex flex-wrap items-center gap-2 mb-4">
-        <div className="flex gap-1">
-          <Button
-            onClick={() => toggleAllCryptos(true)}
-            size="sm"
-            variant="outline"
-            className="h-8 px-2"
-          >
-            <Check className="h-4 w-4 mr-1" /> All
-          </Button>
-          <Button
-            onClick={() => toggleAllCryptos(false)}
-            size="sm"
-            variant="outline"
-            className="h-8 px-2"
-          >
-            <X className="h-4 w-4 mr-1" /> None
-          </Button>
-        </div>
-        
-        {ALL_CRYPTOS.map(symbol => (
-          <Button
-            key={symbol}
-            onClick={() => toggleCrypto(symbol)}
-            size="sm"
-            variant={selectedCryptos.includes(symbol) ? "default" : "outline"}
-            className={`h-8 px-3 transition-all ${
-              selectedCryptos.includes(symbol) ? '' : 'opacity-70'
-            }`}
-            style={{
-              backgroundColor: selectedCryptos.includes(symbol) 
-                ? CRYPTO_COLORS[symbol] + '33'
-                : undefined,
-              borderColor: selectedCryptos.includes(symbol)
-                ? CRYPTO_COLORS[symbol]
-                : undefined
-            }}
-          >
-            {symbol}
-          </Button>
-        ))}
-      </div>
-      
-      <div className="h-80 w-full relative">
-        {loading ? (
-          <Skeleton className="w-full h-full rounded-lg" />
-        ) : (
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={chartData}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-              <XAxis dataKey="name" />
-              <YAxis 
-                tickFormatter={(value) => {
-                  if (value >= 1e12) return `$${(value / 1e12).toFixed(1)}T`;
-                  if (value >= 1e9) return `$${(value / 1e9).toFixed(1)}B`;
-                  if (value >= 1e6) return `$${(value / 1e6).toFixed(1)}M`;
-                  return `$${value}`;
-                }}
-                width={80}
-              />
-              <Tooltip 
-                formatter={(value) => {
-                  const numValue = Number(value);
-                  if (numValue >= 1e12) return [`$${(numValue / 1e12).toFixed(2)}T`, 'Market Cap'];
-                  if (numValue >= 1e9) return [`$${(numValue / 1e9).toFixed(2)}B`, 'Market Cap'];
-                  if (numValue >= 1e6) return [`$${(numValue / 1e6).toFixed(2)}M`, 'Market Cap'];
-                  return [`$${numValue.toLocaleString()}`, 'Market Cap'];
-                }}
-                contentStyle={{
-                  backgroundColor: 'hsl(var(--background))',
-                  borderColor: 'hsl(var(--border))',
-                  borderRadius: 'var(--radius)'
-                }}
-              />
-              <Legend 
-                wrapperStyle={{
-                  paddingTop: '20px'
-                }}
-              />
-              
-              {selectedCryptos.map(symbol => (
-                <Line
-                  key={symbol}
-                  type="monotone"
-                  dataKey={symbol}
-                  stroke={CRYPTO_COLORS[symbol]}
-                  strokeWidth={2}
-                  activeDot={{ r: 6 }}
-                  dot={false}
-                />
-              ))}
-            </LineChart>
-          </ResponsiveContainer>
-        )}
-      </div>
-      
-      <div className="flex justify-between items-center mt-2">
-        <p className="text-xs text-muted-foreground">
-          Note: Historical data is simulated for demo purposes.
-        </p>
-        <div className="flex items-center gap-2">
-          {refreshing && (
-            <span className="text-xs text-muted-foreground flex items-center">
-              <RefreshCw className="h-3 w-3 mr-1 animate-spin" />
-              Refreshing data...
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
+  if (!data.length) return <div className="text-white">No chart data available</div>;
 
-export default CryptoMarketCapChart;
+  const latest = data[data.length - 1];
+  const totalVolume = (latest.volume || 0).toFixed(2);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-[#07153b] rounded-xl p-6 shadow-md w-full"
+    >
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-white text-lg font-semibold">Crypto Market Cap</h2>
+          <div className="flex gap-6 mt-2">
+            <div>
+              <p className="text-[#DAE6EA] text-sm">Market Cap</p>
+              <p className="text-white font-bold text-xl">
+                ${(latest.marketCap / 1e12).toFixed(2)}T
+              </p>
+            </div>
+            <div>
+              <p className="text-[#DAE6EA] text-sm">Volume</p>
+              <p className="text-white font-bold text-xl">${(latest.volume / 1e9).toFixed(2)}B</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex gap-2 text-[#DAE6EA] text-sm">
+          {ranges.map(r => (
+            <button
+              key={r}
+              onClick={() => {
+                if (r !== range) setRange(r);
+              }}
+              className={`px-3 py-1 rounded transition-all duration-200 ${
+                r === range ? 'bg-[#EC3B3B] text-white' : 'hover:bg-[#EC3B3B]/10'
+              }`}
+            >
+              {r.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <ResponsiveContainer width="100%" height={320}>
+        <ComposedChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="colorCap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#EC3B3B" stopOpacity={0.5} />
+              <stop offset="100%" stopColor="#EC3B3B" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" stroke="#233251" />
+          <XAxis dataKey="date" stroke="#DAE6EA" fontSize={12} />
+          <YAxis stroke="#DAE6EA" fontSize={12} tickFormatter={v => `$${(v / 1e12).toFixed(1)}T`} />
+          <Tooltip
+            contentStyle={{ backgroundColor: '#07153b', borderColor: '#EC3B3B' }}
+            labelStyle={{ color: '#DAE6EA' }}
+            itemStyle={{ color: '#EC3B3B' }}
+            formatter={(value: number, name: string) =>
+              name === 'volume'
+                ? [`$${(value / 1e9).toFixed(2)}B`, 'Volume']
+                : [`$${(value / 1e12).toFixed(2)}T`, 'Market Cap']
+            }
+          />
+          <Bar dataKey="volume" barSize={20} fill="#DAE6EA44" />
+          <Area
+            type="monotone"
+            dataKey="marketCap"
+            stroke="#EC3B3B"
+            fillOpacity={1}
+            fill="url(#colorCap)"
+          />
+        </ComposedChart>
+      </ResponsiveContainer>
+    </motion.div>
+  );
+}

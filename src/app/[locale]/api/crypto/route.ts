@@ -1,86 +1,47 @@
-// app/api/crypto/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-export async function GET() {
-  const apiKey = process.env.COINMARKETCAP_API_KEY;
-
+export async function GET(request: Request) {
+  const apiKey = process.env.COINDESK_API_KEY;
   if (!apiKey) {
-    return NextResponse.json(
-      { error: "API key not configured" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Missing CoinDesk API key' }, { status: 500 });
   }
 
   try {
-    const headers = {
-      "X-CMC_PRO_API_KEY": apiKey,
-    };
+    const url = new URL(request.url);
+    const range = url.searchParams.get('range') || '30d';
 
-    // Fetch current top 10 listings
-    const listingsUrl = new URL(
-      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
-    );
-    listingsUrl.searchParams.set("start", "1");
-    listingsUrl.searchParams.set("limit", "10");
-    listingsUrl.searchParams.set("convert", "USD");
+    const now = Math.floor(Date.now() / 1000);
+    let fromDate = new Date();
 
-    const listingsRes = fetch(listingsUrl.toString(), { headers });
+    if (range === '30d') fromDate.setDate(fromDate.getDate() - 30);
+    else if (range === '1y') fromDate.setFullYear(fromDate.getFullYear() - 1);
+    else fromDate = new Date(2013, 0, 1); // 'all'
 
-    // Fetch current global market cap
-    const globalUrl =
-      "https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest";
-    const globalRes = fetch(globalUrl, { headers });
+    const from_ts = Math.floor(fromDate.getTime() / 1000);
+    const endpoint = `https://data-api.coindesk.com/overview/v1/historical/marketcap/all/assets/days?from_ts=${from_ts}&to_ts=${now}`;
 
-    // Fetch historical market cap values (last 1 year, monthly)
-    const today = new Date();
-    const lastYear = new Date(today);
-    lastYear.setFullYear(today.getFullYear() - 1);
+    const res = await fetch(endpoint, {
+      headers: {
+        'x-api-key': apiKey,
+        'Accept': 'application/json',
+      },
+    });
 
-    const historicalUrl = new URL(
-      "https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/historical"
-    );
-    historicalUrl.searchParams.set("time_start", lastYear.toISOString());
-    historicalUrl.searchParams.set("time_end", today.toISOString());
-    historicalUrl.searchParams.set("interval", "monthly");
+    const result = await res.json();
 
-    const historicalRes = fetch(historicalUrl.toString(), { headers });
-
-    // Wait for all responses
-    const [listingsData, globalData, historicalData] = await Promise.all([
-      listingsRes.then((res) => res.json()),
-      globalRes.then((res) => res.json()),
-      historicalRes.then((res) => res.json()),
-    ]);
-
-    // Calculate yearly performance (first and last value from historical data)
-    const quotes = historicalData?.data?.quotes;
-
-    if (!quotes || !Array.isArray(quotes)) {
-      return NextResponse.json(
-        {
-          error: "Invalid or missing historical market cap data",
-          historicalData,
-        },
-        { status: 500 }
-      );
+    if (!result?.Data?.length) {
+      return NextResponse.json({ error: 'No Data from CoinDesk', result }, { status: 500 });
     }
 
-    const startCap = quotes[0]?.quote?.USD?.total_market_cap;
-    const endCap = quotes[quotes.length - 1]?.quote?.USD?.total_market_cap;
-    const yearlyPerformance =
-      startCap && endCap ? ((endCap - startCap) / startCap) * 100 : null;
+    const mapped = result.Data.map((entry: any) => ({
+      date: new Date(entry.TIMESTAMP * 1000).toISOString().split('T')[0],
+      marketCap: entry.CLOSE,
+      volume: entry.TOP_TIER_VOLUME,
+    }));
 
-    return NextResponse.json({
-      listings: listingsData.data,
-      currentMarketCap: globalData.data.total_market_cap_usd,
-      historicalMarketCap: quotes,
-      yearlyPerformancePercent: yearlyPerformance?.toFixed(2),
-    });
+    return NextResponse.json(mapped);
   } catch (error) {
-    console.error("Error fetching crypto dashboard data:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch crypto dashboard data" },
-      { status: 500 }
-    );
+    console.error('❌ CoinDesk API error:', error);
+    return NextResponse.json({ error: 'Server error', message: (error as Error).message }, { status: 500 });
   }
 }
