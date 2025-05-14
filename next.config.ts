@@ -9,13 +9,13 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
       {
-        protocol: "https",
-        hostname: "d3t3ozftmdmh3i.cloudfront.net",
+        protocol: 'https',
+        hostname: '**.cloudfront.net',
       },
       {
-        protocol: "https",
-        hostname: "d3ctxlq1ktw2nl.cloudfront.net",
-      },
+        protocol: 'http',
+        hostname: 'cryptoramble.com', 
+      }
     ],
   },
   webpack: (config, options) => {

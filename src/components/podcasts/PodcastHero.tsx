@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 import { Play, Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+import PodcastPlayerModal from "./PodcastPlayer";
 
 interface PodcastEpisode {
   uuid: string;
@@ -36,6 +36,11 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [selectedEpisode, setSelectedEpisode] = useState<PodcastEpisode | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     const withStats = featuredEpisodes.map((ep) => ({
       ...ep,
@@ -43,6 +48,7 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
       subscribers: Math.floor(Math.random() * 5000 + 500),
     }));
     setEpisodes(withStats);
+    setIsLoading(false);
   }, [featuredEpisodes]);
 
   if (isLoading) {
@@ -74,7 +80,10 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
       <div
         className="h-[50vh] w-full bg-cover bg-no-repeat bg-center transition-opacity duration-500"
         style={{
-          backgroundImage: `url(${featuredEpisodes[activeSlideIndex]?.imageUrl})`,
+          backgroundImage: `url(${
+            featuredEpisodes[activeSlideIndex]?.imageUrl ||
+            "/images/fallback-image.jpeg"
+          })`,
           filter: "brightness(0.5)",
         }}
       />
@@ -82,7 +91,7 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
       <div className="absolute inset-0 flex items-center justify-center h-[50vh]">
         <div className="container mx-auto px-4">
           <Swiper
-            modules={[Autoplay, Pagination]}
+            modules={[Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
             autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -125,7 +134,13 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
                       </span>
                     </div>
                     <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-                      <Button className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-6 py-4 rounded-full cursor-pointer">
+                      <Button
+                        onClick={() => {
+                          setSelectedEpisode(podcast);
+                          setIsModalOpen(true);
+                        }}
+                        className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-6 py-4 rounded-full cursor-pointer"
+                      >
                         <Play className="mr-2 h-4 w-4" /> PLAY EPISODE
                       </Button>
                       <Button
@@ -142,9 +157,11 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
           </Swiper>
         </div>
       </div>
-      <div className="-mt-8 z-10 flex justify-center">
-        <div className="swiper-pagination bottom-0" />
-      </div>
+      <PodcastPlayerModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        episode={selectedEpisode}
+      />
     </div>
   );
 }
