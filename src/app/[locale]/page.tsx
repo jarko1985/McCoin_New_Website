@@ -1,11 +1,12 @@
 "use client";
 import AnimatedLogo from "@/components/custom/AnimatedLogo";
 import LocationDisplay from "@/components/custom/LocationDisplay";
+import PodcastTeaserBanner from "@/components/homepage/PodcastBanner";
 import Hero from "@/components/sections/Hero";
 import OurPartners from "@/components/sections/OurPartners";
 import Steps from "@/components/sections/Steps";
-import TradingViewWidget from "@/components/sections/TradingChart";
 import WhyMccoin from "@/components/sections/WhyMccoin";
+import PricesTable from "@/components/tables/PricesTable";
 import BitCoinWidget from "@/components/widgets/BitCoinWidget";
 import EthereumWidget from "@/components/widgets/EthereumWidget";
 import SolanaWidget from "@/components/widgets/SolanaWidget";
@@ -60,10 +61,13 @@ export default function Home() {
           <SolanaWidget onLoad={handleWidgetLoaded} />
           <RippleWidget onLoad={handleWidgetLoaded} />
         </div>
-        <TradingViewWidget onLoad={handleWidgetLoaded} />
+        <PricesTable />
+         <OurPartners />
         <WhyMccoin />
         <Steps />
-        <OurPartners />
+       
+        <PodcastTeaserBanner />
+
         <LocationDisplay />
       </div>
     </div>
