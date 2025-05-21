@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import TradingTicker from "./TradingTicker";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import RetroCinemaSwiper from "../homepage/RetroCinemaSwiper";
+import Screener from "../custom/Screener";
 
 export default function HeroSection() {
   return (
@@ -47,7 +47,8 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-20">
-        <TradingTicker />
+        <Screener/>
+        {/* <Ticker/> */}
       </div>
     </section>
   );
