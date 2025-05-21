@@ -2,9 +2,11 @@
 import AnimatedLogo from "@/components/custom/AnimatedLogo";
 import LocationDisplay from "@/components/custom/LocationDisplay";
 import PodcastTeaserBanner from "@/components/homepage/PodcastBanner";
+import CryptoNewsUAE from "@/components/sections/CryptoNewsUAE";
 import Hero from "@/components/sections/Hero";
 import OurPartners from "@/components/sections/OurPartners";
 import Steps from "@/components/sections/Steps";
+import Testimonials from "@/components/sections/Testimonials";
 import WhyMccoin from "@/components/sections/WhyMccoin";
 import PricesTable from "@/components/tables/PricesTable";
 import BitCoinWidget from "@/components/widgets/BitCoinWidget";
@@ -65,7 +67,8 @@ export default function Home() {
          <OurPartners />
         <WhyMccoin />
         <Steps />
-       
+        <CryptoNewsUAE/>
+       <Testimonials/>
         <PodcastTeaserBanner />
 
         <LocationDisplay />

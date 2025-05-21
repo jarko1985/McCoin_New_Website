@@ -1,15 +1,12 @@
 import { NextResponse } from 'next/server';
 
-export async function GET( request: Request,
-    { params }: { params: Promise<{ locale: string }> }) {
+export async function GET( request: Request) {
 
     const apiKey = process.env.GNEWS_API_KEY;
     const url = `https://gnews.io/api/v4/top-headlines?q=crypto&category=technology&max=10&lang=en&apikey=${apiKey}`;
-    const { locale } = await params;
     try {
         const response = await fetch(url, { 
-            // Add cache options for better performance
-            next: { revalidate: 3600 } // Revalidate every hour
+            next: { revalidate: 3600 }
         });
         
         if (!response.ok) {

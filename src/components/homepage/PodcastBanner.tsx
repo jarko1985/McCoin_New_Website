@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 
 export default function PodcastBanner() {
   return (
-    <section className="bg-[#07153b] py-16 px-4">
-      <div className="xl:max-w-[70%] mx-auto flex flex-col lg:flex-row items-center justify-between relative">
+    <section className="xl:max-w-[70%] mx-auto px-4 xl:px-0 flex flex-col lg:flex-row items-center justify-between relative shadow-xl border border-white/10 rounded-lg">
+     
         
         {/* Image container with relative layout */}
         <div className="relative w-[320px] h-[380px]">
@@ -36,7 +35,7 @@ export default function PodcastBanner() {
         </div>
 
         {/* Text and Button */}
-        <div  data-aos="fade-left" className="text-center lg:text-left max-w-xl space-y-6">
+        <div data-aos="fade-left" className="text-center lg:text-left max-w-xl space-y-6">
           <h2 className="text-4xl font-bold text-[#DAE6EA]">
             🎙️ Tune Into McCoin Talks
           </h2>
@@ -44,13 +43,13 @@ export default function PodcastBanner() {
             Discover expert insights, crypto trends, and market news in our exclusive podcast series.
           </p>
           <Button
-            className="bg-[#EC3B3B] text-white hover:bg-[#DAE6EA] hover:text-[#07153b]"
+            className="bg-[#EC3B3B] text-white hover:bg-[#DAE6EA] hover:text-[#07153b] shadow-sm"
             onClick={() => window.location.href = "/podcasts"}
           >
             Visit Podcast Page
           </Button>
         </div>
-      </div>
+     
     </section>
   );
 }
