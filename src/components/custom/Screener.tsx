@@ -1,8 +1,7 @@
+"use client";
 
-'use client';
-
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type Coin = {
   id: string;
@@ -18,10 +17,23 @@ export default function Screener() {
   const locale = (useParams() as { locale?: string })?.locale ?? "en";
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`/${locale}/api/screener`);
-      const data = await res.json();
-      setCoins(data);
+      try {
+        const res = await fetch(`/${locale}/api/screener`);
+        const data = await res.json();
+
+        // Validate that data is an array
+        if (Array.isArray(data)) {
+          setCoins(data);
+        } else {
+          console.error("API did not return an array:", data);
+          setCoins([]); // prevent crash
+        }
+      } catch (err) {
+        console.error("Error fetching screener data:", err);
+        setCoins([]); // prevent crash
+      }
     };
+
     fetchData();
     const interval = setInterval(fetchData, 60000);
     return () => clearInterval(interval);
@@ -40,10 +52,10 @@ export default function Screener() {
             <span className="mr-1">{coin.price.toFixed(4)}</span>
             <span
               className={`mr-2 ${
-                coin.price_change >= 0 ? 'text-green-500' : 'text-[#EC3B3B]'
+                coin.price_change >= 0 ? "text-green-500" : "text-[#EC3B3B]"
               }`}
             >
-              {coin.price_change >= 0 ? '+' : ''}
+              {coin.price_change >= 0 ? "+" : ""}
               {coin.price_change.toFixed(2)} ({coin.percent_change.toFixed(2)}%)
             </span>
             <span className="text-[#DAE6EA] px-2">|</span>
@@ -61,7 +73,7 @@ export default function Screener() {
         .ticker-item {
           display: flex;
           align-items: center;
-          color: #DAE6EA;
+          color: #dae6ea;
           white-space: nowrap;
           padding-right: 16px;
         }
