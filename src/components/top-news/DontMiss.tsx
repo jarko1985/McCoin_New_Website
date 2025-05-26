@@ -40,7 +40,7 @@ export default function DontMiss() {
   }, [locale]);
 
   if (loading) {
-    return <Skeleton className="w-full h-[500px]" />;
+    return <Skeleton className="xl:max-w-[70%] mx-auto px-4 xl:px-0 h-[500px]" />;
   }
 
   if (!articles.length) {
@@ -57,7 +57,7 @@ export default function DontMiss() {
   };
 
   return (
-    <section className="mx-auto py-6">
+    <section className="mx-auto py-12 xl:max-w-[70%] px-4 xl:px-0">
       <div className="flex items-center">
         <h2 className="text-3xl font-bold text-white mb-8 pl-6 relative">
           <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-sm"></span>
@@ -74,7 +74,7 @@ export default function DontMiss() {
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-lg overflow-hidden shadow-md h-full group"
+            className="bg-[#07153b] rounded-lg overflow-hidden shadow-md h-full group border border-slate-700"
           >
             <Link href={article.url || '#'} className={`block h-full ${!article.url ? 'pointer-events-none opacity-50' : ''}`}>
               <div className="overflow-hidden relative">
@@ -87,7 +87,7 @@ export default function DontMiss() {
               </div>
               <div className="p-4">
                 <Badge className="bg-[#EC3B3B] text-white mb-2">{article.source?.name || "Don't Miss"}</Badge>
-                <h3 className="text-[#07153b] font-bold text-lg mb-2 line-clamp-2">{article.title || 'Untitled Article'}</h3>
+                <h3 className="text-[#DAE6EA] font-bold text-lg mb-2 line-clamp-2">{article.title || 'Untitled Article'}</h3>
                 <div className="text-xs text-[#DAE6EA] mb-2 flex items-center gap-2">
                   <span>{formatDate(article.publishedAt)}</span>
                 </div>
@@ -106,7 +106,7 @@ export default function DontMiss() {
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.5 }}
-            className="bg-white/10 backdrop-blur-md rounded-lg p-3 flex gap-4 items-center shadow-md group"
+            className="bg-[#07153b] backdrop-blur-md rounded-lg p-3 flex gap-4 items-center shadow-md group border border-slate-700"
           >
             <Link href={article.url || '#'} className={`flex gap-2 items-center group w-full ${!article.url ? 'pointer-events-none opacity-50' : ''}`}>
               <div className="w-24 h-24 overflow-hidden rounded-lg relative">

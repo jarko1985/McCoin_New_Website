@@ -1,11 +1,13 @@
+// app/[locale]/api/newsdata/route.ts
 import { NextResponse } from "next/server";
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ locale: string }> }
-) {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const q = searchParams.get("q");
+
   const apiKey = process.env.NEWSDATA_API_KEY;
-  const url = `https://newsdata.io/api/1/latest?apikey=${apiKey}&country=ae&language=en`;
+  const url = `https://newsdata.io/api/1/latest?apikey=${apiKey}&country=ae&language=en&q=${q}`;
+
   try {
     const response = await fetch(url, {
       next: { revalidate: 3600 },

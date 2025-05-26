@@ -55,7 +55,7 @@ export function TopNewsSlider() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative xl:max-w-[70%] mx-auto px-4 xl:px-0">
       {/* Subtle gradient background for the entire swiper */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#07153b]/10 via-transparent to-[#07153b]/10 -z-10" />
       

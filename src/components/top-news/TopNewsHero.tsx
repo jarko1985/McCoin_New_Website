@@ -83,7 +83,7 @@ export function TopNewsHero() {
   };
 
   return (
-    <div className="relative w-full h-[40vh] md:h-[50vh] lg:h-[60vh] rounded-xl overflow-hidden shadow-lg">
+    <div className="relative mx-auto xl:max-w-[70%] h-[40vh] md:h-[50vh] lg:h-[60vh] rounded-xl overflow-hidden shadow-lg">
       {loading ? (
         <Skeleton className="w-full h-full" />
       ) : articles.length > 0 ? (
