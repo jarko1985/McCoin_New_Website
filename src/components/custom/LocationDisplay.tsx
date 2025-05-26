@@ -20,16 +20,16 @@ export default function LocationDisplay() {
   const localizedLabels = labelsByLocale[locale as string] ?? labelsByLocale['en'];
 
   if (isLoading && !location) {
-    return <div className="text-sm text-gray-500">{localizedLabels.detecting}</div>;
+    return <div className="text-sm text-gray-500 hidden">{localizedLabels.detecting}</div>;
   }
 
   if (error) {
     return (
-      <div className="text-sm text-red-500">
+      <div className="text-sm text-red-500 hidden">
         {error}
         <button
           onClick={refresh}
-          className="ml-2 text-blue-500 hover:underline"
+          className="ml-2 text-blue-500 hover:underline hidden"
         >
           {localizedLabels.retry}
         </button>
@@ -41,7 +41,7 @@ export default function LocationDisplay() {
     return (
       <button
         onClick={refresh}
-        className="text-sm text-blue-500 hover:underline"
+        className="text-sm text-blue-500 hover:underline hidden"
       >
         {localizedLabels.detect}
       </button>
@@ -49,7 +49,7 @@ export default function LocationDisplay() {
   }
 
   return (
-    <div className="text-sm">
+    <div className="text-sm hidden">
       <span>
         {location.city}, {location.country}
       </span>
@@ -58,7 +58,6 @@ export default function LocationDisplay() {
         className="ml-2 text-blue-500 hover:underline text-xs"
         title={localizedLabels.retry}
       >
-        ↻
       </button>
     </div>
   );

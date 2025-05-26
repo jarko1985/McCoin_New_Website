@@ -28,8 +28,8 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
         {/* Main Column (70%) */}
         <div className="lg:col-span-7 space-y-6">
           {/* Featured Card */}
-          <Card className="border-none shadow-lg flex flex-col md:flex-row overflow-hidden px-0 py-6 rounded-none">
-            <div className="relative w-full md:w-1/3 aspect-video bg-black">
+          <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden px-0 py-6 rounded-lg! bg-[#07153b] border! border-slate-600! group cursor-pointer">
+            <div className="relative w-full md:w-1/3 aspect-video group-hover:scale-105 transition-all duration-500">
               <Image
                 src={featuredCardNews?.previewImage || "/placeholder-news.jpg"}
                 alt={featuredCardNews?.title || "Featured news"}
@@ -43,15 +43,15 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
                 <span className="text-sm text-[#EC3B3B] font-semibold">
                   {featuredCardNews?.tags?.[0]?.toUpperCase() || "MARKET NEWS"}
                 </span>
-                <CardTitle className="text-2xl text-[#07153b]">
+                <CardTitle className="text-2xl text-[#FFF]">
                   {featuredCardNews?.title}
                 </CardTitle>
-                <CardDescription className="text-[#07153b]">
+                <CardDescription className="text-[#DAE6EA]">
                   {featuredCardNews?.content?.slice(0, 200)}...
                 </CardDescription>
               </CardHeader>
               <CardFooter className="flex justify-between items-center">
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-[#DAE6EA]">
                   <span>
                     {new Date(featuredCardNews?.published_at).toLocaleDateString()}
                   </span>
@@ -59,8 +59,8 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
                   <span>by {featuredCardNews?.author?.name || "Unknown"}</span>
                 </div>
                 <div className="flex space-x-2">
-                  <span className="text-sm text-gray-500">0</span>
-                  <span className="text-sm text-gray-500">1581</span>
+                  <span className="text-sm text-[#DAE6EA]">0</span>
+                  <span className="text-sm text-[#DAE6EA]">1581</span>
                 </div>
               </CardFooter>
             </div>
@@ -71,10 +71,10 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
             {blockchainNews.slice(1,7).map((news) => (
               <Card
                 key={news.id}
-                className="border-none shadow-sm flex flex-row h-full overflow-hidden px-0 rounded-none py-5"
+                className="border border-slate-600 shadow-sm flex flex-row h-full overflow-hidden px-0 rounded-lg group cursor-pointer bg-[#07153b]"
               >
-                <div className="w-1/3 bg-white flex items-stretch">
-                  <div className="relative w-full aspect-[4/3]">
+                <div className="w-1/3 flex items-stretch">
+                  <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
                     <Image
                       src={news.previewImage || "/placeholder-news.jpg"}
                       alt={news.title || "News image"}
@@ -89,17 +89,17 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
                     <span className="text-xs text-[#EC3B3B] font-semibold">
                       {news.tags?.[0]?.toUpperCase() || "NEWS"}
                     </span>
-                    <CardTitle className="text-lg text-[#07153b] line-clamp-2">
+                    <CardTitle className="text-lg text-[#FFF] line-clamp-2">
                       {news.title}
                     </CardTitle>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-[#DAE6EA]">
                       {new Date(news.published_at).toLocaleDateString()}
                     </span>
                     <div className="flex space-x-2">
-                      <span className="text-sm text-gray-500">0</span>
-                      <span className="text-sm text-gray-500">1581</span>
+                      <span className="text-sm text-[#DAE6EA]">0</span>
+                      <span className="text-sm text-[#DAE6EA]">1581</span>
                     </div>
                   </div>
                 </div>
@@ -112,9 +112,9 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
         <div className="lg:col-span-3">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {marketNews.slice(0, 6).map((news) => (
-          <Card key={news.id} className="border border-white shadow-xl overflow-hidden p-0 rounded-none md:h-full gap-0">
+          <Card key={news.id} className="border border-slate-600 shadow-xl overflow-hidden p-0 rounded-lg md:h-full gap-0 group cursor-pointer bg-[#07153b]">
             {/* Image at top - fills width completely */}
-            <div className="relative w-full aspect-video">
+            <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
               <Image
                 src={news.previewImage || "/placeholder-news.jpg"}
                 alt={news.title || "News image"}
@@ -126,13 +126,13 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
             
             {/* Content below image */}
             <CardHeader className="space-y-1 p-2">
-              <CardTitle className="text-[12px] text-[#07153b] line-clamp-2">
+              <CardTitle className="text-[12px] text-[#FFF] line-clamp-2">
                 {news.title}
               </CardTitle>
             </CardHeader>
-            
+        
             <CardFooter className="p-2">
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-[#DAE6EA]">
                 {new Date(news.published_at).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'short',

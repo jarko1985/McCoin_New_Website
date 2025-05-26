@@ -31,10 +31,10 @@ export default function MarketAndTradingNews({
         {tradingNews.slice(0,2).map((news) => (
           <div
             key={news.id}
-            className="bg-white shadow-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            className="bg-[#07153b] shadow-xl overflow-hidden rounded-lg hover:shadow-lg transition-shadow duration-300 border border-slate-600 group cursor-pointer"
           >
             {/* Image */}
-            <div className="relative w-full aspect-video">
+            <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
               <Image
                 src={news.previewImage || "/placeholder-market.jpg"}
                 alt={news.title || "Market news"}
@@ -47,12 +47,12 @@ export default function MarketAndTradingNews({
             {/* Content */}
             <div className="p-6">
               {/* Title */}
-              <h3 className="text-xl font-bold text-[#07153b] mb-3 line-clamp-2">
+              <h3 className="text-xl font-bold text-[#FFF] mb-3 line-clamp-2">
                 {news.title}
               </h3>
 
               {/* Content snippet */}
-              <p className="text-gray-600 mb-4 line-clamp-3">
+              <p className="text-[#DAE6EA] mb-4 line-clamp-3">
                 {news.content?.slice(0, 150)}...
               </p>
 
@@ -62,7 +62,7 @@ export default function MarketAndTradingNews({
               </button>
 
               {/* Meta info */}
-              <div className="flex justify-between items-center text-sm text-gray-500 border-t pt-3">
+              <div className="flex justify-between items-center text-sm text-[#DAE6EA] border-t pt-3">
                 <div>
                   <span>by {news.author?.name || "Unknown"}</span>
                   <span className="mx-2">•</span>
@@ -90,10 +90,10 @@ export default function MarketAndTradingNews({
         {marketNews.slice(2,5).map((news) => (
           <div
             key={news.id}
-            className="bg-white shadow-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            className="bg-[#07153b] shadow-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 rounded-lg border border-slate-600 group cursor-pointer"
           >
             {/* Image */}
-            <div className="relative w-full aspect-video">
+            <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
               <Image
                 src={news.previewImage || "/placeholder-market.jpg"}
                 alt={news.title || "Market news"}
@@ -106,12 +106,12 @@ export default function MarketAndTradingNews({
             {/* Content */}
             <div className="p-4">
               {/* Title */}
-              <h3 className="text-lg font-bold text-[#07153b] mb-2 line-clamp-2">
+              <h3 className="text-lg font-bold text-[#FFF] mb-2 line-clamp-2">
                 {news.title}
               </h3>
 
               {/* Content snippet */}
-              <p className="text-gray-600 mb-3 text-sm line-clamp-2">
+              <p className="text-[#DAE6EA] mb-3 text-sm line-clamp-2">
                 {news.content?.slice(0, 100)}...
               </p>
 
@@ -121,7 +121,7 @@ export default function MarketAndTradingNews({
               </button>
 
               {/* Meta info */}
-              <div className="flex justify-between items-center text-xs text-gray-500 border-t pt-2">
+              <div className="flex justify-between items-center text-xs text-[#DAE6EA] border-t pt-2">
                 <div>
                   <span>by {news.author?.name || "Unknown"}</span>
                   <span className="mx-1">•</span>

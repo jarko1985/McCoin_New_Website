@@ -30,7 +30,8 @@ export default function NewsHero({ news }: { news: NewsItem[] }) {
         <div className="relative -mt-16 grid grid-cols-1 md:grid-cols-3 gap-0">
           {topNews.map((item, idx) => (
             <Link key={item.id} href={`/${locale}/articles/${item.id}`} passHref>
-            <div key={item.id || idx} className="bg-white shadow-xl border-2 border-white hover:-translate-y-2 transition-transform duration-400 cursor-pointer">
+            <div key={item.id || idx} className="bg-[#07153b] shadow-xl rounded-lg border
+             border-slate-600 hover:-translate-y-2 transition-transform duration-400 group cursor-pointer">
               {item.previewImage && (
                 <div className="relative w-full aspect-[16/9]">
                   <Image
@@ -43,9 +44,9 @@ export default function NewsHero({ news }: { news: NewsItem[] }) {
                 </div>
               )}
               <div className="p-6 space-y-3">
-                <h2 className="text-lg font-semibold line-clamp-2">{item.title}</h2>
-                <p className="text-sm text-gray-600 line-clamp-3">{item.content}</p>
-                <div className="text-xs text-gray-400 mt-2">
+                <h2 className="text-lg text-[#FFF] font-semibold line-clamp-2">{item.title}</h2>
+                <p className="text-sm text-[#DAE6EA] line-clamp-3">{item.content}</p>
+                <div className="text-xs text-[#DAE6EA] mt-2">
                   {new Date(item.published_at).toLocaleDateString()}
                 </div>
               </div>

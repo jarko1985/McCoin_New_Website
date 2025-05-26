@@ -2,6 +2,7 @@
 import AnimatedLogo from "@/components/custom/AnimatedLogo";
 import LocationDisplay from "@/components/custom/LocationDisplay";
 import PodcastTeaserBanner from "@/components/homepage/PodcastBanner";
+import TradeNow from "@/components/homepage/TradeNow";
 import CryptoNewsUAE from "@/components/sections/CryptoNewsUAE";
 import Hero from "@/components/sections/Hero";
 import OurPartners from "@/components/sections/OurPartners";
@@ -70,7 +71,7 @@ export default function Home() {
         <CryptoNewsUAE/>
        <Testimonials/>
         <PodcastTeaserBanner />
-
+        <TradeNow/>  
         <LocationDisplay />
       </div>
     </div>

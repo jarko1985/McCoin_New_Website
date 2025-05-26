@@ -14,10 +14,10 @@ export default function AllArticlesNews({ newsItems }: { newsItems: NewsItem[] }
         {newsItems.slice(0, 6).map((news) => (
           <div
             key={news.id}
-            className="bg-white shadow-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            className="bg-[#07153b] shadow-xl rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-slate-600 group cursor-pointer"
           >
             {/* Image */}
-            <div className="relative w-full aspect-video">
+            <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
               <Image
                 src={news.previewImage || "/placeholder-bitcoin.jpg"}
                 alt={news.title || "Bitcoin news"}
@@ -30,12 +30,12 @@ export default function AllArticlesNews({ newsItems }: { newsItems: NewsItem[] }
             {/* Content */}
             <div className="p-4">
               {/* Title */}
-              <h3 className="text-xl font-bold text-[#07153b] mb-2 line-clamp-2">
+              <h3 className="text-xl font-bold text-[#FFF] mb-2 line-clamp-2">
                 {news.title}
               </h3>
 
               {/* Content snippet */}
-              <p className="text-gray-600 mb-4 line-clamp-3">
+              <p className="text-[#DAE6EA] mb-4 line-clamp-3">
                 {news.content?.slice(0, 120)}...
               </p>
 
@@ -45,7 +45,7 @@ export default function AllArticlesNews({ newsItems }: { newsItems: NewsItem[] }
               </button>
 
               {/* Meta info */}
-              <div className="flex justify-between items-center text-sm text-gray-500 border-t pt-3">
+              <div className="flex justify-between items-center text-sm text-[#DAE6EA] border-t pt-3">
                 <div>
                   <span>by {news.author?.name || "Unknown"}</span>
                   <span className="mx-2">•</span>
