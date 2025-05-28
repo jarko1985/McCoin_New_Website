@@ -3,6 +3,10 @@ import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { formatDate } from "date-fns";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const GaugeChart = dynamic(() => import("react-gauge-chart"), {
   ssr: false,
@@ -14,6 +18,7 @@ export default function FearAndGreedChart() {
   const [index, setIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sideArticles, setSideArticles] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -44,10 +49,30 @@ export default function FearAndGreedChart() {
     }
 
     fetchData();
+    fetchSideArticles()
     const interval = setInterval(fetchData, 300000); // Refresh every 5 minutes
 
     return () => clearInterval(interval);
   }, [locale]);
+
+async function fetchSideArticles() {
+  try {
+    const res = await fetch(
+      `https://newsdata.io/api/1/latest?apikey=pub_752267707f3132a3cc9669daa80ac2dabab98&q=CRYPTO&country=ae`
+    );
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const data = await res.json();
+    if (Array.isArray(data.results)) {
+      setSideArticles(data.results.slice(0, 3));
+    } else {
+      console.error("Expected 'results' to be an array, got:", data);
+    }
+  } catch (err) {
+    console.error("Failed to fetch side articles:", err);
+  }
+}
 
   const getSentimentLabel = (value: number) => {
     if (value < 20) return "Extreme Fear";
@@ -59,7 +84,7 @@ export default function FearAndGreedChart() {
 
   if (loading) {
     return (
-      <div className="bg-[#0e0e10] text-white w-[60%] mx-auto p-6 rounded-xl shadow-lg space-y-6">
+      <div className="bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 text-white w-[60%] mx-auto p-6 rounded-xl shadow-lg space-y-6">
         <Skeleton className="h-8 w-1/2 mb-6" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -99,7 +124,7 @@ export default function FearAndGreedChart() {
 
   if (error) {
     return (
-      <div className="bg-[#0e0e10] text-white w-[60%] mx-auto p-6 rounded-xl shadow-lg space-y-6 text-center">
+      <div className="bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 text-white w-[60%] mx-auto p-6 rounded-xl shadow-lg space-y-6 text-center">
         <h2 className="text-2xl font-bold">Crypto Fear & Greed Index</h2>
         <div className="py-10 text-red-400">Failed to load data: {error}</div>
         <button
@@ -113,9 +138,10 @@ export default function FearAndGreedChart() {
   }
 
   return (
-    <div className="bg-[#0e0e10] text-white w-[60%] mx-auto p-4 rounded-xl shadow-lg space-y-6">
+    <section className="flex gap-4 flex-col md:flex-row mb-12">
+    
+    <div className="bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 flex-[0.6] text-white border border-slate-600 mx-auto p-4 rounded-xl shadow-lg space-y-6">
       <h2 className="text-2xl font-bold">Crypto Fear & Greed Index</h2>
-
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="w-full md:w-1/2">
           <GaugeChart
@@ -172,7 +198,7 @@ export default function FearAndGreedChart() {
 
       <div className="text-sm text-gray-400 mt-4">
         <p className="mb-2">How do you feel about BTC today?</p>
-        <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row gap-2">
           <button className="flex-1 bg-red-500 hover:bg-red-600 transition text-white font-semibold py-2 rounded">
             Bearish
           </button>
@@ -195,5 +221,44 @@ export default function FearAndGreedChart() {
         </p>
       </div>
     </div>
+    <div className="flex-[0.4] bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 text-white border border-slate-600 p-6 rounded-xl shadow-lg">
+      <h2 className="text-xl font-bold text-white mb-8 pl-6 relative">
+        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-sm"></span>
+       Trending Topics
+      </h2>
+       <div className="flex flex-col justify-between">
+          {sideArticles.map((article, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index }}
+              className="bg-[#07153b] backdrop-blur-md rounded-lg p-3 flex gap-4 items-center mb-4 last:mb-0 shadow-md hover:-translate-y-2 tramsition-transform duration-300 border border-slate-700"
+            >
+              <Link
+                href={article.link}
+                className="flex gap-2 items-center group w-full"
+              >
+                <div className="w-24 h-24 relative overflow-hidden rounded-lg">
+                  <Image
+                    src={article.image_url || "/images/fallback-image.jpeg"}
+                    alt={article.title}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                    fill
+                  />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-white font-semibold text-sm leading-snug transition-colors line-clamp-2">
+                    {article.title}
+                  </h4>
+                  <div className="text-xs text-[#DAE6EA] mt-1">
+                    {article.pubDate}                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+    </div>  
+    </section>
   );
 }

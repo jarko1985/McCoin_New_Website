@@ -7,9 +7,6 @@ import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { GrLinkPrevious } from "react-icons/gr";
 import Link from 'next/link';
-import 'aos/dist/aos.css';
-import AOS from 'aos';
-
 interface Block {
     id: string;
     height: number;
@@ -50,10 +47,6 @@ export default function BlockDetailsPage() {
     const [page, setPage] = useState(0);
     const perPage = 25;
     const [totalPages, setTotalPages] = useState(0);
-
-    useEffect(() => {
-        AOS.init({ duration: 500 });
-    }, []);
 
     useEffect(() => {
         const fetchBlockDetails = async () => {
