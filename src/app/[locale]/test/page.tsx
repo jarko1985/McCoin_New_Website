@@ -65,6 +65,8 @@ export default function BlocksPage() {
           {blocks.map((block) => {
             const fillPercent = getFillPercent(block.height, maxHeight);
             return (
+            
+              
               <motion.div
                 key={block.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -72,6 +74,7 @@ export default function BlocksPage() {
                 transition={{ duration: 0.3 }}
                 className="relative w-40 h-48 bg-[#DAE6EA]/10 border border-[#DAE6EA]/20 text-white rounded-sm shadow-lg overflow-hidden transform -skew-y-3 hover:scale-105 transition-transform duration-300"
               >
+                
                 <div className="absolute bottom-0 left-0 w-full" style={{ height: `${fillPercent}%`, backgroundColor: '#EC3B3B' }}></div>
                 <div className="absolute left-0 top-0 w-2 h-full bg-[#07153b]/40 skew-y-3 origin-left z-10"></div>
                 <div className="absolute top-0 left-0 right-0 bottom-0 p-4 flex flex-col justify-between z-20">
@@ -87,7 +90,9 @@ export default function BlocksPage() {
                   </div>
                   <p className="text-xs text-[#DAE6EA]/70">In ~{Math.floor(Math.random() * 60)} minutes</p>
                 </div>
+                <span className='text-yellow-400'>{block.height}</span>
               </motion.div>
+            
             );
           })}
         </div>

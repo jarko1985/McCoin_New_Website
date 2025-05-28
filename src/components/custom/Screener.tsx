@@ -25,7 +25,7 @@ export default function Screener() {
         if (Array.isArray(data)) {
           setCoins(data);
         } else {
-          console.error("API did not return an array:", data);
+          console.error("API did not return an array:", data as any);
           setCoins([]); // prevent crash
         }
       } catch (err) {

@@ -1,150 +1,137 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { Progress } from "@/components/ui/progress";
-import { Skeleton } from "@/components/ui/skeleton";
-import Pagination from "../custom/Pagination";
+import { useEffect, useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { motion } from 'framer-motion';
+import { ArrowRight, Search } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-interface BlockSummary {
-  Number: number;
-  Hash: string;
-  Miner: string;
-  Mined: string;
-  TxCount: number;
-  Nonce: number;
-  Fill: number;
-  Size: string;
-  TotalSent: string;
-  TotalFees: string;
+interface Block {
+  id: string;
+  height: number;
+  version: number;
+  timestamp: number;
+  tx_count: number;
+  size: number;
+  weight: number;
+  merkle_root: string;
+  previousblockhash: string;
+  mediantime: number;
+  nonce: number;
+  bits: number;
+  difficulty: number;
 }
 
-interface ApiResponse {
-  blocks: BlockSummary[];
-  totalBlocks: number;
-  currentPage: number;
-  totalPages: number;
-}
-
-const SkeletonRow = () => (
-  <tr className="animate-pulse">
-    {Array(10)
-      .fill(null)
-      .map((_, i) => (
-        <td key={i} className="px-4 py-3">
-          <Skeleton className="h-4 w-20" />
-        </td>
-      ))}
-  </tr>
-);
+const formatId = (id: string) => `${id.slice(0, 4)}...${id.slice(-4)}`;
+const formatTime = (ts: number) => new Date(ts * 1000).toLocaleTimeString();
+const toMB = (size: number) => (size / 1_000_000).toFixed(2);
 
 export default function BlocksTable() {
-  const [data, setData] = useState<ApiResponse | null>(null);
+  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const blocksPerPage = 35;
-  const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const [page, setPage] = useState(1);
+  const perPage = 10;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch(
-          `/${locale}/api/blocks?page=${currentPage}&limit=${blocksPerPage}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch blocks data");
-        }
-
-        const result = await response.json();
-        setData(result);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        setError(
-          err instanceof Error ? err.message : "Failed to load block data"
-        );
-      } finally {
+    fetch('https://mempool.space/api/blocks')
+      .then(res => res.json())
+      .then(data => {
+        setBlocks(data);
         setLoading(false);
-      }
-    };
+      });
+  }, []);
 
-    fetchData();
-  }, [currentPage, locale]);
+  const filtered = blocks.filter(
+    b =>
+      b.id.includes(search) ||
+      b.height.toString().includes(search) ||
+      b.tx_count.toString().includes(search)
+  );
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  if (error) {
-    return <div className="bg-red-100 text-red-600 p-4 rounded">{error}</div>;
-  }
+  const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
-    <>
-      <div className="rounded-lg border border-[#DAE6EA] overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-[#07153b] text-white">
-            <tr>
-              <th className="px-4 py-3 text-left">Number</th>
-              <th className="px-4 py-3 text-left">Hash</th>
-              <th className="px-4 py-3 text-left">Miner</th>
-              <th className="px-4 py-3 text-left">Mined</th>
-              <th className="px-4 py-3 text-left">Tx Count</th>
-              <th className="px-4 py-3 text-left">Nonce</th>
-              <th className="px-4 py-3 text-left">Fill</th>
-              <th className="px-4 py-3 text-left">Size</th>
-              <th className="px-4 py-3 text-left">Total Sent</th>
-              <th className="px-4 py-3 text-left">Total Fees</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading
-              ? Array.from({ length: 10 }).map((_, i) => (
-                  <SkeletonRow key={i} />
-                ))
-              : data?.blocks.map((block, i) => (
-                  <tr
-                    key={block.Number}
-                    className={i % 2 === 0 ? "bg-white" : "bg-[#DAE6EA]"}
-                  >
-                    <td className="px-4 py-3">{block.Number}</td>
-                    <td className="px-4 py-3 font-mono">{block.Hash}</td>
-                    <td className="px-4 py-3">{block.Miner}</td>
-                    <td className="px-4 py-3">{block.Mined}</td>
-                    <td className="px-4 py-3">
-                      {block.TxCount.toLocaleString()}
-                    </td>
-                    <td className="px-4 py-3">
-                      {block.Nonce.toLocaleString()}
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        <Progress value={block.Fill} className="h-2 w-20" />
-                        <span>{block.Fill}%</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3">{block.Size}</td>
-                    <td className="px-4 py-3">{block.TotalSent}</td>
-                    <td className="px-4 py-3">{block.TotalFees}</td>
-                  </tr>
-                ))}
-          </tbody>
-        </table>
-      </div>
-
-      {data && (
-        <div className="mt-4 flex justify-center">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={data.totalPages}
-            onPageChange={handlePageChange}
+    <section className="bg-[#07153b] mx-auto xl:max-w-[70%] px-4 xl:px-0 text-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-4 flex items-center gap-4">
+          <Search className="text-white" />
+          <Input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search by ID, height or tx count"
+            className="w-full max-w-md border border-white/10 text-white bg-transparent focus:border-[#EC3B3B] focus:ring-0"
           />
         </div>
-      )}
-    </>
+
+        <div className=" overflow-x-auto lg:overflow-hidden rounded-xl border border-white/10 shadow-md">
+          <table className="min-w-full text-sm text-left">
+            <thead className="bg-[#EC3B3B] text-white">
+              <tr>
+                <th className="p-3">ID</th>
+                <th className="p-3">Height</th>
+                <th className="p-3">#Transactions</th>
+                <th className="p-3">Nonce</th>
+                <th className="p-3">Bits</th>
+                <th className="p-3">Median Time</th>
+                <th className="p-3">Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                [...Array(perPage)].map((_, i) => (
+                  <tr key={i}>
+                    <td colSpan={7}><Skeleton className="h-6 my-2 w-full" /></td>
+                  </tr>
+                ))
+              ) : (
+                paginated.map(block => (
+                  <motion.tr
+                    key={block.id}
+                    whileHover={{ scale: 1.01 }}
+                    className="border-b border-white/10 hover:bg-white/5"
+                  >
+                    <td className="p-3">{formatId(block.id)}</td>
+                    <td className="p-3">{block.height}</td>
+                    <td className="p-3">{block.tx_count}</td>
+                    <td className="p-3">{block.nonce}</td>
+                    <td className="p-3">{block.bits}</td>
+                    <td className="p-3">{formatTime(block.mediantime)}</td>
+                    <td className="p-3 w-40">
+                      <div className="relative w-full bg-white/10 h-4 rounded-full">
+                        <div
+                          className="absolute top-0 left-0 h-4 rounded-full bg-[#EC3B3B]"
+                          style={{ width: `${Math.min((block.size / 3_000_000) * 100, 100)}%` }}
+                        ></div>
+                        <span className="absolute right-2 text-xs">{toMB(block.size)} MB</span>
+                      </div>
+                    </td>
+                  </motion.tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="mt-6 flex justify-center gap-4 items-center">
+          <button
+            className="px-4 py-2 bg-[#EC3B3B] rounded hover:bg-[#c32e2e] transition"
+            onClick={() => setPage(p => Math.max(p - 1, 1))}
+          >
+            Previous
+          </button>
+          <span>Page {page}</span>
+          <button
+            className="px-4 py-2 bg-[#EC3B3B] rounded hover:bg-[#c32e2e] transition"
+            disabled={page * perPage >= filtered.length}
+            onClick={() => setPage(p => p + 1)}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }

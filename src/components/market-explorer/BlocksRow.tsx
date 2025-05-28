@@ -1,147 +1,182 @@
-"use client";
+// src/app/blocks/page.tsx
+'use client';
 
-import { useEffect, useState } from "react";
-import { Hash, ToyBrick } from "lucide-react";
-import { useParams } from "next/navigation";
-import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface Block {
-  Number: number;
-  Hash: string;
-  Mined: string;
-  rawHash: string;
+  id: string;
+  height: number;
+  timestamp: number;
+  tx_count: number;
+  size: number;
+  merkle_root: string;
+  previousblockhash: string;
+  mediantime: number;
+  version: number;
+  weight: number;
 }
 
-export function BlocksRow() {
-  const locale = (useParams() as { locale?: string })?.locale ?? "en";
+function getFillPercent(height: number, maxHeight: number): number {
+  return Math.min((height / maxHeight) * 100, 100);
+}
+
+export default function BlocksRow() {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [lastHeight, setLastHeight] = useState<number | null>(null);
+  const [maxHeight, setMaxHeight] = useState<number>(0);
+
+  const fetchBlocks = async (startHeight?: number) => {
+    setLoading(true);
+    try {
+      const endpoint = startHeight
+        ? `https://mempool.space/api/blocks/${startHeight}`
+        : 'https://mempool.space/api/blocks';
+      const res = await fetch(endpoint);
+      const data = await res.json();
+      setBlocks((prev) => [...(prev || []), ...data]);
+      setLastHeight(data[data.length - 1].height - 1);
+      if (!startHeight) setMaxHeight(data[0].height);
+    } catch (error) {
+      console.error('Error fetching blocks:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchBlocks = async () => {
-      try {
-        const response = await fetch(`/${locale}/api/blocks?page=1&limit=15`);
-        if (!response.ok) throw new Error("Failed to fetch blocks");
-        const data = await response.json();
-        setBlocks(data.blocks); // Access the blocks array from the response
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchBlocks();
-  }, [locale]);
-
-  const skeletons = Array.from({ length: 12 }, (_, i) => i);
-
-  const heights = blocks.map((block) => block.Number); // Use Number instead of height
-  const maxHeight = Math.max(...heights, 1);
-  const minHeight = Math.min(...heights, maxHeight);
+  }, []);
 
   return (
-    <div className="bg-[#07153b] rounded-lg p-6">
-      <h2 className="text-white text-lg font-semibold mb-6">
-        Latest BTC Blocks
-      </h2>
-
-      <div className="relative">
-        <div className="flex gap-0 pb-4 relative z-10 w-full overflow-x-auto scrollbar-hide">
-          <div className="flex items-end min-w-max space-x-0 px-4">
-            {(loading ? skeletons : blocks).map(
-              (block: Block | number, index) => {
-                const isLoading = loading;
-                const typedBlock = block as Block;
-                const formattedHash = isLoading
-                  ? ""
-                  : typedBlock.Hash; // Already formatted in API
-                const isLast =
-                  index === (isLoading ? skeletons.length : blocks.length) - 1;
-                const fillPercentage = isLoading
-                  ? 100
-                  : ((typedBlock.Number - minHeight) /
-                      (maxHeight - minHeight)) *
-                    100;
-
-                const blockContent = (
-                  <div className="flex flex-col items-center group px-2">
-                    <div className="text-white text-xs mb-2 font-mono">
-                      {isLoading ? (
-                        <Skeleton className="h-4 w-8" />
-                      ) : (
-                        `#${typedBlock.Number}`
-                      )}
-                    </div>
-
-                    <div className="relative w-12 h-12">
-                      {isLoading ? (
-                        <Skeleton className="w-full h-full rounded" />
-                      ) : (
-                        <>
-                          <div
-                            className="absolute inset-0 overflow-hidden"
-                            style={{
-                              clipPath: `inset(0 0 ${100 - fillPercentage}% 0)`,
-                            }}
-                          >
-                            <ToyBrick
-                              className="w-full h-full text-[#EC3B3B]"
-                              strokeWidth={1}
-                              fill="#EC3B3B"
-                            />
-                          </div>
-                          <ToyBrick
-                            className="w-full h-full text-white relative z-10"
-                            strokeWidth={1}
-                            fill="transparent"
-                          />
-                        </>
-                      )}
-                    </div>
-
-                    <div className="mt-2 bg-[#07153b] px-2 py-1 rounded border border-[#DAE6EA]/20">
-                      {isLoading ? (
-                        <Skeleton className="h-4 w-16" />
-                      ) : (
-                        <div className="flex items-center">
-                          <Hash className="h-3 w-3 mr-1 text-gray-300" />
-                          <span className="text-white text-xs font-mono">
-                            {formattedHash}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-
-                return (
-                  <div
-                    key={isLoading ? index : typedBlock.Hash}
-                    className="flex items-end"
+    <div className="mx-auto xl:max-w-[70%] bg-[#07153b] text-[#DAE6EA] px-4 xl:px-0 py-12">
+      <h1 className="text-3xl font-bold mb-8 text-center">Latest Bitcoin Blocks</h1>
+      <div className="w-full overflow-x-auto pb-4 custom-scroll">
+        <div className="inline-flex gap-8 px-2 py-2 items-end">
+          {blocks.length === 0 &&
+            Array.from({ length: 10 }).map((_, idx) => (
+              <div
+                key={idx}
+                className="w-44 h-52 bg-[#DAE6EA]/10 rounded-md animate-pulse"
+              ></div>
+            ))}
+          {blocks.map((block, index) => {
+            const fillPercent = getFillPercent(block.height, maxHeight);
+            const timeAgo = Math.floor((Date.now() / 1000 - block.timestamp) / 60);
+            const blockSize = (block.size / 100000000).toFixed(3);
+            const feeRate = (block.weight / block.size).toFixed(2);
+            
+            return (
+              <div key={index} className="flex flex-col items-center relative">
+                {/* Block Height Label */}
+                <span className="mb-3 text-sm text-yellow-400 font-semibold bg-[#0f1f3d] px-2 py-1 rounded-md">
+                  #{block.height}
+                </span>
+                
+                {/* Chain Link */}
+                {index > 0 && (
+                  <div className="absolute -left-[30px] top-1/2 w-7 h-1 bg-gradient-to-r from-[#EC3B3B] to-[#c92e2e] z-0"></div>
+                )}
+                
+                <Link href={`/en/market-explorer/${block.id}`} className="group">
+                  {/* 3D Block Container */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative w-44 h-52 perspective-1000"
                   >
-                    {isLoading ? (
-                      blockContent
-                    ) : (
-                      <Link
-                        href={`/market-explorer/${typedBlock.rawHash}`}
-                        className="hover:opacity-90 transition"
-                      >
-                        {blockContent}
-                      </Link>
-                    )}
-
-                    {!isLast && (
-                      <div className="relative h-0.5 bg-[#DAE6EA]/40 w-6 mb-8 self-center"></div>
-                    )}
-                  </div>
-                );
-              }
-            )}
-          </div>
+                    {/* Main Cube */}
+                    <div className="relative w-full h-full preserve-3d group-hover:rotate-y-15 group-hover:-translate-y-2 transition-all duration-300">
+                      {/* Front Face (Main Content) */}
+                      <div className="absolute w-full h-full bg-[#1a2d5a] border-2 border-[#3a4d7a] rounded-sm shadow-xl flex flex-col justify-between p-4 backface-hidden transform-style-preserve-3d">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <p className="text-xs text-[#DAE6EA]/80 mb-1">Fee Rate</p>
+                            <p className="text-sm font-mono text-[#DAE6EA]">
+                              {feeRate} sat/vB
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-xs text-[#DAE6EA]/80 mb-1">Transactions</p>
+                            <p className="text-sm font-mono text-[#DAE6EA]">
+                              {block.tx_count}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="text-center">
+                          <p className="text-xs text-[#DAE6EA]/80 mb-1">Block Reward</p>
+                          <p className="text-xl font-bold text-white font-mono">
+                            {blockSize} BTC
+                          </p>
+                        </div>
+                        
+                        <div className="flex justify-between items-end">
+                          <div>
+                            <p className="text-xs text-[#DAE6EA]/80 mb-1">Mined</p>
+                            <p className="text-xs font-mono text-[#DAE6EA]">
+                              {timeAgo} min ago
+                            </p>
+                          </div>
+                          <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
+                            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Right Face (Depth) */}
+                      <div className="absolute w-6 h-full bg-[#0f1f3d] border-r-2 border-[#3a4d7a] right-0 top-0 transform rotate-y-90 origin-right backface-hidden transform-style-preserve-3d">
+                        <div className="h-full w-full flex items-center justify-center">
+                          <div 
+                            className="h-full w-1 bg-gradient-to-b from-[#EC3B3B] to-[#c92e2e]"
+                            style={{ height: `${fillPercent}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                      
+                      {/* Top Face (Block Height) */}
+                      <div className="absolute w-full h-6 bg-[#0f1f3d] border-t-2 border-[#3a4d7a] top-0 transform rotate-x-90 origin-top backface-hidden transform-style-preserve-3d">
+                        <div className="h-full w-full flex items-center justify-center">
+                          <p className="text-[8px] text-[#DAE6EA]/70 uppercase tracking-wider rotate-90 whitespace-nowrap">
+                            Bitcoin Block
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Bottom Face (Shadow) */}
+                      <div className="absolute w-full h-6 bg-[#000000]/40 bottom-0 transform rotate-x-90 origin-bottom backface-hidden transform-style-preserve-3d"></div>
+                    </div>
+                    
+                    {/* Glow Effect */}
+                    <div className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#EC3B3B]/10"></div>
+                  </motion.div>
+                </Link>
+              </div>
+            );
+          })}
         </div>
+      </div>
+      <div className="text-center mt-8">
+        <button
+          onClick={() => lastHeight && fetchBlocks(lastHeight)}
+          className="bg-gradient-to-r from-[#EC3B3B] to-[#c92e2e] text-white px-6 py-3 rounded-md hover:brightness-110 transition-all shadow-lg"
+          disabled={loading}
+        >
+          {loading ? (
+            <span className="flex items-center justify-center">
+              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Loading...
+            </span>
+          ) : (
+            'Load More Blocks'
+          )}
+        </button>
       </div>
     </div>
   );

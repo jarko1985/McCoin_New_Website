@@ -45,6 +45,7 @@
     "pdfjs-dist": "3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
     "react-error-boundary": "^5.0.0",
     "react-gauge-chart": "^0.5.1",
     "react-hook-form": "^7.55.0",
