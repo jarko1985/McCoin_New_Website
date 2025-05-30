@@ -1,49 +1,37 @@
-import Image from "next/image";
-import LOGO from "../../../public/images/logo1.png";
-import Link from "next/link";
+import Image from 'next/image';
+import LOGO from '../../../public/images/logo1.png';
+import Link from 'next/link';
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
+} from '../ui/navigation-menu';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "../ui/button";
-import LangSwitcher from "./LangSwitcher";
-import { Menu } from "lucide-react";
-import { NAV_DATA } from "../../../utils/data";
-import { TbArticle, TbDeviceAnalytics } from "react-icons/tb";
-import {
-  FaBlog,
-  FaGraduationCap,
-  FaHandsHelping,
-  FaPodcast,
-  FaLandmark
-} from "react-icons/fa";
-import { MdOutlineExplore } from "react-icons/md";
-import { ImNewspaper } from "react-icons/im";
-import { GiSattelite } from "react-icons/gi";
-import { LiaHotjar } from "react-icons/lia";
-import { TiUserAddOutline } from "react-icons/ti";
-import { RiExchangeLine, RiVerifiedBadgeLine } from "react-icons/ri";
-import { PiHandDeposit, PiHandWithdraw } from "react-icons/pi";
-import { LuMailQuestion } from "react-icons/lu";
-import { GrContact } from "react-icons/gr";
-import AnimatedLogo from "./AnimatedLogo";
-
+} from '@/components/ui/accordion';
+import { Button } from '../ui/button';
+import LangSwitcher from './LangSwitcher';
+import { Menu } from 'lucide-react';
+import { NAV_DATA } from '../../../utils/data';
+import { TbArticle, TbDeviceAnalytics } from 'react-icons/tb';
+import { FaBlog, FaGraduationCap, FaHandsHelping, FaPodcast, FaLandmark } from 'react-icons/fa';
+import { MdOutlineExplore } from 'react-icons/md';
+import { ImNewspaper } from 'react-icons/im';
+import { GiSattelite } from 'react-icons/gi';
+import { LiaHotjar } from 'react-icons/lia';
+import { TiUserAddOutline } from 'react-icons/ti';
+import { RiExchangeLine, RiVerifiedBadgeLine } from 'react-icons/ri';
+import { PiHandDeposit, PiHandWithdraw } from 'react-icons/pi';
+import { LuMailQuestion } from 'react-icons/lu';
+import { GrContact } from 'react-icons/gr';
+import AnimatedLogo from './AnimatedLogo';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   return (
@@ -65,18 +53,12 @@ const Navbar = () => {
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/market-overview"
-                      >
+                      <Link className="flex gap-x-1 items-center" href="/market-overview">
                         <FaLandmark size={25} /> Overview
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/market-explorer"
-                      >
+                      <Link className="flex gap-x-1 items-center" href="/market-explorer">
                         <MdOutlineExplore size={25} /> Market Explorer
                       </Link>
                     </li>
@@ -90,36 +72,30 @@ const Navbar = () => {
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/articles"
-                      >
-                        {" "}
+                      {' '}
+                      <Link className="flex gap-x-1 items-center" href="/articles">
+                        {' '}
                         <TbArticle size={25} /> Articles
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="/blog">
-                        {" "}
+                        {' '}
                         <FaBlog size={25} /> Blog
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="/market-sentiment">
-                        {" "}
+                        {' '}
                         <TbDeviceAnalytics size={25} /> Market Sentiment
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/crypto101"
-                      >
-                        {" "}
+                      {' '}
+                      <Link className="flex gap-x-1 items-center" href="/crypto101">
+                        {' '}
                         <FaGraduationCap size={25} /> Crypto 101
                       </Link>
                     </li>
@@ -133,35 +109,32 @@ const Navbar = () => {
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="top-news">
-                        {" "}
+                        {' '}
                         <ImNewspaper size={25} /> Top News
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/news-room"
-                      >
-                        {" "}
+                      {' '}
+                      <Link className="flex gap-x-1 items-center" href="/news-room">
+                        {' '}
                         <GiSattelite size={25} />
                         Newsroom
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="hot-topics">
-                        {" "}
+                        {' '}
                         <LiaHotjar size={25} />
                         Hot Topics
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="podcasts">
-                        {" "}
+                        {' '}
                         <FaPodcast size={25} />
                         Podcasts
                       </Link>
@@ -176,39 +149,39 @@ const Navbar = () => {
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="#">
                         <TiUserAddOutline size={25} /> Create an Account
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="#">
-                        {" "}
+                        {' '}
                         <RiVerifiedBadgeLine size={25} />
                         Verify Your Identity (KYC)
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="#">
-                        {" "}
+                        {' '}
                         <PiHandDeposit size={25} />
                         Deposit Funds
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="#">
-                        {" "}
+                        {' '}
                         <RiExchangeLine size={25} />
                         Trade Cryptocurrency
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="#">
-                        {" "}
+                        {' '}
                         <PiHandWithdraw size={25} />
                         Withdraw Funds
                       </Link>
@@ -223,31 +196,25 @@ const Navbar = () => {
                 <NavigationMenuContent className="bg-[#07153b]!">
                   <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
+                      {' '}
                       <Link className="flex gap-x-1 items-center" href="/faqs">
-                        {" "}
+                        {' '}
                         <LuMailQuestion size={25} />
                         Frequently Asked Questions (FAQs)
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/contact"
-                      >
-                        {" "}
+                      {' '}
+                      <Link className="flex gap-x-1 items-center" href="/contact">
+                        {' '}
                         <GrContact size={25} />
                         Contact Us
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {" "}
-                      <Link
-                        className="flex gap-x-1 items-center"
-                        href="/help-topics"
-                      >
-                        {" "}
+                      {' '}
+                      <Link className="flex gap-x-1 items-center" href="/help-topics">
+                        {' '}
                         <FaHandsHelping size={25} />
                         Help Topics
                       </Link>
@@ -274,7 +241,7 @@ const Navbar = () => {
               Log in
             </Link>
           </div>
-
+          <ThemeToggle />
           <LangSwitcher />
           <Sheet>
             <SheetTrigger asChild>
@@ -309,11 +276,7 @@ const Navbar = () => {
               <Accordion className="px-4" type="single" collapsible>
                 {NAV_DATA.map((item, index) =>
                   item.children ? (
-                    <AccordionItem
-                      key={index}
-                      value={`item-${index}`}
-                      className="text-white"
-                    >
+                    <AccordionItem key={index} value={`item-${index}`} className="text-white">
                       <SheetTitle></SheetTitle>
 
                       <AccordionTrigger>{item.title}</AccordionTrigger>
@@ -336,7 +299,7 @@ const Navbar = () => {
                         {item.title}
                       </Link>
                     </div>
-                  )
+                  ),
                 )}
               </Accordion>
             </SheetContent>

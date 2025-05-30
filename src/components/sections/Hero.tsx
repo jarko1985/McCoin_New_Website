@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { FaArrowRightToBracket } from "react-icons/fa6";
-import Screener from "../custom/Screener";
-import Dashboard from "../homepage/Dashboard";
+import { Button } from '@/components/ui/button';
+import { FaArrowRightToBracket } from 'react-icons/fa6';
+import Screener from '../custom/Screener';
+import Dashboard from '../homepage/Dashboard';
 
 export default function HeroSection() {
   return (
-    <section className="w-full min-h-screen bg-[#07153b] flex flex-col items-center overflow-x-hidden overflow-y-auto">
+    <section className="w-full min-h-screen bg-[#DAE6EA] dark:bg-[#07153b] flex flex-col items-center overflow-x-hidden overflow-y-auto">
       {/* Top: Title + CTA */}
       <div className="w-full px-4 py-6 text-center space-y-4">
-        <h1 className="text-2xl lg:text-5xl font-bold leading-tight text-[#DAE6EA]">
+        <h1 className="text-2xl lg:text-5xl font-bold leading-tight text-[#07153b] dark:text-[#DAE6EA]">
           Invest in <span className="text-[#EC3B3B]">McCoin</span> Way to Trade
         </h1>
 
-        <p className="text-lg md:text-2xl text-[#DAE6EA]/80">
+        <p className="text-lg md:text-2xl text-[#07153b] dark:text-[#DAE6EA]/80">
           The global crypto currency exchange
         </p>
 
@@ -20,7 +20,7 @@ export default function HeroSection() {
           <input
             type="email"
             placeholder="Email address"
-            className="bg-transparent border border-[#DAE6EA]/70 rounded-lg px-4 py-3 text-white w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-white"
+            className="bg-[#DAE6EA] dark:bg-transparent border border-[#07153b] dark:border-[#DAE6EA]/70 rounded-lg px-4 py-3 text-[#07153b] dark:text-white w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-white"
           />
           <Button className="bg-[#FFF] hover:text-white hover:bg-[#07153b] border-2 cursor-pointer hover:border-[#FFF] border-[#EC3B3B] text-[#07153b] px-8 py-6 text-lg group">
             <div className="flex items-center gap-2 text-base lg:text-xl">

@@ -1,11 +1,11 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
-*,body{
-  /* background-color: #07153b; */
-  font-family:var(--font-montserrat),sans-serif;
+*,
+body {
+  font-family: var(--font-montserrat), sans-serif;
 }
 
 @theme inline {
@@ -126,7 +126,6 @@
   }
 }
 
-
 /* Trading Chart Widget */
 .tradingview-widget-container {
   width: 100%;
@@ -137,13 +136,14 @@
   height: 100%;
   width: 100%;
 }
-.tv-embed-widget-wrapper .tv-screener, .tv-feed .tv-screener{
+.tv-embed-widget-wrapper .tv-screener,
+.tv-feed .tv-screener {
   background-color: #07153b !important;
 }
 /* Trading Chart Widget */
 
 /* Trading Ticker Widget */
-.tradingview-ticker-container{
+.tradingview-ticker-container {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -152,7 +152,7 @@
 
 /* Trading Ticker Widget */
 
-.navigation-menu [data-state="open"] {
+.navigation-menu [data-state='open'] {
   background-color: #07153b !important;
 }
 .partner-swiper .swiper-slide {
@@ -180,7 +180,6 @@
   overflow: hidden;
 }
 
-
 .vertical-swiper {
   height: 375px !important; /* Adjust based on your needs */
 }
@@ -188,9 +187,9 @@
   width: 100%;
 }
 
-
 @keyframes bounce-slow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -249,13 +248,13 @@
   height: 8px;
 }
 .custom-scroll::-webkit-scrollbar-track {
-  background: #DAE6EA1A; /* light theme color with opacity */
+  background: #dae6ea1a; /* light theme color with opacity */
 }
 .custom-scroll::-webkit-scrollbar-thumb {
-  background-color: #EC3B3B; /* your red */
+  background-color: #ec3b3b; /* your red */
   border-radius: 10px;
 }
 .custom-scroll {
-  scrollbar-color: #EC3B3B #DAE6EA1A;
+  scrollbar-color: #ec3b3b #dae6ea1a;
   scrollbar-width: thin;
 }
