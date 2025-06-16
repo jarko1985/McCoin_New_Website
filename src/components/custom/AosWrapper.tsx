@@ -1,4 +1,3 @@
-
 'use client';
 
 import { ReactNode, useEffect } from 'react';
@@ -16,7 +15,7 @@ export default function AOSWrapper({ children }: AOSWrapperProps) {
       easing: 'ease-in-out',
       once: true,
       mirror: false,
-      disable:"tablet"
+      disable: () => window.innerWidth < 768, // disable if screen width < 768px
     });
   }, []);
 

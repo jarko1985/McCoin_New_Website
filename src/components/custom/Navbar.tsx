@@ -35,7 +35,7 @@ import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   return (
-    <nav className="mx-auto container w-full bg-[#07153b] py-10">
+    <nav className="mx-auto container w-full bg-[#07153b]  py-6 sticky top-0 z-50 shadow-lg">
       <div className="flex justify-between px-5 lg:justify-around">
         <Link href="/">
           <AnimatedLogo />

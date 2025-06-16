@@ -48,17 +48,18 @@ export default function BitCoinWidget({ onLoad }: { onLoad: () => void }) {
   }, [onLoad]);
 
   return (
-    <div className='container mx-auto'>
-    
-      <div className="tradingview-widget-container relative min-h-[120px]">
-         <div className="
+    <div className="container mx-auto">
+      <div className="tradingview-widget-container relative min-h-[120px]  bg-[#07153b]">
+        <div
+          className="
           bg-[#07153b]
           rounded-xl
           border
           border-gray-600/30
           overflow-hidden 
           p-[1px]
-        ">
+        "
+        >
           <div className="relative h-full w-full rounded-[11px] overflow-hidden border border-gray-600 transition-all duration-500 hover:border-gray-100">
             {!loaded && !error && (
               <div className="absolute inset-0 flex items-center justify-center bg-[#07153b] rounded-xl">
@@ -73,7 +74,7 @@ export default function BitCoinWidget({ onLoad }: { onLoad: () => void }) {
               <div className="absolute inset-0 flex items-center justify-center bg-[#07153b] rounded-xl">
                 <div className="text-center p-4">
                   <p className="text-red-300 font-medium text-sm">{error}</p>
-                  <button 
+                  <button
                     onClick={() => {
                       setError(null);
                       setLoaded(false);
@@ -87,10 +88,10 @@ export default function BitCoinWidget({ onLoad }: { onLoad: () => void }) {
               </div>
             )}
 
-            <div 
+            <div
               ref={widgetRef}
               className="h-full pointer-events-none"
-              style={{ 
+              style={{
                 display: loaded ? 'block' : 'none',
                 backgroundColor: 'transparent',
               }}

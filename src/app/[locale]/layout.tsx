@@ -55,7 +55,7 @@ export default async function LocaleLayout({
   }
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className={`${montserrat.variable} antialiased bg-[#07153b]`}>
+      <body className={`${montserrat.variable} antialiased dark:bg-[#07153b] bg-[#DAE6EA]`}>
         <NextIntlClientProvider>
           <Providers params={params}>
             <Navbar />

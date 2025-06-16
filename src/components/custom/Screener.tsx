@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 type Coin = {
   id: string;
@@ -14,7 +14,7 @@ type Coin = {
 
 export default function Screener() {
   const [coins, setCoins] = useState<Coin[]>([]);
-  const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,11 +25,11 @@ export default function Screener() {
         if (Array.isArray(data)) {
           setCoins(data);
         } else {
-          console.error("API did not return an array:", data as any);
+          console.error('API did not return an array:', data as any);
           setCoins([]); // prevent crash
         }
       } catch (err) {
-        console.error("Error fetching screener data:", err);
+        console.error('Error fetching screener data:', err);
         setCoins([]); // prevent crash
       }
     };
@@ -43,22 +43,20 @@ export default function Screener() {
   const duplicatedCoins = [...coins, ...coins];
 
   return (
-    <div className="overflow-hidden bg-[#07153b] py-2">
+    <div className="overflow-hidden dark:bg-[#07153b] bg-[#DAE6EA] dark:border-none py-2 ">
       <div className="ticker-track">
         {duplicatedCoins.map((coin, index) => (
           <div key={`${coin.id}-${index}`} className="ticker-item">
             <img src={coin.image} alt={coin.name} className="w-5 h-5 mr-1" />
-            <strong className="mr-1">{coin.name}</strong>
-            <span className="mr-1">{coin.price.toFixed(4)}</span>
+            <strong className="mr-1 dark:text-[#FFF] text-[#07153b]">{coin.name}</strong>
+            <span className="mr-1 dark:text-[#DAE6EA] text-[#07153b]">{coin.price.toFixed(4)}</span>
             <span
-              className={`mr-2 ${
-                coin.price_change >= 0 ? "text-green-500" : "text-[#EC3B3B]"
-              }`}
+              className={`mr-2 ${coin.price_change >= 0 ? 'text-green-500' : 'text-[#EC3B3B]'}`}
             >
-              {coin.price_change >= 0 ? "+" : ""}
+              {coin.price_change >= 0 ? '+' : ''}
               {coin.price_change.toFixed(2)} ({coin.percent_change.toFixed(2)}%)
             </span>
-            <span className="text-[#DAE6EA] px-2">|</span>
+            <span className="dark:text-[#DAE6EA] text-[#07153b] px-2">|</span>
           </div>
         ))}
       </div>

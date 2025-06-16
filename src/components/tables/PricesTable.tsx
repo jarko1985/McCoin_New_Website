@@ -38,7 +38,7 @@ export default function PricesTable() {
 
   useEffect(() => {
     fetch(`/${locale}/api/prices_table`)
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(setCoins)
       .finally(() => setLoading(false));
   }, []);
@@ -55,11 +55,8 @@ export default function PricesTable() {
   const format = (num: number, decimals = 2) =>
     Intl.NumberFormat('en-US', { maximumFractionDigits: decimals }).format(num);
 
-  const filteredCoins = coins.filter((coin) =>
-    Object.values(coin)
-      .join(' ')
-      .toLowerCase()
-      .includes(search.toLowerCase())
+  const filteredCoins = coins.filter(coin =>
+    Object.values(coin).join(' ').toLowerCase().includes(search.toLowerCase()),
   );
 
   const sortedCoins = [...filteredCoins].sort((a: any, b: any) => {
@@ -71,27 +68,27 @@ export default function PricesTable() {
   const totalPages = Math.ceil(sortedCoins.length / coinsPerPage);
   const paginatedCoins = sortedCoins.slice(
     (currentPage - 1) * coinsPerPage,
-    currentPage * coinsPerPage
+    currentPage * coinsPerPage,
   );
 
   return (
     <div className="xl:w-[70%] mx-auto py-12 px-4 xl:px-0">
-      <h2 className="text-lg lg:text-3xl font-bold text-[#DAE6EA] text-center mb-6 lg:mb-12">
+      <h2 className="text-lg lg:text-3xl font-bold dark:text-[#DAE6EA] text-[#07153b] text-center ">
         VA Offered
       </h2>
       <div className="flex justify-start items-center">
         <Input
           placeholder="Search any column..."
           value={search}
-          onChange={(e) => {
+          onChange={e => {
             setSearch(e.target.value);
             setCurrentPage(1);
           }}
-          className="mb-4 border-[#DAE6EA] text-[#DAE6EA] font-medium placeholder:text-[#DAE6EA] w-[200px]"
+          className="mb-4 dark:border-[#DAE6EA] border-[#07153b] dark:text-[#DAE6EA] text-[#07153b] font-medium dark:placeholder:text-[#DAE6EA] placeholder:text-[#07153b] w-[200px]"
         />
       </div>
-      <Card className="overflow-x-auto rounded-2xl shadow-md bg-[#07153b] px-4">
-        <table className="min-w-full table-auto text-sm text-[#DAE6EA]">
+      <Card className="overflow-x-auto rounded-2xl shadow-xl dark:bg-[#07153b] bg-[#DAE6EA] px-4 dark:border-none border border-[#07153b]">
+        <table className="min-w-full table-auto text-sm dark:text-[#DAE6EA] text-[#07153B]">
           <thead>
             <tr className="text-left">
               {[
@@ -119,7 +116,7 @@ export default function PricesTable() {
                           ? sortAsc
                             ? 'text-green-400'
                             : 'text-red-400'
-                          : 'text-[#DAE6EA]/50'
+                          : 'text-[#DAE6EA]/50',
                       )}
                     />
                   </div>
@@ -128,82 +125,72 @@ export default function PricesTable() {
             </tr>
           </thead>
           <tbody>
-            {loading ? (
-              Array.from({ length: coinsPerPage }).map((_, i) => (
-                <tr key={i} className="border-t border-[#DAE6EA]/10">
-                  {Array.from({ length: 9 }).map((__, j) => (
-                    <td key={j} className="p-2">
-                      <Skeleton className="h-4 w-full" />
+            {loading
+              ? Array.from({ length: coinsPerPage }).map((_, i) => (
+                  <tr key={i} className="border-t border-[#DAE6EA]/10">
+                    {Array.from({ length: 9 }).map((__, j) => (
+                      <td key={j} className="p-2">
+                        <Skeleton className="h-4 w-full" />
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : paginatedCoins.map(coin => (
+                  <tr
+                    key={coin.id}
+                    className="border-t border-[#DAE6EA]/10 hover:bg-[#D1D1D1] dark:hover:bg-[#EC3B3B]/10 transition-colors h-12"
+                  >
+                    <td className="flex items-center gap-2 py-2 px-2 max-w-[160px]">
+                      <img src={coin.image} alt={coin.name} className="w-5 h-5" />
+                      <span className="font-semibold truncate max-w-[100px]">
+                        {coin.name.length > 16 ? `${coin.name.slice(0, 16)}...` : coin.name}
+                      </span>
+                      <span className="uppercase text-xs dark:text-[#DAE6EA]/70 text-[#07153b]">
+                        {coin.symbol}
+                      </span>
                     </td>
-                  ))}
-                </tr>
-              ))
-            ) : (
-              paginatedCoins.map((coin) => (
-                <tr
-                  key={coin.id}
-                  className="border-t border-[#DAE6EA]/10 hover:bg-[#EC3B3B]/10 transition-colors h-12"
-                >
-                  <td className="flex items-center gap-2 py-2 px-2 max-w-[160px]">
-                    <img src={coin.image} alt={coin.name} className="w-5 h-5" />
-                    <span className="font-semibold truncate max-w-[100px]">
-                      {coin.name.length > 16
-                        ? `${coin.name.slice(0, 16)}...`
-                        : coin.name}
-                    </span>
-                    <span className="uppercase text-xs text-[#DAE6EA]/70">
-                      {coin.symbol}
-                    </span>
-                  </td>
-                  <td>${format(coin.price)}</td>
-                  <td
-                    className={cn(
-                      coin.percent_change_1h >= 0
-                        ? 'text-green-400'
-                        : 'text-red-400'
-                    )}
-                  >
-                    {coin.percent_change_1h?.toFixed(2)}%
-                  </td>
-                  <td
-                    className={cn(
-                      coin.percent_change_24h >= 0
-                        ? 'text-green-400'
-                        : 'text-red-400'
-                    )}
-                  >
-                    {coin.percent_change_24h?.toFixed(2)}%
-                  </td>
-                  <td
-                    className={cn(
-                      coin.percent_change_7d >= 0
-                        ? 'text-green-400'
-                        : 'text-red-400'
-                    )}
-                  >
-                    {coin.percent_change_7d?.toFixed(2)}%
-                  </td>
-                  <td>${format(coin.market_cap, 0)}</td>
-                  <td>${format(coin.volume_24h, 0)}</td>
-                  <td>{format(coin.circulating_supply, 0)}</td>
-                  <td>
-                    <Sparkline
-                      prices={coin.sparkline_7d}
-                      positive={coin.percent_change_7d >= 0}
-                    />
-                  </td>
-                </tr>
-              ))
-            )}
+                    <td>${format(coin.price)}</td>
+                    <td
+                      className={cn(
+                        coin.percent_change_1h >= 0 ? 'text-green-400' : 'text-red-400',
+                      )}
+                    >
+                      {coin.percent_change_1h?.toFixed(2)}%
+                    </td>
+                    <td
+                      className={cn(
+                        coin.percent_change_24h >= 0 ? 'text-green-400' : 'text-red-400',
+                      )}
+                    >
+                      {coin.percent_change_24h?.toFixed(2)}%
+                    </td>
+                    <td
+                      className={cn(
+                        coin.percent_change_7d >= 0 ? 'text-green-400' : 'text-red-400',
+                      )}
+                    >
+                      {coin.percent_change_7d?.toFixed(2)}%
+                    </td>
+                    <td>${format(coin.market_cap, 0)}</td>
+                    <td>${format(coin.volume_24h, 0)}</td>
+                    <td>{format(coin.circulating_supply, 0)}</td>
+                    <td>
+                      <Sparkline
+                        prices={coin.sparkline_7d}
+                        positive={coin.percent_change_7d >= 0}
+                      />
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </Card>
 
       {/* Pagination Controls */}
-      <div className="flex justify-center mt-6 gap-6 text-[#DAE6EA]">
+      <div className="flex justify-center mt-6 gap-6 text-[#07153b] dark:text-[#DAE6EA]">
         <button
           disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
           className="flex items-center gap-2 disabled:opacity-40"
         >
           <ChevronLeft className="w-4 h-4" />
@@ -214,7 +201,7 @@ export default function PricesTable() {
         </span>
         <button
           disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+          onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
           className="flex items-center gap-2 disabled:opacity-40"
         >
           Next

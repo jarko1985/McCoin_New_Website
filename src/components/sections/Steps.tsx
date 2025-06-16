@@ -1,22 +1,23 @@
-import Image from "next/image"
-import { StepsData } from "../../../utils/data"
+import Image from 'next/image';
+import { StepsData } from '../../../utils/data';
 
 const Steps = () => {
   return (
     <section className="container mx-auto xl:w-[70%] py-12 px-4 sm:px-6">
-      <h1 className="text-center text-[#DAE6EA] font-[600] text-3xl sm:text-4xl xl:text-[2.225rem]">
+      <h1 className="text-center dark:text-[#DAE6EA] text-[#07153b] font-[600] text-3xl sm:text-4xl xl:text-[2.225rem]">
         Steps to Start Trading
       </h1>
-      <p className="text-center text-[#DAE6EA] font-[400] text-lg sm:text-xl xl:text-[1.5rem] mt-6 mb-18 max-w-3xl mx-auto">
+      <p className="text-center dark:text-[#DAE6EA] text-[#07153b] font-[400] text-lg sm:text-xl xl:text-[1.5rem] mt-6 mb-18 max-w-3xl mx-auto">
         To start trading with McCoin, all you need to do is to follow these simple steps
       </p>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {StepsData.map((step) => (
-          <div 
-            key={step.id} 
+        {StepsData.map(step => (
+          <div
+            key={step.id}
             className="
-              p-6 bg-gradient-to-r from-[#050E27] to-[#07153b]
+              p-6 dark:bg-gradient-to-r from-[#050E27] to-[#07153b]
+              bg-[][#F0F4F8] border border-[#2a3e6d]/30
               rounded-lg flex flex-col
               h-full min-h-[250px]
               group transition-all duration-300 ease-in-out
@@ -29,23 +30,24 @@ const Steps = () => {
             "
           >
             <div className="flex justify-between items-start z-10">
-              <div className="
+              <div
+                className="
                 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
                 group-hover:scale-110 group-hover:rotate-6
-              ">
-                <Image 
-                  src={step.iconSRC} 
-                  alt="icon image"
-                />
+              "
+              >
+                <Image src={step.iconSRC} alt="icon image" />
               </div>
-              <div className="
+              <div
+                className="
                 relative
                 transition-all duration-500 ease-[cubic-bezier(0.68,-0.6,0.32,1.6)]
                 group-hover:-translate-y-10 group-hover:scale-125
                 overflow-visible
-              ">
-                <Image 
-                  src={step.imgSRC} 
+              "
+              >
+                <Image
+                  src={step.imgSRC}
                   alt="number image"
                   className="
                     drop-shadow-lg
@@ -55,31 +57,38 @@ const Steps = () => {
               </div>
             </div>
             <div className="mt-4 flex-grow flex flex-col z-10">
-              <h2 className="
-                text-[#DAE6EA] font-[600] text-xl mb-3
+              <h2
+                className="
+                dark:text-[#DAE6EA] text-[#07153b] font-[600] text-xl mb-3
                 transition-colors duration-300
-                group-hover:text-white
-              ">
+                dark:group-hover:text-white group-hover:text-[#EC3B3B]
+              "
+              >
                 {step.title}
               </h2>
-              <p className="
-                text-[#8A939B] text-base
+              <p
+                className="
+                dark:text-[#8A939B] text-base text-[#07153b]
                 transition-colors duration-500
-                group-hover:text-[#a0b3c8]
-              ">
+                dark:group-hover:text-[#a0b3c8]
+                group-hover:text-[#07153b]
+              "
+              >
                 {step.subTitle}
               </p>
             </div>
-            <div className="
+            <div
+              className="
               absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-transparent via-[#3d5a9c] to-transparent
               opacity-0 transition-opacity duration-300
               group-hover:opacity-100
-            "></div>
+            "
+            ></div>
           </div>
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Steps
+export default Steps;
