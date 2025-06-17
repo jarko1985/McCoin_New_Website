@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Client } from "@microsoft/microsoft-graph-client";
-import { ClientSecretCredential } from "@azure/identity";
-import { Readable } from "stream";
-import formidable from "formidable";
-import fs from "fs";
-import type { IncomingMessage } from "http";
+import { NextRequest, NextResponse } from 'next/server';
+import { Client } from '@microsoft/microsoft-graph-client';
+import { ClientSecretCredential } from '@azure/identity';
+import { Readable } from 'stream';
+import formidable from 'formidable';
+import fs from 'fs';
+import type { IncomingMessage } from 'http';
 
 export const config = {
   api: {
@@ -13,16 +13,14 @@ export const config = {
 };
 
 // MS365 Auth
-const credential = new ClientSecretCredential(
-  process.env.MICROSOFT_TENANT_ID!,
-  process.env.MICROSOFT_CLIENT_ID!,
-  process.env.MICROSOFT_CLIENT_SECRET!
-);
+// const credential = new ClientSecretCredential(
+//   process.env.MICROSOFT_TENANT_ID!,
+//   process.env.MICROSOFT_CLIENT_ID!,
+//   process.env.MICROSOFT_CLIENT_SECRET!
+// );
 
 // Helper: Convert Web ReadableStream to Node.js Readable
-function webReadableStreamToNodeReadable(
-  webStream: ReadableStream<Uint8Array>
-): Readable {
+function webReadableStreamToNodeReadable(webStream: ReadableStream<Uint8Array>): Readable {
   const reader = webStream.getReader();
   return new Readable({
     async read() {
@@ -42,7 +40,7 @@ async function convertRequest(req: NextRequest): Promise<IncomingMessage> {
   const incoming = Object.assign(nodeReadable, {
     headers: Object.fromEntries(req.headers.entries()),
     method: req.method,
-    url: "",
+    url: '',
   }) as unknown as IncomingMessage;
 
   return incoming;
@@ -50,6 +48,11 @@ async function convertRequest(req: NextRequest): Promise<IncomingMessage> {
 
 export async function POST(req: NextRequest) {
   try {
+    const credential = new ClientSecretCredential(
+      process.env.MICROSOFT_TENANT_ID!,
+      process.env.MICROSOFT_CLIENT_ID!,
+      process.env.MICROSOFT_CLIENT_SECRET!,
+    );
     const stream = await convertRequest(req);
     const form = formidable({ multiples: false });
 
@@ -60,26 +63,19 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    const resumeFile = Array.isArray(files.resume)
-      ? files.resume[0]
-      : files.resume;
+    const resumeFile = Array.isArray(files.resume) ? files.resume[0] : files.resume;
 
     if (!resumeFile || !resumeFile.filepath) {
-      return NextResponse.json(
-        { error: "Resume file is missing or invalid." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Resume file is missing or invalid.' }, { status: 400 });
     }
 
     const resumeContent = fs.readFileSync(resumeFile.filepath);
-    const resumeBase64 = resumeContent.toString("base64");
+    const resumeBase64 = resumeContent.toString('base64');
 
     // Microsoft Graph Access Token
-    const accessToken = await credential.getToken(
-      "https://graph.microsoft.com/.default"
-    );
+    const accessToken = await credential.getToken('https://graph.microsoft.com/.default');
     const client = Client.init({
-      authProvider: (done) => {
+      authProvider: done => {
         done(null, accessToken.token);
       },
     });
@@ -96,21 +92,21 @@ export async function POST(req: NextRequest) {
 
     const message = {
       message: {
-        subject: "New Job Application",
+        subject: 'New Job Application',
         body: {
-          contentType: "HTML",
+          contentType: 'HTML',
           content: emailContent,
         },
         toRecipients: [
           {
             emailAddress: {
-              address: "info@mccoin.com",
+              address: 'info@mccoin.com',
             },
           },
         ],
         attachments: [
           {
-            "@odata.type": "#microsoft.graph.fileAttachment",
+            '@odata.type': '#microsoft.graph.fileAttachment',
             name: resumeFile.originalFilename,
             contentBytes: resumeBase64,
           },
@@ -120,18 +116,13 @@ export async function POST(req: NextRequest) {
     };
 
     // Send email
-    await client
-      .api(`/users/${process.env.MICROSOFT_SENDER_EMAIL}/sendMail`)
-      .post(message);
+    await client.api(`/users/${process.env.MICROSOFT_SENDER_EMAIL}/sendMail`).post(message);
 
     return NextResponse.json({
-      message: "Application submitted successfully.",
+      message: 'Application submitted successfully.',
     });
   } catch (error) {
-    console.error("Error sending email:", error);
-    return NextResponse.json(
-      { error: "Failed to send application." },
-      { status: 500 }
-    );
+    console.error('Error sending email:', error);
+    return NextResponse.json({ error: 'Failed to send application.' }, { status: 500 });
   }
 }
