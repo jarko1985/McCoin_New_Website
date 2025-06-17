@@ -1,40 +1,39 @@
-import ARROW_UP from "../public/images/arrow_up.svg";
-import EDUCATION from "../public/images/graduation.svg";
-import VISION from "../public/images/vision.svg";
-import MISSION from "../public/images/mission.svg";
-import ZEROFEE from "@/../public/images/zero_fee_icon.svg";
-import ULTIMATE from "@/../public/images/ultimate_icon.svg";
-import SAFTEY from "@/../public/images/shield_icon.svg";
-import GLOBAL from "@/../public/images/globe_icon.svg";
-import FULLSTACK from "@/../public/images/full_stack_icon.svg";
-import ONE from "@/../public/images/one.svg";
-import TWO from "@/../public/images/two.svg";
-import THREE from "@/../public/images/three.svg";
-import AVATAR from "@/../public/images/avatar.svg";
-import COINHAND from "@/../public/images/coins_hand.svg";
-import EXPORT from "@/../public/images/export.svg";
-import NEWS1 from "@/../public/images/news1_pic.png";
-import NEWS2 from "@/../public/images/news2_pic.png";
-import NEWS3 from "@/../public/images/news3_pic.png";
-import { TbArticle } from "react-icons/tb";
-import { FaBlog } from "react-icons/fa";
-import { TbDeviceAnalytics } from "react-icons/tb";
-import { FaGraduationCap } from "react-icons/fa";
-import { ImNewspaper } from "react-icons/im";
-import { GiSattelite } from "react-icons/gi";
-import { LiaHotjar } from "react-icons/lia";
-import { FaPodcast } from "react-icons/fa";
-import { TiUserAddOutline } from "react-icons/ti";
-import { RiVerifiedBadgeLine } from "react-icons/ri";
-import { PiHandDeposit } from "react-icons/pi";
-import { RiExchangeLine } from "react-icons/ri";
-import { PiHandWithdraw } from "react-icons/pi";
-import { LuMailQuestion } from "react-icons/lu";
-import { GrContact } from "react-icons/gr";
-import { FaHandsHelping, FaLandmark } from "react-icons/fa";
-import { FooterLink } from "@/types/FooterLink";
-import { MdOutlineExplore } from "react-icons/md";
-
+import ARROW_UP from '../public/images/arrow_up.svg';
+import EDUCATION from '../public/images/graduation.svg';
+import VISION from '../public/images/vision.svg';
+import MISSION from '../public/images/mission.svg';
+import ZEROFEE from '@/../public/images/zero_fee_icon.svg';
+import ULTIMATE from '@/../public/images/ultimate_icon.svg';
+import SAFTEY from '@/../public/images/shield_icon.svg';
+import GLOBAL from '@/../public/images/globe_icon.svg';
+import FULLSTACK from '@/../public/images/full_stack_icon.svg';
+import ONE from '@/../public/images/one.svg';
+import TWO from '@/../public/images/two.svg';
+import THREE from '@/../public/images/three.svg';
+import AVATAR from '@/../public/images/avatar.svg';
+import COINHAND from '@/../public/images/coins_hand.svg';
+import EXPORT from '@/../public/images/export.svg';
+import NEWS1 from '@/../public/images/news1_pic.png';
+import NEWS2 from '@/../public/images/news2_pic.png';
+import NEWS3 from '@/../public/images/news3_pic.png';
+import { TbArticle } from 'react-icons/tb';
+import { FaBlog } from 'react-icons/fa';
+import { TbDeviceAnalytics } from 'react-icons/tb';
+import { FaGraduationCap } from 'react-icons/fa';
+import { ImNewspaper } from 'react-icons/im';
+import { GiSattelite } from 'react-icons/gi';
+import { LiaHotjar } from 'react-icons/lia';
+import { FaPodcast } from 'react-icons/fa';
+import { TiUserAddOutline } from 'react-icons/ti';
+import { RiVerifiedBadgeLine } from 'react-icons/ri';
+import { PiHandDeposit } from 'react-icons/pi';
+import { RiExchangeLine } from 'react-icons/ri';
+import { PiHandWithdraw } from 'react-icons/pi';
+import { LuMailQuestion } from 'react-icons/lu';
+import { GrContact } from 'react-icons/gr';
+import { FaHandsHelping, FaLandmark } from 'react-icons/fa';
+import { FooterLink } from '@/types/FooterLink';
+import { MdOutlineExplore } from 'react-icons/md';
 
 export type PolicySubsection = {
   title?: string; // Now optional
@@ -50,68 +49,68 @@ export type PrivacyPolicyItem = {
 };
 
 export const NAV_DATA = [
-  { title: "About", href: "/about" },
+  { title: 'About', href: '/about' },
   {
-    title: "Markets",
+    title: 'Markets',
     children: [
-      { title: "Overview", icon: FaLandmark, href: "/market-overview" },
+      { title: 'Overview', icon: FaLandmark, href: '/market-overview' },
       {
-        title: "Market Explorer",
+        title: 'Market Explorer',
         icon: MdOutlineExplore,
-        href: "/market-explorer",
+        href: '/market-explorer',
       },
     ],
   },
   {
-    title: "Learn",
+    title: 'Learn',
     children: [
-      { title: "Articles", icon: TbArticle, href: "/articles" },
-      { title: "Blog", icon: FaBlog, href: "/blog" },
+      { title: 'Articles', icon: TbArticle, href: '/articles' },
+      { title: 'Blog', icon: FaBlog, href: '/blog' },
       {
-        title: "Market Sentiment",
+        title: 'Market Sentiment',
         icon: TbDeviceAnalytics,
-        href: "/market-sentiment",
+        href: '/market-sentiment',
       },
-      { title: "Crypto 101", icon: FaGraduationCap, href: "/crypto101" },
+      { title: 'Crypto 101', icon: FaGraduationCap, href: '/crypto101' },
     ],
   },
   {
-    title: "McCoin insider",
+    title: 'McCoin insider',
     children: [
-      { title: "Top News", icon: ImNewspaper, href: "/top-news" },
-      { title: "Newsroom", icon: GiSattelite, href: "/news-room" },
-      { title: "Hot Topics", icon: LiaHotjar, href: "/hot-topics" },
-      { title: "Podcasts", icon: FaPodcast, href: "/podcasts" },
+      { title: 'Top News', icon: ImNewspaper, href: '/top-news' },
+      { title: 'Newsroom', icon: GiSattelite, href: '/news-room' },
+      { title: 'Hot Topics', icon: LiaHotjar, href: '/hot-topics' },
+      { title: 'Podcasts', icon: FaPodcast, href: '/podcasts' },
     ],
   },
   {
-    title: "How to",
+    title: 'How to',
     children: [
       {
-        title: "Create an Account",
+        title: 'Create an Account',
         icon: TiUserAddOutline,
-        href: "/create-account",
+        href: '/create-account',
       },
       {
-        title: "Verify Your Identity (KYC)",
+        title: 'Verify Your Identity (KYC)',
         icon: RiVerifiedBadgeLine,
-        href: "/verify-identity",
+        href: '/verify-identity',
       },
-      { title: "Deposit Funds", icon: PiHandDeposit, href: "/deposit" },
-      { title: "Trade Cryptocurrency", icon: RiExchangeLine, href: "/trade" },
-      { title: "Withdraw Funds", icon: PiHandWithdraw, href: "/withdraw" },
+      { title: 'Deposit Funds', icon: PiHandDeposit, href: '/deposit' },
+      { title: 'Trade Cryptocurrency', icon: RiExchangeLine, href: '/trade' },
+      { title: 'Withdraw Funds', icon: PiHandWithdraw, href: '/withdraw' },
     ],
   },
   {
-    title: "Support center",
+    title: 'Support center',
     children: [
       {
-        title: "Frequently Asked Questions (FAQs)",
+        title: 'Frequently Asked Questions (FAQs)',
         icon: LuMailQuestion,
-        href: "/faqs",
+        href: '/faqs',
       },
-      { title: "Contact Us", icon: GrContact, href: "/contact" },
-      { title: "Help Topics", icon: FaHandsHelping, href: "/help-topics" },
+      { title: 'Contact Us', icon: GrContact, href: '/contact' },
+      { title: 'Help Topics', icon: FaHandsHelping, href: '/help-topics' },
     ],
   },
 ];
@@ -119,93 +118,93 @@ export const OurGoalsData = [
   {
     id: 1,
     src: ARROW_UP,
-    title: "Regulatory Compliance",
+    title: 'Regulatory Compliance',
     description:
-      "At McCoin, we prioritize regulatory compliance to ensure responsible adoption and informed decision-making within the crypto industry.",
+      'At McCoin, we prioritize regulatory compliance to ensure responsible adoption and informed decision-making within the crypto industry.',
   },
   {
     id: 2,
     src: EDUCATION,
-    title: "Educational Initiatives",
+    title: 'Educational Initiatives',
     description:
-      "We are committed to educating and promoting crypto awareness, engaging with the public, regulators, and authorities to expand knowledge and understanding of the cryptocurrency landscape.",
+      'We are committed to educating and promoting crypto awareness, engaging with the public, regulators, and authorities to expand knowledge and understanding of the cryptocurrency landscape.',
   },
   {
     id: 3,
     src: VISION,
-    title: "Our Vision",
+    title: 'Our Vision',
     description:
-      "To be the leading fintech firm in the MENA region, setting new standards for transparency, innovation, and excellence in the cryptocurrency  industry. We envision a future where McCoin is recognized as the go-to platform for crypto trading, education, and community engagement.",
+      'To be the leading fintech firm in the MENA region, setting new standards for transparency, innovation, and excellence in the cryptocurrency  industry. We envision a future where McCoin is recognized as the go-to platform for crypto trading, education, and community engagement.',
   },
   {
     id: 4,
     src: MISSION,
-    title: "Our Mission",
+    title: 'Our Mission',
     description:
-      "Our mission is to empower individuals and businesses in the MENA region with a secure, transparent, and user-friendly crypto trading platform, built on honesty, innovation, and commitment, to exceed user expectations and foster trust.",
+      'Our mission is to empower individuals and businesses in the MENA region with a secure, transparent, and user-friendly crypto trading platform, built on honesty, innovation, and commitment, to exceed user expectations and foster trust.',
   },
 ];
 
 export const Faqs = [
   {
-    id: "faq-1",
-    question: "What is MCcoin and what services does it offer?",
+    id: 'faq-1',
+    question: 'What is MCcoin and what services does it offer?',
     answer:
-      "MCcoin is a cryptocurrency exchange platform that allows users to buy, sell, and trade various digital assets. We offer spot trading, futures trading, and staking services with competitive fees and advanced trading tools.",
+      'MCcoin is a cryptocurrency exchange platform that allows users to buy, sell, and trade various digital assets. We offer spot trading, futures trading, and staking services with competitive fees and advanced trading tools.',
   },
   {
-    id: "faq-2",
-    question: "How do I create an account on MCcoin?",
+    id: 'faq-2',
+    question: 'How do I create an account on MCcoin?',
     answer:
       "You can create an account by visiting our website or mobile app, clicking 'Sign Up', and providing your email address and creating a secure password. You'll need to complete identity verification (KYC) to access all features.",
   },
   {
-    id: "faq-3",
-    question: "What cryptocurrencies can I trade on MCcoin?",
+    id: 'faq-3',
+    question: 'What cryptocurrencies can I trade on MCcoin?',
     answer:
-      "MCcoin supports major cryptocurrencies like Bitcoin (BTC), Ethereum (ETH), and many altcoins. The full list of supported coins is available in our Markets section, with new assets added regularly.",
+      'MCcoin supports major cryptocurrencies like Bitcoin (BTC), Ethereum (ETH), and many altcoins. The full list of supported coins is available in our Markets section, with new assets added regularly.',
   },
   {
-    id: "faq-4",
-    question: "Is MCcoin regulated and licensed?",
+    id: 'faq-4',
+    question: 'Is MCcoin regulated and licensed?',
     answer:
-      "Yes, MCcoin operates under strict regulatory compliance. We are registered with relevant financial authorities and adhere to all required anti-money laundering (AML) and know-your-customer (KYC) regulations.",
+      'Yes, MCcoin operates under strict regulatory compliance. We are registered with relevant financial authorities and adhere to all required anti-money laundering (AML) and know-your-customer (KYC) regulations.',
   },
   {
-    id: "faq-5",
-    question: "What security measures does MCcoin have to protect my funds?",
+    id: 'faq-5',
+    question: 'What security measures does MCcoin have to protect my funds?',
     answer:
-      "We use industry-leading security including two-factor authentication (2FA), cold storage for 98% of user funds, encrypted data transmission, and regular security audits to ensure platform safety.",
+      'We use industry-leading security including two-factor authentication (2FA), cold storage for 98% of user funds, encrypted data transmission, and regular security audits to ensure platform safety.',
   },
   {
-    id: "faq-6",
-    question: "What are the trading fees on MCcoin?",
+    id: 'faq-6',
+    question: 'What are the trading fees on MCcoin?',
     answer:
-      "MCcoin charges a 0.1% fee for spot trading, with discounts available for high-volume traders and those holding our native MCcoin token. Withdrawal fees vary by cryptocurrency.",
+      'MCcoin charges a 0.1% fee for spot trading, with discounts available for high-volume traders and those holding our native MCcoin token. Withdrawal fees vary by cryptocurrency.',
   },
   {
-    id: "faq-7",
-    question: "How do I deposit/withdraw funds from my MCcoin account?",
+    id: 'faq-7',
+    question: 'How do I deposit/withdraw funds from my MCcoin account?',
     answer:
-      "You can deposit via bank transfer, credit/debit card, or cryptocurrency transfers. Withdrawals can be made to your bank account or external crypto wallets, subject to security verification.",
+      'You can deposit via bank transfer, credit/debit card, or cryptocurrency transfers. Withdrawals can be made to your bank account or external crypto wallets, subject to security verification.',
   },
   {
-    id: "faq-8",
-    question: "Does MCcoin offer customer support? How can I contact them?",
+    id: 'faq-8',
+    question: 'Does MCcoin offer customer support? How can I contact them?',
     answer:
-      "Yes, our 24/7 customer support team can be reached via live chat, email at support@mccoin.com, or through our ticketing system. Average response time is under 30 minutes.",
+      'Yes, our 24/7 customer support team can be reached via live chat, email at support@mccoin.com, or through our ticketing system. Average response time is under 30 minutes.',
   },
   {
-    id: "faq-9",
-    question: "What trading tools and features does MCcoin provide?",
+    id: 'faq-9',
+    question: 'What trading tools and features does MCcoin provide?',
     answer:
-      "We provide advanced charting tools, limit/stop orders, margin trading up to 10x, API access for algorithmic trading, and real-time market data to inform your trading decisions.",
+      'We provide advanced charting tools, limit/stop orders, margin trading up to 10x, API access for algorithmic trading, and real-time market data to inform your trading decisions.',
   },
   {
-    id: "faq-10",
-    question: "Does MCcoin have a mobile app for trading?",
+    id: 'faq-10',
+    question: 'Does MCcoin have a mobile app for trading?',
     answer:
-      "Yes, MCcoin offers both iOS and Android mobile apps with full trading functionality. You can download them from the App Store or Google Play Store.",
+      'Yes, MCcoin offers both iOS and Android mobile apps with full trading functionality. You can download them from the App Store or Google Play Store.',
   },
 ];
 
@@ -213,42 +212,42 @@ export const WhyMcCoinData = [
   {
     id: 1,
     imgSRC: ZEROFEE,
-    title1: "Zero Fee",
-    title2: "Spot Trading",
+    title1: 'Zero Fee',
+    title2: 'Spot Trading',
     paragraph:
-      "Trade freely without worrying about hidden costs. Enjoy true zero-fee spot trading on all major pairs.",
+      'Trade freely without worrying about hidden costs. Enjoy true zero-fee spot trading on all major pairs.',
   },
   {
     id: 2,
     imgSRC: ULTIMATE,
-    title1: "The Ultimate",
-    title2: "Option Wizard",
+    title1: 'The Ultimate',
+    title2: 'Option Wizard',
     paragraph:
-      "Master the markets with advanced options trading tools designed for precision and flexibility.",
+      'Master the markets with advanced options trading tools designed for precision and flexibility.',
   },
   {
     id: 3,
     imgSRC: SAFTEY,
-    title1: "Safety",
-    title2: "Comes Standard",
+    title1: 'Safety',
+    title2: 'Comes Standard',
     paragraph:
-      "From multi-layer encryption to cold storage, McCoin keeps your assets protected—always.",
+      'From multi-layer encryption to cold storage, McCoin keeps your assets protected—always.',
   },
   {
     id: 4,
     imgSRC: GLOBAL,
-    title1: "Global",
-    title2: "Market Access",
+    title1: 'Global',
+    title2: 'Market Access',
     paragraph:
-      "Trade on a platform that connects you to crypto markets around the world, anytime, anywhere.",
+      'Trade on a platform that connects you to crypto markets around the world, anytime, anywhere.',
   },
   {
     id: 5,
     imgSRC: FULLSTACK,
-    title1: "Full-Stack ",
-    title2: "Infrastructure",
+    title1: 'Full-Stack ',
+    title2: 'Infrastructure',
     paragraph:
-      "Built with a robust backend and blazing-fast performance to support every trading move you make.",
+      'Built with a robust backend and blazing-fast performance to support every trading move you make.',
   },
 ];
 
@@ -257,23 +256,22 @@ export const StepsData = [
     id: 1,
     imgSRC: ONE,
     iconSRC: AVATAR,
-    title: "Create Account",
-    subTitle: "Create and verify your account in minutes.",
+    title: 'Create Account',
+    subTitle: 'Create and verify your account in minutes.',
   },
   {
     id: 2,
     imgSRC: TWO,
     iconSRC: COINHAND,
-    title: "Fund Your Account",
-    subTitle: "Use Bitcoin, Ethereum, or USDC to fund your account.",
+    title: 'Fund Your Account',
+    subTitle: 'Use Bitcoin, Ethereum, or USDC to fund your account.',
   },
   {
     id: 3,
     imgSRC: THREE,
     iconSRC: EXPORT,
-    title: "Start Trading",
-    subTitle:
-      "Use all our advanced strategy tools to get the most of your trades.",
+    title: 'Start Trading',
+    subTitle: 'Use all our advanced strategy tools to get the most of your trades.',
   },
 ];
 
@@ -281,116 +279,116 @@ export const NewsData = [
   {
     id: 1,
     imgSRC: NEWS1,
-    category: "Marketing",
-    difficutly: "Easy",
+    category: 'Marketing',
+    difficutly: 'Easy',
     title: "The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
     description:
-      "CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
-    author: "By Warner Vermaak",
-    date: "2h ago",
-    ret: "4m",
+      'CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.',
+    author: 'By Warner Vermaak',
+    date: '2h ago',
+    ret: '4m',
   },
   {
     id: 2,
     imgSRC: NEWS2,
-    category: "Crypto News",
-    difficutly: "Moderate",
+    category: 'Crypto News',
+    difficutly: 'Moderate',
     title: "The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
     description:
-      "CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
-    author: "By Warner Vermaak",
-    date: "2h ago",
-    ret: "4m",
+      'CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.',
+    author: 'By Warner Vermaak',
+    date: '2h ago',
+    ret: '4m',
   },
   {
     id: 3,
     imgSRC: NEWS3,
-    category: "Crypto News",
-    difficutly: "Hard",
+    category: 'Crypto News',
+    difficutly: 'Hard',
     title: "The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
     description:
-      "CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
-    author: "By Warner Vermaak",
-    date: "2h ago",
-    ret: "4m",
+      'CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.',
+    author: 'By Warner Vermaak',
+    date: '2h ago',
+    ret: '4m',
   },
   {
     id: 4,
     imgSRC: NEWS1,
-    category: "Marketing",
-    difficutly: "Begginer",
+    category: 'Marketing',
+    difficutly: 'Begginer',
     title: "The Future's Virtual: CoinMarketCap's Crypto Awards Are Here!",
     description:
-      "CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.",
-    author: "By Warner Vermaak",
-    date: "2h ago",
-    ret: "4m",
+      'CoinMarketCap is launching its first online Crypto Awards event in March to celebrate innovation and achievement across the crypto industry in an inclusive, global way.',
+    author: 'By Warner Vermaak',
+    date: '2h ago',
+    ret: '4m',
   },
 ];
 
 export const PopularPostsData = [
   {
     id: 1,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin.jpg')]",
   },
   {
     id: 2,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin2.jpg')]",
   },
   {
     id: 3,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin3.jpg')]",
   },
   {
     id: 4,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin4.jpg')]",
   },
   {
     id: 5,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin5.jpg')]",
   },
   {
     id: 6,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin6.jpg')]",
   },
   {
     id: 7,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin7.jpg')]",
   },
   {
     id: 8,
-    title: "Underwhelming Conference",
-    description: "Cuts Ripple Price",
-    date: "26 APRIL 2017",
-    category: "Market News",
+    title: 'Underwhelming Conference',
+    description: 'Cuts Ripple Price',
+    date: '26 APRIL 2017',
+    category: 'Market News',
     bg: "bg-[url('/images/bitcoin8.jpg')]",
   },
 ];
@@ -398,163 +396,163 @@ export const PopularPostsData = [
 export const dummyEvents = [
   {
     id: 1,
-    title: "Blockchain Expo, London",
+    title: 'Blockchain Expo, London',
     startDate: new Date(2018, 3, 12), // April 12, 2018
     endDate: new Date(2018, 4, 10), // May 10, 2018
-    venue: "LONDON",
-    price: "Free",
+    venue: 'LONDON',
+    price: 'Free',
     description:
-      "Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.",
-    imageUrl: "/images/event1.jpg",
+      'Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.',
+    imageUrl: '/images/event1.jpg',
   },
   {
     id: 2,
-    title: "Tech Innovation Summit",
+    title: 'Tech Innovation Summit',
     startDate: new Date(2024, 5, 5), // June 5, 2024
     endDate: new Date(2024, 5, 7), // June 7, 2024
-    venue: "SAN FRANCISCO",
-    price: "Free",
+    venue: 'SAN FRANCISCO',
+    price: 'Free',
     description:
-      "Explore the latest in technology innovation with industry leaders. This summit brings together the brightest minds in tech to discuss emerging trends and future directions.",
-    imageUrl: "/images/event2.jpg",
+      'Explore the latest in technology innovation with industry leaders. This summit brings together the brightest minds in tech to discuss emerging trends and future directions.',
+    imageUrl: '/images/event2.jpg',
   },
   {
     id: 3,
-    title: "Digital Marketing Conference",
+    title: 'Digital Marketing Conference',
     startDate: new Date(2024, 6, 15), // July 15, 2024
     endDate: new Date(2024, 6, 17), // July 17, 2024
-    venue: "NEW YORK",
-    price: "By Invite",
+    venue: 'NEW YORK',
+    price: 'By Invite',
     description:
-      "Learn cutting-edge digital marketing strategies from top experts in the field. Perfect for marketers looking to stay ahead of the curve.",
-    imageUrl: "/images/event3.jpg",
+      'Learn cutting-edge digital marketing strategies from top experts in the field. Perfect for marketers looking to stay ahead of the curve.',
+    imageUrl: '/images/event3.jpg',
   },
 ];
 export const FooterLinks: FooterLink[] = [
   {
     id: 1,
-    label: "Learn",
-    href: "learn",
-    iconName: "BookOpen",
+    label: 'Learn',
+    href: 'learn',
+    iconName: 'BookOpen',
     subLinks: [
-      { id: 31, label: "Articles", href: "articles", iconName: "FileText" },
-      { id: 32, label: "Blog", href: "blog", iconName: "Bookmark" },
+      { id: 31, label: 'Articles', href: 'articles', iconName: 'FileText' },
+      { id: 32, label: 'Blog', href: 'blog', iconName: 'Bookmark' },
       {
         id: 33,
-        label: "Market-Sentiment",
-        href: "market-sentiment",
-        iconName: "Briefcase",
+        label: 'Market-Sentiment',
+        href: 'market-sentiment',
+        iconName: 'Briefcase',
       },
-      { id: 34, label: "Crypto101", href: "crypto101", iconName: "Home" },
+      { id: 34, label: 'Crypto101', href: 'crypto101', iconName: 'Home' },
     ],
   },
   {
     id: 2,
-    label: "Insider",
-    href: "insider",
-    iconName: "User",
+    label: 'Insider',
+    href: 'insider',
+    iconName: 'User',
     subLinks: [
-      { id: 41, label: "Top-news", href: "top-news", iconName: "Newspaper" },
+      { id: 41, label: 'Top-news', href: 'top-news', iconName: 'Newspaper' },
       {
         id: 42,
-        label: "Newsroom",
-        href: "newsroom",
-        iconName: "MessageSquare",
+        label: 'Newsroom',
+        href: 'newsroom',
+        iconName: 'MessageSquare',
       },
       {
         id: 43,
-        label: "Hot-Topics",
-        href: "hot-topics",
-        iconName: "TrendingUp",
+        label: 'Hot-Topics',
+        href: 'hot-topics',
+        iconName: 'TrendingUp',
       },
-      { id: 44, label: "Podcasts", href: "podcasts", iconName: "Podcast" },
+      { id: 44, label: 'Podcasts', href: 'podcasts', iconName: 'Podcast' },
     ],
   },
   {
     id: 3,
-    label: "How to",
-    href: "how-to",
-    iconName: "Settings",
+    label: 'How to',
+    href: 'how-to',
+    iconName: 'Settings',
     subLinks: [
       {
         id: 51,
-        label: "Create-an-Account",
-        href: "create-an-account",
-        iconName: "PlusCircle",
+        label: 'Create-an-Account',
+        href: 'create-an-account',
+        iconName: 'PlusCircle',
       },
       {
         id: 52,
-        label: "Verify-your-Account(KYC)",
-        href: "verify-your-account",
-        iconName: "User",
+        label: 'Verify-your-Account(KYC)',
+        href: 'verify-your-account',
+        iconName: 'User',
       },
       {
         id: 53,
-        label: "Deposit-Funds",
-        href: "deposit-funds",
-        iconName: "Wallet",
+        label: 'Deposit-Funds',
+        href: 'deposit-funds',
+        iconName: 'Wallet',
       },
       {
         id: 54,
-        label: "Withdraw-Funds",
-        href: "withdraw-funds",
-        iconName: "Wallet",
+        label: 'Withdraw-Funds',
+        href: 'withdraw-funds',
+        iconName: 'Wallet',
       },
       {
         id: 55,
-        label: "Trade-Cryptocurrency",
-        href: "trade-cryptocurrency",
-        iconName: "TrendingUp",
+        label: 'Trade-Cryptocurrency',
+        href: 'trade-cryptocurrency',
+        iconName: 'TrendingUp',
       },
     ],
   },
   {
     id: 4,
-    label: "Support",
-    href: "support",
-    iconName: "CircleHelp",
+    label: 'Support',
+    href: 'support',
+    iconName: 'CircleHelp',
     subLinks: [
       {
         id: 61,
-        label: "Frequently-asked-questions(FAQ)",
-        href: "faq",
-        iconName: "FileText",
+        label: 'Frequently-asked-questions(FAQ)',
+        href: 'faq',
+        iconName: 'FileText',
       },
-      { id: 62, label: "Contact-us", href: "contact-us", iconName: "Mail" },
+      { id: 62, label: 'Contact-us', href: 'contact-us', iconName: 'Mail' },
       {
         id: 63,
-        label: "Help-Topics",
-        href: "help-topics",
-        iconName: "CircleHelp",
+        label: 'Help-Topics',
+        href: 'help-topics',
+        iconName: 'CircleHelp',
       },
     ],
   },
   {
     id: 5,
-    label: "Resources",
-    href: "resources",
-    iconName: "Info",
+    label: 'Resources',
+    href: 'resources',
+    iconName: 'Info',
     subLinks: [
       {
         id: 64,
-        label: "Privacy Policy",
-        href: "privacy-policy",
-        iconName: "FileText",
+        label: 'Privacy Policy',
+        href: 'privacy-policy',
+        iconName: 'FileText',
       },
-      { id: 65, label: "Terms & Conditions", href: "terms-and-conditions", iconName: "Mail" },
+      { id: 65, label: 'Terms & Conditions', href: 'terms-and-conditions', iconName: 'Mail' },
       {
         id: 66,
-        label: "Disclosure",
-        href: "risk-disclosure",
-        iconName: "CircleHelp",
+        label: 'Disclosure',
+        href: 'risk-disclosure',
+        iconName: 'CircleHelp',
       },
       {
         id: 66,
-        label: "Careers",
-        href: "careers",
-        iconName: "CgWorkAlt",
+        label: 'Careers',
+        href: 'careers',
+        iconName: 'CgWorkAlt',
       },
-      { id: 66, label: "Others", href: "others", iconName: "CircleHelp" },
+      { id: 66, label: 'Others', href: 'others', iconName: 'CircleHelp' },
     ],
   },
 ];
@@ -562,7 +560,7 @@ export const FooterLinks: FooterLink[] = [
 export const riskDisclosureData = [
   {
     id: 1,
-    title: "I.General risks",
+    title: 'I.General risks',
     description: `
       <p>This Risk Disclosure Statement outlines a non-exhaustive list of risks which may be associated with the Services we offer, relating in particular to entering into Transactions. In this Risk Disclosure Statement, references to "MCCOIN" or "we", "us" or "our" means MCCOIN Virtual Assets L.L.C.</p>
       
@@ -590,7 +588,7 @@ export const riskDisclosureData = [
   },
   {
     id: 2,
-    title: "II.Over-the-counter-transactions",
+    title: 'II.Over-the-counter-transactions',
     description: `<p>The Transactions you enter with us will be over-the-counter transactions and therefore will be off-exchange. 
     There are different levels of liquidity in the over-the-counter markets for specific instruments, and while some markets are highly liquid, 
     transactions in off- exchange, over-the-counter transactions may involve
@@ -602,7 +600,7 @@ export const riskDisclosureData = [
   },
   {
     id: 3,
-    title: "III.Default and termination",
+    title: 'III.Default and termination',
     description: `<p>If any Event of Default occurs in relation to you, or at any time after we have determined, 
     in our sole and absolute discretion, that you have not performed (or we reasonably believe that you will not be 
     able or willing in the future to perform) any of your obligations to us, we shall be entitled without prior 
@@ -616,7 +614,7 @@ export const riskDisclosureData = [
   },
   {
     id: 4,
-    title: "IV.Disruption Events",
+    title: 'IV.Disruption Events',
     description: `<p>If a Disruption Event occurs we may, in our sole and absolute discretion, make such changes, conversions, 
     adjustments or modifications to the exercise, settlement, payment or any other terms of such Transaction as we determine to be 
     appropriate (which may include cancelling any relevant Transaction and calculating any payment due to or from you based on the 
@@ -624,7 +622,7 @@ export const riskDisclosureData = [
   },
   {
     id: 5,
-    title: "V.Collateral",
+    title: 'V.Collateral',
     description: `<p>You may be required to transfer Collateral to us on demand, in such amounts and types as we may require in our absolute discretion, which may be in the form of cash or Digital Assets as specified by us prior to the entry into a Transaction and from time to time during the term of a Transaction. Collateral may be required in relation to any Transaction, whether entered under the Terms of Business or any Trading Agreement.</p>
 <p>We reserve the right to vary the amount and type of Collateral required at our sole and absolute discretion. You are responsible for ensuring arrangements are in place to deal at all times with calls for further and/or replacement Collateral to be transferred, including sourcing Collateral of the type we require to be delivered (in the event you do not already hold such Collateral at the relevant time).</p>
 <p>Any Collateral which is paid or delivered to us will be by way of outright transfer of ownership and will not be held by us in an account on your behalf and our only obligation to you in relation to such Collateral will be a contractual obligation to return an equivalent amount or asset if we decide such Collateral is no longer required. As such, you will not enjoy the same protections in relation to the Collateral that you would otherwise have enjoyed had the Collateral been placed in an account held with a third party. This creates the risk that, in the event we were subject to insolvency proceedings, you may not recover some or all of any Collateral that we were due to return to you.</p>
@@ -632,7 +630,7 @@ export const riskDisclosureData = [
   },
   {
     id: 6,
-    title: "VI.Foreign currency risks",
+    title: 'VI.Foreign currency risks',
     description: `<p>Entering into Transactions involving foreign exchange exposes you to the risk of adverse changes in foreign currency exchange rates. 
     Foreign currency exchange rates can be volatile and are driven by a variety of factors relating to the economics of the territories whose currencies are being traded. 
     A movement in foreign currency exchange rates may have a favourable or an unfavourable effect on the gain or loss achieved on such Transactions. 
@@ -645,7 +643,7 @@ export const riskDisclosureData = [
   },
   {
     id: 7,
-    title: "VII.Digital Assets risks",
+    title: 'VII.Digital Assets risks',
     description: ` <p>The nascent nature of Digital Assets presents unique risks that investors should carefully consider:</p>
       <br/>
       <ol type="a">
@@ -814,7 +812,7 @@ export const riskDisclosureData = [
   },
   {
     id: 8,
-    title: "VIII.Instructions and settlement",
+    title: 'VIII.Instructions and settlement',
     description: `<p>We may, in accordance with Applicable Regulations and at our discretion, refuse to accept Instructions from you, 
     including (but not limited to) cases where Instructions require us to make any payment or incur any liability before receipt of sufficient 
     cleared funds from you. Similarly, we will not be obliged to settle any Transaction or make certain payments or deliveries to you until 
@@ -823,7 +821,7 @@ export const riskDisclosureData = [
   },
   {
     id: 9,
-    title: "IX.Liability, indemnity, and force majeure",
+    title: 'IX.Liability, indemnity, and force majeure',
     description: `<p>Neither we nor any Associate nor any of the Indemnified Parties shall be liable for any Loss arising from any act or omission 
     in the course of or relating to the activities to which the Terms of Business or any Trading Agreement apply, subject to certain limitations. 
     Moreover, you undertake to indemnify and hold us, our Associates (including in respect of any Associate that is a broker) and the Indemnified 
@@ -837,7 +835,7 @@ export const riskDisclosureData = [
   },
   {
     id: 10,
-    title: "X.No investment advice",
+    title: 'X.No investment advice',
     description: `<p>Information provided by MCCOIN does not constitute investment advice, financial advice, trading advice, 
     or any other type of advice whatsoever and is presented rather as general market commentary. 
     We shall not provide any investment advice in relation to a transaction in the form of personal recommendations or advise on the merits of buying, 
@@ -850,14 +848,14 @@ export const riskDisclosureData = [
   },
   {
     id: 11,
-    title: "XI.You are not acting as intermediary",
+    title: 'XI.You are not acting as intermediary',
     description: `<p>We will deal with you on the basis that you act as principal and not as agent acting on behalf of or for the benefit of a principal. 
     Furthermore, your failure to inform us that another person or any software and/or algorithm is operating your account on your behalf 
     may result in us terminating the agreement, voiding any transactions, undertaking or closing any open transactions.</p>`,
   },
   {
     id: 12,
-    title: "XII.Charges, fees and taxes",
+    title: 'XII.Charges, fees and taxes',
     description: `<p>Interest, taxes, costs, spreads, fees, and charges may be payable by you to us when you trade or on such other basis as 
     agreed between us or as notified by us to you from time to time. These taxes, charges, costs, spreads and fees will reduce your trading net 
     profits (if any) or increase your trading losses. It is possible that your intended treatment of the services provided by us to you under 
@@ -866,7 +864,7 @@ export const riskDisclosureData = [
   },
   {
     id: 13,
-    title: "XIII.Conflicts of interest",
+    title: 'XIII.Conflicts of interest',
     description: `<p>While we have put in place and will maintain effective organisational and administrative arrangements with a 
     view to taking all appropriate steps to identify and manage conflicts of interest between us and our clients and relevant third parties, 
     conflicts of interest may nevertheless arise. You irrevocably waive any claim you may have against us or any Associate 
@@ -880,7 +878,7 @@ export const riskDisclosureData = [
   },
   {
     id: 14,
-    title: "XIV.Acknowledgement",
+    title: 'XIV.Acknowledgement',
     description: `<p>By entering into any Transaction, you understand, acknowledge and agree that:</p>
       <br/>
       <ol type="a">
@@ -921,358 +919,368 @@ export const riskDisclosureData = [
 export const termsAndConditionsData = [
   {
     id: 1,
-    title: "1. Acceptance of Terms",   
-    description: `By accessing or using the MCcoin Cryptocurrency Exchange platform ("MCcoin" or "the Platform"), you agree to comply with and be bound by the following Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use the platform.`
+    title: '1. Acceptance of Terms',
+    description: `By accessing or using the MCcoin Cryptocurrency Exchange platform ("MCcoin" or "the Platform"), you agree to comply with and be bound by the following Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use the platform.`,
   },
   {
     id: 2,
-    title: "2. User Eligibility",   
-    description: `To use the MCcoin platform, you must be of legal age in your jurisdiction and comply with all applicable laws and regulations. By accessing the platform, you confirm that you meet these eligibility requirements.`
+    title: '2. User Eligibility',
+    description: `To use the MCcoin platform, you must be of legal age in your jurisdiction and comply with all applicable laws and regulations. By accessing the platform, you confirm that you meet these eligibility requirements.`,
   },
   {
     id: 3,
-    title: "Account Registration",   
-    description: `To access certain features of the platform, you may be required to register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.`
+    title: 'Account Registration',
+    description: `To access certain features of the platform, you may be required to register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.`,
   },
 
   {
     id: 4,
-    title: "4. Security and Confidentiality",   
-    description: `You are responsible for maintaining the confidentiality of your account information, including your password and any 2FA credentials. You agree to notify MCcoin immediately of any unauthorized use of your account or any other breach of security.`
+    title: '4. Security and Confidentiality',
+    description: `You are responsible for maintaining the confidentiality of your account information, including your password and any 2FA credentials. You agree to notify MCcoin immediately of any unauthorized use of your account or any other breach of security.`,
   },
   {
     id: 5,
-    title: "5. Trading Risks",   
-    description: `Cryptocurrency trading involves risks, and prices can be highly volatile. MCcoin does not guarantee profits, and users are advised to conduct their own research and seek financial advice before making any trading decisions.`
+    title: '5. Trading Risks',
+    description: `Cryptocurrency trading involves risks, and prices can be highly volatile. MCcoin does not guarantee profits, and users are advised to conduct their own research and seek financial advice before making any trading decisions.`,
   },
   {
     id: 6,
-    title: "6. Compliance with Laws",   
-    description: `Users are responsible for complying with all local and international laws and regulations applicable to their use of the MCcoin platform. MCcoin reserves the right to refuse service to anyone at its discretion.`
+    title: '6. Compliance with Laws',
+    description: `Users are responsible for complying with all local and international laws and regulations applicable to their use of the MCcoin platform. MCcoin reserves the right to refuse service to anyone at its discretion.`,
   },
   {
     id: 7,
-    title: "7. User Conduct",   
-    description: `Users agree not to engage in any activity that may disrupt the operation of the platform or compromise its security. Prohibited activities include, but are not limited to, hacking, fraud, market manipulation, and any other illegal or unethical conduct.`
+    title: '7. User Conduct',
+    description: `Users agree not to engage in any activity that may disrupt the operation of the platform or compromise its security. Prohibited activities include, but are not limited to, hacking, fraud, market manipulation, and any other illegal or unethical conduct.`,
   },
   {
     id: 8,
-    title: "8. KYC Verification",   
-    description: `MCcoin may require users to undergo Know Your Customer (KYC) verification for security and regulatory compliance. Users agree to provide accurate and complete information during the verification process.`
+    title: '8. KYC Verification',
+    description: `MCcoin may require users to undergo Know Your Customer (KYC) verification for security and regulatory compliance. Users agree to provide accurate and complete information during the verification process.`,
   },
   {
     id: 9,
-    title: "9. Fees and Charges",   
-    description: `Users are responsible for understanding and paying any fees associated with their use of the platform. MCcoin reserves the right to modify fee structures and introduce new fees with prior notice.`
+    title: '9. Fees and Charges',
+    description: `Users are responsible for understanding and paying any fees associated with their use of the platform. MCcoin reserves the right to modify fee structures and introduce new fees with prior notice.`,
   },
   {
     id: 10,
-    title: "10. Termination of Services",   
-    description: `MCcoin reserves the right to terminate or suspend your account and access to the platform at its discretion, with or without cause, and with or without notice.`
+    title: '10. Termination of Services',
+    description: `MCcoin reserves the right to terminate or suspend your account and access to the platform at its discretion, with or without cause, and with or without notice.`,
   },
   {
     id: 11,
-    title: "11. Intellectual Property",   
-    description: `All intellectual property rights related to the MCcoin platform, including but not limited to trademarks, logos, and software, are the property of MCcoin. Users agree not to use, reproduce, or distribute any intellectual property without the express written consent of MCcoin.`
+    title: '11. Intellectual Property',
+    description: `All intellectual property rights related to the MCcoin platform, including but not limited to trademarks, logos, and software, are the property of MCcoin. Users agree not to use, reproduce, or distribute any intellectual property without the express written consent of MCcoin.`,
   },
   {
     id: 12,
-    title: "12. Limitation of Liability",   
-    description: `MCcoin is not liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of the platform.`
+    title: '12. Limitation of Liability',
+    description: `MCcoin is not liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of the platform.`,
   },
   {
     id: 13,
-    title: "13. Amendments to Terms",   
-    description: `MCcoin reserves the right to modify these Terms at any time. Users will be notified of any changes, and continued use of the platform after such modifications constitutes acceptance of the updated Terms.`
+    title: '13. Amendments to Terms',
+    description: `MCcoin reserves the right to modify these Terms at any time. Users will be notified of any changes, and continued use of the platform after such modifications constitutes acceptance of the updated Terms.`,
   },
   {
     id: 14,
-    title: "14. Governing Law and Dispute Resolution",   
-    description: `These Terms are governed by and construed in accordance with the laws of Dubai, UAE. Any dispute arising out of or in connection with these Terms will be resolved through arbitration in accordance with the rules of Dubai Courts.`
+    title: '14. Governing Law and Dispute Resolution',
+    description: `These Terms are governed by and construed in accordance with the laws of Dubai, UAE. Any dispute arising out of or in connection with these Terms will be resolved through arbitration in accordance with the rules of Dubai Courts.`,
   },
   {
     id: 15,
-    title: "15. Contact Information",   
+    title: '15. Contact Information',
     description: `For any inquiries regarding these Terms and Conditions, please contact MCcoin at info@mccoin.com.
-By using the MCcoin platform, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.`
-  }
-]   
+By using the MCcoin platform, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.`,
+  },
+];
 export const privacyPolicyData = [
   {
     id: 1,
-    title: "Information We Collect",
-    description: "We collect the following types of personal information to provide our services, comply with regulatory obligations, and improve your user experience:",
+    title: 'Information We Collect',
+    description:
+      'We collect the following types of personal information to provide our services, comply with regulatory obligations, and improve your user experience:',
     sections: [
       {
-        title: "Personal Identification Information",
+        title: 'Personal Identification Information',
         bullets: [
-          "Full Name: First and last name",
-          "Date of Birth: To ensure you meet age-related requirements",
-          "Nationality: For KYC (Know Your Customer) and regulatory compliance",
-          "Contact Information: Email address, phone number, physical address"
-        ]
+          'Full Name: First and last name',
+          'Date of Birth: To ensure you meet age-related requirements',
+          'Nationality: For KYC (Know Your Customer) and regulatory compliance',
+          'Contact Information: Email address, phone number, physical address',
+        ],
       },
       {
-        title: "Financial Information",
+        title: 'Financial Information',
         bullets: [
-          "Bank Details: Including bank account numbers and payment methods",
-          "Payment Information: Credit card details, payment history, and virtual asset wallet addresses",
-          "Transaction History: Details of virtual asset purchases, sales, transfers, and exchanges"
-        ]
+          'Bank Details: Including bank account numbers and payment methods',
+          'Payment Information: Credit card details, payment history, and virtual asset wallet addresses',
+          'Transaction History: Details of virtual asset purchases, sales, transfers, and exchanges',
+        ],
       },
       {
-        title: "Identity Verification Information (for KYC/AML compliance)",
+        title: 'Identity Verification Information (for KYC/AML compliance)',
         bullets: [
-          "Government-Issued IDs: Passport, national ID card, or driving license",
-          "Proof of Address: Utility bills, bank statements, or official documents",
-          "Biometric Data: If required for identity verification (e.g., facial recognition, fingerprints)"
-        ]
+          'Government-Issued IDs: Passport, national ID card, or driving license',
+          'Proof of Address: Utility bills, bank statements, or official documents',
+          'Biometric Data: If required for identity verification (e.g., facial recognition, fingerprints)',
+        ],
       },
       {
-        title: "Device and Usage Data",
+        title: 'Device and Usage Data',
         bullets: [
-          "IP Address: To detect and prevent fraud, and to improve security",
-          "Browser and Device Information: Including device type, operating system, and web browser",
-          "Cookies and Tracking Data: For analytics, user experience improvement, and personalization"
-        ]
-      }
-    ]
+          'IP Address: To detect and prevent fraud, and to improve security',
+          'Browser and Device Information: Including device type, operating system, and web browser',
+          'Cookies and Tracking Data: For analytics, user experience improvement, and personalization',
+        ],
+      },
+    ],
   },
   {
     id: 2,
-    title: "How We Use Your Information",
-    description: "We use the collected personal data for the following purposes:",
+    title: 'How We Use Your Information',
+    description: 'We use the collected personal data for the following purposes:',
     sections: [
       {
-        title: "A. To Provide Our Services",
+        title: 'A. To Provide Our Services',
         bullets: [
-          "Facilitate your access to and use of our platform",
-          "Process transactions involving virtual assets and related activities (purchases, transfers, exchanges)",
-          "Provide account management and customer support"
-        ]
+          'Facilitate your access to and use of our platform',
+          'Process transactions involving virtual assets and related activities (purchases, transfers, exchanges)',
+          'Provide account management and customer support',
+        ],
       },
       {
-        title: "B. To Comply with Legal and Regulatory Requirements",
+        title: 'B. To Comply with Legal and Regulatory Requirements',
         bullets: [
-          "Know Your Customer (KYC): Collect and verify your identity to prevent fraud and comply with AML (Anti-Money Laundering) and CTF (Counter-Terrorism Financing) obligations as per FATF and VARA regulations.",
-          "AML & CTF Compliance: Monitor transactions for signs of suspicious activity and report any unusual or potentially illicit activities to the appropriate regulatory bodies, as required by UAE law and FATF guidelines.",
-          "Transaction Monitoring: Conduct ongoing surveillance of your financial activity to detect and prevent money laundering or terrorist financing.",
-          "Regulatory Reporting: Share your data with regulatory authorities if required by law or under legal processes such as subpoenas or court orders."
-        ]
+          'Know Your Customer (KYC): Collect and verify your identity to prevent fraud and comply with AML (Anti-Money Laundering) and CTF (Counter-Terrorism Financing) obligations as per FATF and VARA regulations.',
+          'AML & CTF Compliance: Monitor transactions for signs of suspicious activity and report any unusual or potentially illicit activities to the appropriate regulatory bodies, as required by UAE law and FATF guidelines.',
+          'Transaction Monitoring: Conduct ongoing surveillance of your financial activity to detect and prevent money laundering or terrorist financing.',
+          'Regulatory Reporting: Share your data with regulatory authorities if required by law or under legal processes such as subpoenas or court orders.',
+        ],
       },
       {
-        title: "C. To Improve Security",
+        title: 'C. To Improve Security',
         bullets: [
-          "Enhance the security of your account by identifying and mitigating potential threats or breaches",
-          "Use encryption to protect sensitive personal and financial data",
-          "Implement fraud detection systems"
-        ]
+          'Enhance the security of your account by identifying and mitigating potential threats or breaches',
+          'Use encryption to protect sensitive personal and financial data',
+          'Implement fraud detection systems',
+        ],
       },
       {
-        title: "D. To Communicate with You",
+        title: 'D. To Communicate with You',
         bullets: [
-          "Send you essential notifications (e.g., transaction confirmations, account activity, system updates)",
-          "Provide updates about our services, promotions, or news, only if you have opted in for marketing communications"
-        ]
-      }
+          'Send you essential notifications (e.g., transaction confirmations, account activity, system updates)',
+          'Provide updates about our services, promotions, or news, only if you have opted in for marketing communications',
+        ],
+      },
     ],
-    summary: "All data usage complies with UAE Data Protection Law (2021) and FATF recommendations."
+    summary:
+      'All data usage complies with UAE Data Protection Law (2021) and FATF recommendations.',
   },
   {
     id: 3,
-    title: "Data Retention Policy",
-    description: "We retain your personal data for as long as necessary to fulfill the purposes outlined in this Privacy Policy and to comply with regulatory requirements:",
+    title: 'Data Retention Policy',
+    description:
+      'We retain your personal data for as long as necessary to fulfill the purposes outlined in this Privacy Policy and to comply with regulatory requirements:',
     sections: [
       {
-        title: "Identity Verification Data",
+        title: 'Identity Verification Data',
         bullets: [
-          "KYC documents and verification data will be retained for a minimum of five (5) years after the termination of our relationship with you, in compliance with FATF's recommendation on record-keeping for AML/CTF purposes."
-        ]
+          "KYC documents and verification data will be retained for a minimum of five (5) years after the termination of our relationship with you, in compliance with FATF's recommendation on record-keeping for AML/CTF purposes.",
+        ],
       },
       {
-        title: "Transaction Records",
+        title: 'Transaction Records',
         bullets: [
-          "We retain data related to virtual asset transactions, including wallet addresses, transaction amounts, and dates, for a minimum of five (5) years as required by UAE law and VARA regulations."
-        ]
+          'We retain data related to virtual asset transactions, including wallet addresses, transaction amounts, and dates, for a minimum of five (5) years as required by UAE law and VARA regulations.',
+        ],
       },
       {
-        title: "Account Information",
+        title: 'Account Information',
         bullets: [
-          "Account data may be retained until you request deletion or termination of your account, subject to legal retention requirements."
-        ]
-      }
-    ]
+          'Account data may be retained until you request deletion or termination of your account, subject to legal retention requirements.',
+        ],
+      },
+    ],
   },
   {
     id: 4,
-    title: "Sharing and Disclosure of Your Information",
-    description: "We may share your personal data in the following scenarios:",
+    title: 'Sharing and Disclosure of Your Information',
+    description: 'We may share your personal data in the following scenarios:',
     sections: [
       {
-        title: "A. Service Providers",
+        title: 'A. Service Providers',
         bullets: [
-          "We may engage third-party service providers to support our business operations, such as payment processors, customer service platforms, fraud prevention tools, and identity verification services. These service providers may have access to your personal information, but only to the extent necessary to perform their tasks on our behalf."
-        ]
+          'We may engage third-party service providers to support our business operations, such as payment processors, customer service platforms, fraud prevention tools, and identity verification services. These service providers may have access to your personal information, but only to the extent necessary to perform their tasks on our behalf.',
+        ],
       },
       {
-        title: "B. Regulatory Authorities and Law Enforcement",
+        title: 'B. Regulatory Authorities and Law Enforcement',
         bullets: [
-          "We may disclose your information to UAE regulatory bodies, including VARA, the UAE Central Bank, or other governmental agencies, if required by law or to comply with legal obligations such as AML/CTF regulations. This may also include disclosures to law enforcement agencies if requested under applicable legal processes."
-        ]
+          'We may disclose your information to UAE regulatory bodies, including VARA, the UAE Central Bank, or other governmental agencies, if required by law or to comply with legal obligations such as AML/CTF regulations. This may also include disclosures to law enforcement agencies if requested under applicable legal processes.',
+        ],
       },
       {
-        title: "C. Business Transactions",
+        title: 'C. Business Transactions',
         bullets: [
-          "In the event of a merger, acquisition, or sale of assets, your personal information may be transferred as part of the transaction. We will ensure that any acquiring entity adheres to this Privacy Policy."
-        ]
+          'In the event of a merger, acquisition, or sale of assets, your personal information may be transferred as part of the transaction. We will ensure that any acquiring entity adheres to this Privacy Policy.',
+        ],
       },
       {
-        title: "D. Other Legal Compliance",
+        title: 'D. Other Legal Compliance',
         bullets: [
-          "We may disclose your personal data in cases where it is necessary to protect our legal rights, defend against legal claims, or fulfill our obligations under applicable laws or regulations."
-        ]
-      }
-    ]
+          'We may disclose your personal data in cases where it is necessary to protect our legal rights, defend against legal claims, or fulfill our obligations under applicable laws or regulations.',
+        ],
+      },
+    ],
   },
   {
     id: 5,
-    title: "Security of Your Data",
-    description: "We implement robust security measures to protect your personal data:",
+    title: 'Security of Your Data',
+    description: 'We implement robust security measures to protect your personal data:',
     sections: [
       {
         bullets: [
-          "Encryption: Sensitive data such as financial and identity information is encrypted both during transmission and while stored.",
-          "Access Control: Access to your personal data is restricted to authorized personnel only, and we use multi-factor authentication (MFA) to enhance account security.",
-          "Regular Audits: We perform regular security audits and assessments to identify and mitigate any vulnerabilities."
-        ]
-      }
+          'Encryption: Sensitive data such as financial and identity information is encrypted both during transmission and while stored.',
+          'Access Control: Access to your personal data is restricted to authorized personnel only, and we use multi-factor authentication (MFA) to enhance account security.',
+          'Regular Audits: We perform regular security audits and assessments to identify and mitigate any vulnerabilities.',
+        ],
+      },
     ],
-    summary: "While we take reasonable measures to safeguard your personal information, no security system is 100% secure. We cannot guarantee the absolute security of your data."
+    summary:
+      'While we take reasonable measures to safeguard your personal information, no security system is 100% secure. We cannot guarantee the absolute security of your data.',
   },
   {
     id: 6,
-    title: "Your Rights Under UAE Data Protection Law",
-    description: "As per the UAE Data Protection Law (2021) and other applicable regulations, you have the following rights:",
+    title: 'Your Rights Under UAE Data Protection Law',
+    description:
+      'As per the UAE Data Protection Law (2021) and other applicable regulations, you have the following rights:',
     sections: [
       {
         bullets: [
-          "Right to Access: You may request access to the personal data we hold about you.",
-          "Right to Rectification: You have the right to correct any inaccurate or incomplete data.",
-          "Right to Deletion: You may request that we delete your personal data, subject to legal retention obligations.",
-          "Right to Object or Restrict Processing: You may object to the processing of your personal data or request restrictions on how it is used.",
-          "Right to Data Portability: You may request a copy of your data in a structured, commonly used, and machine-readable format.",
-          "Right to Withdraw Consent: Where we rely on consent for processing, you can withdraw your consent at any time."
-        ]
-      }
+          'Right to Access: You may request access to the personal data we hold about you.',
+          'Right to Rectification: You have the right to correct any inaccurate or incomplete data.',
+          'Right to Deletion: You may request that we delete your personal data, subject to legal retention obligations.',
+          'Right to Object or Restrict Processing: You may object to the processing of your personal data or request restrictions on how it is used.',
+          'Right to Data Portability: You may request a copy of your data in a structured, commonly used, and machine-readable format.',
+          'Right to Withdraw Consent: Where we rely on consent for processing, you can withdraw your consent at any time.',
+        ],
+      },
     ],
-    summary: "To exercise any of these rights, please contact us at the contact details provided below."
+    summary:
+      'To exercise any of these rights, please contact us at the contact details provided below.',
   },
   {
     id: 7,
-    title: "Cookies and Tracking Technologies",
-    description: "We use cookies and similar technologies to enhance your experience on our platform:",
+    title: 'Cookies and Tracking Technologies',
+    description:
+      'We use cookies and similar technologies to enhance your experience on our platform:',
     sections: [
       {
         bullets: [
-          "Cookies allow us to remember your preferences and offer personalized services.",
-          "By using our platform, you consent to our use of cookies as described in this Privacy Policy.",
-          "You may control cookies through your browser settings, but please note that disabling cookies may affect the functionality of our platform."
-        ]
-      }
-    ]
+          'Cookies allow us to remember your preferences and offer personalized services.',
+          'By using our platform, you consent to our use of cookies as described in this Privacy Policy.',
+          'You may control cookies through your browser settings, but please note that disabling cookies may affect the functionality of our platform.',
+        ],
+      },
+    ],
   },
   {
     id: 8,
-    title: "Compliance with FATF, UAE, and VARA Regulations",
-    description: "As a licensed virtual asset service provider, McCoin Virtual Assets LLC adheres to the Financial Action Task Force (FATF) guidelines on Anti-Money Laundering (AML) and Counter-Terrorism Financing (CTF). This includes:",
+    title: 'Compliance with FATF, UAE, and VARA Regulations',
+    description:
+      'As a licensed virtual asset service provider, McCoin Virtual Assets LLC adheres to the Financial Action Task Force (FATF) guidelines on Anti-Money Laundering (AML) and Counter-Terrorism Financing (CTF). This includes:',
     sections: [
       {
         bullets: [
-          "Know Your Customer (KYC): We collect and verify your identity, address, and other relevant details before allowing you to transact on our platform.",
+          'Know Your Customer (KYC): We collect and verify your identity, address, and other relevant details before allowing you to transact on our platform.',
           "Transaction Monitoring: We continuously monitor transactions for suspicious activity and comply with FATF's requirements on reporting such activities.",
           "AML & CTF Procedures: We use advanced tools and processes to detect and prevent money laundering and financing of terrorism in alignment with FATF's 40 recommendations.",
-          "Compliance with VARA Regulations: As per VARA's guidelines, we ensure that virtual asset services we provide are compliant with UAE regulations for data protection, financial security, and consumer protection."
-        ]
-      }
-    ]
+          "Compliance with VARA Regulations: As per VARA's guidelines, we ensure that virtual asset services we provide are compliant with UAE regulations for data protection, financial security, and consumer protection.",
+        ],
+      },
+    ],
   },
   {
     id: 9,
-    title: "Changes to This Privacy Policy",
-    description: "We reserve the right to update or amend this Privacy Policy from time to time:",
+    title: 'Changes to This Privacy Policy',
+    description: 'We reserve the right to update or amend this Privacy Policy from time to time:',
     sections: [
       {
         bullets: [
-          "Updates will reflect changes in our practices, legal requirements, or technological advancements.",
-          "Any updates will be posted on this page, and the effective date will be revised accordingly.",
-          "Please check this page periodically for the latest information."
-        ]
-      }
-    ]
+          'Updates will reflect changes in our practices, legal requirements, or technological advancements.',
+          'Any updates will be posted on this page, and the effective date will be revised accordingly.',
+          'Please check this page periodically for the latest information.',
+        ],
+      },
+    ],
   },
   {
     id: 10,
-    title: "Contact Us",
-    description: "If you have any questions about this Privacy Policy or how we handle your personal data, or if you wish to exercise your rights under this policy, please contact us at:",
+    title: 'Contact Us',
+    description:
+      'If you have any questions about this Privacy Policy or how we handle your personal data, or if you wish to exercise your rights under this policy, please contact us at:',
     sections: [
       {
-        bullets: [
-          "McCoin Virtual Assets LLC",
-          "Email: compliance@mccoin.com",
-          "Phone: 0585798074"
-        ]
-      }
-    ]
-  }
+        bullets: ['McCoin Virtual Assets LLC', 'Email: compliance@mccoin.com', 'Phone: 0585798074'],
+      },
+    ],
+  },
 ];
 
 export const popularSearches = [
-  "Technology jobs",
-  "Compliance roles",
-  "HR positions",
-  "Marketing careers",
-  "Customer support"
+  'Technology jobs',
+  'Compliance roles',
+  'HR positions',
+  'Marketing careers',
+  'Customer support',
 ];
 
 export const availableJobs = [
   {
     id: 1,
-    title: "IT Engineer",
-    description: "Design, implement, and maintain our technology infrastructure and systems.",
-    skills: ["Networking", "System Administration", "Cloud Computing", "Cybersecurity"],
-    iconName: "Code",
-    tags: ["technology", "engineering", "development"]
+    title: 'IT Engineer',
+    description: 'Design, implement, and maintain our technology infrastructure and systems.',
+    skills: ['Networking', 'System Administration', 'Cloud Computing', 'Cybersecurity'],
+    iconName: 'Code',
+    tags: ['technology', 'engineering', 'development'],
   },
   {
     id: 2,
-    title: "Compliance Officer",
-    description: "Ensure company operations comply with regulatory requirements and internal policies.",
-    skills: ["Regulatory Knowledge", "Risk Assessment", "Auditing", "Policy Development"],
-    iconName: "ShieldCheck",
-    tags: ["compliance", "legal", "regulation"]
+    title: 'Compliance Officer',
+    description:
+      'Ensure company operations comply with regulatory requirements and internal policies.',
+    skills: ['Regulatory Knowledge', 'Risk Assessment', 'Auditing', 'Policy Development'],
+    iconName: 'ShieldCheck',
+    tags: ['compliance', 'legal', 'regulation'],
   },
   {
     id: 3,
-    title: "HR Executive",
-    description: "Manage human resources functions including recruitment, training, and employee relations.",
-    skills: ["Recruitment", "Employee Relations", "Training", "Performance Management"],
-    iconName: "Users",
-    tags: ["human resources", "recruitment", "management"]
+    title: 'HR Executive',
+    description:
+      'Manage human resources functions including recruitment, training, and employee relations.',
+    skills: ['Recruitment', 'Employee Relations', 'Training', 'Performance Management'],
+    iconName: 'Users',
+    tags: ['human resources', 'recruitment', 'management'],
   },
   {
     id: 4,
-    title: "Marketing Specialist",
-    description: "Develop and implement marketing strategies to promote our products and services.",
-    skills: ["Digital Marketing", "Content Creation", "SEO", "Social Media"],
-    iconName: "Megaphone",
-    tags: ["marketing", "advertising", "branding"]
+    title: 'Marketing Specialist',
+    description: 'Develop and implement marketing strategies to promote our products and services.',
+    skills: ['Digital Marketing', 'Content Creation', 'SEO', 'Social Media'],
+    iconName: 'Megaphone',
+    tags: ['marketing', 'advertising', 'branding'],
   },
   {
     id: 5,
-    title: "Customer Service Professional",
-    description: "Provide exceptional support to our clients and resolve their inquiries efficiently.",
-    skills: ["Communication", "Problem Solving", "Product Knowledge", "Patience"],
-    iconName: "Headset",
-    tags: ["customer service", "support", "communication"]
-  }
+    title: 'Customer Service Professional',
+    description:
+      'Provide exceptional support to our clients and resolve their inquiries efficiently.',
+    skills: ['Communication', 'Problem Solving', 'Product Knowledge', 'Patience'],
+    iconName: 'Headset',
+    tags: ['customer service', 'support', 'communication'],
+  },
 ];
+
+//test push 1
