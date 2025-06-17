@@ -12,16 +12,6 @@ export const config = {
   },
 };
 
-<<<<<<< HEAD
-=======
-// MS365 Auth
-// const credential = new ClientSecretCredential(
-//   process.env.MICROSOFT_TENANT_ID!,
-//   process.env.MICROSOFT_CLIENT_ID!,
-//   process.env.MICROSOFT_CLIENT_SECRET!
-// );
-
->>>>>>> c46b844c1dc80b7c01e86b04a8a08e804c0b0bc5
 // Helper: Convert Web ReadableStream to Node.js Readable
 function webReadableStreamToNodeReadable(webStream: ReadableStream<Uint8Array>): Readable {
   const reader = webStream.getReader();
@@ -55,11 +45,7 @@ export async function POST(req: NextRequest) {
       process.env.MICROSOFT_TENANT_ID!,
       process.env.MICROSOFT_CLIENT_ID!,
       process.env.MICROSOFT_CLIENT_SECRET!,
-<<<<<<< HEAD
-    );	
-=======
     );
->>>>>>> c46b844c1dc80b7c01e86b04a8a08e804c0b0bc5
     const stream = await convertRequest(req);
     const form = formidable({ multiples: false });
 
