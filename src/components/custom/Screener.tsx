@@ -15,40 +15,39 @@ type Coin = {
 export default function Screener() {
   const [coins, setCoins] = useState<Coin[]>([]);
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(`/${locale}/api/screener`);
         const data = await res.json();
 
-        // Validate that data is an array
         if (Array.isArray(data)) {
           setCoins(data);
         } else {
-          console.error('API did not return an array:', data as any);
-          setCoins([]); // prevent crash
+          console.error('API returned non-array:', data);
+          setCoins([]);
         }
       } catch (err) {
         console.error('Error fetching screener data:', err);
-        setCoins([]); // prevent crash
+        setCoins([]);
       }
     };
 
     fetchData();
     const interval = setInterval(fetchData, 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [locale]);
 
-  // Duplicate data for seamless loop
   const duplicatedCoins = [...coins, ...coins];
 
   return (
-    <div className="overflow-hidden dark:bg-[#07153b] bg-[#DAE6EA] dark:border-none py-2 ">
+    <div className="overflow-hidden dark:bg-[#07153b] bg-[#DAE6EA] dark:border-none py-2">
       <div className="ticker-track">
         {duplicatedCoins.map((coin, index) => (
           <div key={`${coin.id}-${index}`} className="ticker-item">
             <img src={coin.image} alt={coin.name} className="w-5 h-5 mr-1" />
-            <strong className="mr-1 dark:text-[#FFF] text-[#07153b]">{coin.name}</strong>
+            <strong className="mr-1 dark:text-white text-[#07153b]">{coin.name}</strong>
             <span className="mr-1 dark:text-[#DAE6EA] text-[#07153b]">{coin.price.toFixed(4)}</span>
             <span
               className={`mr-2 ${coin.price_change >= 0 ? 'text-green-500' : 'text-[#EC3B3B]'}`}

@@ -23,11 +23,11 @@ const fallbackImage = '/images/fallback-image.jpeg';
 export default function CryptoNewsUAE() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   useEffect(() => {
     fetch(`/${locale}/api/uae-news`)
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         setArticles(data.slice(0, 5));
         setLoading(false);
       });
@@ -37,8 +37,8 @@ export default function CryptoNewsUAE() {
   const others = articles.slice(1);
 
   return (
-    <section className="bg-[#07153b] py-16 text-[#DAE6EA]">
-        <h1 className='text-xl lg:text-4xl text-white font-semibold text-center lg:mb-12 mb-5'>Local News</h1>
+    <section className="dark:bg-[#07153b] bg-[#DAE6EA] py-16 dark:text-[#DAE6EA] text-[#07153b]">
+      <h1 className="text-xl lg:text-4xl  font-semibold text-center lg:mb-12 mb-5">Local News</h1>
       <div className="xl:max-w-[70%] mx-auto px-4 xl:px-0 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Side List */}
         <div className="md:col-span-1 space-y-6">
@@ -63,12 +63,12 @@ export default function CryptoNewsUAE() {
                   href={article.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex gap-4 p-2 rounded-md border border-white/10 shadow hover:shadow-lg hover:bg-white/5 hover:-translate-y-1 transition-all duration-300"
+                  className="flex gap-4 p-2 rounded-md border dark:border-white/10 border-[#07153b] shadow hover:shadow-lg dark:hover:bg-white/5 hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="w-20 h-20 bg-gray-300 rounded overflow-hidden flex-shrink-0">
                     <img
                       src={article.image || fallbackImage}
-                      onError={(e) => (e.currentTarget.src = fallbackImage)}
+                      onError={e => (e.currentTarget.src = fallbackImage)}
                       alt={article.title}
                       className="object-cover w-full h-full"
                     />
@@ -81,7 +81,9 @@ export default function CryptoNewsUAE() {
                         day: 'numeric',
                       })}
                     </p>
-                    <h3 className="font-semibold text-sm leading-snug line-clamp-2">{article.title}</h3>
+                    <h3 className="font-semibold text-sm leading-snug line-clamp-2">
+                      {article.title}
+                    </h3>
                   </div>
                 </motion.a>
               ))}
@@ -93,18 +95,18 @@ export default function CryptoNewsUAE() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-2 bg-white/5 rounded-lg overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-2xl border border-white/10 transition-all duration-300"
+            className="md:col-span-2 dark:bg-white/5 border-[#07153b] rounded-lg overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-2xl border dark:transition-all duration-300"
           >
             <a href={featured.url} target="_blank" rel="noreferrer">
               <img
                 src={featured.image || fallbackImage}
-                onError={(e) => (e.currentTarget.src = fallbackImage)}
+                onError={e => (e.currentTarget.src = fallbackImage)}
                 alt={featured.title}
                 className="w-full h-72 object-cover"
               />
               <div className="p-6">
-                <div className="flex flex-wrap gap-2 text-xs text-[#DAE6EA]/70">
-                  <span className="bg-[#EC3B3B] text-white px-2 py-1 rounded-full text-xs">
+                <div className="flex flex-wrap gap-2 text-xs dark:text-[#DAE6EA]/70 text-[#07153b]">
+                  <span className="bg-[#EC3B3B] dark:text-white text-[#07153b] px-2 py-1 rounded-full text-xs">
                     {featured.source.name}
                   </span>
                   <span>
@@ -115,10 +117,12 @@ export default function CryptoNewsUAE() {
                     })}
                   </span>
                 </div>
-                <h2 className="text-2xl font-bold text-white mt-3 mb-2 leading-snug hover:underline">
+                <h2 className="text-2xl font-bold dark:text-white text-[#07153b] mt-3 mb-2 leading-snug hover:underline">
                   {featured.title}
                 </h2>
-                <p className="text-[#DAE6EA]/90 line-clamp-3">{featured.description}</p>
+                <p className="dark:text-[#DAE6EA]/90 text-[#07153b] line-clamp-3">
+                  {featured.description}
+                </p>
               </div>
             </a>
           </motion.div>

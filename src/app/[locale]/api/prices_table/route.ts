@@ -1,14 +1,23 @@
-
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h,24h,7d', {
-      headers: {
-        'Accept': 'application/json'
+    const res = await fetch(
+      'https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h,24h,7d',
+      {
+        headers: {
+          Accept: 'application/json',
+          'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
+        },
+        next: { revalidate: 60 },
       },
-      next: { revalidate: 60 }
-    });
+    );
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error('CoinGecko API error:', errorText);
+      return NextResponse.json([], { status: 200 });
+    }
 
     const data = await res.json();
 
@@ -29,6 +38,7 @@ export async function GET() {
 
     return NextResponse.json(formatted);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch crypto data' }, { status: 500 });
+    console.error('Internal server error:', error);
+    return NextResponse.json([], { status: 200 });
   }
 }

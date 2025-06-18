@@ -19,7 +19,7 @@ const WhyMccoin = () => {
             key={card.id}
             className="
               dark:bg-gradient-to-r from-[#050E27] to-[#07153b] 
-              bg-gray-400 dark:border-none border-[#07153b]
+              bg-[#bcc5ca] dark:border-none border-[#07153b]
               rounded-lg p-8 flex-1 max-w-md xl:max-w-lg 
               flex flex-col items-center text-center
               transition-all duration-300 ease-in-out
@@ -54,7 +54,7 @@ const WhyMccoin = () => {
             key={card.id}
             className="
                dark:bg-gradient-to-r from-[#050E27] to-[#07153b] 
-              bg-gray-400 dark:border-none border-[#07153b]
+              bg-[#bcc5ca] dark:border-none border-[#07153b]
               rounded-lg p-6 flex flex-col items-start text-left
               transition-all duration-300 ease-in-out
               hover:shadow-md hover:shadow-[#07153b]/40

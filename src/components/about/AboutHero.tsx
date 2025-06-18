@@ -1,7 +1,7 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+'use client';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const FloatingCryptoSymbols = () => {
   const [symbols, setSymbols] = useState<
@@ -22,7 +22,7 @@ const FloatingCryptoSymbols = () => {
       y: Math.random() * 100,
       size: Math.random() * 20 + 12, // Larger size range (12-32px)
       rotate: Math.random() * 360,
-      char: Math.random() > 0.5 ? "₿" : "Ξ",
+      char: Math.random() > 0.5 ? '₿' : 'Ξ',
     }));
     setSymbols(generatedSymbols);
   }, []);
@@ -31,7 +31,7 @@ const FloatingCryptoSymbols = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {symbols.map((symbol) => (
+      {symbols.map(symbol => (
         <motion.div
           key={symbol.id}
           className="absolute text-[#EC3B3B]"
@@ -47,14 +47,14 @@ const FloatingCryptoSymbols = () => {
           transition={{
             duration: 3 + Math.random() * 1, // Slower movement
             repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear",
+            repeatType: 'reverse',
+            ease: 'linear',
           }}
           style={{
             fontSize: `${symbol.size}px`,
             left: `${symbol.x}%`,
             top: `${symbol.y}%`,
-            filter: "drop-shadow(0 0 2px rgba(236, 59, 59, 0.5))", // Glow effect
+            filter: 'drop-shadow(0 0 2px rgba(236, 59, 59, 0.5))', // Glow effect
             zIndex: 0,
           }}
         >
@@ -65,10 +65,8 @@ const FloatingCryptoSymbols = () => {
   );
 };
 const AboutHero = () => {
-
-
   return (
-    <div className="text-[#DAE6EA] min-h-[40vh] relative">
+    <div className="text-[#07153B] dark:text-[#DAE6EA] min-h-[40vh] relative">
       <section className="relative py-20 px-4 overflow-hidden z-10">
         <FloatingCryptoSymbols />
 
@@ -78,16 +76,19 @@ const AboutHero = () => {
             animate={{ opacity: 1, y: 1 }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            Revolutionizing{" "}
-            <span className="text-[#EC3B3B]">Crypto Trading</span>
+            Revolutionizing <span className="text-[#EC3B3B]">Crypto Trading</span>
           </motion.h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
             Secure, fast, and transparent trading for the future of finance
           </p>
-          <Button asChild className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-8 py-6 text-lg">
+          <Button
+            asChild
+            className="bg-[#EC3B3B] dark:hover:bg-[#DAE6EA] dark:hover:text-[#EC3B3B] 
+            hover:text-[#EC3B3B] hover:bg-[#07153B] transition-all 
+            duration-300 text-white px-8 py-6 text-lg hover:scale-90"
+          >
             <a href="#team" className="flex items-center gap-2">
-          
-            Meet The McCoin Team
+              Meet The McCoin Team
             </a>
           </Button>
         </div>
