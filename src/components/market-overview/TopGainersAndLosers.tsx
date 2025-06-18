@@ -41,11 +41,7 @@ export default function TopGainersAndLosers() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('https://pro-api.coingecko.com/api/v3/coins/top_gainers_losers?vs_currency=usd', {
-      headers: {
-        'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
-      },
-    })
+    fetch(`/${locale}/api/top-gainers-losers`)
       .then(res => res.json())
       .then(data => {
         setGainers(data.top_gainers || []);

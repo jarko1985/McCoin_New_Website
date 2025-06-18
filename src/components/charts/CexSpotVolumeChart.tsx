@@ -1,4 +1,3 @@
-// components/CexSpotVolumeMarketShare.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -7,6 +6,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -26,6 +27,7 @@ const exchangeLabels: Record<string, string> = {
 };
 
 export default function CexSpotVolumeChart() {
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [data, setData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [loading, setLoading] = useState(true);
@@ -34,46 +36,22 @@ export default function CexSpotVolumeChart() {
     const fetchAllVolumes = async () => {
       try {
         setLoading(true);
-        const btcRes = await fetch(
-          'https://pro-api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
-          {
-            headers: {
-              'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
-            },
-          },
+        const res = await fetch(`/${locale}/api/cex-spot-volume?days=${selectedRange.value}`);
+        const json = await res.json();
+        const results = json.results;
+
+        interface VolumeEntry {
+          [key: string]: [number, number][];
+        }
+
+        interface ChartDataEntry {
+          date: string;
+          [key: string]: number | string;
+        }
+
+        const timestamps: number[] = results[exchangeIds[0]].map(
+          (entry: [number, number]) => entry[0],
         );
-        const btcJson = await btcRes.json();
-        const btcUsd = btcJson.bitcoin.usd;
-
-        const fetches = await Promise.all(
-          exchangeIds.map(async id => {
-            const res = await fetch(
-              `https://pro-api.coingecko.com/api/v3/exchanges/${id}/volume_chart?days=${selectedRange.value}`,
-              {
-                headers: {
-                  accept: 'application/json',
-                  'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
-                },
-              },
-            );
-            const json = await res.json();
-            return {
-              id,
-              data: Array.isArray(json)
-                ? json.map(([ts, vol]: [number, string]) => [ts, parseFloat(vol) * btcUsd])
-                : [],
-            };
-          }),
-        );
-
-        const results: Record<string, [number, number][]> = {};
-        fetches.forEach(({ id, data }) => {
-          results[id] = (data as unknown[]).filter(
-            (entry): entry is [number, number] => Array.isArray(entry) && entry.length === 2,
-          );
-        });
-
-        const timestamps = results[exchangeIds[0]].map(entry => entry[0]);
         const merged = timestamps.map((ts, idx) => {
           const entry: any = {
             date: new Date(ts).toLocaleDateString('en-US', {
@@ -113,7 +91,10 @@ export default function CexSpotVolumeChart() {
   return (
     <Card className="bg-[#050E27] text-[#DAE6EA] p-4 w-full shadow-lg hover:shadow-2xl transition duration-300">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold">CEX Spot Volume (Market Share)</h3>
+        <h3 className="text-lg font-semibold flex items-center gap-2">
+          CEX Spot Volume (Market Share)
+          {loading && <Loader2 className="animate-spin h-4 w-4 text-white" />}
+        </h3>
         <div className="flex gap-2">
           {timeOptions.map(opt => (
             <Button
@@ -129,12 +110,24 @@ export default function CexSpotVolumeChart() {
       </div>
 
       {loading ? (
-        <Skeleton className="w-full h-[400px] rounded-xl" />
+        <motion.div
+          key="loading"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Skeleton className="w-full h-[400px] rounded-xl">
+            <h2 className="text-white text-center pt-5">Loading...</h2>
+          </Skeleton>
+        </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          key="chart"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
           <ResponsiveContainer width="100%" height={400} className="rounded-xl">
             <AreaChart data={data} stackOffset="expand">

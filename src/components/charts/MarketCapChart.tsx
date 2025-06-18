@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useParams } from 'next/navigation';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -26,6 +27,7 @@ type Dominance = {
 };
 
 export default function MarketCapChart() {
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [chartData, setChartData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [latestCap, setLatestCap] = useState<number | null>(null);
@@ -56,12 +58,7 @@ export default function MarketCapChart() {
     const fetchChart = async () => {
       try {
         const res = await fetch(
-          `https://pro-api.coingecko.com/api/v3/global/market_cap_chart?vs_currency=usd&days=${selectedRange.value}&interval=${selectedRange.interval}`,
-          {
-            headers: {
-              'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
-            },
-          },
+          `/${locale}/api/market-cap?days=${selectedRange.value}&interval=${selectedRange.interval}`,
         );
         const json = await res.json();
         const points = json.market_cap_chart.market_cap;
@@ -132,11 +129,7 @@ export default function MarketCapChart() {
   useEffect(() => {
     const fetchDominance = async () => {
       try {
-        const res = await fetch('https://pro-api.coingecko.com/api/v3/global', {
-          headers: {
-            'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
-          },
-        });
+        const res = await fetch(`/${locale}/api/global-dominance`);
         const json = await res.json();
         const marketCapPercentage = json.data?.market_cap_percentage;
         const btc = marketCapPercentage?.btc ?? marketCapPercentage?.bitcoin;
@@ -155,7 +148,7 @@ export default function MarketCapChart() {
     <section className="w-full flex flex-col gap-4">
       {/* Market Cap Header */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-3">
-        <Card className="bg-[#050E27] text-[#DAE6EA] p-4 flex-[0.25]">
+        <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-none dark:border-transparent">
           <h3 className="text-md mb-1 font-semibold">Crypto Market Cap</h3>
           <div className="text-3xl font-bold flex items-center gap-2">
             {latestCap !== null ? `$${latestCap}T` : '--'}
@@ -172,7 +165,7 @@ export default function MarketCapChart() {
         </Card>
 
         {/* Historical Values */}
-        <Card className="bg-[#050E27] text-[#DAE6EA] p-4 flex-[0.25]">
+        <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-none dark:border-transparent">
           <h3 className="text-md mb-2 font-semibold">Market Cap Historical Values</h3>
           <div className="space-y-1">
             <p className="flex justify-between">
@@ -191,7 +184,7 @@ export default function MarketCapChart() {
         </Card>
 
         {/* Yearly Performance */}
-        <Card className="bg-[#050E27] text-[#DAE6EA] p-4 flex-[0.25]">
+        <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-none dark:border-transparent">
           <h3 className="text-md mb-2 font-semibold">Market Cap Yearly Performance</h3>
           <div className="space-y-1">
             <p className="flex justify-between text-green-400">
@@ -204,7 +197,7 @@ export default function MarketCapChart() {
             </p>
           </div>
         </Card>
-        <Card className="bg-[#050E27] text-[#DAE6EA] p-4 flex-[0.25]">
+        <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-none dark:border-transparent">
           <h3 className="text-md mb-2 font-semibold">Bitcoin Dominance</h3>
           <div className="space-y-1">
             <p className="flex justify-between text-yellow-400">

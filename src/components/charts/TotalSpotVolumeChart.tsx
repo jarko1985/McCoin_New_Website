@@ -6,6 +6,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useParams } from 'next/navigation';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -15,6 +16,7 @@ const timeOptions = [
 ];
 
 export default function TotalSpotVolumeChart() {
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [data, setData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [latestVolume, setLatestVolume] = useState<number | null>(null);
@@ -23,15 +25,10 @@ export default function TotalSpotVolumeChart() {
     const fetchVolume = async () => {
       try {
         const res = await fetch(
-          `https://pro-api.coingecko.com/api/v3/global/market_cap_chart?vs_currency=usd&days=${selectedRange.value}&interval=${selectedRange.interval}`,
-          {
-            headers: {
-              'x-cg-pro-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY!,
-            },
-          },
+          `/${locale}/api/spot-volume?days=${selectedRange.value}&interval=${selectedRange.interval}`,
         );
         const json = await res.json();
-        const points = json.market_cap_chart.volume;
+        const points = json.volume;
         const formatted = points.map((d: [number, number]) => ({
           date: new Date(d[0]).toLocaleDateString('en-US', {
             month: 'short',
