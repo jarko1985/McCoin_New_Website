@@ -91,11 +91,11 @@ export default function TopGainersAndLosers() {
     const totalPages = Math.ceil(coins.length / itemsPerPage);
 
     return (
-      <Card className="bg-[#07153b] text-[#DAE6EA] w-full overflow-auto">
+      <Card className="bg-[#DAE6EA] dark:bg-[#07153b] text-[#07153b] dark:text-[#DAE6EA] w-full overflow-auto dark:border-none border dark:border-transparent border-slate-400">
         <div className="p-4 text-xl font-bold">{title}</div>
         {loading ? (
           <div className="flex justify-center items-center p-8">
-            <Loader2 className="animate-spin text-[#DAE6EA] w-6 h-6" />
+            <Loader2 className="animate-spin text-[#07153b] dark:text-[#DAE6EA] w-6 h-6" />
           </div>
         ) : (
           <>
@@ -136,7 +136,7 @@ export default function TopGainersAndLosers() {
                       />
                       <Link
                         href={`/${locale}/market-overview/${coin.id}`}
-                        className="hover:underline text-[#DAE6EA]"
+                        className="hover:underline text-[#07153b] dark:text-[#DAE6EA]"
                       >
                         {coin.name}
                       </Link>
@@ -187,7 +187,7 @@ export default function TopGainersAndLosers() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 px-4 py-6">
+    <div className="flex flex-col lg:flex-row gap-6 py-6">
       {renderTable(gainers, 'Top Gainers', gainersPage, setGainersPage)}
       {renderTable(losers, 'Top Losers', losersPage, setLosersPage)}
     </div>

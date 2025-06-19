@@ -70,13 +70,16 @@ export default function SpotMarketNewsSwiper() {
   };
 
   return (
-    <div className="bg-[#050E27] py-12 px-4 sm:px-6 lg:px-8 rounded-xl shadow-2xl">
+    <div
+      className="bg-[#DAE6EA] dark:bg-[#050E27] py-12 px-4 sm:px-6 lg:px-8 rounded-xl shadow-2xl dark:border-none border 
+     dark:border-transparent border-slate-400"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold text-[#DAE6EA] mb-8 text-center"
+          className="text-3xl font-bold text-[#050E27] dark:text-[#DAE6EA] mb-8 text-center"
         >
           Market News
         </motion.h2>
@@ -87,10 +90,10 @@ export default function SpotMarketNewsSwiper() {
             <motion.div key={category.id} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant={activeCategory.id === category.id ? 'default' : 'outline'}
-                className={`rounded-full px-6 py-2 font-medium transition-all ${
+                className={`rounded-full cursor-pointer px-6 py-2 font-medium transition-all ${
                   activeCategory.id === category.id
-                    ? 'bg-[#EC3B3B] text-white hover:bg-[#EC3B3B]/90'
-                    : 'bg-transparent text-[#DAE6EA] border-[#DAE6EA] hover:bg-[#DAE6EA]/10'
+                    ? 'bg-[#EC3B3B] dark:text-white border border-[#050E27]  hover:bg-[#EC3B3B]/90'
+                    : 'bg-transparent text-[#050E27] dark:text-[#DAE6EA] border-[#DAE6EA] hover:bg-[#DAE6EA]/10'
                 }`}
                 onClick={() => setActiveCategory(category)}
               >
@@ -134,14 +137,14 @@ export default function SpotMarketNewsSwiper() {
                 disableOnInteraction: false,
               }}
               loop={true}
-              className="py-4"
+              className="py-8"
             >
               {articles.map((article, index) => (
                 <SwiperSlide key={index}>
                   <motion.div whileHover={{ y: -5 }} className="h-full">
-                    <Card className="h-full flex flex-col bg-[#050E27] border border-[#1a2a4a] shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Card className="h-full flex flex-col bg-[#DAE6EA] dark:bg-[#050E27] border border-[#1a2a4a] shadow-lg hover:shadow-xl transition-shadow duration-300">
                       {article.image && (
-                        <div className="relative h-48 overflow-hidden rounded-t-lg">
+                        <div className="relative h-48 overflow-hidden">
                           <img
                             src={article.image}
                             alt={article.title}
@@ -154,15 +157,15 @@ export default function SpotMarketNewsSwiper() {
                         </div>
                       )}
                       <CardHeader>
-                        <CardTitle className="text-[#DAE6EA] line-clamp-2">
+                        <CardTitle className="dark:text-[#DAE6EA] text-[#050E27] line-clamp-2">
                           {article.title}
                         </CardTitle>
-                        <CardDescription className="text-[#DAE6EA]/80">
+                        <CardDescription className="text-[#050E27] dark:text-[#DAE6EA]/80">
                           {formatDate(article.publishedAt)} · {article.source.name}
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="flex-grow">
-                        <p className="text-[#DAE6EA]/90 line-clamp-3">
+                        <p className="text-[#050E27] dark:text-[#DAE6EA]/90 line-clamp-3">
                           {article.description || article.content.substring(0, 200)}
                         </p>
                       </CardContent>
@@ -175,7 +178,7 @@ export default function SpotMarketNewsSwiper() {
                         >
                           <Button
                             variant="outline"
-                            className="w-full bg-transparent text-[#EC3B3B] border-[#EC3B3B] hover:bg-[#EC3B3B]/10"
+                            className="w-full bg-transparent text-[#EC3B3B] border-[#EC3B3B] hover:bg-[#050E27] hover:text-[#FFF] cursor-pointer"
                           >
                             Read More
                           </Button>

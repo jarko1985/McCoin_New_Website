@@ -48,27 +48,27 @@ export default function BlocksTable() {
     b =>
       b.id.includes(search) ||
       b.height.toString().includes(search) ||
-      b.tx_count.toString().includes(search)
+      b.tx_count.toString().includes(search),
   );
 
   const paginated = filtered.slice((page - 1) * perPage, page * perPage);
 
   return (
-    <section className="bg-[#07153b] mx-auto xl:max-w-[70%] px-4 xl:px-0 text-white">
+    <section className="bg-[#DAE6EA] dark:bg-[#07153b] mx-auto xl:max-w-[70%] px-4 xl:px-0 text-[#07153b] dark:text-white py-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-4 flex items-center gap-4">
-          <Search className="text-white" />
+          <Search className="text-[#07153b] dark:text-white" />
           <Input
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by ID, height or tx count"
-            className="w-full max-w-md border border-white/10 text-white bg-transparent focus:border-[#EC3B3B] focus:ring-0"
+            className="w-full max-w-md border dark:border-white/10 border-[#07153b] text-[#07153b] dark:text-white bg-transparent focus:border-[#EC3B3B] focus:ring-1"
           />
         </div>
 
         <div className=" overflow-x-auto lg:overflow-hidden rounded-xl border border-white/10 shadow-md">
           <table className="min-w-full text-sm text-left">
-            <thead className="bg-[#EC3B3B] text-white">
+            <thead className="dark:bg-[#EC3B3B] bg-[#07153b] text-white">
               <tr>
                 <th className="p-3">ID</th>
                 <th className="p-3">Height</th>
@@ -80,51 +80,51 @@ export default function BlocksTable() {
               </tr>
             </thead>
             <tbody>
-              {loading ? (
-                [...Array(perPage)].map((_, i) => (
-                  <tr key={i}>
-                    <td colSpan={7}><Skeleton className="h-6 my-2 w-full" /></td>
-                  </tr>
-                ))
-              ) : (
-                paginated.map(block => (
-                  <motion.tr
-                    key={block.id}
-                    whileHover={{ scale: 1.01 }}
-                    className="border-b border-white/10 hover:bg-white/5"
-                  >
-                    <td className="p-3">{formatId(block.id)}</td>
-                    <td className="p-3">{block.height}</td>
-                    <td className="p-3">{block.tx_count}</td>
-                    <td className="p-3">{block.nonce}</td>
-                    <td className="p-3">{block.bits}</td>
-                    <td className="p-3">{formatTime(block.mediantime)}</td>
-                    <td className="p-3 w-40">
-                      <div className="relative w-full bg-white/10 h-4 rounded-full">
-                        <div
-                          className="absolute top-0 left-0 h-4 rounded-full bg-[#EC3B3B]"
-                          style={{ width: `${Math.min((block.size / 3_000_000) * 100, 100)}%` }}
-                        ></div>
-                        <span className="absolute right-2 text-xs">{toMB(block.size)} MB</span>
-                      </div>
-                    </td>
-                  </motion.tr>
-                ))
-              )}
+              {loading
+                ? [...Array(perPage)].map((_, i) => (
+                    <tr key={i}>
+                      <td colSpan={7}>
+                        <Skeleton className="h-6 my-2 w-full" />
+                      </td>
+                    </tr>
+                  ))
+                : paginated.map(block => (
+                    <motion.tr
+                      key={block.id}
+                      whileHover={{ scale: 1.01 }}
+                      className="border-b border-white/10 hover:bg-white/5"
+                    >
+                      <td className="p-3">{formatId(block.id)}</td>
+                      <td className="p-3">{block.height}</td>
+                      <td className="p-3">{block.tx_count}</td>
+                      <td className="p-3">{block.nonce}</td>
+                      <td className="p-3">{block.bits}</td>
+                      <td className="p-3">{formatTime(block.mediantime)}</td>
+                      <td className="p-3 w-40">
+                        <div className="relative w-full bg-white/10 h-4 rounded-full">
+                          <div
+                            className="absolute top-0 left-0 h-4 rounded-full bg-[#EC3B3B]"
+                            style={{ width: `${Math.min((block.size / 3_000_000) * 100, 100)}%` }}
+                          ></div>
+                          <span className="absolute right-2 text-xs">{toMB(block.size)} MB</span>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
             </tbody>
           </table>
         </div>
 
         <div className="mt-6 flex justify-center gap-4 items-center">
           <button
-            className="px-4 py-2 bg-[#EC3B3B] rounded hover:bg-[#c32e2e] transition"
+            className="px-4 py-2  bg-[#07153b] dark:bg-[#EC3B3B] text-[#FFF] rounded hover:bg-[#c32e2e] transition"
             onClick={() => setPage(p => Math.max(p - 1, 1))}
           >
             Previous
           </button>
           <span>Page {page}</span>
           <button
-            className="px-4 py-2 bg-[#EC3B3B] rounded hover:bg-[#c32e2e] transition"
+            className="px-4 py-2 bg-[#07153b] dark:bg-[#EC3B3B] text-[#FFF] rounded hover:bg-[#c32e2e] transition"
             disabled={page * perPage >= filtered.length}
             onClick={() => setPage(p => p + 1)}
           >

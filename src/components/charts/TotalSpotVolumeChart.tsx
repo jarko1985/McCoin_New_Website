@@ -1,6 +1,6 @@
 // components/TotalSpotVolumeChart.tsx
 'use client';
-
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '@/components/ui/card';
@@ -16,6 +16,8 @@ const timeOptions = [
 ];
 
 export default function TotalSpotVolumeChart() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [data, setData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
@@ -48,7 +50,7 @@ export default function TotalSpotVolumeChart() {
   }, [selectedRange]);
 
   return (
-    <Card className="bg-[#050E27] text-[#DAE6EA] p-4 w-full my-4">
+    <Card className="bg-[#DAE6EA] dark:bg-[#050E27] dark:text-[#DAE6EA] text-[#050E27] p-4 w-full my-4 dark:border-none border dark:border-transparent border-slate-400">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold">Total Crypto Spot Volume</h3>
@@ -60,7 +62,7 @@ export default function TotalSpotVolumeChart() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4 }}
-                className="text-3xl font-bold text-white mt-1"
+                className="text-3xl font-bold text-[#050E27] dark:text-white mt-1"
               >
                 ${latestVolume.toLocaleString()}B
               </motion.div>
@@ -82,9 +84,9 @@ export default function TotalSpotVolumeChart() {
       </div>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-          <XAxis dataKey="date" stroke="#DAE6EA" tick={{ fontSize: 12 }} />
+          <XAxis dataKey="date" stroke={isDark ? '#DAE6EA' : '#1F2937'} tick={{ fontSize: 12 }} />
           <YAxis
-            stroke="#DAE6EA"
+            stroke={isDark ? '#DAE6EA' : '#1F2937'}
             tickFormatter={val => `$${val.toFixed(0)}B`}
             tick={{ fontSize: 12 }}
           />

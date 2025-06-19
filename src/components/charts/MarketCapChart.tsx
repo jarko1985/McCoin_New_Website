@@ -1,6 +1,6 @@
 // app/components/MarketCapChart.tsx
 'use client';
-
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Button } from '@/components/ui/button';
@@ -27,6 +27,8 @@ type Dominance = {
 };
 
 export default function MarketCapChart() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [chartData, setChartData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
@@ -220,9 +222,11 @@ export default function MarketCapChart() {
         </Card>
       </div>
       {/* Chart Section */}
-      <div className="bg-[#050E27] p-3 rounded-xl shadow-lg w-full">
+      <div className="bg-[#DAE6EA] dark:bg-[#050E27] p-3 rounded-xl shadow-xl w-full dark:border-none border dark:border-transparent border-slate-400">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-[#DAE6EA] text-lg font-semibold">Crypto Market Cap Chart</h2>
+          <h2 className="text-[#050E27] dark:text-[#DAE6EA] text-lg font-semibold">
+            Crypto Market Cap Chart
+          </h2>
           <div className="flex gap-2">
             {timeOptions.map(opt => (
               <Button
@@ -238,21 +242,30 @@ export default function MarketCapChart() {
         </div>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-            <XAxis dataKey="date" stroke="#DAE6EA" tick={{ fontSize: 12 }} />
+            <XAxis
+              dataKey="date"
+              stroke={isDark ? '#DAE6EA' : '#1F2937'}
+              tick={{ fontSize: 12, fill: isDark ? '#DAE6EA' : '#1F2937' }}
+            />
             <YAxis
-              stroke="#DAE6EA"
+              stroke={isDark ? '#DAE6EA' : '#1F2937'}
+              tick={{ fontSize: 12, fill: isDark ? '#DAE6EA' : '#1F2937' }}
               tickFormatter={val => `$${val.toFixed(2)}T`}
-              tick={{ fontSize: 12 }}
             />
             <Tooltip
-              contentStyle={{ backgroundColor: '#07153b', borderColor: '#DAE6EA' }}
-              labelStyle={{ color: '#DAE6EA' }}
+              contentStyle={{
+                backgroundColor: isDark ? '#07153b' : '#F9FAFB',
+                borderColor: isDark ? '#DAE6EA' : '#CBD5E1',
+              }}
+              labelStyle={{
+                color: isDark ? '#DAE6EA' : '#1F2937',
+              }}
               formatter={value => [`$${(+value).toFixed(2)}T`, 'Market Cap']}
             />
             <Line
               type="monotone"
               dataKey="marketCap"
-              stroke="#00ff9c"
+              stroke={isDark ? '#00ff9c' : '#10B981'}
               strokeWidth={2}
               dot={false}
               isAnimationActive={true}

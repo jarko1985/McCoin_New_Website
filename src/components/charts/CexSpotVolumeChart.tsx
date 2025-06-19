@@ -1,5 +1,5 @@
 'use client';
-
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '@/components/ui/card';
@@ -27,6 +27,8 @@ const exchangeLabels: Record<string, string> = {
 };
 
 export default function CexSpotVolumeChart() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [data, setData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
@@ -89,11 +91,15 @@ export default function CexSpotVolumeChart() {
   }, [selectedRange]);
 
   return (
-    <Card className="bg-[#050E27] text-[#DAE6EA] p-4 w-full shadow-lg hover:shadow-2xl transition duration-300">
+    <Card
+      className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 w-full shadow-xl
+     hover:shadow-2xl transition duration-300 dark:border-none border 
+     dark:border-transparent border-slate-400"
+    >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold flex items-center gap-2">
           CEX Spot Volume (Market Share)
-          {loading && <Loader2 className="animate-spin h-4 w-4 text-white" />}
+          {loading && <Loader2 className="animate-spin h-4 w-4 text-[#050E27] dark:text-white" />}
         </h3>
         <div className="flex gap-2">
           {timeOptions.map(opt => (
@@ -118,7 +124,7 @@ export default function CexSpotVolumeChart() {
           transition={{ duration: 0.3 }}
         >
           <Skeleton className="w-full h-[400px] rounded-xl">
-            <h2 className="text-white text-center pt-5">Loading...</h2>
+            <h2 className="text-[#1F2937] dark:text-white text-center pt-5">Loading...</h2>
           </Skeleton>
         </motion.div>
       ) : (
@@ -131,8 +137,16 @@ export default function CexSpotVolumeChart() {
         >
           <ResponsiveContainer width="100%" height={400} className="rounded-xl">
             <AreaChart data={data} stackOffset="expand">
-              <XAxis dataKey="date" stroke="#DAE6EA" tick={{ fontSize: 12 }} />
-              <YAxis stroke="#DAE6EA" tick={{ fontSize: 12 }} tickFormatter={val => `${val}%`} />
+              <XAxis
+                dataKey="date"
+                stroke={isDark ? '#DAE6EA' : '#1F2937'}
+                tick={{ fontSize: 12 }}
+              />
+              <YAxis
+                stroke={isDark ? '#DAE6EA' : '#1F2937'}
+                tick={{ fontSize: 12 }}
+                tickFormatter={val => `${val}%`}
+              />
               <Tooltip
                 contentStyle={{ backgroundColor: '#07153b', borderColor: '#DAE6EA' }}
                 labelStyle={{ color: '#DAE6EA' }}
