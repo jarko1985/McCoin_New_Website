@@ -1,14 +1,14 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { NewsItem } from "@/types/Messari";
-import NewsHero from "@/components/articles/ArticlesHero";
-import DefiNews from "@/components/articles/DefiNews";
-import BitcoinNews from "@/components/articles/BitcoinNews";
-import MarketAndTradingNews from "@/components/articles/MarketAndTradingNews";
-import AllArticlesNews from "@/components/articles/AllArticles";
-import { Loader2 } from "lucide-react";
-import AnimatedLogo from "@/components/custom/AnimatedLogo";
+'use client';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { NewsItem } from '@/types/Messari';
+import NewsHero from '@/components/articles/ArticlesHero';
+import DefiNews from '@/components/articles/DefiNews';
+import BitcoinNews from '@/components/articles/BitcoinNews';
+import MarketAndTradingNews from '@/components/articles/MarketAndTradingNews';
+import AllArticlesNews from '@/components/articles/AllArticles';
+import { Loader2 } from 'lucide-react';
+import AnimatedLogo from '@/components/custom/AnimatedLogo';
 
 export default function ArticlesPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -16,7 +16,7 @@ export default function ArticlesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
-  const locale = params?.locale?.toString() || "en";
+  const locale = params?.locale?.toString() || 'en';
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -25,7 +25,7 @@ export default function ArticlesPage() {
         const res = await fetch(`/${locale}/api/messari`);
 
         if (!res.ok) {
-          throw new Error("Failed to fetch news");
+          throw new Error('Failed to fetch news');
         }
 
         const data = await res.json();
@@ -34,8 +34,8 @@ export default function ArticlesPage() {
         const firstWithImage = data.find((item: NewsItem) => item.previewImage);
         setFeaturedNews(firstWithImage || data[0]);
       } catch (err) {
-        console.error("Error fetching news:", err);
-        setError(err instanceof Error ? err.message : "Failed to fetch news");
+        console.error('Error fetching news:', err);
+        setError(err instanceof Error ? err.message : 'Failed to fetch news');
       } finally {
         setLoading(false);
       }
@@ -64,7 +64,7 @@ export default function ArticlesPage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <AnimatedLogo/>
+        <AnimatedLogo />
         <p className="text-[#07153B] font-semibold text-lg animate-pulse">Loading articles...</p>
       </div>
     );

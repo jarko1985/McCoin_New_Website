@@ -1,8 +1,11 @@
-// components/BitcoinNews.tsx
+'use client';
+import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { NewsItem } from '@/types/Messari';
+import Link from 'next/link';
 
 export default function AllArticlesNews({ newsItems }: { newsItems: NewsItem[] }) {
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   return (
     <div className="container mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold text-[#07153b] dark:text-white mb-8 pl-6 relative">
@@ -40,7 +43,12 @@ export default function AllArticlesNews({ newsItems }: { newsItems: NewsItem[] }
               </p>
 
               {/* Read More */}
-              <button className="text-[#EC3B3B] font-medium mb-4 hover:underline">View More</button>
+              <Link
+                href={`/${locale}/articles/${news.id}`}
+                className="text-[#EC3B3B] font-medium mb-4 hover:underline"
+              >
+                View More
+              </Link>
 
               {/* Meta info */}
               <div className="flex justify-between items-center text-sm text-[#07153b] dark:text-[#DAE6EA] border-t pt-3">

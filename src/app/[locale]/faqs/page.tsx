@@ -1,10 +1,10 @@
-"use client";
-import { FaPlus, FaMinus } from "react-icons/fa";
-import { Faqs } from "../../../../utils/data";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import FAQImage from "@/../public/images/faq_icon.webp";
-import Image from "next/image";
+'use client';
+import { FaPlus, FaMinus } from 'react-icons/fa';
+import { Faqs } from '../../../../utils/data';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import FAQImage from '@/../public/images/faq_icon.webp';
+import Image from 'next/image';
 
 const FaqsPage = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -15,26 +15,26 @@ const FaqsPage = () => {
 
   return (
     <section className="container mx-auto xl:w-[70%] py-12 px-4 sm:px-6">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="flex flex-col items-center mb-12"
       >
         <Image src={FAQImage} alt="FAQ Icon" width={100} height={100} className="mb-4" />
-       
-        <h1 className="text-[#DAE6EA] text-center text-2xl lg:text-4xl font-bold pb-4 bg-gradient-to-r from-[#DAE6EA] to-[#FFF] bg-clip-text">
+
+        <h1 className="text-[#07153B] dark:text-[#DAE6EA] text-center text-2xl lg:text-4xl font-bold pb-4 bg-gradient-to-r from-[#DAE6EA] to-[#FFF] bg-clip-text">
           Frequently Asked Questions
         </h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-center text-[#DAE6EA]/80 text-sm lg:text-base max-w-2xl"
+          className="text-center text-[#07153B] dark:text-[#DAE6EA]/80 text-sm lg:text-base max-w-2xl"
         >
-          Got questions? We've got answers. Explore our FAQ section to learn more
-          about how our crypto brokerage works, including trading, account
-          management, funding options, security protocols, and more.
+          Got questions? We've got answers. Explore our FAQ section to learn more about how our
+          crypto brokerage works, including trading, account management, funding options, security
+          protocols, and more.
         </motion.p>
       </motion.div>
 
@@ -46,12 +46,14 @@ const FaqsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
-            <div 
-              className={`border border-[#07153B] rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:border-white ${activeIndex === index ? 'border-white' : ''}`}
+            <div
+              className={`border border-[#07153B] rounded-lg overflow-hidden shadow-xl transition-all duration-300 hover:border-slate-400 dark:hover:border-white ${
+                activeIndex === index ? 'border-slate-400 dark:border-white' : ''
+              }`}
             >
               <button
                 onClick={() => toggleAccordion(index)}
-                className="flex justify-between items-center w-full font-semibold text-lg text-[#DAE6EA] px-6 py-4 transition-colors duration-300 bg-[#07153B]/70 hover:bg-[#07153B] cursor-pointer"
+                className="flex justify-between items-center w-full font-semibold text-lg text-[#07153B] dark:text-[#DAE6EA] px-6 py-4 transition-colors duration-300 bg-[#DAE6EA] dark:bg-[#07153B]/70 dark:hover:bg-[#07153B] cursor-pointer"
               >
                 <span className="text-left">{faq.question}</span>
                 <motion.span
@@ -67,12 +69,12 @@ const FaqsPage = () => {
                 {activeIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
+                    animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-4 pt-4 text-[#DAE6EA]/90 bg-[#07153B]/40 border-t border-[#FFF]/20">
+                    <div className="px-6 pb-4 pt-4 text-[#07153B] dark:text-[#DAE6EA]/90 bg-[#DAE6EA] dark:bg-[#07153B]/40 border-t border-t-[#07153B] dark:border-[#FFF]/20">
                       {faq.answer}
                     </div>
                   </motion.div>

@@ -1,10 +1,6 @@
-import MarketSentimentPage from '@/pages/MarketSentimentPage'
-import React from 'react'
-
+import MarketSentimentPage from '@/pages/MarketSentimentPage';
 const page = () => {
-  return (
-    <MarketSentimentPage/>
-  )
-}
+  return <MarketSentimentPage />;
+};
 
-export default page
+export default page;

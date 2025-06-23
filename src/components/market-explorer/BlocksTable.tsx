@@ -2,11 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { motion } from 'framer-motion';
-import { ArrowRight, Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Search } from 'lucide-react';
 
 interface Block {
   id: string;

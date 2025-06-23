@@ -1,8 +1,10 @@
-// components/BitcoinNews.tsx
+'use client';
 import Image from 'next/image';
 import { NewsItem } from '@/types/Messari';
-
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 export default function BitcoinNews({ newsItems }: { newsItems: NewsItem[] }) {
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const bitcoinNews = newsItems.filter(
     item =>
       item.title.toLowerCase().includes('bitcoin') ||
@@ -23,7 +25,6 @@ export default function BitcoinNews({ newsItems }: { newsItems: NewsItem[] }) {
             key={news.id}
             className="bg-[#DAE6EA] dark:bg-[#07153b] shadow-xl rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-slate-400 group cursor-pointer"
           >
-            {/* Image */}
             <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
               <Image
                 src={news.previewImage || '/placeholder-bitcoin.jpg'}
@@ -47,7 +48,12 @@ export default function BitcoinNews({ newsItems }: { newsItems: NewsItem[] }) {
               </p>
 
               {/* Read More */}
-              <button className="text-[#EC3B3B] font-medium mb-4 hover:underline">View More</button>
+              <Link
+                href={`/${locale}/articles/${news.id}`}
+                className="text-[#EC3B3B] font-medium mb-4 hover:underline cursor-pointer"
+              >
+                View More
+              </Link>
 
               {/* Meta info */}
               <div className="flex justify-between items-center text-sm text-[#07153b] dark:text-[#DAE6EA] border-t pt-3">

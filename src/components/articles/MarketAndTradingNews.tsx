@@ -1,8 +1,10 @@
-// components/MarketAndTradingNews.tsx
+'use client';
 import Image from 'next/image';
 import { NewsItem } from '@/types/Messari';
-
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 export default function MarketAndTradingNews({ newsItems }: { newsItems: NewsItem[] }) {
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const tradingNews = newsItems.filter(
     item =>
       item.title.toLowerCase().includes('trade') ||
@@ -54,7 +56,12 @@ export default function MarketAndTradingNews({ newsItems }: { newsItems: NewsIte
               </p>
 
               {/* Read More */}
-              <button className="text-[#EC3B3B] font-medium mb-4 hover:underline">View More</button>
+              <Link
+                href={`/${locale}/articles/${news.id}`}
+                className="text-[#EC3B3B] font-medium mb-4 hover:underline cursor-pointer"
+              >
+                View More
+              </Link>
 
               {/* Meta info */}
               <div className="flex justify-between items-center text-sm text-[#07153b] dark:text-[#DAE6EA] border-t pt-3">
@@ -111,9 +118,12 @@ export default function MarketAndTradingNews({ newsItems }: { newsItems: NewsIte
               </p>
 
               {/* Read More */}
-              <button className="text-[#EC3B3B] text-sm font-medium mb-3 hover:underline">
+              <Link
+                href={`/${locale}/articles/${news.id}`}
+                className="text-[#EC3B3B] text-sm font-medium mb-3 hover:underline cursor-pointer"
+              >
                 View More
-              </button>
+              </Link>
 
               {/* Meta info */}
               <div className="flex justify-between items-center text-xs text-[#07153b] dark:text-[#DAE6EA] border-t pt-2">

@@ -1,8 +1,8 @@
-"use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,98 +10,95 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
-import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
-
-
-
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import toast from 'react-hot-toast';
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 const ContactForm = () => {
-  const t = useTranslations("Contact");
+  const t = useTranslations('Contact');
   const pathname = usePathname();
-  const locale = pathname?.split("/")[1] ?? "en";
+  const locale = pathname?.split('/')[1] ?? 'en';
   const formSchema = z.object({
     name: z.string().min(2, {
-      message: t("name_error"),
+      message: t('name_error'),
     }),
     email: z.string().email({
-      message: t("email_error"),
+      message: t('email_error'),
     }),
     phone: z.string().min(10, {
-      message: t("phone_error"),
+      message: t('phone_error'),
     }),
     subject: z.string().min(5, {
-      message: t("subject_error"),
+      message: t('subject_error'),
     }),
     message: z.string().min(10, {
-      message: t("message_error"),
+      message: t('message_error'),
     }),
   });
   type FormValues = z.infer<typeof formSchema>;
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: '',
     },
   });
-  const onSubmit = async (values:FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     try {
-      console.log("Form values submitted:", values);
+      console.log('Form values submitted:', values);
       const response = await fetch(`/${locale}/api/contact`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
       });
       const result = await response.json();
       console.log(response);
       if (response.ok) {
-        toast.success("Message sent successfully!");
+        toast.success('Message sent successfully!');
       } else {
         toast.error(`Error: ${result.error}`);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("An error occurred while submitting the form.");
+      console.error('Error submitting form:', error);
+      toast.error('An error occurred while submitting the form.');
     }
-    toast.success("Message Submitted", {
-      position: "bottom-right",
+    toast.success('Message Submitted', {
+      position: 'bottom-right',
       duration: 5000,
     });
     form.reset();
   };
-  const handleBlur = async(fieldName:keyof FormValues)=>{
+  const handleBlur = async (fieldName: keyof FormValues) => {
     await form.trigger(fieldName);
-  }
+  };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 md:px-0 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">{t("full_name")}</FormLabel>
+                <FormLabel className="text-[#07153B] dark:text-white">{t('full_name')}</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-white placeholder:text-[#dae6ea]"
-                    placeholder={t("enter_your_full_name")}
+                    className="text-[#07153B] dark:text-white placeholder:text-[#07153B] dark:placeholder:text-[#dae6ea] border border-[#07153B] dark:border-slate-300"
+                    placeholder={t('enter_your_full_name')}
                     {...field}
-                    onBlur={() => handleBlur("name")}
+                    onBlur={() => handleBlur('name')}
                   />
                 </FormControl>
                 <div className="h-1">
-                <FormMessage className="text-red-300 text-sm transition-opacity duration-400" />
+                  <FormMessage className="text-red-500 text-sm transition-opacity duration-400" />
                 </div>
               </FormItem>
             )}
@@ -111,17 +108,17 @@ const ContactForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">{t("email")}</FormLabel>
+                <FormLabel className="text-[#07153B] dark:text-white">{t('email')}</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-white placeholder:text-[#dae6ea]"
-                    placeholder={t("enter_your_email")}
+                    className="text-[#07153B] dark:text-white placeholder:text-[#07153B] dark:placeholder:text-[#dae6ea] border border-[#07153B] dark:border-slate-300"
+                    placeholder={t('enter_your_email')}
                     {...field}
-                    onBlur={() => handleBlur("email")}
+                    onBlur={() => handleBlur('email')}
                   />
                 </FormControl>
                 <div className="h-1">
-                <FormMessage className="text-red-300 text-sm transition-opacity duration-400" />
+                  <FormMessage className="text-red-500 text-sm transition-opacity duration-400" />
                 </div>
               </FormItem>
             )}
@@ -133,17 +130,17 @@ const ContactForm = () => {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">{t("phone")}</FormLabel>
+                <FormLabel className="text-[#07153B] dark:text-white">{t('phone')}</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-white placeholder:text-[#dae6ea]"
-                    placeholder={t("enter_your_phone_number")}
+                    className="text-[#07153B] dark:text-white placeholder:text-[#07153B] dark:placeholder:text-[#dae6ea] border border-[#07153B] dark:border-slate-300"
+                    placeholder={t('enter_your_phone_number')}
                     {...field}
-                    onBlur={() => handleBlur("phone")}
+                    onBlur={() => handleBlur('phone')}
                   />
                 </FormControl>
                 <div className="h-1">
-                <FormMessage className="text-red-300 text-sm transition-opacity duration-400" />
+                  <FormMessage className="text-red-500 text-sm transition-opacity duration-400" />
                 </div>
               </FormItem>
             )}
@@ -153,17 +150,17 @@ const ContactForm = () => {
             name="subject"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">{t("subject")}</FormLabel>
+                <FormLabel className="text-[#07153B] dark:text-white">{t('subject')}</FormLabel>
                 <FormControl>
                   <Input
-                    className="text-white placeholder:text-[#dae6ea]"
-                    placeholder={t("enter_the_subject")}
+                    className="text-[#07153B] dark:text-white placeholder:text-[#07153B] dark:placeholder:text-[#dae6ea] border border-[#07153B] dark:border-slate-300"
+                    placeholder={t('enter_the_subject')}
                     {...field}
-                    onBlur={() => handleBlur("subject")}
+                    onBlur={() => handleBlur('subject')}
                   />
                 </FormControl>
                 <div className="h-1">
-                <FormMessage className="text-red-300 text-sm transition-opacity duration-400" />
+                  <FormMessage className="text-red-500 text-sm transition-opacity duration-400" />
                 </div>
               </FormItem>
             )}
@@ -174,18 +171,18 @@ const ContactForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">{t("message")}</FormLabel>
+              <FormLabel className="text-[#07153B] dark:text-white">{t('message')}</FormLabel>
               <FormControl>
                 <Textarea
-                  className="text-white placeholder:text-[#dae6ea]"
-                  placeholder={t("enter_your_message")}
+                  className="text-[#07153B] dark:text-white placeholder:text-[#07153B] dark:placeholder:text-[#dae6ea] border border-[#07153B] dark:border-slate-300"
+                  placeholder={t('enter_your_message')}
                   {...field}
-                  onBlur={() => handleBlur("message")}
+                  onBlur={() => handleBlur('message')}
                 />
               </FormControl>
               <div className="h-1">
-                <FormMessage className="text-red-300 text-sm transition-opacity duration-200" />
-                </div>
+                <FormMessage className="text-red-500 text-sm transition-opacity duration-200" />
+              </div>
             </FormItem>
           )}
         />
@@ -195,7 +192,7 @@ const ContactForm = () => {
             hover:border hover:border-[#ec3b3b] hover:-translate-y-1 transition-all duration-300"
             type="submit"
           >
-            {t("send_message")}
+            {t('send_message')}
           </Button>
         </div>
       </form>

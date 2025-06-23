@@ -1,137 +1,101 @@
-// components/NewsLayout.tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import Image from 'next/image';
+'use client';
 import { NewsItem } from '@/types/Messari';
-
+import Image from 'next/image';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
-  const blockchainNews = marketNews.filter(
-    item =>
-      item.title.toLowerCase().includes('blockchain') ||
-      item.content.toLowerCase().includes('blockchain') ||
-      item.tags?.some(tag => tag.toLowerCase().includes('blockchain')),
-  );
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  // Filter blockchain news and take first 11 items (2 featured + 9 regular)
+  const blockchainNews = marketNews
+    .filter(
+      item =>
+        item.title.toLowerCase().includes('blockchain') ||
+        item.content.toLowerCase().includes('blockchain') ||
+        item.tags?.some(tag => tag.toLowerCase().includes('blockchain')),
+    )
+    .slice(0, 11);
 
-  const featuredCardNews = blockchainNews[0];
+  const featuredCards = blockchainNews.slice(0, 2);
+  const regularCards = blockchainNews.slice(2);
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-[#07153b] dark:text-white mb-8 pl-6 relative">
         <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#07153b] dark:bg-white rounded-sm"></span>
-        Defi and Blockchain
+        DeFi & Blockchain
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
-        {/* Main Column (70%) */}
-        <div className="lg:col-span-7 space-y-6">
-          {/* Featured Card */}
-          <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden px-0 py-6 rounded-xl! bg-[#DAE6EA] dark:bg-[#07153b] border! border-slate-400! group cursor-pointer">
-            <div className="relative w-full md:w-1/3 aspect-video group-hover:scale-105 transition-all duration-500">
-              <Image
-                src={featuredCardNews?.previewImage || '/placeholder-news.jpg'}
-                alt={featuredCardNews?.title || 'Featured news'}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-            <div className="w-full md:w-2/3 p-6">
-              <CardHeader>
-                <span className="text-sm text-[#EC3B3B] font-semibold">
-                  {featuredCardNews?.tags?.[0]?.toUpperCase() || 'MARKET NEWS'}
-                </span>
-                <CardTitle className="text-2xl text-[#07153b] dark:text-[#FFF]">
-                  {featuredCardNews?.title}
-                </CardTitle>
-                <CardDescription className="text-[#07153b] dark:text-[#DAE6EA]">
-                  {featuredCardNews?.content?.slice(0, 200)}...
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="flex justify-between items-center">
-                <div className="text-sm text-[#07153b] dark:text-[#DAE6EA]">
-                  <span>{new Date(featuredCardNews?.published_at).toLocaleDateString()}</span>
-                  <span className="mx-2">•</span>
-                  <span>by {featuredCardNews?.author?.name || 'Unknown'}</span>
-                </div>
-              </CardFooter>
-            </div>
-          </Card>
 
-          {/* Grid of 4 smaller cards in 2x2 layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {blockchainNews.slice(1, 7).map(news => (
-              <Card
-                key={news.id}
-                className="border border-slate-400 shadow-xl flex flex-row h-full overflow-hidden px-0 rounded-lg group cursor-pointer bg-[#DAE6EA] dark:bg-[#07153b]"
-              >
-                <div className="w-1/3 flex items-stretch">
-                  <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
-                    <Image
-                      src={news.previewImage || '/placeholder-news.jpg'}
-                      alt={news.title || 'News image'}
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                </div>
-                <div className="w-2/3 flex flex-col justify-between p-4">
-                  <div>
-                    <span className="text-xs text-[#EC3B3B] font-semibold">
-                      {news.tags?.[0]?.toUpperCase() || 'NEWS'}
-                    </span>
-                    <CardTitle className="text-lg text-[#07153b] dark:text-[#FFF] line-clamp-2">
-                      {news.title}
-                    </CardTitle>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-[#07153b] dark:text-[#DAE6EA]">
-                      {new Date(news.published_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Side Column (30%) */}
-        <div className="lg:col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {marketNews.slice(0, 6).map(news => (
-              <Card
-                key={news.id}
-                className="border border-slate-400! shadow-xl overflow-hidden p-0 rounded-lg md:h-full gap-0 group cursor-pointer bg-[#DAE6EA] dark:bg-[#07153b]"
-              >
-                {/* Image at top - fills width completely */}
-                <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
+      {/* Two Featured Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {featuredCards.map(item => (
+          <Link key={item.id} href={`/${locale}/articles/${item.id}`} passHref>
+            <div className="dark:bg-[#07153b] bg-[#DAE6EA] shadow-lg rounded-xl border border-slate-600/50 hover:-translate-y-1 transition-transform duration-300 group cursor-pointer">
+              {item.previewImage && (
+                <div className="relative w-full aspect-[16/9]">
                   <Image
-                    src={news.previewImage || '/placeholder-news.jpg'}
-                    alt={news.title || 'News image'}
+                    src={item.previewImage}
+                    alt={item.title}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
                 </div>
-
-                {/* Content below image */}
-                <CardHeader className="space-y-1 p-2">
-                  <CardTitle className="text-[12px] text-[#07153b] dark:text-[#FFF] line-clamp-2">
-                    {news.title}
-                  </CardTitle>
-                </CardHeader>
-
-                <CardFooter className="p-2">
-                  <span className="text-sm text-[#07153b] dark:text-[#DAE6EA]">
-                    {new Date(news.published_at).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
+              )}
+              <div className="p-5 space-y-3">
+                {item.tags?.[0] && (
+                  <span className="text-xs px-3 py-1 bg-[#EC3B3B]/20 text-[#EC3B3B] rounded-full font-medium inline-block">
+                    {item.tags[0].toUpperCase()}
                   </span>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
+                )}
+                <h2 className="text-xl text-[#07153b] dark:text-[#FFF] font-bold line-clamp-2">
+                  {item.title}
+                </h2>
+                <p className="text-sm text-[#07153b] dark:text-[#DAE6EA]/80 line-clamp-3">
+                  {item.content}
+                </p>
+                <div className="text-xs text-[#07153b] dark:text-[#DAE6EA]/60">
+                  {new Date(item.published_at).toLocaleDateString()} • by{' '}
+                  {item.author?.name || 'Unknown'}
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* 3x3 Grid of Regular Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {regularCards.map(item => (
+          <Link key={item.id} href={`/${locale}/articles/${item.id}`} passHref>
+            <div className="dark:bg-[#07153b] bg-[#DAE6EA] shadow-md rounded-lg border border-slate-600/30 hover:-translate-y-1 transition-transform duration-300 group cursor-pointer h-full">
+              {item.previewImage && (
+                <div className="relative aspect-video w-full">
+                  <Image
+                    src={item.previewImage}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+              )}
+              <div className="p-4 space-y-2">
+                {item.tags?.[0] && (
+                  <span className="text-[10px] px-2 py-0.5 bg-[#EC3B3B]/10 text-[#EC3B3B] rounded-full font-medium inline-block">
+                    {item.tags[0].toUpperCase()}
+                  </span>
+                )}
+                <h2 className="text-base text-[#07153b] dark:text-[#FFF] font-semibold line-clamp-2">
+                  {item.title}
+                </h2>
+                <div className="text-xs text-[#07153b] dark:text-[#DAE6EA]/60">
+                  {new Date(item.published_at).toLocaleDateString()}
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
