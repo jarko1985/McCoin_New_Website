@@ -1,3 +1,6 @@
+'use client';
+import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import LOGO from '../../../public/images/logo1.png';
 import Link from 'next/link';
@@ -32,14 +35,19 @@ import { LuMailQuestion } from 'react-icons/lu';
 import { GrContact } from 'react-icons/gr';
 import AnimatedLogo from './AnimatedLogo';
 import ThemeToggle from './ThemeToggle';
+import AnimatedLogoLight from './AnimatedLogoLight';
 
 const Navbar = () => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
   return (
-    <nav className="mx-auto container w-full bg-[#07153b]  py-6 sticky top-0 z-50 shadow-lg">
+    <nav
+      className={`mx-auto container w-full ${
+        isDark ? 'bg-[#07153b]' : 'bg-[#DAE6EA]'
+      }   py-6 sticky top-0 z-50`}
+    >
       <div className="flex justify-between px-5 lg:justify-around">
-        <Link href="/">
-          <AnimatedLogo />
-        </Link>
+        <Link href="/">{isDark ? <AnimatedLogo /> : <AnimatedLogoLight />}</Link>
         <div className="lg:block hidden">
           <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
             <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
