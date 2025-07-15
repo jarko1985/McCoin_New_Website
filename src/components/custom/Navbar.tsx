@@ -39,6 +39,89 @@ import AnimatedLogoLight from './AnimatedLogoLight';
 
 const Navbar = () => {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <nav className="mx-auto container w-full bg-[#DAE6EA] py-6 sticky top-0 z-50">
+        <div className="flex justify-between px-5 lg:justify-around">
+          <Link href="/">
+            <AnimatedLogoLight />
+          </Link>
+          <div className="lg:block hidden">
+            <NavigationMenu className="bg-[#DAE6EA]! navigation-menu">
+              <NavigationMenuList className="gap-5 bg-[#DAE6EA]!">
+                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                  <Link href="/about">About</Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    Markets
+                  </NavigationMenuTrigger>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    Learn
+                  </NavigationMenuTrigger>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    insider
+                  </NavigationMenuTrigger>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    How to
+                  </NavigationMenuTrigger>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    Support
+                  </NavigationMenuTrigger>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
+              <Link
+                target="_blank"
+                href="https://app.cryptomarketplace.com/register"
+                className="px-3 py-1 border border-[#07153b] rounded-lg text-white hover:text-[#07153b] dark:bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+              >
+                Sign up
+              </Link>
+              <Link
+                href="#"
+                className="px-3 py-1 border border-[#07153b] rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+              >
+                Log in
+              </Link>
+            </div>
+            <div className="lg:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="h-4 w-4" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Menu</SheetTitle>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
   const isDark = resolvedTheme === 'dark';
   return (
     <nav
@@ -49,17 +132,17 @@ const Navbar = () => {
       <div className="flex justify-between px-5 lg:justify-around">
         <Link href="/">{isDark ? <AnimatedLogo /> : <AnimatedLogoLight />}</Link>
         <div className="lg:block hidden">
-          <NavigationMenu className="bg-[#07153b]! hover:bg-[#07153b]! navigation-menu">
-            <NavigationMenuList className="gap-5 bg-[#07153b]! hover:bg-[#07153b]!">
-              <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+          <NavigationMenu className="dark:bg-[#07153b]! bg-[#DAE6EA]! navigation-menu">
+            <NavigationMenuList className="gap-5 dark:bg-[#07153b]! bg-[#DAE6EA]!">
+              <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                 <Link href="/about">About</Link>
               </NavigationMenuItem>
-              <NavigationMenuItem className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
-                <NavigationMenuTrigger className=" text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+              <NavigationMenuItem className="text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   Markets
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
+                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       <Link className="flex gap-x-1 items-center" href="/market-overview">
                         <FaLandmark size={25} /> Overview
@@ -74,11 +157,11 @@ const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem className="cursor-pointer">
-                <NavigationMenuTrigger className=" text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   Learn
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
+                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="/articles">
@@ -111,11 +194,11 @@ const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   insider
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
+                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="top-news">
@@ -151,11 +234,11 @@ const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   How to
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
+                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="#">
@@ -198,11 +281,11 @@ const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-white! p-0 bg-[#07153b]! hover:bg-[#07153b]! hover:font-bold cursor-pointer!">
+                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   Support
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-[#07153b]!">
-                  <ul className="flex flex-col text-white space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                <NavigationMenuContent className="dark:bg-[#07153b]!  bg-[#DAE6EA]! dark:text-white text-[#07153b]">
+                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="/faqs">
@@ -238,13 +321,13 @@ const Navbar = () => {
             <Link
               target="_blank"
               href="https://app.cryptomarketplace.com/register"
-              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+              className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b]  bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
             >
               Sign up
             </Link>
             <Link
               href="#"
-              className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+              className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
             >
               Log in
             </Link>

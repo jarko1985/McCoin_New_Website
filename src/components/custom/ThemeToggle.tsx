@@ -17,13 +17,13 @@ export default function ThemeToggle() {
 
   return (
     <div className="flex items-center gap-3 px-2 py-1 rounded-full bg-[#ffffff22] dark:bg-[#dae6ea22] backdrop-blur-sm">
-      <Sun className="w-4 h-4 text-white dark:text-[#DAE6EA]" />
+      <Sun className="w-4 h-4 text-[#07153b] dark:text-[#DAE6EA]" />
       <Switch
         checked={isDark}
         onCheckedChange={checked => setTheme(checked ? 'dark' : 'light')}
         className="transition-colors duration-300 data-[state=checked]:bg-white data-[state=unchecked]:bg-gray-300"
       />
-      <Moon className="w-4 h-4 text-white dark:text-[#DAE6EA]" />
+      <Moon className="w-4 h-4 text-[#07153b] dark:text-[#DAE6EA]" />
     </div>
   );
 }

@@ -35,7 +35,9 @@ export default function Home() {
       {isLoading && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center">
           <AnimatedLogo />
-          <p className="text-white font-semibold text-lg animate-pulse mt-4">Loading....</p>
+          <p className="dark:text-white text-center text-[#07153b] font-semibold text-lg animate-pulse mt-4">
+            Loading....
+          </p>
         </div>
       )}
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}>
