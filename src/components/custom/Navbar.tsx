@@ -90,14 +90,21 @@ const Navbar = () => {
             <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
               <Link
                 target="_blank"
+                href="https://mccoin-platform-demo.vercel.app"
+                className="px-3 py-1 border dark:border-white border-[#07153b] rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+              >
+                Trade
+              </Link>
+              <Link
+                target="_blank"
                 href="https://app.cryptomarketplace.com/register"
-                className="px-3 py-1 border border-[#07153b] rounded-lg text-white hover:text-[#07153b] dark:bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+                className="px-3 py-1 border dark:border-white border-[#07153b] rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
               >
                 Sign up
               </Link>
               <Link
-                href="#"
-                className="px-3 py-1 border border-[#07153b] rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+                href="https://mccoin-platform-demo.vercel.app/en/sign-in"
+                className="px-3 py-1 border dark:border-white border-[#07153b] rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
               >
                 Log in
               </Link>
@@ -320,13 +327,21 @@ const Navbar = () => {
           <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
             <Link
               target="_blank"
-              href="https://app.cryptomarketplace.com/register"
-              className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b]  bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+              href="https://mccoin-platform-demo.vercel.app"
+              className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
+            >
+              Trade
+            </Link>
+            <Link
+              target="_blank"
+              href="https://mccoin-platform-demo.vercel.app/en/sign-up"
+              className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
             >
               Sign up
             </Link>
             <Link
-              href="#"
+              target="_blank"
+              href="https://mccoin-platform-demo.vercel.app/en/sign-in"
               className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
             >
               Log in
@@ -352,16 +367,22 @@ const Navbar = () => {
               </SheetHeader>
               <div className="flex flex-row items-center justify-start gap-x-2 pl-3">
                 <Link
-                  href="#"
+                  href="https://mccoin-platform-demo.vercel.app/en/sign-up"
                   className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
                 >
                   Sign up
                 </Link>
                 <Link
-                  href="#"
+                  href="https://mccoin-platform-demo.vercel.app/en/sign-in"
                   className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
                 >
                   Log in
+                </Link>
+                <Link
+                  href="https://mccoin-platform-demo.vercel.app"
+                  className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
+                >
+                  Trade
                 </Link>
               </div>
               <Accordion className="px-4" type="single" collapsible>
