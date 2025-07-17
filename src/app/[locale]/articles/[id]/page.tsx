@@ -280,40 +280,44 @@ export default function ArticleDetail() {
             <h3 className="text-2xl font-bold mb-8">More to read</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {relatedArticles.map(relatedArticle => (
-                <motion.div
-                  key={relatedArticle.id}
-                  whileHover={{ y: -4 }}
-                  className="bg-[#0A1E4D]/50 rounded-xl overflow-hidden border border-[#0A1E4D] hover:border-[#EC3B3B]/30 transition-all"
-                >
-                  {relatedArticle.previewImage && (
-                    <div className="relative aspect-video w-full">
-                      {' '}
-                      {/* Changed from fixed h-48 to aspect-video */}
-                      <Image
-                        src={relatedArticle.previewImage}
-                        alt={relatedArticle.title}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    {relatedArticle.tags?.[0] && (
-                      <span className="text-xs font-medium text-[#EC3B3B] mb-2 inline-block">
-                        {relatedArticle.tags[0].toUpperCase()}
-                      </span>
+                <Link href="href={`/articles/${relatedArticle.id}`}">
+                  <motion.div
+                    key={relatedArticle.id}
+                    whileHover={{ y: -4 }}
+                    className="bg-[#0A1E4D]/50 rounded-xl overflow-hidden border border-[#0A1E4D] hover:border-[#EC3B3B]/30 transition-all"
+                  >
+                    {relatedArticle.previewImage && (
+                      <div className="relative aspect-video w-full">
+                        {' '}
+                        {/* Changed from fixed h-48 to aspect-video */}
+                        <Image
+                          src={relatedArticle.previewImage}
+                          alt={relatedArticle.title}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
                     )}
-                    <h4 className="text-xl font-bold mb-3 line-clamp-2">{relatedArticle.title}</h4>
-                    <Button
-                      asChild
-                      variant="link"
-                      className="text-[#EC3B3B] hover:no-underline p-0 h-auto cursor-pointer"
-                    >
-                      <Link href={`/articles/${relatedArticle.id}`}>Read More</Link>
-                    </Button>
-                  </div>
-                </motion.div>
+                    <div className="p-6">
+                      {relatedArticle.tags?.[0] && (
+                        <span className="text-xs font-medium text-[#EC3B3B] mb-2 inline-block">
+                          {relatedArticle.tags[0].toUpperCase()}
+                        </span>
+                      )}
+                      <h4 className="text-xl font-bold mb-3 line-clamp-2">
+                        {relatedArticle.title}
+                      </h4>
+                      <Button
+                        asChild
+                        variant="link"
+                        className="text-[#EC3B3B] hover:no-underline p-0 h-auto cursor-pointer"
+                      >
+                        <Link href={`/articles/${relatedArticle.id}`}>Read More</Link>
+                      </Button>
+                    </div>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </section>
