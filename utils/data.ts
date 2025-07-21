@@ -65,7 +65,7 @@ export const NAV_DATA = [
     title: 'Learn',
     children: [
       { title: 'Articles', icon: TbArticle, href: '/articles' },
-      { title: 'Blog', icon: FaBlog, href: '/blog' },
+      // { title: 'Blog', icon: FaBlog, href: '/blog' },
       {
         title: 'Market Sentiment',
         icon: TbDeviceAnalytics,
@@ -79,7 +79,7 @@ export const NAV_DATA = [
     children: [
       { title: 'Top News', icon: ImNewspaper, href: '/top-news' },
       { title: 'Newsroom', icon: GiSattelite, href: '/news-room' },
-      { title: 'Hot Topics', icon: LiaHotjar, href: '/hot-topics' },
+      // { title: 'Hot Topics', icon: LiaHotjar, href: '/hot-topics' },
       { title: 'Podcasts', icon: FaPodcast, href: '/podcasts' },
     ],
   },
@@ -436,7 +436,7 @@ export const FooterLinks: FooterLink[] = [
     iconName: 'BookOpen',
     subLinks: [
       { id: 31, label: 'Articles', href: 'articles', iconName: 'FileText' },
-      { id: 32, label: 'Blog', href: 'blog', iconName: 'Bookmark' },
+      // { id: 32, label: 'Blog', href: 'blog', iconName: 'Bookmark' },
       {
         id: 33,
         label: 'Market-Sentiment',
@@ -459,12 +459,12 @@ export const FooterLinks: FooterLink[] = [
         href: 'newsroom',
         iconName: 'MessageSquare',
       },
-      {
-        id: 43,
-        label: 'Hot-Topics',
-        href: 'hot-topics',
-        iconName: 'TrendingUp',
-      },
+      // {
+      //   id: 43,
+      //   label: 'Hot-Topics',
+      //   href: 'hot-topics',
+      //   iconName: 'TrendingUp',
+      // },
       { id: 44, label: 'Podcasts', href: 'podcasts', iconName: 'Podcast' },
     ],
   },
@@ -1280,5 +1280,528 @@ export const availableJobs = [
     skills: ['Communication', 'Problem Solving', 'Product Knowledge', 'Patience'],
     iconName: 'Headset',
     tags: ['customer service', 'support', 'communication'],
+  },
+];
+
+export const topics = [
+  {
+    id: 'bitcoin',
+    title: 'What is Bitcoin',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          "Bitcoin is the first successful decentralized digital currency, launched in 2009 by the mysterious 'Satoshi Nakamoto'. It enables peer-to-peer money transfers without banks, using a public digital ledger called the blockchain—verified by miners through cryptographic puzzles.",
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'Transactions are batched into blocks and chained immutably. Miners use powerful hardware to solve complex math problems, securing the network and earning newly minted bitcoins. A hard cap of 21 million coins ensures scarcity, reinforcing its value.',
+        ],
+      },
+      {
+        heading: 'Uses & Value',
+        paragraphs: [
+          'Bitcoin serves multiple roles—as a medium of exchange, store of value, and speculative investment. Its provable scarcity likens it to ‘digital gold,’ becoming an inflation hedge and drawing both mainstream and institutional investors. It can be used for payments, trading, remittances, and even programmatic finance (via Lightning Network).',
+        ],
+      },
+      {
+        heading: 'Volatility & Risk',
+        paragraphs: [
+          'Bitcoin’s price is known for sharp swings—driven by supply and demand, macroeconomics, investor sentiment, and news cycles. It is often labeled high-risk due to volatility, regulatory uncertainty, security exploits (e.g., exchange hacks), and potential environmental issues tied to mining energy use.',
+        ],
+      },
+      {
+        heading: 'Regulation & Legality',
+        paragraphs: [
+          'Worldwide, governments are still figuring out Bitcoin’s legal status. Some nations embrace it (e.g., El Salvador), while others have banned or restricted it. Regulatory frameworks vary and impact everything from taxation to custody and reporting.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Decentralized, censorship-resistant',
+              'Scarcity enforces value',
+              'Transparent & programmable',
+              'Global, anytime access',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'High price volatility',
+              'Energy-intensive mining',
+              'Regulatory uncertainty',
+              'Risk of theft or loss',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'Bitcoin remains the most famous and widely used cryptocurrency. It revolutionized digital money and inspired a massive ecosystem, but it comes with significant trade-offs in risk, scalability, and policy acceptance.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'blockchain',
+    title: 'What is Blockchain',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'Blockchain is a decentralized, distributed ledger technology that records transactions across multiple computers in a tamper-proof way. It underpins cryptocurrencies like Bitcoin but has broader applications in finance, supply chain, and digital identity.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'Data is stored in blocks linked via cryptography, forming an immutable chain. Consensus mechanisms (e.g., Proof of Work, Proof of Stake) validate transactions without a central authority, ensuring security and transparency.',
+        ],
+      },
+      {
+        heading: 'Uses & Value',
+        paragraphs: [
+          'Beyond cryptocurrencies, blockchain enables smart contracts, supply chain tracking, voting systems, and decentralized data storage. Its trustless nature reduces fraud and middlemen in transactions.',
+        ],
+      },
+      {
+        heading: 'Challenges',
+        paragraphs: [
+          'Scalability issues (slow transaction speeds), high energy consumption (for PoW chains), regulatory uncertainty, and interoperability between different blockchains remain key hurdles.',
+        ],
+      },
+      {
+        heading: 'Regulation & Adoption',
+        paragraphs: [
+          'Governments and enterprises are exploring blockchain for efficiency gains, but regulations vary widely—some encourage innovation, while others impose strict compliance rules.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Decentralized & secure',
+              'Immutable records',
+              'Transparent transactions',
+              'Reduces intermediaries',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'Scalability limitations',
+              'Energy-intensive (PoW)',
+              'Regulatory gray areas',
+              'Complex for mainstream adoption',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'Blockchain is a transformative technology with vast potential beyond crypto, but it faces technical and regulatory challenges before mass adoption.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'smart-contract',
+    title: 'What is a Smart Contract',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'Smart contracts are self-executing agreements written in code, deployed on blockchains like Ethereum. They automatically enforce terms when predefined conditions are met, removing the need for intermediaries.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'Developers write contract logic in programming languages (e.g., Solidity), which runs on a blockchain. Once deployed, the contract cannot be altered, and it executes autonomously (e.g., releasing funds after a deadline).',
+        ],
+      },
+      {
+        heading: 'Uses & Value',
+        paragraphs: [
+          'Smart contracts power DeFi (loans, trading), NFTs, DAOs, insurance payouts, and supply chain automation. They enable trustless, transparent, and efficient transactions.',
+        ],
+      },
+      {
+        heading: 'Risks & Limitations',
+        paragraphs: [
+          'Code vulnerabilities can lead to exploits (e.g., reentrancy attacks). Immutability means bugs are hard to fix, and poorly written contracts can lock funds permanently.',
+        ],
+      },
+      {
+        heading: 'Regulation & Legality',
+        paragraphs: [
+          'Legal recognition varies—some jurisdictions treat them as binding, while others lack frameworks. Regulatory clarity is still evolving.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Trustless automation',
+              'Reduces costs & delays',
+              'Tamper-proof execution',
+              'Enables complex DeFi/NFTs',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'Irreversible if flawed',
+              'Coding expertise required',
+              'Scalability issues',
+              'Unclear legal status',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'Smart contracts revolutionize agreements but require rigorous auditing and clearer regulations to achieve mainstream use.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'wallet',
+    title: 'What is a Crypto Wallet',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'A crypto wallet stores private keys to access and manage cryptocurrencies on a blockchain. It doesn’t hold coins but secures the keys needed to sign transactions.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'Wallets generate key pairs (public/private). Public keys act as addresses to receive funds; private keys authorize spending. Types include hot wallets (online) and cold wallets (offline, e.g., hardware).',
+        ],
+      },
+      {
+        heading: 'Types & Uses',
+        paragraphs: [
+          'Software wallets (MetaMask, Trust Wallet) are convenient for daily use. Hardware wallets (Ledger, Trezor) offer maximum security. Custodial wallets (exchanges) manage keys for users but introduce counterparty risk.',
+        ],
+      },
+      {
+        heading: 'Security Risks',
+        paragraphs: [
+          'Lost private keys mean lost funds forever. Phishing, malware, and exchange hacks are common threats. Self-custody wallets shift responsibility to users.',
+        ],
+      },
+      {
+        heading: 'Regulation & Recovery',
+        paragraphs: [
+          'Some jurisdictions mandate KYC for custodial wallets. Recovery options (seed phrases) are critical—no centralized entity can restore access.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Full control over assets',
+              'Supports multiple cryptos',
+              'Enables DeFi/NFT access',
+              'No bank dependency',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'Irreversible mistakes',
+              'Target for hackers',
+              'Technical learning curve',
+              'No customer support',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'Crypto wallets are essential for blockchain interaction but demand careful security practices to avoid loss or theft.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'defi',
+    title: 'What is DeFi',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'Decentralized Finance (DeFi) is a blockchain-based financial system that eliminates intermediaries like banks. It uses smart contracts to enable lending, borrowing, trading, and earning interest.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'DeFi apps (DApps) run on blockchains (mostly Ethereum). Users interact via wallets, supplying liquidity or collateral to earn yields or take loans without credit checks.',
+        ],
+      },
+      {
+        heading: 'Key Components',
+        paragraphs: [
+          'Includes protocols like AMMs (Uniswap), lending platforms (Aave), stablecoins (DAI), and yield aggregators. DAOs govern many projects democratically.',
+        ],
+      },
+      {
+        heading: 'Risks & Challenges',
+        paragraphs: [
+          'Smart contract bugs, impermanent loss (in liquidity pools), regulatory crackdowns, and Ponzi-like schemes (‘rug pulls’) pose significant risks.',
+        ],
+      },
+      {
+        heading: 'Regulation & Adoption',
+        paragraphs: [
+          'DeFi operates in a regulatory gray zone. Governments are scrutinizing it for compliance with anti-money laundering (AML) and investor protection laws.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Permissionless access',
+              'High yield opportunities',
+              'Transparent operations',
+              'Global inclusivity',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'High volatility & risk',
+              'No consumer protections',
+              'Complex for beginners',
+              'Regulatory uncertainty',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'DeFi disrupts traditional finance but remains experimental, requiring caution and due diligence from users.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'nft',
+    title: 'What is an NFT',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'Non-Fungible Tokens (NFTs) are unique digital assets verified by blockchain, representing ownership of art, collectibles, virtual real estate, or even identity credentials.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'NFTs are minted on blockchains (e.g., Ethereum, Solana) using smart contracts. Each has a distinct ID and metadata, making it irreplaceable and provably scarce.',
+        ],
+      },
+      {
+        heading: 'Uses & Value',
+        paragraphs: [
+          'Beyond digital art (e.g., CryptoPunks), NFTs enable gaming items, music royalties, event tickets, and tokenized real-world assets. They empower creators with resale royalties.',
+        ],
+      },
+      {
+        heading: 'Risks & Criticism',
+        paragraphs: [
+          'Speculative bubbles, copyright infringement, environmental concerns (PoW blockchains), and scams (fake collections) are major issues. Many NFTs lose value over time.',
+        ],
+      },
+      {
+        heading: 'Regulation & Legality',
+        paragraphs: [
+          'Copyright laws struggle to adapt. Tax authorities treat NFTs as taxable assets. Some platforms enforce creator royalties, while others abandon them.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Proves digital ownership',
+              'New revenue for creators',
+              'Interoperable utility',
+              'Collectible value',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'Highly speculative',
+              'Environmental impact',
+              'Copyright disputes',
+              'Market saturation',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'NFTs redefine digital ownership but face sustainability and legitimacy challenges beyond hype cycles.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'exchange',
+    title: 'What is a Crypto Exchange',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'Crypto exchanges are platforms where users buy, sell, and trade cryptocurrencies. They can be centralized (CEXs like Binance) or decentralized (DEXs like Uniswap).',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'CEXs act as intermediaries, holding user funds and matching orders. DEXs use smart contracts for peer-to-peer trading without custody. Both offer spot, futures, and margin trading.',
+        ],
+      },
+      {
+        heading: 'Types & Features',
+        paragraphs: [
+          'CEXs provide liquidity, fiat onboarding, and customer support but require KYC. DEXs prioritize privacy and control but lack reversibility for errors.',
+        ],
+      },
+      {
+        heading: 'Risks & Security',
+        paragraphs: [
+          'CEXs are targets for hacks (e.g., Mt. Gox). Users risk losing funds if the exchange collapses (e.g., FTX). DEXs face smart contract risks and slippage.',
+        ],
+      },
+      {
+        heading: 'Regulation & Compliance',
+        paragraphs: [
+          'CEXs must comply with local laws (AML/CFT). Regulatory crackdowns can limit services. DEXs face pressure to censor or adopt KYC measures.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'High liquidity (CEXs)',
+              'User-friendly interfaces',
+              'Fiat integration',
+              'Advanced trading tools',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'Custodial risks (CEXs)',
+              'KYC requirements',
+              'DEX complexity',
+              'Regulatory instability',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'Exchanges are gateways to crypto markets but require careful selection based on security, fees, and regulatory compliance.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'mining',
+    title: 'What is Crypto Mining',
+    sections: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'Mining is the process of validating transactions and securing Proof-of-Work (PoW) blockchains like Bitcoin. Miners compete to solve cryptographic puzzles, earning rewards in new coins.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        paragraphs: [
+          'Miners bundle transactions into blocks, using ASICs or GPUs to find a valid hash. The first to succeed adds the block to the chain and receives block rewards + fees.',
+        ],
+      },
+      {
+        heading: 'Economics & Incentives',
+        paragraphs: [
+          'Profitability depends on hardware efficiency, electricity costs, and coin prices. Halvings (e.g., Bitcoin’s 4-year reward cuts) reduce inflation over time.',
+        ],
+      },
+      {
+        heading: 'Challenges & Criticism',
+        paragraphs: [
+          'High energy consumption leads to environmental concerns. Centralization risks arise as industrial miners dominate. ASICs make home mining unviable for many coins.',
+        ],
+      },
+      {
+        heading: 'Alternatives (PoS, etc.)',
+        paragraphs: [
+          'Proof-of-Stake (PoS) chains (e.g., Ethereum 2.0) replace mining with staking, reducing energy use. Other models include Proof-of-Space or hybrid systems.',
+        ],
+      },
+      {
+        heading: 'Pros & Cons',
+        listGroups: [
+          {
+            title: 'Pros',
+            items: [
+              'Secures decentralized networks',
+              'Incentivizes participation',
+              'Decentralized issuance',
+              'Open to anyone (initially)',
+            ],
+          },
+          {
+            title: 'Cons',
+            items: [
+              'Energy-intensive',
+              'Hardware/energy costs',
+              'Centralization trends',
+              'Environmental backlash',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Bottom Line',
+        paragraphs: [
+          'Mining is vital for PoW blockchains but faces sustainability and scalability challenges, driving shifts toward greener consensus models.',
+        ],
+      },
+    ],
   },
 ];

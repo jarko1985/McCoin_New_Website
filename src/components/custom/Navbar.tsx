@@ -176,13 +176,13 @@ const Navbar = () => {
                         <TbArticle size={25} /> Articles
                       </Link>
                     </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                    {/* <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="/blog">
                         {' '}
                         <FaBlog size={25} /> Blog
                       </Link>
-                    </li>
+                    </li> */}
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="/market-sentiment">
@@ -221,14 +221,14 @@ const Navbar = () => {
                         Newsroom
                       </Link>
                     </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
+                    {/* <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="hot-topics">
                         {' '}
                         <LiaHotjar size={25} />
                         Hot Topics
                       </Link>
-                    </li>
+                    </li> */}
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="podcasts">

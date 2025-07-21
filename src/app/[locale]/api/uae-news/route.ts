@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const apiKey = process.env.GNEWS_API_KEY;
-  const url = `https://gnews.io/api/v4/search?q=uae+crypto&lang=en&country=ae&max=20&apikey=${apiKey}`;
+  const url = `https://gnews.io/api/v4/search?q=uae+crypto&lang=en&max=20&apikey=${apiKey}`;
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 }, // Changed from 3600 to 300 seconds (5 minutes)
     });
 
     if (!response.ok) {
@@ -17,9 +17,6 @@ export async function GET() {
     return NextResponse.json(data.articles);
   } catch (error) {
     console.error('Error fetching news:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch news' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 });
   }
 }
