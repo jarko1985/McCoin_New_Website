@@ -157,7 +157,7 @@ const Navbar = () => {
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       <Link className="flex gap-x-1 items-center" href="/market-explorer">
-                        <MdOutlineExplore size={25} /> Market Explorer
+                        <MdOutlineExplore size={25} /> Explorer
                       </Link>
                     </li>
                   </ul>

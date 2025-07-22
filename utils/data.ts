@@ -55,7 +55,7 @@ export const NAV_DATA = [
     children: [
       { title: 'Overview', icon: FaLandmark, href: '/market-overview' },
       {
-        title: 'Market Explorer',
+        title: 'Explorer',
         icon: MdOutlineExplore,
         href: '/market-explorer',
       },
@@ -1287,6 +1287,7 @@ export const topics = [
   {
     id: 'bitcoin',
     title: 'What is Bitcoin',
+    imgSRC: '/images/bitcoin_bg.webp',
     sections: [
       {
         heading: 'Overview',
@@ -1352,6 +1353,7 @@ export const topics = [
   {
     id: 'blockchain',
     title: 'What is Blockchain',
+    imgSRC: '/images/bitcoin_bg.avif',
     sections: [
       {
         heading: 'Overview',
@@ -1417,6 +1419,7 @@ export const topics = [
   {
     id: 'smart-contract',
     title: 'What is a Smart Contract',
+    imgSRC: '/images/smart_contract.avif',
     sections: [
       {
         heading: 'Overview',
@@ -1482,6 +1485,7 @@ export const topics = [
   {
     id: 'wallet',
     title: 'What is a Crypto Wallet',
+    imgSRC: '/images/smart_wallet.svg',
     sections: [
       {
         heading: 'Overview',
@@ -1547,6 +1551,7 @@ export const topics = [
   {
     id: 'defi',
     title: 'What is DeFi',
+    imgSRC: '/images/defi.webp',
     sections: [
       {
         heading: 'Overview',
@@ -1612,6 +1617,7 @@ export const topics = [
   {
     id: 'nft',
     title: 'What is an NFT',
+    imgSRC: '/images/nft.jpg',
     sections: [
       {
         heading: 'Overview',
@@ -1677,6 +1683,7 @@ export const topics = [
   {
     id: 'exchange',
     title: 'What is a Crypto Exchange',
+    imgSRC: '/images/crypto_exchange.jpg',
     sections: [
       {
         heading: 'Overview',
@@ -1742,6 +1749,7 @@ export const topics = [
   {
     id: 'mining',
     title: 'What is Crypto Mining',
+    imgSRC: '/images/crypto_mining.webp',
     sections: [
       {
         heading: 'Overview',
@@ -1800,6 +1808,276 @@ export const topics = [
         heading: 'Bottom Line',
         paragraphs: [
           'Mining is vital for PoW blockchains but faces sustainability and scalability challenges, driving shifts toward greener consensus models.',
+        ],
+      },
+    ],
+  },
+];
+
+export const popularCryptoPosts = [
+  {
+    id: 'crypto-intro',
+    title: 'What is Cryptocurrency?',
+    subtitle: 'Understanding the digital revolution in finance',
+    images: ['/images/what_is_cryptocurrency.png', '/images/what_is_cryptocurrency2.png'],
+    datePublished: '2025-06-01',
+    comments: 24,
+    likes: 132,
+    content: [
+      {
+        heading: 'Introduction',
+        paragraphs: [
+          'Cryptocurrency is a digital or virtual form of money that uses cryptography for security. It is decentralized and typically runs on blockchain technology.',
+          'Unlike fiat currencies issued by governments, cryptocurrencies are not controlled by any central authority.',
+        ],
+      },
+      {
+        heading: 'Key Features',
+        lists: [
+          'Decentralization – no single authority controls the currency.',
+          'Transparency – transactions are publicly recorded on the blockchain.',
+          'Security – protected by advanced cryptographic algorithms.',
+          'Limited Supply – many cryptocurrencies have a capped supply.',
+        ],
+      },
+      {
+        heading: 'Use Cases',
+        paragraphs: [
+          'Cryptocurrencies are used for peer-to-peer transactions, investment, fundraising, and powering decentralized applications.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'bitcoin-explained',
+    title: 'Bitcoin Explained',
+    subtitle: 'The pioneer of decentralized digital currency',
+    images: ['/images/bitcoin-explained.png', '/images/bitcoin-explained2.png'],
+    datePublished: '2025-06-03',
+    comments: 38,
+    likes: 201,
+    content: [
+      {
+        heading: 'What is Bitcoin?',
+        paragraphs: [
+          'Bitcoin (BTC) is the first and most well-known cryptocurrency, introduced in 2009 by the pseudonymous Satoshi Nakamoto.',
+          'It offers an alternative to traditional currencies by allowing direct, peer-to-peer transactions without intermediaries.',
+        ],
+      },
+      {
+        heading: 'How It Works',
+        lists: [
+          'Blockchain – a public ledger where all transactions are stored.',
+          'Mining – a process where powerful computers validate transactions.',
+          'Halving – every 4 years, mining rewards are cut in half to control inflation.',
+        ],
+      },
+      {
+        heading: 'Use Cases',
+        paragraphs: [
+          "Bitcoin is used as a store of value, medium of exchange, and investment asset. It is often called 'digital gold'.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 'blockchain-basics',
+    title: 'Understanding Blockchain',
+    subtitle: 'The technology behind all cryptocurrencies',
+    images: ['/images/blockchain-basics.png', '/images/blockchain-basics2.png'],
+    datePublished: '2025-06-05',
+    comments: 31,
+    likes: 189,
+    content: [
+      {
+        heading: 'What is Blockchain?',
+        paragraphs: [
+          'Blockchain is a decentralized and distributed digital ledger that records transactions across multiple computers securely and transparently.',
+        ],
+      },
+      {
+        heading: 'Core Components',
+        lists: [
+          'Blocks – containers for data (e.g., transactions).',
+          'Chain – linked list of blocks in chronological order.',
+          'Nodes – computers that maintain and validate the blockchain.',
+        ],
+      },
+      {
+        heading: 'Benefits',
+        lists: [
+          'Immutability – once recorded, data cannot be altered.',
+          'Transparency – anyone can verify transactions.',
+          'Security – resistant to tampering and fraud.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'smart-contracts',
+    title: 'What are Smart Contracts?',
+    subtitle: 'Automated agreements on the blockchain',
+    images: ['/images/smart-contracts.png', '/images/smart-contracts2.png'],
+    datePublished: '2025-06-07',
+    comments: 17,
+    likes: 142,
+    content: [
+      {
+        heading: 'Definition',
+        paragraphs: [
+          'Smart contracts are self-executing contracts with code that automatically enforces terms when predefined conditions are met.',
+          'They eliminate the need for intermediaries in agreements.',
+        ],
+      },
+      {
+        heading: 'Key Advantages',
+        lists: [
+          'Trustless execution – no third-party required.',
+          'Automation – triggers based on conditions.',
+          'Security – immutable and transparent.',
+        ],
+      },
+      {
+        heading: 'Use Cases',
+        lists: [
+          'Decentralized finance (DeFi)',
+          'Insurance payouts',
+          'NFTs and gaming logic',
+          'Real estate escrow services',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'crypto-wallets',
+    title: 'Crypto Wallets: A Beginner’s Guide',
+    subtitle: 'How to store and manage your digital assets safely',
+    images: ['/images/crypto-wallets.png', '/images/crypto-wallets2.png'],
+    datePublished: '2025-06-09',
+    comments: 20,
+    likes: 114,
+    content: [
+      {
+        heading: 'What is a Crypto Wallet?',
+        paragraphs: [
+          'A crypto wallet is a software or hardware device that stores private keys used to access your cryptocurrencies.',
+          'Wallets do not store the coins themselves, but rather the keys that prove ownership.',
+        ],
+      },
+      {
+        heading: 'Types of Wallets',
+        lists: [
+          '**Hot Wallets** – online and connected (e.g., MetaMask, Trust Wallet)',
+          '**Cold Wallets** – offline and hardware-based (e.g., Ledger, Trezor)',
+        ],
+      },
+      {
+        heading: 'Security Tips',
+        lists: [
+          'Never share your seed phrase.',
+          'Use hardware wallets for large holdings.',
+          'Enable 2FA and backup recovery options.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'defi-intro',
+    title: 'What is DeFi (Decentralized Finance)?',
+    subtitle: 'Disrupting traditional banking systems',
+    images: ['/images/defi-intro.png', '/images/defi-intro2.png'],
+    datePublished: '2025-06-11',
+    comments: 22,
+    likes: 165,
+    content: [
+      {
+        heading: 'Overview',
+        paragraphs: [
+          'DeFi refers to financial applications built on blockchain networks that operate without traditional intermediaries like banks.',
+          'It enables open access to services like lending, trading, and yield farming.',
+        ],
+      },
+      {
+        heading: 'Popular Services',
+        lists: [
+          'Decentralized Exchanges (DEXs)',
+          'Lending and Borrowing protocols',
+          'Staking and Yield Farming',
+          'Stablecoins like USDC and DAI',
+        ],
+      },
+      {
+        heading: 'Benefits',
+        lists: [
+          'Permissionless access',
+          'Lower fees',
+          'Increased transparency',
+          'Self-custody of assets',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'crypto-mining',
+    title: 'Crypto Mining Demystified',
+    subtitle: 'How new coins are created and verified',
+    images: ['/images/crypto-mining.png', '/images/crypto-mining2.png'],
+    datePublished: '2025-06-13',
+    comments: 18,
+    likes: 97,
+    content: [
+      {
+        heading: 'What is Mining?',
+        paragraphs: [
+          'Crypto mining is the process of validating transactions and securing the network by solving computational puzzles.',
+          'Successful miners are rewarded with new coins and transaction fees.',
+        ],
+      },
+      {
+        heading: 'Process Overview',
+        lists: [
+          'Miners compete to solve mathematical problems.',
+          'The winner validates the next block.',
+          'The network rewards them in cryptocurrency.',
+        ],
+      },
+      {
+        heading: 'Environmental Concerns',
+        paragraphs: [
+          'Proof-of-Work mining requires significant energy consumption. Alternatives like Proof-of-Stake are more sustainable.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'crypto-safety',
+    title: 'How to Stay Safe in Crypto',
+    subtitle: 'Avoiding scams and securing your digital assets',
+    images: ['/images/crypto-safety.png', '/images/crypto-safety2.png'],
+    datePublished: '2025-06-15',
+    comments: 29,
+    likes: 151,
+    content: [
+      {
+        heading: 'Common Threats',
+        lists: [
+          'Phishing emails and fake websites',
+          'Rug pulls and pump-and-dump schemes',
+          'Scam airdrops and wallet drainers',
+        ],
+      },
+      {
+        heading: 'Safety Best Practices',
+        lists: [
+          'Double-check URLs and smart contracts.',
+          'Avoid sharing private keys or seed phrases.',
+          'Use cold storage for high-value holdings.',
+        ],
+      },
+      {
+        heading: 'Stay Informed',
+        paragraphs: [
+          'Join trusted communities and always research before investing. DYOR (Do Your Own Research) is a golden rule in crypto.',
         ],
       },
     ],

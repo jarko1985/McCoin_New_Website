@@ -1,13 +1,13 @@
-"use client";
-import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { motion } from "framer-motion";
+'use client';
+import Image from 'next/image';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { motion } from 'framer-motion';
 
 const CareersHero = () => {
   const stats = [
-    { value: "30K+", label: "People got hired", position: "top-4 -left-4" },
-    { value: "800+", label: "Freelancers hired", position: "-bottom-4 -right-4" },
-    { label: "It only takes few seconds", position: "top-1/2 -right-10" },
+    { value: '30K+', label: 'People got hired', position: 'top-4 -left-4' },
+    { value: '800+', label: 'Freelancers hired', position: '-bottom-4 -right-4' },
+    { label: 'It only takes few seconds', position: 'top-1/8 -right-10' },
   ];
 
   return (
@@ -22,13 +22,11 @@ const CareersHero = () => {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl font-bold tracking-tight text-[#07153B] md:text-5xl lg:text-6xl">
-                Find the job of your{" "}
-                <span className="text-[#EC3B3B]">Dreams</span>
+                Find the job of your <span className="text-[#EC3B3B]">Dreams</span>
               </h1>
               <p className="mt-6 text-lg text-[#07153B]/80 md:text-xl">
-                Lorem ipsum dolor sit amet consectetur. Viverra lacinia sed
-                praesent pharetra quisque consectetur telius elit. Suspendisse
-                ultrices vitae
+                Lorem ipsum dolor sit amet consectetur. Viverra lacinia sed praesent pharetra
+                quisque consectetur telius elit. Suspendisse ultrices vitae
               </p>
             </motion.div>
 
@@ -39,7 +37,7 @@ const CareersHero = () => {
               className="flex items-center gap-4"
             >
               <div className="flex">
-                {[1, 2, 3, 4].map((i) => (
+                {[1, 2, 3, 4].map(i => (
                   <Avatar key={i} className="h-12 w-12 border-2 border-white">
                     <AvatarImage src={`/images/emp${i}.png`} />
                     <AvatarFallback>U{i}</AvatarFallback>
@@ -47,8 +45,7 @@ const CareersHero = () => {
                 ))}
               </div>
               <p className="text-sm font-medium text-[#07153B] md:text-base">
-                Over <span className="font-bold">800+</span> people found their
-                future with McCoin
+                Over <span className="font-bold">800+</span> people found their future with McCoin
               </p>
             </motion.div>
           </div>
@@ -67,9 +64,9 @@ const CareersHero = () => {
               </div>
 
               {/* Main image */}
-              <div className="relative z-10 h-full w-full">
+              <div className="relative z-10 h-full w-[80%] mx-auto">
                 <Image
-                  src="/images/careers_bg.png"
+                  src="/images/carees_bg.webp"
                   alt="Happy professional"
                   fill
                   className="object-contain"
@@ -84,19 +81,13 @@ const CareersHero = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
                     delay: 0.5 + index * 0.2,
-                    type: "spring",
+                    type: 'spring',
                     stiffness: 100,
                   }}
                   className={`absolute z-20 rounded-lg bg-white p-3 shadow-lg ${stat.position}`}
                 >
-                  {stat.value && (
-                    <p className="text-xl font-bold text-[#EC3B3B]">
-                      {stat.value}
-                    </p>
-                  )}
-                  <p className="text-xs font-medium text-[#07153B] md:text-sm">
-                    {stat.label}
-                  </p>
+                  {stat.value && <p className="text-xl font-bold text-[#EC3B3B]">{stat.value}</p>}
+                  <p className="text-xs font-medium text-[#07153B] md:text-sm">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
