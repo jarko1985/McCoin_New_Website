@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation';
 import PopularPostsDetails from '@/components/crypto101/PopularPostsDetails';
 import { popularCryptoPosts } from '../../../../../utils/data';
 
+// Force static generation
+export const dynamic = 'force-static';
+
 interface PageProps {
   params: Promise<{
     id: string;
@@ -11,9 +14,14 @@ interface PageProps {
 
 // Generate static params for all available posts
 export async function generateStaticParams() {
-  return popularCryptoPosts.map(post => ({
-    id: post.id,
-  }));
+  const locales = ['en', 'ar']; // Add your supported locales
+
+  return locales.flatMap(locale =>
+    popularCryptoPosts.map(post => ({
+      locale,
+      id: post.id,
+    })),
+  );
 }
 
 // Generate metadata for SEO
