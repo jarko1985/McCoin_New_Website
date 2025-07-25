@@ -18,6 +18,7 @@ interface Article {
   creator?: string[];
   source_name?: string;
   source_icon?: string;
+  keywords: string[];
 }
 
 export default function BusinessNews() {
@@ -28,7 +29,7 @@ export default function BusinessNews() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const q = "Business"
+        const q = 'Business';
         const response = await fetch(`/${locale}/api/newsdata?q=${q}`);
         const data = await response.json();
         setArticles(data.slice(0, 6));
@@ -68,7 +69,10 @@ export default function BusinessNews() {
             transition={{ delay: index * 0.1 }}
             className="bg-[#07153b] rounded-lg overflow-hidden shadow-md hover:-translate-y-1 transition-transform duration-300 border border-slate-700"
           >
-            <Link href={article.link} className="block">
+            <Link
+              href={`/${locale}/top-news/${article.article_id}?source=newsdata&q=Business`}
+              className="block"
+            >
               <img
                 src={article.image_url || '/images/fallback-image.jpeg'}
                 alt={article.title}
@@ -84,9 +88,7 @@ export default function BusinessNews() {
                 <h3 className="text-lg font-semibold text-[#FFF] mb-3 line-clamp-2">
                   {article.title}
                 </h3>
-                <p className="text-sm text-[#DAE6EA] mb-3 line-clamp-3">
-                  {article.description}
-                </p>
+                <p className="text-sm text-[#DAE6EA] mb-3 line-clamp-3">{article.description}</p>
                 <div className="flex items-center justify-between text-xs text-[#DAE6EA] border-t pt-3">
                   <span className="flex items-center gap-2">
                     <img
@@ -96,10 +98,13 @@ export default function BusinessNews() {
                     />
                     {article.source_name || 'Unknown Source'}
                   </span>
-                  <span className="flex items-center gap-4">
-                    👁 12345
-                    💬 123
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {article.keywords.slice(0, 2).map((keyword, idx) => (
+                      <Badge key={idx} className="bg-red-500 text-white">
+                        {keyword}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Link>

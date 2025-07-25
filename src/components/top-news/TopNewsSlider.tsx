@@ -22,7 +22,7 @@ interface Article {
 }
 
 export function TopNewsSlider() {
-  const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -58,11 +58,14 @@ export function TopNewsSlider() {
     <div className="relative xl:max-w-[70%] mx-auto px-4 xl:px-0">
       {/* Subtle gradient background for the entire swiper */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#07153b]/10 via-transparent to-[#07153b]/10 -z-10" />
-      
+
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-[#DAE6EA]/10">
+            <div
+              key={i}
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-[#DAE6EA]/10"
+            >
               <div className="flex space-x-4">
                 <Skeleton className="h-16 w-16 rounded-full bg-[#DAE6EA]/20" />
                 <div className="flex-1 space-y-2">
@@ -100,17 +103,17 @@ export function TopNewsSlider() {
             <SwiperSlide key={index}>
               <div className="relative">
                 <div className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 h-3/4 w-px bg-[#DAE6EA]/20 hidden md:block" />
-                
+
                 <div className="bg-[#07153b]/90 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full border border-[#DAE6EA]/10 hover:border-[#DAE6EA]/20">
                   <div className="p-5 flex items-start space-x-4 h-full">
                     <div className="flex-shrink-0 relative">
                       <div className="absolute -inset-1 rounded-full bg-[#EC3B3B]/30 blur-sm"></div>
                       <img
-                        src={article.image || '/placeholder-news.jpg'}
+                        src={article.image || '/images/fallback-image.jpeg'}
                         alt={article.title}
                         className="h-16 w-16 rounded-full object-cover border-2 border-[#EC3B3B] relative z-10"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/placeholder-news.jpg';
+                        onError={e => {
+                          (e.target as HTMLImageElement).src = '/images/fallback-image.jpeg';
                         }}
                       />
                     </div>
@@ -123,8 +126,8 @@ export function TopNewsSlider() {
                         <span className="mx-2 w-1 h-1 rounded-full bg-[#DAE6EA]/50"></span>
                         <span>42 comments</span>
                       </div>
-                      <Badge 
-                        variant="outline" 
+                      <Badge
+                        variant="outline"
                         className="mt-3 border-[#EC3B3B]/50 text-[#EC3B3B] hover:bg-[#EC3B3B]/10 hover:border-[#EC3B3B]/70 transition-colors"
                       >
                         {article.source?.name}

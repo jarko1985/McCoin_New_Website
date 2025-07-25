@@ -1,6 +1,6 @@
-"use client";
-import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
+'use client';
+import { useLocale } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import {
   FacebookShareButton,
   WhatsappShareButton,
@@ -12,7 +12,7 @@ import {
   TelegramIcon,
   WhatsappIcon,
   LinkedinIcon,
-} from "react-share";
+} from 'react-share';
 
 interface ShareBannerProps {
   title?: string;
@@ -30,14 +30,14 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         title={title}
         className="Demo__some-network__share-button"
       >
-        <FacebookIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
+        <FacebookIcon
+          size={32}
+          round
+          className="hover:-translate-y-2 transition-all duration-500"
+        />
       </FacebookShareButton>
 
-      <TwitterShareButton
-        url={shareUrl}
-        title={title}
-        className="Demo__some-network__share-button"
-      >
+      <TwitterShareButton url={shareUrl} title={title} className="Demo__some-network__share-button">
         <XIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
       </TwitterShareButton>
 
@@ -46,7 +46,11 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         title={title}
         className="Demo__some-network__share-button"
       >
-        <TelegramIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
+        <TelegramIcon
+          size={32}
+          round
+          className="hover:-translate-y-2 transition-all duration-500"
+        />
       </TelegramShareButton>
 
       <WhatsappShareButton
@@ -55,7 +59,11 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         separator=":: "
         className="Demo__some-network__share-button"
       >
-        <WhatsappIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
+        <WhatsappIcon
+          size={32}
+          round
+          className="hover:-translate-y-2 transition-all duration-500"
+        />
       </WhatsappShareButton>
 
       <LinkedinShareButton
@@ -65,7 +73,11 @@ const ShareBanner = ({ title }: ShareBannerProps) => {
         source="YourWebsiteName"
         className="Demo__some-network__share-button"
       >
-        <LinkedinIcon size={32} round className="hover:-translate-y-2 transition-all duration-500" />
+        <LinkedinIcon
+          size={32}
+          round
+          className="hover:-translate-y-2 transition-all duration-500"
+        />
       </LinkedinShareButton>
     </div>
   );

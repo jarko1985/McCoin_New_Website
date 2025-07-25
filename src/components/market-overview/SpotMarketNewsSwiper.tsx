@@ -150,7 +150,7 @@ export default function SpotMarketNewsSwiper() {
                             alt={article.title}
                             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                             onError={e => {
-                              (e.target as HTMLImageElement).src = '/placeholder-news.jpg';
+                              (e.target as HTMLImageElement).src = '/images/fallback-image.jpeg';
                             }}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>

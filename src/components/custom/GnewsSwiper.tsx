@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/autoplay";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { Skeleton } from "../ui/skeleton";
-import { Badge } from "@/components/ui/badge";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { Skeleton } from '../ui/skeleton';
+import { Badge } from '@/components/ui/badge';
 
 interface NewsArticle {
   id: string;
@@ -26,7 +26,7 @@ interface NewsArticle {
 
 const GnewsSwiper = () => {
   const params = useParams();
-  const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -36,13 +36,13 @@ const GnewsSwiper = () => {
     const fetchNews = async () => {
       try {
         const res = await fetch(`/${locale}/api/gnews`);
-        if (!res.ok) throw new Error("Failed to fetch news");
+        if (!res.ok) throw new Error('Failed to fetch news');
         const data = await res.json();
         setArticles(data);
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching news:", err);
-        setError("Failed to fetch news");
+        console.error('Error fetching news:', err);
+        setError('Failed to fetch news');
         setLoading(false);
       }
     };
@@ -56,7 +56,10 @@ const GnewsSwiper = () => {
         <h2 className="text-2xl font-bold mb-6 text-white">Local News</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="flex flex-col h-[500px] bg-[#020817] rounded-lg overflow-hidden border border-gray-700 p-4">
+            <div
+              key={i}
+              className="flex flex-col h-[500px] bg-[#020817] rounded-lg overflow-hidden border border-gray-700 p-4"
+            >
               <Skeleton className="h-48 w-full mb-4 rounded" />
               <Skeleton className="h-4 w-1/3 mb-2" />
               <Skeleton className="h-5 w-full mb-2" />
@@ -101,23 +104,23 @@ const GnewsSwiper = () => {
         }}
         className="news-swiper"
       >
-        {articles.map((article) => (
+        {articles.map(article => (
           <SwiperSlide key={article.url} className="pb-10">
             <Link
-              href={`http://localhost:3000/${locale}/top-news/${encodeURIComponent(article.url)}?source=gnews`}
+              href={`http://localhost:3000/${locale}/top-news/${encodeURIComponent(
+                article.url,
+              )}?source=gnews`}
               className="flex flex-col h-full bg-[#07153b] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-500"
-              style={{ height: "100%" }}
+              style={{ height: '100%' }}
             >
               {/* Image Section */}
               <div className="relative h-48 w-full bg-gray-700 shrink-0">
                 {!imgErrorSet[article.url] ? (
                   <Image
-                    src={article.image || "/placeholder-news.jpg"}
+                    src={article.image || '/images/fallback-image.jpeg'}
                     alt={article.title}
                     fill
-                    onError={() =>
-                      setImgErrorSet((prev) => ({ ...prev, [article.url]: true }))
-                    }
+                    onError={() => setImgErrorSet(prev => ({ ...prev, [article.url]: true }))}
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
@@ -129,9 +132,7 @@ const GnewsSwiper = () => {
 
                 {/* ✅ Source Badge using shadcn */}
                 <div className="absolute top-2 left-2 z-10">
-                  <Badge className="bg-[#EC3B3B] text-white">
-                    {article.source.name}
-                  </Badge>
+                  <Badge className="bg-[#EC3B3B] text-white">{article.source.name}</Badge>
                 </div>
               </div>
 
@@ -141,20 +142,16 @@ const GnewsSwiper = () => {
                   {new Date(article.publishedAt).toLocaleDateString()}
                 </span>
 
-                <h2 className="text-lg text-white font-bold mb-2 line-clamp-2">
-                  {article.title}
-                </h2>
+                <h2 className="text-lg text-white font-bold mb-2 line-clamp-2">{article.title}</h2>
 
-                <p className="text-[#8A939B] text-sm mb-4 line-clamp-3">
-                  {article.description}
-                </p>
+                <p className="text-[#8A939B] text-sm mb-4 line-clamp-3">{article.description}</p>
 
                 <div className="mt-auto flex items-center justify-between text-xs text-[#8A939B]">
                   <span>By {article.source.name}</span>
                   <span>
                     {new Date(article.publishedAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
+                      hour: '2-digit',
+                      minute: '2-digit',
                     })}
                   </span>
                 </div>

@@ -142,7 +142,7 @@ export default function TradingViewMarketOverview() {
               >
                 <div className="w-24 h-24 overflow-hidden rounded-lg relative">
                   <motion.img
-                    src={article.IMAGE_URL || '/placeholder-news.jpg'}
+                    src={article.IMAGE_URL || '/images/fallback-image.jpeg'}
                     alt={article.title || 'Untitled'}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />

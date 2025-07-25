@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 interface NewsArticle {
   article_id: string;
@@ -14,14 +14,23 @@ interface NewsArticle {
 async function getNewsArticle(
   id: string,
   locale: string,
-  source: string
+  source: string,
+  q?: string,
 ): Promise<NewsArticle | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const endpoint = source === "gnews" ? "gnews" : "newsdata";
+  const endpoint = source === 'gnews' ? 'gnews' : 'newsdata';
+
+  // For server-side rendering, we need an absolute URL
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+  const host = process.env.VERCEL_URL || 'localhost:3000';
+  // Add query parameter for newsdata API to match the specific query type
+  const queryParam = source === 'newsdata' && q ? `?q=${q}` : '';
+  const apiUrl = `${protocol}://${host}/${locale}/api/${endpoint}${queryParam}`;
 
   try {
-    const res = await fetch(`${baseUrl}/${locale}/api/${endpoint}`, {
-      cache: "no-store",
+    const res = await fetch(apiUrl, {
+      cache: 'no-store',
+      // Add timeout to prevent hanging requests
+      signal: AbortSignal.timeout(10000), // 10 second timeout
     });
 
     if (!res.ok) {
@@ -31,16 +40,16 @@ async function getNewsArticle(
     const articles = await res.json();
 
     const article = articles.find((a: any) => {
-      if (source === "gnews") return encodeURIComponent(a.url) === id;
+      if (source === 'gnews') return a.id === id;
       return a.article_id === id;
     });
 
     if (!article) return null;
 
     // Normalize structure
-    return source === "gnews"
+    return source === 'gnews'
       ? {
-          article_id: encodeURIComponent(article.url),
+          article_id: article.id,
           title: article.title,
           description: article.description,
           content: article.content,
@@ -50,7 +59,16 @@ async function getNewsArticle(
         }
       : article;
   } catch (error) {
-    console.error("Error fetching article:", error);
+    console.error('Error fetching article:', error);
+    // Return null but log the specific error for debugging
+    if (error instanceof Error) {
+      console.error('Detailed error:', {
+        message: error.message,
+        name: error.name,
+        cause: error.cause,
+        apiUrl,
+      });
+    }
     return null;
   }
 }
@@ -63,9 +81,9 @@ export default async function NewsDetailPage({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const { id, locale } = await params;
-  const { source } = await searchParams;
+  const { source, q } = await searchParams;
 
-  const article = await getNewsArticle(id, locale, source || "newsdata");
+  const article = await getNewsArticle(id, locale, source || 'newsdata', q);
 
   if (!article) return notFound();
 
