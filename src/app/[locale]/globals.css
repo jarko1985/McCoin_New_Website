@@ -201,6 +201,36 @@ body {
   animation: bounce-slow 3s ease-in-out infinite;
 }
 
+/* Floating animation for bubbles and particles */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Enhanced parallax animations */
+@keyframes rollLeft {
+  0% {
+    transform: translateX(100vw) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-100px) rotate(-720deg);
+  }
+}
+
+@keyframes rollRight {
+  0% {
+    transform: translateX(-100px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100vw) rotate(720deg);
+  }
+}
+
 @keyframes accordion-down {
   from {
     height: 0;

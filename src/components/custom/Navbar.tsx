@@ -248,13 +248,13 @@ const Navbar = () => {
                   <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
-                      <Link className="flex gap-x-1 items-center" href="#">
+                      <Link className="flex gap-x-1 items-center" href="/how-to/create-account">
                         <TiUserAddOutline size={25} /> Create an Account
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
-                      <Link className="flex gap-x-1 items-center" href="#">
+                      <Link className="flex gap-x-1 items-center" href="/how-to/kyc-verification">
                         {' '}
                         <RiVerifiedBadgeLine size={25} />
                         Verify Your Identity (KYC)

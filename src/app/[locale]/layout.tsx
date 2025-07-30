@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -16,6 +17,20 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  preload: true,
+});
+
+const carterOne = localFont({
+  src: '../../../public/fonts/CarterOne-Regular.ttf',
+  variable: '--font-carter-one',
+  display: 'swap',
+  preload: true,
+});
+
+const atma = localFont({
+  src: '../../../public/fonts/Atma-Regular.ttf',
+  variable: '--font-atma',
+  display: 'swap',
   preload: true,
 });
 
@@ -55,7 +70,7 @@ export default async function LocaleLayout({
   }
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
-      <body className={`${montserrat.variable} antialiased dark:bg-[#07153b] bg-[#DAE6EA]`}>
+      <body className={`${montserrat.variable}  antialiased dark:bg-[#07153b] bg-[#DAE6EA]`}>
         <NextIntlClientProvider>
           <Providers params={params}>
             <Navbar />

@@ -13,6 +13,14 @@ const config: Config = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        'carter-one': ['var(--font-carter-one)', 'cursive'],
+        'font-atma': ['var(--font-atma)', 'cursive'],
+      },
     },
   },
   plugins: [],
