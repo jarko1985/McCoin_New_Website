@@ -52,6 +52,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         try {
+          console.log('NextAuth authorize called with:', credentials?.email);
+
           // Validate credentials
           if (
             !credentials?.email ||
@@ -59,11 +61,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             !credentials?.password ||
             typeof credentials.password !== 'string'
           ) {
+            console.log('Invalid credentials format');
             return null;
           }
 
           // Use the auth utility to authenticate user (this includes all database logic)
           const result = await authenticateUser(credentials.email, credentials.password);
+          console.log('Auth result type:', typeof result, result ? Object.keys(result) : 'null');
 
           // Check if we got an error object back
           if (result && typeof result === 'object' && 'error' in result) {
@@ -73,9 +77,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return null;
           }
 
+          console.log('Authentication successful for:', credentials.email);
           return result;
         } catch (err: any) {
-          console.error('Error in authorize:', err);
+          console.error('Error in authorize callback:', err);
           // For all errors, return null (failed authentication)
           return null;
         }
@@ -88,7 +93,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   pages: {
-    signIn: '/login',
+    signIn: '/en/login',
+    error: '/en/login',
   },
   callbacks: {
     async jwt({ token, user }) {

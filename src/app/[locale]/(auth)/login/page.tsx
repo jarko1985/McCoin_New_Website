@@ -18,6 +18,7 @@ import { useLocale } from 'next-intl';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useSearchParams } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -29,6 +30,7 @@ export default function LoginPage() {
   const isArabic = useLocale() === 'ar';
   const { data: session, status } = useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -40,6 +42,27 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+
+  // Check for NextAuth error parameters
+  useEffect(() => {
+    const error = searchParams?.get('error');
+    if (error) {
+      console.log('NextAuth error detected:', error);
+      switch (error) {
+        case 'Configuration':
+          toast.error('Authentication service error. Please try again or contact support.');
+          break;
+        case 'AccessDenied':
+          toast.error('Access denied. Please check your credentials.');
+          break;
+        case 'Verification':
+          toast.error('Please verify your email before signing in.');
+          break;
+        default:
+          toast.error('An authentication error occurred. Please try again.');
+      }
+    }
+  }, [searchParams]);
 
   const onSubmit = async (data: any) => {
     try {
