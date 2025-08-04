@@ -56,21 +56,38 @@ export default function LoginPage() {
       if (result?.error) {
         // Handle authentication errors
         if (result.error === 'CredentialsSignin') {
-          toast.error(t('invalid_credentials') || 'Invalid email or password');
-        } else if (result.error.includes('verify your email')) {
-          // Handle email verification error
-          toast.error(
-            t('email_not_verified') ||
-              'Please verify your email before signing in. Check your inbox for the verification link.',
-          );
+          // Check the specific reason for the credentials failure
+          try {
+            const statusResponse = await fetch('/api/check-user-status', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: data.email, password: data.password }),
+            });
 
-          // Optionally show a resend verification option
-          setTimeout(() => {
-            toast.success(
-              t('resend_verification_hint') ||
-                "Didn't receive the email? Check your spam folder or contact support.",
-            );
-          }, 3000);
+            const statusData = await statusResponse.json();
+
+            if (statusData.error === 'email_not_verified') {
+              // Handle email verification error
+              toast.error(
+                t('email_not_verified') ||
+                  'Please verify your email before signing in. Check your inbox for the verification link.',
+              );
+
+              // Optionally show a resend verification option
+              setTimeout(() => {
+                toast.success(
+                  t('resend_verification_hint') ||
+                    "Didn't receive the email? Check your spam folder or contact support.",
+                );
+              }, 3000);
+            } else {
+              // Invalid credentials or other error
+              toast.error(t('invalid_credentials') || 'Invalid email or password');
+            }
+          } catch (statusError) {
+            // If status check fails, show generic error
+            toast.error(t('invalid_credentials') || 'Invalid email or password');
+          }
         } else {
           toast.error(result.error || t('login_failed'));
         }

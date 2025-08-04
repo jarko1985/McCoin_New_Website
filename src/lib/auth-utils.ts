@@ -2,7 +2,20 @@ import bcrypt from 'bcryptjs';
 import { User } from './models/User';
 import mongoose from 'mongoose';
 
-export async function authenticateUser(email: string, password: string) {
+type AuthResult =
+  | {
+      id: string;
+      name: string;
+      email: string;
+      image: string | null;
+    }
+  | {
+      error: string;
+      message: string;
+    }
+  | null;
+
+export async function authenticateUser(email: string, password: string): Promise<AuthResult> {
   try {
     // Connect to MongoDB using Mongoose
     if (mongoose.connection.readyState !== 1) {
@@ -25,9 +38,12 @@ export async function authenticateUser(email: string, password: string) {
 
     // Check if email is verified
     if (!user.isVerified) {
-      throw new Error(
-        'Please verify your email before signing in. Check your inbox for the verification link.',
-      );
+      // Return a special error object instead of throwing
+      return {
+        error: 'email_not_verified',
+        message:
+          'Please verify your email before signing in. Check your inbox for the verification link.',
+      };
     }
 
     // Return user data for NextAuth
@@ -39,11 +55,6 @@ export async function authenticateUser(email: string, password: string) {
     };
   } catch (err: any) {
     console.error('Error in authenticateUser:', err);
-
-    // If it's a verification error, re-throw it so NextAuth can handle it properly
-    if (err.message && err.message.includes('verify your email')) {
-      throw err;
-    }
 
     // For other errors (database connection, etc.), return null
     return null;

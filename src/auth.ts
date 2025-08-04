@@ -63,16 +63,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           }
 
           // Use the auth utility to authenticate user (this includes all database logic)
-          return await authenticateUser(credentials.email, credentials.password);
-        } catch (err: any) {
-          console.error('Error in authorize:', err);
+          const result = await authenticateUser(credentials.email, credentials.password);
 
-          // If it's a verification error, re-throw it so NextAuth can handle it properly
-          if (err.message && err.message.includes('verify your email')) {
-            throw err;
+          // Check if we got an error object back
+          if (result && typeof result === 'object' && 'error' in result) {
+            // For email verification error, return null (failed auth)
+            // The error will be handled by checking the URL parameters in the login page
+            console.log('Authentication failed:', result.error, result.message);
+            return null;
           }
 
-          // For other errors (database connection, etc.), return null
+          return result;
+        } catch (err: any) {
+          console.error('Error in authorize:', err);
+          // For all errors, return null (failed authentication)
           return null;
         }
       },
@@ -85,7 +89,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   pages: {
     signIn: '/login',
-    error: '/login',
   },
   callbacks: {
     async jwt({ token, user }) {
