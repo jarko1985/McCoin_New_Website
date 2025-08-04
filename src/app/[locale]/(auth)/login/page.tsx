@@ -68,46 +68,57 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      // First, validate credentials with our API
-      const statusResponse = await fetch('/api/check-user-status', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email, password: data.password }),
-      });
-
-      const statusData = await statusResponse.json();
-
-      if (statusData.error) {
-        // Handle specific authentication errors
-        if (statusData.error === 'email_not_verified') {
-          toast.error(
-            t('email_not_verified') ||
-              'Please verify your email before signing in. Check your inbox for the verification link.',
-          );
-
-          setTimeout(() => {
-            toast.success(
-              t('resend_verification_hint') ||
-                "Didn't receive the email? Check your spam folder or contact support.",
-            );
-          }, 3000);
-        } else {
-          toast.error(t('invalid_credentials') || 'Invalid email or password');
-        }
-        return;
-      }
-
-      // If credentials are valid and verified, proceed with NextAuth signIn
+      // Use NextAuth signIn - validation will be handled in the authorize callback
       const result = await signIn('credentials', {
         email: data.email,
         password: data.password,
         redirect: false,
       });
 
+      console.log('NextAuth signIn result:', {
+        ok: result?.ok,
+        error: result?.error,
+        status: result?.status,
+        url: result?.url,
+        allProperties: Object.keys(result || {}),
+      });
+
       if (result?.error) {
-        // Handle NextAuth-specific errors
-        toast.error('Authentication service error. Please try again.');
         console.error('NextAuth error:', result.error);
+
+        // Check what specific error occurred to provide better messaging
+        if (result.error === 'CredentialsSignin') {
+          // Try to get more specific error info
+          try {
+            const statusResponse = await fetch('/api/check-user-status', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: data.email, password: data.password }),
+            });
+
+            const statusData = await statusResponse.json();
+
+            if (statusData.error === 'email_not_verified') {
+              toast.error(
+                t('email_not_verified') ||
+                  'Please verify your email before signing in. Check your inbox for the verification link.',
+              );
+
+              setTimeout(() => {
+                toast.success(
+                  t('resend_verification_hint') ||
+                    "Didn't receive the email? Check your spam folder or contact support.",
+                );
+              }, 3000);
+            } else {
+              toast.error(t('invalid_credentials') || 'Invalid email or password');
+            }
+          } catch (statusError) {
+            toast.error(t('invalid_credentials') || 'Invalid email or password');
+          }
+        } else {
+          toast.error('Authentication service error. Please try again.');
+        }
       } else if (result?.ok) {
         // Success
         toast.success(t('login_success') || 'Login successful!');
