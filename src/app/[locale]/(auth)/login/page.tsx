@@ -68,57 +68,49 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      // Use NextAuth signIn with credentials provider
+      // First, validate credentials with our API
+      const statusResponse = await fetch('/api/check-user-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email, password: data.password }),
+      });
+
+      const statusData = await statusResponse.json();
+
+      if (statusData.error) {
+        // Handle specific authentication errors
+        if (statusData.error === 'email_not_verified') {
+          toast.error(
+            t('email_not_verified') ||
+              'Please verify your email before signing in. Check your inbox for the verification link.',
+          );
+
+          setTimeout(() => {
+            toast.success(
+              t('resend_verification_hint') ||
+                "Didn't receive the email? Check your spam folder or contact support.",
+            );
+          }, 3000);
+        } else {
+          toast.error(t('invalid_credentials') || 'Invalid email or password');
+        }
+        return;
+      }
+
+      // If credentials are valid and verified, proceed with NextAuth signIn
       const result = await signIn('credentials', {
         email: data.email,
         password: data.password,
-        recaptchaToken,
         redirect: false,
       });
 
       if (result?.error) {
-        // Handle authentication errors
-        if (result.error === 'CredentialsSignin') {
-          // Check the specific reason for the credentials failure
-          try {
-            const statusResponse = await fetch('/api/check-user-status', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email: data.email, password: data.password }),
-            });
-
-            const statusData = await statusResponse.json();
-
-            if (statusData.error === 'email_not_verified') {
-              // Handle email verification error
-              toast.error(
-                t('email_not_verified') ||
-                  'Please verify your email before signing in. Check your inbox for the verification link.',
-              );
-
-              // Optionally show a resend verification option
-              setTimeout(() => {
-                toast.success(
-                  t('resend_verification_hint') ||
-                    "Didn't receive the email? Check your spam folder or contact support.",
-                );
-              }, 3000);
-            } else {
-              // Invalid credentials or other error
-              toast.error(t('invalid_credentials') || 'Invalid email or password');
-            }
-          } catch (statusError) {
-            // If status check fails, show generic error
-            toast.error(t('invalid_credentials') || 'Invalid email or password');
-          }
-        } else {
-          toast.error(result.error || t('login_failed'));
-        }
+        // Handle NextAuth-specific errors
+        toast.error('Authentication service error. Please try again.');
+        console.error('NextAuth error:', result.error);
       } else if (result?.ok) {
-        // Success - NextAuth will handle the session automatically
+        // Success
         toast.success(t('login_success') || 'Login successful!');
-
-        // Get the current locale for redirect
         const locale = isArabic ? 'ar' : 'en';
         router.push(`/${locale}`);
       } else {
