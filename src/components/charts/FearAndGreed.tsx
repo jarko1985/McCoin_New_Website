@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { formatDate } from 'date-fns';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';

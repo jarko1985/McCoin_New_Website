@@ -10,8 +10,10 @@ import ChatWidget from '@/components/custom/ChatWidget';
 import Footer from '@/components/custom/Footer';
 import AOSWrapper from '@/components/custom/AosWrapper';
 
-import { Providers } from './providers';
 import { CookieConsent } from '@/components/cookies/CookieConsent';
+import { getLocation } from '@/lib/location';
+import { LocationProvider } from '@/context/LocationContext';
+import { ClientProviders } from './client-providers';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -68,21 +70,24 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const serverLocation = await getLocation(locale);
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <body className={`${montserrat.variable}  antialiased dark:bg-[#07153b] bg-[#DAE6EA]`}>
         <NextIntlClientProvider>
-          <Providers params={params}>
-            <Navbar />
-            <main className="h-full">
-              <AOSWrapper>
-                {children}
-                <CookieConsent />
-              </AOSWrapper>
-            </main>
-            <Footer />
-            <ChatWidget />
-          </Providers>
+          <LocationProvider serverLocation={serverLocation}>
+            <ClientProviders>
+              <Navbar />
+              <main className="h-full">
+                <AOSWrapper>
+                  {children}
+                  <CookieConsent />
+                </AOSWrapper>
+              </main>
+              <Footer />
+              <ChatWidget />
+            </ClientProviders>
+          </LocationProvider>
         </NextIntlClientProvider>
       </body>
     </html>
