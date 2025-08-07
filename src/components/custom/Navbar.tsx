@@ -131,7 +131,7 @@ const Navbar = () => {
           <NavigationMenu className="dark:bg-[#07153b]! bg-[#DAE6EA]! navigation-menu">
             <NavigationMenuList className="gap-5 dark:bg-[#07153b]! bg-[#DAE6EA]!">
               <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                <Link href="/about">About</Link>
+                <Link href="/">Home</Link>
               </NavigationMenuItem>
               <NavigationMenuItem className="text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                 <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
@@ -152,43 +152,30 @@ const Navbar = () => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem className="cursor-pointer">
+              {/* <NavigationMenuItem className="cursor-pointer">
                 <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   Learn
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
                   <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
                       <Link className="flex gap-x-1 items-center" href="/articles">
-                        {' '}
                         <TbArticle size={25} /> Articles
                       </Link>
                     </li>
-                    {/* <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/blog">
-                        {' '}
-                        <FaBlog size={25} /> Blog
-                      </Link>
-                    </li> */}
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
                       <Link className="flex gap-x-1 items-center" href="/market-sentiment">
-                        {' '}
                         <TbDeviceAnalytics size={25} /> Market Sentiment
                       </Link>
                     </li>
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
                       <Link className="flex gap-x-1 items-center" href="/crypto101">
-                        {' '}
                         <FaGraduationCap size={25} /> Crypto 101
                       </Link>
                     </li>
                   </ul>
                 </NavigationMenuContent>
-              </NavigationMenuItem>
+              </NavigationMenuItem> */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   insider
@@ -276,7 +263,7 @@ const Navbar = () => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem>
+              {/* <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   Support
                 </NavigationMenuTrigger>
@@ -308,19 +295,19 @@ const Navbar = () => {
                     </li>
                   </ul>
                 </NavigationMenuContent>
-              </NavigationMenuItem>
+              </NavigationMenuItem> */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2">
           <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
-            <Link
+            {/* <Link
               target="_blank"
               href="https://mccoin-platform-demo.vercel.app"
               className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
             >
               Trade
-            </Link>
+            </Link> */}
             <UserAvatar />
           </div>
           <ThemeToggle />

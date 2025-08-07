@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Disclaimer = () => {
   return (
     <section className="pt-12">

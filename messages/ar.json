@@ -149,5 +149,204 @@
     "continueToLogin": "متابعة إلى تسجيل الدخول",
     "passwordResetSuccess": "تم إعادة تعيين كلمة المرور بنجاح!",
     "passwordResetFailed": "فشل في إعادة تعيين كلمة المرور"
+  },
+  "marketOverview": {
+    "loading": "جاري تحميل بيانات السوق...",
+    "topGainers": "الأكثر ارتفاعاً",
+    "topLosers": "الأكثر انخفاضاً",
+    "valueLeaders": "الأعلى في الحجم",
+    "marketAnalysisTitle": "تحليل السوق",
+    "marketCap": "القيمة السوقية",
+    "marketVolume": "حجم السوق",
+    "fetchError": "فشل في جلب بيانات السوق",
+    "marketStats": {
+      "coin": "العملة",
+      "marketCap": "القيمة السوقية",
+      "volume24h": "حجم التداول 24 ساعة",
+      "change24h": "التغيير خلال 24 ساعة",
+      "cryptoMarketCapTitle": "القيمة السوقية للعملات المشفرة",
+      "marketCapHistoricalTitle": "القيم التاريخية للقيمة السوقية",
+      "yesterday": "أمس",
+      "lastWeek": "الأسبوع الماضي",
+      "lastMonth": "الشهر الماضي",
+      "marketCapYearlyTitle": "الأداء السنوي للقيمة السوقية",
+      "yearlyHigh": "أعلى قيمة سنوية",
+      "yearlyLow": "أقل قيمة سنوية",
+      "bitcoinDominanceTitle": "هيمنة البيتكوين",
+      "others": "أخرى"
+    },
+    "topMovers": {
+      "coin": "العملة",
+      "price": "السعر",
+      "change24h": "التغيير خلال 24 ساعة"
+    }
+  },
+  "spot": {
+    "header": {
+      "pair": "BTC/USDT",
+      "title": "السوق الفوري",
+      "change24h": "التغير (24 ساعة)",
+      "high24h": "الأعلى (24 ساعة)",
+      "low24h": "الأدنى (24 ساعة)",
+      "volume24h": "الحجم (24 ساعة)",
+      "about": "عن BTC/USDT"
+    },
+    "markets": {
+      "title": "السوق",
+      "searchPlaceholder": "ابحث",
+      "latestExecutions": "آخر التنفيذات",
+      "price": "السعر (USDT)",
+      "amount": "الكمية (BTC)",
+      "time": "الوقت"
+    },
+    "orderbook": {
+      "tabs": {
+        "book": "Order Book",
+        "trades": "Last Trades"
+      },
+      "status": {
+        "realtime": "Real-time",
+        "disconnected": "Disconnected"
+      },
+      "columns": {
+        "price": "Price (USDT)",
+        "amount": "Amount (BTC)",
+        "total": "Total",
+        "time": "Time"
+      },
+      "asks": {
+        "label": "Asks",
+        "pressure": "Selling pressure"
+      },
+      "bids": {
+        "label": "Bids",
+        "pressure": "Buying pressure"
+      },
+      "spread": "Spread",
+      "summary": {
+        "bidVolume": "Bid Volume",
+        "askVolume": "Ask Volume"
+      },
+      "noTrades": "No recent trades"
+    },
+    "portfolio": {
+      "tabs": {
+        "orders": "Open Orders",
+        "history": "Order History",
+        "balances": "Portfolio"
+      },
+      "orders": {
+        "headers": {
+          "pair": "Pair",
+          "type": "Type",
+          "side": "Side",
+          "amount": "Amount",
+          "price": "Price",
+          "total": "Total",
+          "action": "Action"
+        },
+        "noOrders": "No open orders",
+        "placePrompt": "Place an order to get started",
+        "cancelConfirm": "Are you sure you want to cancel this order?"
+      },
+      "history": {
+        "headers": {
+          "date": "Date",
+          "pair": "Pair",
+          "type": "Type",
+          "side": "Side",
+          "amount": "Amount",
+          "price": "Price",
+          "status": "Status",
+          "fee": "Fee"
+        },
+        "noHistory": "No trading history",
+        "historyPrompt": "Your completed orders will appear here"
+      },
+      "balances": {
+        "summary": {
+          "title": "Portfolio Summary",
+          "total": "Total Value",
+          "pnl": "24h P&L",
+          "available": "Available",
+          "inOrders": "In Orders"
+        },
+        "assets": {
+          "title": "Asset Balances",
+          "headers": {
+            "asset": "Asset",
+            "balance": "Balance",
+            "value": "Value (USDT)",
+            "allocation": "Allocation"
+          }
+        },
+        "transactions": {
+          "title": "Recent Transactions"
+        }
+      }
+    },
+    "tradingChart": {
+      "title": "الرسم البياني",
+      "timeframes": {
+        "5m": "5 دقائق",
+        "15m": "15 دقيقة",
+        "1h": "1 ساعة",
+        "4h": "4 ساعات",
+        "1d": "1 يوم"
+      },
+      "chartTypes": {
+        "candlesticks": "الشموع",
+        "line": "الخط",
+        "area": "المنطقة"
+      },
+      "priceInfo": {
+        "o": "السعر الأولي:",
+        "h": "الأعلى:",
+        "l": "الأدنى:",
+        "c": "الأخير:",
+        "vol": "الحجم:"
+      },
+      "controls": {
+        "drawingTools": "📏 أدوات الرسم",
+        "indicators": "المؤشرات",
+        "settings": "⚙️ الإعدادات"
+      },
+      "lastUpdate": "آخر تحديث",
+      "fullscreen": {
+        "enter": "⤢",
+        "exit": "⤓"
+      }
+    },
+    "tradingForm": {
+      "spot_trading": "تداول السوق",
+      "buy_btc": "شراء BTC",
+      "sell_btc": "بيع BTC",
+      "available_usdt": "متاح: {amount} USDT",
+      "available_btc": "متاح: {amount} BTC",
+      "price_usdt": "السعر (USDT)",
+      "amount_btc": "الكمية (BTC)",
+      "total_usdt": "الإجمالي (USDT)",
+      "post_only": "فقط بعد الطلب",
+      "reduce_only": "فقط للتخفيض",
+      "stop_loss": "الخسارة المحددة",
+      "buy_button": "شراء BTC",
+      "sell_button": "بيع BTC",
+      "limit": "الحد المحدد",
+      "market": "السوق",
+      "advanced_limit": "الحد المتقدم",
+      "trail_stop": "الخسارة المتتبعة",
+      "trigger": "التحفيز",
+      "tp_sl": "TP/SL",
+      "trading_fee": "رسوم التداول:",
+      "estimated_total": "الإجمالي المقدر:",
+      "last_update": "آخر تحديث: {time}",
+      "percent_label": "{value}%",
+      "error_invalid_amount": "الرجاء إدخال كمية صالحة",
+      "error_invalid_price": "الرجاء إدخال سعر صالح",
+      "error_insufficient_usdt": "رصيد USDT غير كافي. متاح: {amount} USDT",
+      "error_insufficient_btc": "رصيد BTC غير كافي. متاح: {amount} BTC",
+      "success_buy_order": "طلب الشراء: {amount} BTC بسعر {price} USDT",
+      "success_sell_order": "طلب البيع: {amount} BTC بسعر {price} USDT"
+    }
   }
 }

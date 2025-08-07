@@ -70,11 +70,20 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  // Load messages for the locale
+  let messages;
+  try {
+    messages = (await import(`../../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   const serverLocation = await getLocation(locale);
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <body className={`${montserrat.variable}  antialiased dark:bg-[#07153b] bg-[#DAE6EA]`}>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <LocationProvider serverLocation={serverLocation}>
             <ClientProviders>
               <Navbar />

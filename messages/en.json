@@ -155,5 +155,206 @@
     "description": "Sorry, we couldn't find the page you're looking for.",
     "cta": "Go back home",
     "imageAlt": "Page not found"
+  },
+  "marketOverview": {
+    "loading": "Loading market data...",
+    "topGainers": "Top Gainers",
+    "topLosers": "Top Losers",
+    "valueLeaders": "Volume Leaders",
+    "marketAnalysisTitle": "Market Analysis",
+    "marketCap": "Market Cap",
+    "marketVolume": "Market Volume",
+    "fetchError": "Failed to fetch market data",
+    "marketStats": {
+      "coin": "Coin",
+      "marketCap": "Market Cap",
+      "volume24h": "24h Volume",
+      "change24h": "24h Change",
+      "cryptoMarketCapTitle": "Crypto Market Cap",
+      "marketCapHistoricalTitle": "Market Cap Historical Values",
+      "yesterday": "Yesterday",
+      "lastWeek": "Last Week",
+      "lastMonth": "Last Month",
+      "marketCapYearlyTitle": "Market Cap Yearly Performance",
+      "yearlyHigh": "Yearly High",
+      "yearlyLow": "Yearly Low",
+      "bitcoinDominanceTitle": "Bitcoin Dominance",
+      "others": "Others"
+    },
+    "topMovers": {
+      "coin": "Coin",
+      "price": "Price",
+      "change24h": "24h Change"
+    }
+  },
+  "spot": {
+    "header": {
+      "pair": "BTC/USDT",
+      "change24h": "24h Change",
+      "high24h": "24h High",
+      "low24h": "24h Low",
+      "volume24h": "24h Volume",
+      "about": "About BTC/USDT"
+    },
+    "markets": {
+      "title": "Markets",
+      "searchPlaceholder": "Search",
+      "latestExecutions": "Latest Executions",
+      "price": "Price (USDT)",
+      "amount": "Amount (BTC)",
+      "time": "Time"
+    },
+    "orderbook": {
+      "tabs": {
+        "book": "Order Book",
+        "trades": "Last Trades"
+      },
+      "status": {
+        "realtime": "Real-time",
+        "disconnected": "Disconnected"
+      },
+      "columns": {
+        "price": "Price (USDT)",
+        "amount": "Amount (BTC)",
+        "total": "Total",
+        "time": "Time"
+      },
+      "asks": {
+        "label": "Asks",
+        "pressure": "Selling pressure"
+      },
+      "bids": {
+        "label": "Bids",
+        "pressure": "Buying pressure"
+      },
+      "spread": "Spread",
+      "summary": {
+        "bidVolume": "Bid Volume",
+        "askVolume": "Ask Volume"
+      },
+      "noTrades": "No recent trades"
+    },
+    "portfolio": {
+      "tabs": {
+        "orders": "Open Orders",
+        "history": "Order History",
+        "balances": "Portfolio"
+      },
+      "orders": {
+        "headers": {
+          "pair": "Pair",
+          "type": "Type",
+          "side": "Side",
+          "amount": "Amount",
+          "price": "Price",
+          "total": "Total",
+          "action": "Action"
+        },
+        "noOrders": "No open orders",
+        "placePrompt": "Place an order to get started",
+        "cancelConfirm": "Are you sure you want to cancel this order?"
+      },
+      "history": {
+        "headers": {
+          "date": "Date",
+          "pair": "Pair",
+          "type": "Type",
+          "side": "Side",
+          "amount": "Amount",
+          "price": "Price",
+          "status": "Status",
+          "fee": "Fee"
+        },
+        "noHistory": "No trading history",
+        "historyPrompt": "Your completed orders will appear here"
+      },
+      "balances": {
+        "summary": {
+          "title": "Portfolio Summary",
+          "total": "Total Value",
+          "pnl": "24h P&L",
+          "available": "Available",
+          "inOrders": "In Orders"
+        },
+        "assets": {
+          "title": "Asset Balances",
+          "headers": {
+            "asset": "Asset",
+            "balance": "Balance",
+            "value": "Value (USDT)",
+            "allocation": "Allocation"
+          }
+        },
+        "transactions": {
+          "title": "Recent Transactions"
+        }
+      }
+    },
+    "tradingChart": {
+      "title": "Chart",
+      "timeframes": {
+        "5m": "5m",
+        "15m": "15m",
+        "1h": "1h",
+        "4h": "4h",
+        "1d": "1d"
+      },
+      "chartTypes": {
+        "candlesticks": "Candlesticks",
+        "line": "Line",
+        "area": "Area"
+      },
+      "priceInfo": {
+        "o": "O:",
+        "h": "H:",
+        "l": "L:",
+        "c": "C:",
+        "vol": "Vol:"
+      },
+      "controls": {
+        "drawingTools": "📏 Drawing Tools",
+        "indicators": "📊 Indicators",
+        "settings": "⚙️ Settings"
+      },
+      "lastUpdate": "Last update",
+      "fullscreen": {
+        "enter": "⤢",
+        "exit": "⤓"
+      }
+    },
+    "tradingForm": {
+      "spot_trading": "Spot Trading",
+      "buy_btc": "Buy BTC",
+      "sell_btc": "Sell BTC",
+      "available_usdt": "Available: {amount} USDT",
+      "available_btc": "Available: {amount} BTC",
+      "price_usdt": "Price (USDT)",
+      "amount_btc": "Amount (BTC)",
+      "total_usdt": "Total (USDT)",
+      "post_only": "Post-Only",
+      "reduce_only": "Reduce Only",
+      "stop_loss": "Stop Loss",
+      "buy_button": "Buy BTC",
+      "sell_button": "Sell BTC",
+      "limit": "Limit",
+      "market": "Market",
+      "advanced_limit": "Advanced Limit",
+      "trail_stop": "Trail Stop",
+      "trigger": "Trigger",
+      "tp_sl": "TP/SL",
+      "trading_fee": "Trading Fee:",
+      "estimated_total": "Est. Total:",
+      "drawing_tools": "📏 Drawing Tools",
+      "indicators": "📊 Indicators",
+      "settings": "⚙️ Settings",
+      "last_update": "Last update: {time}",
+      "percent_label": "{value}%",
+      "error_invalid_amount": "Please enter a valid amount",
+      "error_invalid_price": "Please enter a valid price",
+      "error_insufficient_usdt": "Insufficient USDT balance. Available: {amount} USDT",
+      "error_insufficient_btc": "Insufficient BTC balance. Available: {amount} BTC",
+      "success_buy_order": "Buy order placed: {amount} BTC at {price} USDT",
+      "success_sell_order": "Sell order placed: {amount} BTC at {price} USDT"
+    }
   }
 }

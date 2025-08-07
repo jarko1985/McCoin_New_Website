@@ -431,12 +431,24 @@ export const dummyEvents = [
 export const FooterLinks: FooterLink[] = [
   {
     id: 1,
+    label: 'About',
+    href: 'about',
+    iconName: 'FileText',
+    subLinks: [
+      {
+        id: 32,
+        label: 'About McCoin',
+        href: 'about',
+      },
+    ],
+  },
+  {
+    id: 2,
     label: 'Learn',
     href: 'learn',
     iconName: 'BookOpen',
     subLinks: [
       { id: 31, label: 'Articles', href: 'articles', iconName: 'FileText' },
-      // { id: 32, label: 'Blog', href: 'blog', iconName: 'Bookmark' },
       {
         id: 33,
         label: 'Market-Sentiment',
@@ -446,30 +458,24 @@ export const FooterLinks: FooterLink[] = [
       { id: 34, label: 'Crypto101', href: 'crypto101', iconName: 'Home' },
     ],
   },
+  // {
+  //   id: 3,
+  //   label: 'Insider',
+  //   href: 'insider',
+  //   iconName: 'User',
+  //   subLinks: [
+  //     { id: 41, label: 'Top-news', href: 'top-news', iconName: 'Newspaper' },
+  //     {
+  //       id: 42,
+  //       label: 'Newsroom',
+  //       href: 'newsroom',
+  //       iconName: 'MessageSquare',
+  //     },
+  //     { id: 44, label: 'Podcasts', href: 'podcasts', iconName: 'Podcast' },
+  //   ],
+  // },
   {
-    id: 2,
-    label: 'Insider',
-    href: 'insider',
-    iconName: 'User',
-    subLinks: [
-      { id: 41, label: 'Top-news', href: 'top-news', iconName: 'Newspaper' },
-      {
-        id: 42,
-        label: 'Newsroom',
-        href: 'newsroom',
-        iconName: 'MessageSquare',
-      },
-      // {
-      //   id: 43,
-      //   label: 'Hot-Topics',
-      //   href: 'hot-topics',
-      //   iconName: 'TrendingUp',
-      // },
-      { id: 44, label: 'Podcasts', href: 'podcasts', iconName: 'Podcast' },
-    ],
-  },
-  {
-    id: 3,
+    id: 4,
     label: 'How to',
     href: 'how-to',
     iconName: 'Settings',
@@ -507,7 +513,7 @@ export const FooterLinks: FooterLink[] = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     label: 'Support',
     href: 'support',
     iconName: 'CircleHelp',
@@ -528,7 +534,7 @@ export const FooterLinks: FooterLink[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     label: 'Resources',
     href: 'resources',
     iconName: 'Info',

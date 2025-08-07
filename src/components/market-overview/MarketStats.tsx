@@ -1,11 +1,8 @@
-// app/components/MarketCapChart.tsx
 'use client';
-import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card } from '../ui/card';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -14,22 +11,21 @@ const timeOptions = [
   { label: '1y', value: '365', interval: 'daily' },
 ];
 
+type Dominance = {
+  btc: number | null;
+  eth: number | null;
+  others: number | null;
+};
 type MarketCapPoint = {
   date: string;
   marketCap: number;
   raw: number;
   timestamp: number;
 };
-type Dominance = {
-  btc: number | null;
-  eth: number | null;
-  others: number | null;
-};
 
-export default function MarketCapChart() {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
+const MarketStats = () => {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('marketOverview.marketStats');
   const [chartData, setChartData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [latestCap, setLatestCap] = useState<number | null>(null);
@@ -147,58 +143,83 @@ export default function MarketCapChart() {
   }, []);
 
   return (
-    <section className="w-full flex flex-col gap-4">
-      <div className="bg-[#DAE6EA] dark:bg-[#050E27] p-3 rounded-xl shadow-xl w-full dark:border-none border dark:border-transparent border-slate-400">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-[#050E27] dark:text-[#DAE6EA] text-lg font-semibold">
-            Crypto Market Cap Chart
-          </h2>
-          <div className="flex gap-2">
-            {timeOptions.map(opt => (
-              <Button
-                key={opt.value}
-                size="sm"
-                variant={selectedRange.value === opt.value ? 'default' : 'secondary'}
-                onClick={() => setSelectedRange(opt)}
-              >
-                {opt.label}
-              </Button>
-            ))}
-          </div>
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  gap-3">
+      <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-slate-400 dark:border">
+        <h3 className="text-md mb-1 font-semibold">{t('cryptoMarketCapTitle')}</h3>
+        <div className="text-3xl font-bold flex items-center gap-2">
+          {latestCap !== null ? `$${latestCap}T` : '--'}
+          {capChange !== null && (
+            <span
+              className={`text-sm font-semibold ${
+                capChange < 0 ? 'text-[#EC3B3B]' : 'text-green-400'
+              }`}
+            >
+              {capChange < 0 ? '▼' : '▲'} {Math.abs(capChange)}% (24h)
+            </span>
+          )}
         </div>
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-            <XAxis
-              dataKey="date"
-              stroke={isDark ? '#DAE6EA' : '#1F2937'}
-              tick={{ fontSize: 12, fill: isDark ? '#DAE6EA' : '#1F2937' }}
-            />
-            <YAxis
-              stroke={isDark ? '#DAE6EA' : '#1F2937'}
-              tick={{ fontSize: 12, fill: isDark ? '#DAE6EA' : '#1F2937' }}
-              tickFormatter={val => `$${val.toFixed(2)}T`}
-            />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: isDark ? '#07153b' : '#F9FAFB',
-                borderColor: isDark ? '#DAE6EA' : '#CBD5E1',
-              }}
-              labelStyle={{
-                color: isDark ? '#DAE6EA' : '#1F2937',
-              }}
-              formatter={value => [`$${(+value).toFixed(2)}T`, 'Market Cap']}
-            />
-            <Line
-              type="monotone"
-              dataKey="marketCap"
-              stroke={isDark ? '#00ff9c' : '#10B981'}
-              strokeWidth={2}
-              dot={false}
-              isAnimationActive={true}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-    </section>
+      </Card>
+
+      {/* Historical Values */}
+      <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-slate-400 dark:border">
+        <h3 className="text-md mb-2 font-semibold">{t('marketCapHistoricalTitle')}</h3>
+        <div className="space-y-1">
+          <p className="flex justify-between">
+            <span>{t('yesterday')}</span>
+            <span className="font-semibold">${history.yesterday ?? '--'}T</span>
+          </p>
+          <p className="flex justify-between">
+            <span>{t('lastWeek')}</span>
+            <span className="font-semibold">${history.lastWeek ?? '--'}T</span>
+          </p>
+          <p className="flex justify-between">
+            <span>{t('lastMonth')}</span>
+            <span className="font-semibold">${history.lastMonth ?? '--'}T</span>
+          </p>
+        </div>
+      </Card>
+
+      {/* Yearly Performance */}
+      <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-slate-400 dark:border">
+        <h3 className="text-md mb-2 font-semibold">{t('marketCapYearlyTitle')}</h3>
+        <div className="space-y-1">
+          <p className="flex justify-between text-green-400">
+            <span>
+              {t('yearlyHigh')} ({yearStats.highDate ?? '--'})
+            </span>
+            <span className="font-semibold">${yearStats.high ?? '--'}T</span>
+          </p>
+          <p className="flex justify-between text-[#EC3B3B]">
+            <span>
+              {t('yearlyLow')} ({yearStats.lowDate ?? '--'})
+            </span>
+            <span className="font-semibold">${yearStats.low ?? '--'}T</span>
+          </p>
+        </div>
+      </Card>
+      <Card className="bg-[#DAE6EA] dark:bg-[#050E27] text-[#050E27] dark:text-[#DAE6EA] p-4 flex-[0.25] shadow-2xl! border border-slate-400 darK:border-slate-400 dark:border">
+        <h3 className="text-md mb-2 font-semibold">{t('bitcoinDominanceTitle')}</h3>
+        <div className="space-y-1">
+          <p className="flex justify-between text-yellow-400">
+            <span>BTC</span>
+            <span className="font-semibold">{dominance.btc?.toFixed(2) ?? '--'} %</span>
+          </p>
+          <p className="flex justify-between text-blue-400">
+            <span>ETH</span>
+            <span className="font-semibold">
+              {dominance.eth !== null ? dominance.eth.toFixed(2) : '--'} %
+            </span>
+          </p>
+          <p className="flex justify-between text-gray-400">
+            <span>{t('others')}</span>
+            <span className="font-semibold">
+              {dominance.others !== null ? dominance.others.toFixed(2) : '--'} %
+            </span>
+          </p>
+        </div>
+      </Card>
+    </div>
   );
-}
+};
+
+export default MarketStats;

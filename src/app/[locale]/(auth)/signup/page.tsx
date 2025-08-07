@@ -19,12 +19,21 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa';
 import { useLocale } from 'next-intl';
 import ReCAPTCHA from 'react-google-recaptcha';
+import PasswordRequirements from '@/components/custom/PasswordRequirements';
 
 const signUpSchema = z
   .object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
     email: z.string().email('Invalid email address'),
-    password: z.string().min(8, 'Password must be at least 8 characters'),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .regex(/[A-Z]/, 'Password must contain at least 1 uppercase letter')
+      .regex(/[0-9]/, 'Password must contain at least 1 number')
+      .regex(
+        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        'Password must contain at least 1 special character',
+      ),
     confirmPassword: z.string(),
   })
   .refine(data => data.password === data.confirmPassword, {
@@ -44,6 +53,10 @@ export default function SignUpPage() {
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
 
+  // Password requirements states
+  const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+
   // Verification resend states
   const [showVerificationPending, setShowVerificationPending] = useState(false);
   const [userEmail, setUserEmail] = useState<string>('');
@@ -58,6 +71,7 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
   } = useForm({ resolver: zodResolver(signUpSchema) });
 
   // useEffect for session redirect
@@ -125,6 +139,12 @@ export default function SignUpPage() {
   };
 
   const onSignUp = async (data: any) => {
+    // Check if password meets all requirements
+    if (!isPasswordValid) {
+      toast.error('Please ensure your password meets all requirements');
+      return;
+    }
+
     // if (!recaptchaToken) {
     //   setRecaptchaError(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
     //   return;
@@ -194,12 +214,12 @@ export default function SignUpPage() {
     return <div className="text-white text-center py-10">Loading...</div>;
   }
   return (
-    <div className="min-h-screen flex md:flex-row flex-col items-center justify-center bg-[#07153B] text-white px-4">
+    <div className="min-h-screen flex md:flex-row flex-col items-center md:items-start md:pt-8 pt-4 justify-center bg-[#07153B] text-white px-4">
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className="w-full max-w-md md:h-[700px] p-6 space-y-6 shadow-2xl backdrop-blur-sm"
+        className="w-full max-w-md md:h-[900px] p-6 space-y-6 shadow-2xl backdrop-blur-sm"
         style={{
           background: 'linear-gradient(135deg, #1A0A2E 0%, #2A1A4A 100%)',
           boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.3)',
@@ -233,10 +253,16 @@ export default function SignUpPage() {
 
         {/* Headings */}
         <div className="space-y-2">
-          <h1 className="text-4xl text-white tracking-wider leading-7">{t('headline1')}</h1>
-          <h1 className="text-4xl text-white leading-7 tracking-wider">{t('headline2')}</h1>
-          <h1 className="text-4xl text-white leading-7 tracking-wider">{t('headline3')}</h1>
-          <p className="text-sm text-slate-400 mt-6">{t('tagline')}</p>
+          <h1 className="text-4xl text-white tracking-wider leading-8 md:leading-7 text-center md:text-left">
+            {t('headline1')}
+          </h1>
+          <h1 className="text-4xl text-white leading-8 md:leading-7 text-center md:text-left">
+            {t('headline2')}
+          </h1>
+          <h1 className="text-4xl text-white leading-8 md:leading-7 text-center md:text-left">
+            {t('headline3')}
+          </h1>
+          <p className="text-sm text-slate-400 mt-6 text-center md:text-left">{t('tagline')}</p>
         </div>
         <RotatingIcons />
       </motion.div>
@@ -247,7 +273,7 @@ export default function SignUpPage() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="w-full h-[700px] max-w-md pt-12 px-6 space-y-6 bg-[#050E27] shadow-xl"
+          className="w-full h-[900px] max-w-md pt-8 px-6 space-y-6 bg-[#050E27] shadow-xl"
         >
           <div className="text-center space-y-6 flex flex-col justify-center h-full">
             {/* Email sent icon */}
@@ -333,15 +359,16 @@ export default function SignUpPage() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="w-full h-[700px] max-w-md pt-12 px-6 space-y-6 bg-[#050E27] shadow-xl"
+          className="w-full h-[900px] max-w-md pt-6 px-6 space-y-6 bg-[#050E27] shadow-xl"
         >
           <div>
-            <Image src="/images/signup_pic.svg" alt="logo" width={40} height={40} />
-            <h2 className="text-2xl mt-2">{t('title1')}</h2>
-            <h2 className="text-2xl">
-              <span className="text-[#EC3B3B]">{t('title2')}</span> {t('title3')}
-            </h2>
-
+            <div className="flex items-center gap-2">
+              <Image src="/images/signup_pic.svg" alt="logo" width={40} height={40} />
+              <h2 className="text-2xl">{t('title1')}</h2>
+              <h2 className="text-2xl">
+                <span className="text-[#EC3B3B]">{t('title2')}</span> {t('title3')}
+              </h2>
+            </div>
             <p className="text-[#DAE6EA] mt-2 text-sm">{t('subtitle')}</p>
           </div>
 
@@ -366,6 +393,13 @@ export default function SignUpPage() {
                   placeholder={t('password')}
                   {...register('password')}
                   className="p-6"
+                  onFocus={() => setShowPasswordRequirements(true)}
+                  onBlur={() => {
+                    // Keep requirements visible if password is not valid
+                    if (isPasswordValid) {
+                      setShowPasswordRequirements(false);
+                    }
+                  }}
                 />
                 <div
                   className={`absolute ${
@@ -376,6 +410,14 @@ export default function SignUpPage() {
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </div>
               </div>
+
+              {/* Password Requirements Component */}
+              <PasswordRequirements
+                password={watch('password') || ''}
+                isVisible={showPasswordRequirements}
+                onValidationChange={setIsPasswordValid}
+              />
+
               {errors.password && <p className="text-red-400 text-sm">{errors.password.message}</p>}
             </div>
 
