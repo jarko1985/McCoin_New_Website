@@ -405,6 +405,8 @@
       "currency": "Currency",
       "language": "Language",
       "darkMode": "Dark mode",
+      "twoFactorAuth": "Two-Factor Authentication",
+      "twoFactorAuthDesc": "Add an extra layer of security to your account",
       "selectCurrency": "Select currency",
       "selectLanguage": "Select language",
       "currencies": {

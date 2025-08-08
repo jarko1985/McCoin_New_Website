@@ -14,7 +14,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push('/login');
+      const locale = window.location.pathname.split('/')[1];
+      router.push(`/${locale}/login`);
     }
   }, [isAuthenticated, router]);
 

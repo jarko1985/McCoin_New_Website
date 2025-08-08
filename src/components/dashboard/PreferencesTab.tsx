@@ -8,24 +8,65 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
+import TwoFASetupModal from './TwoFASetupModal';
+import TwoFADisableModal from './TwoFADisableModal';
+
 export default function PreferencesTab() {
   const t = useTranslations('dashboard.preferences');
   const { setTheme, theme } = useTheme();
   const [currency, setCurrency] = useState('USD');
   const [language, setLanguage] = useState('English');
   const [darkMode, setDarkMode] = useState(theme === 'dark');
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [showSetupModal, setShowSetupModal] = useState(false);
+  const [showDisableModal, setShowDisableModal] = useState(false);
   const locale = useLocale();
   const isArabic = locale === 'ar';
+
+  useEffect(() => {
+    fetch2FAStatus();
+  }, []);
+
+  const fetch2FAStatus = async () => {
+    try {
+      console.log('Fetching 2FA status...');
+      const response = await fetch('/api/2fa/status');
+      console.log('2FA status response:', response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('2FA status data:', data);
+        setTwoFactorEnabled(data.twoFactorEnabled);
+      } else {
+        const errorData = await response.json();
+        console.error('2FA status error:', errorData);
+      }
+    } catch (error) {
+      console.error('Failed to fetch 2FA status:', error);
+    }
+  };
+
   const handleDarkModeToggle = (checked: boolean) => {
     setDarkMode(checked);
     setTheme(checked ? 'dark' : 'light');
+  };
+
+  const handle2FAToggle = async (checked: boolean) => {
+    if (checked) {
+      setShowSetupModal(true);
+    } else {
+      setShowDisableModal(true);
+    }
+  };
+
+  const handle2FASuccess = () => {
+    fetch2FAStatus();
   };
 
   return (
@@ -85,20 +126,54 @@ export default function PreferencesTab() {
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
                 <Label className="text-[#DAE6EA]">{t('darkMode')}</Label>
-                <Switch
-                  checked={darkMode}
-                  onCheckedChange={handleDarkModeToggle}
-                  className={`data-[state=checked]:bg-[#EC3B3B] 
-              data-[state=unchecked]:bg-slate-500 
-              data-[state=unchecked]:border 
-              data-[state=unchecked]:border-gray-400
-              h-6 w-11`}
-                />
+                <button
+                  onClick={() => handleDarkModeToggle(!darkMode)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#EC3B3B] focus:ring-offset-2 ${
+                    darkMode ? 'bg-[#EC3B3B]' : 'bg-slate-500'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ease-in-out ${
+                      darkMode ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+                <div>
+                  <Label className="text-[#DAE6EA]">{t('twoFactorAuth')}</Label>
+                  <p className="text-sm text-gray-400 mt-1">{t('twoFactorAuthDesc')}</p>
+                </div>
+                <button
+                  onClick={() => handle2FAToggle(!twoFactorEnabled)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#EC3B3B] focus:ring-offset-2 ${
+                    twoFactorEnabled ? 'bg-[#EC3B3B]' : 'bg-slate-500'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ease-in-out ${
+                      twoFactorEnabled ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
+
+      <TwoFASetupModal
+        isOpen={showSetupModal}
+        onClose={() => setShowSetupModal(false)}
+        onSuccess={handle2FASuccess}
+      />
+
+      <TwoFADisableModal
+        isOpen={showDisableModal}
+        onClose={() => setShowDisableModal(false)}
+        onSuccess={handle2FASuccess}
+      />
     </motion.div>
   );
 }

@@ -397,6 +397,8 @@
       "currency": "العملة",
       "language": "اللغة",
       "darkMode": "الوضع الداكن",
+      "twoFactorAuth": "المصادقة الثنائية",
+      "twoFactorAuthDesc": "أضف طبقة إضافية من الأمان لحسابك",
       "selectCurrency": "اختر العملة",
       "selectLanguage": "اختر اللغة",
       "currencies": {

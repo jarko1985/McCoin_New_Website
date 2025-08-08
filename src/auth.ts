@@ -8,16 +8,18 @@ declare module 'next-auth' {
     name?: string | null;
     email?: string | null;
     image?: string | null;
+    needs2FA?: boolean;
   }
 
   interface Session {
-    user: User & { id: string };
+    user: User & { id: string; needs2FA?: boolean };
   }
 }
 
 declare module '@auth/core/jwt' {
   interface JWT {
     id?: string;
+    needs2FA?: boolean;
   }
 }
 

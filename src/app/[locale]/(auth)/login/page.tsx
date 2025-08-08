@@ -68,6 +68,26 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
+      // First check user status to see if 2FA is required
+      const statusResponse = await fetch('/api/check-user-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email, password: data.password }),
+      });
+
+      const statusData = await statusResponse.json();
+
+      if (statusResponse.ok && statusData.needs2FA) {
+        // User has 2FA enabled, redirect to 2FA verification page
+        const locale = isArabic ? 'ar' : 'en';
+        const params = new URLSearchParams({
+          email: data.email,
+          password: data.password,
+        });
+        router.push(`/${locale}/verify-2fa?${params.toString()}`);
+        return;
+      }
+
       // Use NextAuth signIn - validation will be handled in the authorize callback
       const result = await signIn('credentials', {
         email: data.email,

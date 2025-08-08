@@ -9,7 +9,9 @@ const UserSchema = new mongoose.Schema(
     image: String,
     verifyToken: String,
     verifyTokenExpires: Date,
-    isVerified: { type: Boolean, default: false }, // Email verification status
+    isVerified: { type: Boolean, default: false },
+    twoFactorEnabled: { type: Boolean, default: false },
+    twoFactorSecret: { type: String, default: '' },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     resetPasswordTokenUsed: { type: Boolean, default: false },
