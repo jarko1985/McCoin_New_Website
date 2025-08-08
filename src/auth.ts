@@ -54,7 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             process.env.NEXTAUTH_URL ||
             (process.env.NODE_ENV === 'production'
               ? 'https://mc-coin-new-website.vercel.app'
-              : 'http://localhost:3000');
+              : 'http://10.10.80.26:3000');
 
           const response = await fetch(`${baseUrl}/api/check-user-status`, {
             method: 'POST',

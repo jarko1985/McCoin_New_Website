@@ -356,5 +356,152 @@
       "success_buy_order": "Buy order placed: {amount} BTC at {price} USDT",
       "success_sell_order": "Sell order placed: {amount} BTC at {price} USDT"
     }
+  },
+  "dashboard": {
+    "logoutPrompt": "Are you sure you want to logout?",
+    "yes": "Yes",
+    "no": "No",
+    "sidebar": {
+      "profile": "My Profile",
+      "my_wallet": "My Wallet",
+      "assets": "Assets",
+      "deposit": "Deposit",
+      "records": "Deposit Records",
+      "orderHistory": "Order History",
+      "preferences": "Preferences",
+      "logout": "Logout",
+      "withdraw": "Withdraw",
+      "withdraw-records": "Withdraw Records"
+    },
+    "profile": {
+      "accountVerification": "Account Verification",
+      "email": "Email",
+      "verified": "Verified",
+      "mobile": "Mobile",
+      "addPhone": "Add phone number",
+      "connect": "Connect",
+      "account_control": "Account Control",
+      "action": "Action",
+      "freeze_account": "Freeze Account",
+      "cancel_account": "Cancel Account",
+      "enterCode": "Enter verification code",
+      "advancedSettings": "Advanced Settings",
+      "password": "Password",
+      "passwordDesc": "Set a permanent password to login to your account",
+      "resetPassword": "Reset password",
+      "loginStatus": "Login Status Management",
+      "loginHistory": "Login History",
+      "logout": "Logout",
+      "table": {
+        "time": "Time",
+        "device": "Device",
+        "ip": "IP",
+        "location": "Location",
+        "operation": "Operation"
+      }
+    },
+    "preferences": {
+      "title": "Preferences",
+      "currency": "Currency",
+      "language": "Language",
+      "darkMode": "Dark mode",
+      "selectCurrency": "Select currency",
+      "selectLanguage": "Select language",
+      "currencies": {
+        "USD": "USD",
+        "EUR": "EUR",
+        "AED": "AED"
+      },
+      "languages": {
+        "English": "English",
+        "Arabic": "Arabic",
+        "French": "French"
+      }
+    },
+    "orders": {
+      "title": "Order History",
+      "filters": {
+        "orderType": "Order Type",
+        "market": "Market",
+        "side": "Side",
+        "time": "Time",
+        "all": "All",
+        "limit": "Limit",
+        "marketOrder": "Market",
+        "buy": "Buy",
+        "sell": "Sell",
+        "24h": "24H",
+        "7d": "7D",
+        "pickDate": "Pick a date",
+        "clear": "Clear Filters",
+        "export": "Export"
+      },
+      "empty": {
+        "message": "Nothing here",
+        "alt": "Nothing here"
+      },
+      "table": {
+        "time": "TIME",
+        "currency": "CURRENCY",
+        "amount": "AMOUNT",
+        "network": "NETWORK",
+        "blockConfirmation": "BLOCK CONFIRMATION",
+        "depositAddress": "DEPOSIT ADDRESS",
+        "transactionId": "TRANSACTION ID",
+        "depositId": "DEPOSIT ID",
+        "state": "STATE"
+      }
+    },
+    "deposit": {
+      "totalAssets": "Total Assets",
+      "available": "Available",
+      "frozen": "Frozen",
+      "attention": "⚠ Attention",
+      "minimumDeposit": "Minimum Deposit",
+      "minValue": "0.00000001 USDT",
+      "crediting": "Crediting",
+      "allConfirmed": "All OK!!",
+      "confirmationsLeft": "{count} Confirmation(s) Left",
+      "depositTitle": "Deposit",
+      "selectCoin": "Select Coin / Token",
+      "selectCoinPlaceholder": "Select Coin",
+      "generateAddress": "Generate Deposit Address",
+      "riskTitle": "USDT-OKTC Risk Reminder",
+      "riskMessage": "The address is ONLY available for USDT-Optimism deposit. Deposit of other assets will lead to permanent asset loss.",
+      "checkboxLabel": "I am aware of the risks and would like to proceed.",
+      "confirm": "Confirm"
+    },
+    "records": {
+      "states": {
+        "completed": "Completed",
+        "pending": "Pending",
+        "failed": "Failed"
+      },
+      "asset": "Asset",
+      "time": "Time",
+      "last30Days": "Last 30 days",
+      "last60Days": "Last 60 days",
+      "last90Days": "Last 90 days",
+      "all": "All",
+      "selectDate": "Select date",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "exportCSV": "Export CSV",
+      "table": {
+        "time": "Time",
+        "currency": "Currency",
+        "amount": "Amount",
+        "network": "Network",
+        "blockConfirmation": "Block Confirmation",
+        "depositAddress": "Deposit Address",
+        "transactionId": "Transaction ID",
+        "depositId": "Deposit ID",
+        "state": "State"
+      },
+      "empty": {
+        "title": "Nothing here",
+        "desc": "No deposit records found matching your filters"
+      }
+    }
   }
 }

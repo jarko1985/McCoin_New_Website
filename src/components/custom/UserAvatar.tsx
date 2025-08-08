@@ -129,7 +129,7 @@ const UserAvatar = ({ className = '' }: UserAvatarProps) => {
                 }`}
                 asChild
               >
-                <Link href={`/${locale}/profile`}>
+                <Link href={`/${locale}/dashboard/profile`}>
                   <User className="mr-2 h-4 w-4" />
                   <span>{t('profile') || 'Profile'}</span>
                 </Link>

@@ -348,5 +348,153 @@
       "success_buy_order": "طلب الشراء: {amount} BTC بسعر {price} USDT",
       "success_sell_order": "طلب البيع: {amount} BTC بسعر {price} USDT"
     }
+  },
+  "dashboard": {
+    "logoutPrompt": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "yes": "نعم",
+    "no": "لا",
+    "sidebar": {
+      "profile": "الحساب الشخصي",
+      "my_wallet": "محفظتي",
+      "assets": "الأصول",
+      "deposit": "إيداع",
+      "records": "سجل الإيداعات",
+      "orderHistory": "سجل الطلبات",
+      "preferences": "التفضيلات",
+      "logout": "تسجيل الخروج",
+      "withdraw": "السحوبات",
+      "withdraw-records": "سجل السحوبات"
+    },
+    "profile": {
+      "accountVerification": "التحقق من الحساب",
+      "email": "البريد الإلكتروني",
+      "verified": "تم التحقق",
+      "mobile": "رقم الهاتف",
+      "addPhone": "أضف رقم الهاتف",
+      "connect": "اتصال",
+      "account_control": "تحكم في الحساب",
+      "action": "الإجراء",
+      "freeze_account": "تجميد الحساب",
+      "cancel_account": "إلغاء الحساب",
+      "enterCode": "أدخل رمز التحقق",
+      "advancedSettings": "الإعدادات المتقدمة",
+      "password": "كلمة المرور",
+      "passwordDesc": "قم بتعيين كلمة مرور دائمة لتسجيل الدخول إلى حسابك",
+      "resetPassword": "إعادة تعيين كلمة المرور",
+      "loginStatus": "إدارة حالة تسجيل الدخول",
+      "loginHistory": "سجل تسجيل الدخول",
+      "logout": "تسجيل الخروج",
+      "table": {
+        "time": "الوقت",
+        "device": "الجهاز",
+        "ip": "عنوان IP",
+        "location": "الموقع",
+        "operation": "الإجراء"
+      }
+    },
+    "preferences": {
+      "title": "الإعدادات",
+      "currency": "العملة",
+      "language": "اللغة",
+      "darkMode": "الوضع الداكن",
+      "selectCurrency": "اختر العملة",
+      "selectLanguage": "اختر اللغة",
+      "currencies": {
+        "USD": "دولار",
+        "EUR": "يورو",
+        "AED": "درهم"
+      },
+      "languages": {
+        "English": "الإنجليزية",
+        "Arabic": "العربية",
+        "French": "الفرنسية"
+      }
+    },
+    "orders": {
+      "title": "سجل الطلبات",
+      "filters": {
+        "orderType": "نوع الطلب",
+        "market": "السوق",
+        "side": "الجانب",
+        "time": "الوقت",
+        "all": "الكل",
+        "limit": "محدد",
+        "marketOrder": "سوق",
+        "buy": "شراء",
+        "sell": "بيع",
+        "24h": "آخر 24 ساعة",
+        "7d": "آخر 7 أيام",
+        "pickDate": "اختر التاريخ",
+        "clear": "مسح الفلاتر",
+        "export": "تصدير"
+      },
+      "empty": {
+        "message": "لا يوجد شيء هنا",
+        "alt": "لا شيء"
+      },
+      "table": {
+        "time": "الوقت",
+        "currency": "العملة",
+        "amount": "الكمية",
+        "network": "الشبكة",
+        "blockConfirmation": "تأكيد الكتلة",
+        "depositAddress": "عنوان الإيداع",
+        "transactionId": "معرف المعاملة",
+        "depositId": "معرف الإيداع",
+        "state": "الحالة"
+      }
+    },
+    "deposit": {
+      "totalAssets": "إجمالي الأصول",
+      "available": "المتوفر",
+      "frozen": "المجمد",
+      "attention": "⚠ تنبيه",
+      "minimumDeposit": "الحد الأدنى للإيداع",
+      "minValue": "0.00000001 USDT",
+      "crediting": "الإيداع",
+      "allConfirmed": "كل شيء على ما يرام!!",
+      "confirmationsLeft": "متبقي {count} تأكيد",
+      "depositTitle": "إيداع",
+      "selectCoin": "اختر العملة / الرمز",
+      "selectCoinPlaceholder": "اختر العملة",
+      "generateAddress": "إنشاء عنوان للإيداع",
+      "riskTitle": "تحذير مخاطر USDT-OKTC",
+      "riskMessage": "العنوان مخصص فقط للإيداع على شبكة USDT-Optimism. أي إيداع آخر قد يؤدي إلى خسارة دائمة للأصول.",
+      "checkboxLabel": "أنا مدرك للمخاطر وأرغب في المتابعة.",
+      "confirm": "تأكيد"
+    },
+    "records": {
+      "title": "سجل الإيداعات",
+      "states": {
+        "completed": "مكتمل",
+        "pending": "قيد الانتظار",
+        "failed": "فشل"
+      },
+      "asset": "الأصل",
+      "time": "الوقت",
+      "last30Days": "آخر 30 يومًا",
+      "last60Days": "آخر 60 يومًا",
+      "last90Days": "آخر 90 يومًا",
+      "all": "الكل",
+      "selectDate": "اختيار التاريخ",
+      "startDate": "تاريخ البدء",
+      "endDate": "تاريخ الانتهاء",
+      "exportCSV": "تصدير CSV",
+      "table": {
+        "time": "الوقت",
+        "currency": "العملة",
+        "amount": "الكمية",
+        "network": "الشبكة",
+        "blockConfirmation": "تأكيد الكتلة",
+        "depositAddress": "عنوان الإيداع",
+        "transactionId": "معرّف المعاملة",
+        "depositId": "معرّف الإيداع",
+        "state": "الحالة"
+      },
+      "empty": {
+        "title": "لا يوجد شيء هنا",
+        "desc": "لم يتم العثور على سجلات مطابقة لتصفية البحث"
+      }
+    }
   }
 }

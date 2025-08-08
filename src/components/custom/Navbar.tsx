@@ -22,29 +22,35 @@ import { Button } from '../ui/button';
 import LangSwitcher from './LangSwitcher';
 import { Menu } from 'lucide-react';
 import { NAV_DATA } from '../../../utils/data';
-import { TbArticle, TbDeviceAnalytics } from 'react-icons/tb';
-import { FaBlog, FaGraduationCap, FaHandsHelping, FaPodcast, FaLandmark } from 'react-icons/fa';
+import { FaPodcast, FaLandmark } from 'react-icons/fa';
 import { MdOutlineExplore } from 'react-icons/md';
 import { ImNewspaper } from 'react-icons/im';
 import { GiSattelite } from 'react-icons/gi';
-import { LiaHotjar } from 'react-icons/lia';
 import { TiUserAddOutline } from 'react-icons/ti';
 import { RiExchangeLine, RiVerifiedBadgeLine } from 'react-icons/ri';
 import { PiHandDeposit, PiHandWithdraw } from 'react-icons/pi';
-import { LuMailQuestion } from 'react-icons/lu';
-import { GrContact } from 'react-icons/gr';
 import AnimatedLogo from './AnimatedLogo';
 import ThemeToggle from './ThemeToggle';
 import AnimatedLogoLight from './AnimatedLogoLight';
 import UserAvatar from './UserAvatar';
+import { useSession } from 'next-auth/react';
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  // Track authentication state more precisely
+  const isAuthenticated = status === 'authenticated' && session;
+  const isLoading = status === 'loading';
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Force re-render when authentication status changes
+  useEffect(() => {}, [session, status, isAuthenticated]);
 
   if (!mounted) {
     return (
@@ -133,6 +139,18 @@ const Navbar = () => {
               <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                 <Link href="/">Home</Link>
               </NavigationMenuItem>
+
+              {isAuthenticated && (
+                <>
+                  <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    <Link href="/dashboard/assets">Assets</Link>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                    <Link href="/spot">Spot</Link>
+                  </NavigationMenuItem>
+                </>
+              )}
+
               <NavigationMenuItem className="text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                 <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   Markets
@@ -152,30 +170,6 @@ const Navbar = () => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              {/* <NavigationMenuItem className="cursor-pointer">
-                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  Learn
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
-                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link className="flex gap-x-1 items-center" href="/articles">
-                        <TbArticle size={25} /> Articles
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link className="flex gap-x-1 items-center" href="/market-sentiment">
-                        <TbDeviceAnalytics size={25} /> Market Sentiment
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link className="flex gap-x-1 items-center" href="/crypto101">
-                        <FaGraduationCap size={25} /> Crypto 101
-                      </Link>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem> */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   insider
@@ -197,14 +191,6 @@ const Navbar = () => {
                         Newsroom
                       </Link>
                     </li>
-                    {/* <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="hot-topics">
-                        {' '}
-                        <LiaHotjar size={25} />
-                        Hot Topics
-                      </Link>
-                    </li> */}
                     <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
                       {' '}
                       <Link className="flex gap-x-1 items-center" href="podcasts">
@@ -263,51 +249,11 @@ const Navbar = () => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              {/* <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  Support
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="dark:bg-[#07153b]!  bg-[#DAE6EA]! dark:text-white text-[#07153b]">
-                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/faqs">
-                        {' '}
-                        <LuMailQuestion size={25} />
-                        Frequently Asked Questions (FAQs)
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/contact">
-                        {' '}
-                        <GrContact size={25} />
-                        Contact Us
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/help-topics">
-                        {' '}
-                        <FaHandsHelping size={25} />
-                        Help Topics
-                      </Link>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem> */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
         <div className="flex items-center gap-2">
           <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
-            {/* <Link
-              target="_blank"
-              href="https://mccoin-platform-demo.vercel.app"
-              className="px-3 py-1 border dark:border-white rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
-            >
-              Trade
-            </Link> */}
             <UserAvatar />
           </div>
           <ThemeToggle />
@@ -338,6 +284,14 @@ const Navbar = () => {
                 <UserAvatar className="lg:hidden" />
               </div>
               <Accordion className="px-4" type="single" collapsible>
+                {/* Add Spot menu item for authenticated users */}
+                {isAuthenticated && (
+                  <div className="py-2">
+                    <Link href="/spot" className="hover:underline text-[#EC3B3B] font-semibold">
+                      Spot Trading
+                    </Link>
+                  </div>
+                )}
                 {NAV_DATA.map((item, index) =>
                   item.children ? (
                     <AccordionItem key={index} value={`item-${index}`} className="text-white">
