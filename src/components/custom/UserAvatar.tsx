@@ -12,9 +12,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { User, LogOut, UserPlus, LogIn } from 'lucide-react';
+import { User, LogOut, UserPlus, LogIn, CheckCircle, XCircle } from 'lucide-react';
+import { MdOutlineVerifiedUser } from 'react-icons/md';
 import { useTheme } from 'next-themes';
 import toast from 'react-hot-toast';
+import { useState, useEffect } from 'react';
 
 interface UserAvatarProps {
   className?: string;
@@ -26,6 +28,48 @@ const UserAvatar = ({ className = '' }: UserAvatarProps) => {
   const locale = useLocale();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
+  const [isVerified, setIsVerified] = useState(false);
+
+  useEffect(() => {
+    // Check verification status from localStorage
+    const checkVerificationStatus = () => {
+      const status = localStorage.getItem('userVerificationStatus');
+      setIsVerified(status === 'verified');
+    };
+
+    checkVerificationStatus();
+
+    // Listen for storage changes (for cross-tab updates)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'userVerificationStatus') {
+        setIsVerified(e.newValue === 'verified');
+      }
+    };
+
+    // Listen for custom verification status change events (same tab)
+    const handleVerificationChange = (e: CustomEvent) => {
+      setIsVerified(e.detail === 'verified');
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('verificationStatusChanged', handleVerificationChange as EventListener);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener(
+        'verificationStatusChanged',
+        handleVerificationChange as EventListener,
+      );
+    };
+  }, []);
+
+  // Also check verification status when session changes
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user) {
+      const status = localStorage.getItem('userVerificationStatus');
+      setIsVerified(status === 'verified');
+    }
+  }, [status, session]);
 
   const handleSignOut = async () => {
     try {
@@ -96,6 +140,17 @@ const UserAvatar = ({ className = '' }: UserAvatarProps) => {
                 </AvatarFallback>
               )}
             </Avatar>
+
+            {/* Verification Status Badge */}
+            {status === 'authenticated' && session?.user && (
+              <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center">
+                {isVerified ? (
+                  <CheckCircle className="w-3 h-3 text-green-500" />
+                ) : (
+                  <XCircle className="w-3 h-3 text-red-500" />
+                )}
+              </div>
+            )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -118,6 +173,17 @@ const UserAvatar = ({ className = '' }: UserAvatarProps) => {
                       {session.user.email}
                     </p>
                   )}
+                  {/* Verification Status Display */}
+                  <div className="flex items-center gap-1 mt-1">
+                    {isVerified ? (
+                      <CheckCircle className="w-3 h-3 text-green-500" />
+                    ) : (
+                      <XCircle className="w-3 h-3 text-red-500" />
+                    )}
+                    <span className={`text-xs ${isVerified ? 'text-green-500' : 'text-red-500'}`}>
+                      {isVerified ? 'Verified' : 'Not Verified'}
+                    </span>
+                  </div>
                 </div>
               </div>
               <DropdownMenuSeparator className={isDark ? 'bg-gray-600' : 'bg-gray-200'} />
@@ -134,6 +200,25 @@ const UserAvatar = ({ className = '' }: UserAvatarProps) => {
                   <span>{t('profile') || 'Profile'}</span>
                 </Link>
               </DropdownMenuItem>
+              {/* Only show Verify Your Account if user is not verified */}
+              {!isVerified && (
+                <>
+                  <DropdownMenuSeparator className={isDark ? 'bg-gray-600' : 'bg-gray-200'} />
+                  <DropdownMenuItem
+                    className={`cursor-pointer ${
+                      isDark
+                        ? 'hover:bg-gray-700 focus:bg-gray-700'
+                        : 'hover:bg-gray-100 focus:bg-gray-100'
+                    }`}
+                    asChild
+                  >
+                    <Link className="flex" href={`/${locale}/verify-your-account`}>
+                      <MdOutlineVerifiedUser />
+                      <span>{t('verify-your-account')}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                </>
+              )}
               <DropdownMenuSeparator className={isDark ? 'bg-gray-600' : 'bg-gray-200'} />
               <DropdownMenuItem
                 className={`cursor-pointer ${

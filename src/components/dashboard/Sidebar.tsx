@@ -36,32 +36,118 @@ const Sidebar = () => {
       }
     };
 
+    // Listen for custom verification status change events (same tab)
+    const handleVerificationChange = (e: CustomEvent) => {
+      setIsVerified(e.detail === 'verified');
+    };
+
     window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    window.addEventListener('verificationStatusChanged', handleVerificationChange as EventListener);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener(
+        'verificationStatusChanged',
+        handleVerificationChange as EventListener,
+      );
+    };
   }, []);
 
-  return (
-    <aside className="w-full lg:w-64 bg-[#081935] p-4 space-y-4 shadow-2xl">
-      <nav className="space-y-2">
-        {/* My Profile */}
-        <Link
-          href="/dashboard/profile"
-          className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer ${
-            isActive('/dashboard/profile')
-              ? 'bg-[#EC3B3B] text-white'
-              : 'text-[#DAE6EA] hover:text-white'
-          }`}
-        >
-          <User className="w-5 h-5" />
-          {t('sidebar.profile')}
-        </Link>
+  // Animation variants
+  const sidebarVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20,
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-        {/* Spot with Submenu - Only show if verified */}
-        {isAuthenticated && (
-          <div>
-            <div
+  const itemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 25,
+      },
+    },
+  };
+
+  const hoverVariants = {
+    hover: {
+      x: 5,
+      scale: 1.02,
+      transition: { type: 'spring', stiffness: 400, damping: 10 },
+    },
+  };
+
+  const activeVariants = {
+    active: {
+      scale: 1.05,
+      boxShadow: '0 0 20px rgba(236, 59, 59, 0.4)',
+      transition: { type: 'spring', stiffness: 400, damping: 10 },
+    },
+  };
+
+  return (
+    <motion.aside
+      className="w-full flex justify-center sm:justify-start lg:w-64 bg-gradient-to-b from-[#081935] via-[#0a1f3d] to-[#081935] p-6 space-y-6 shadow-2xl border-r border-[#1a2f4d] relative overflow-hidden"
+      variants={sidebarVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0d2444] via-transparent to-[#0a1f3d] opacity-30" />
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#EC3B3B] to-transparent opacity-10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#1a2f4d] to-transparent opacity-20 rounded-full blur-2xl" />
+
+      {/* Glowing border effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#EC3B3B] to-transparent opacity-5 blur-sm" />
+
+      <nav className="space-y-2 relative z-10">
+        {/* My Profile */}
+        <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
+          <Link
+            href="/dashboard/profile"
+            className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+              isActive('/dashboard/profile')
+                ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+                : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+            } border border-transparent hover:border-[#EC3B3B]/20`}
+          >
+            <motion.div
+              animate={isActive('/dashboard/profile') ? 'active' : {}}
+              variants={activeVariants}
+              className="flex items-center gap-3 w-full"
+            >
+              <div
+                className={`p-2 rounded-lg ${
+                  isActive('/dashboard/profile')
+                    ? 'bg-white/20'
+                    : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                } transition-all duration-300`}
+              >
+                <User className="w-5 h-5" />
+              </div>
+              <span className="font-medium">{t('sidebar.profile')}</span>
+            </motion.div>
+          </Link>
+        </motion.div>
+
+        {/* Assets with Submenu - Only show if verified */}
+        {isAuthenticated && isVerified && (
+          <motion.div variants={itemVariants}>
+            <motion.div
               onClick={() => setSpotExpanded(!spotExpanded)}
-              className={`flex items-center justify-between px-2 py-2 rounded-md cursor-pointer ${
+              className={`group relative flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                 [
                   '/dashboard/assets',
                   '/dashboard/assets/trading-account',
@@ -71,21 +157,40 @@ const Sidebar = () => {
                 ]
                   .map(path => `/${locale}${path}`)
                   .includes(pathname)
-                  ? 'bg-[#EC3B3B] text-white'
-                  : 'text-[#DAE6EA] hover:text-white'
-              }`}
+                  ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+                  : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+              } border border-transparent hover:border-[#EC3B3B]/20`}
+              whileHover={{ x: 5, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <div className="flex items-center gap-2">
-                <LayoutDashboard className="w-5 h-5" />
-                {t('sidebar.my_wallet')}
+              <div className="flex items-center gap-3">
+                <div
+                  className={`p-2 rounded-lg ${
+                    [
+                      '/dashboard/assets',
+                      '/dashboard/assets/trading-account',
+                      '/dashboard/assets/funding-account',
+                      '/dashboard/records',
+                      '/dashboard/withdraw-records',
+                    ]
+                      .map(path => `/${locale}${path}`)
+                      .includes(pathname)
+                      ? 'bg-white/20'
+                      : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                  } transition-all duration-300`}
+                >
+                  <LayoutDashboard className="w-5 h-5" />
+                </div>
+                <span className="font-medium">{t('sidebar.my_wallet')}</span>
               </div>
               <motion.div
                 animate={{ rotate: spotExpanded ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="p-1 rounded-lg bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20 transition-all duration-300"
               >
                 <ChevronDown className="w-4 h-4" />
               </motion.div>
-            </div>
+            </motion.div>
 
             {/* Subitems */}
             <AnimatePresence>
@@ -94,181 +199,199 @@ const Sidebar = () => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className="overflow-hidden"
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="overflow-hidden mt-2"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2, delay: 0.1 }}
-                    className="ml-8 mt-1 space-y-1 text-[#DAE6EA] text-sm"
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    className="ml-8 space-y-2 text-[#DAE6EA] text-sm"
                   >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.15 }}
-                    >
-                      <Link
-                        href="/dashboard/assets"
-                        className={`block cursor-pointer py-1 px-2 rounded-md transition-colors duration-200 ${
-                          isActive('/dashboard/assets')
-                            ? 'font-bold text-white'
-                            : 'hover:text-white hover:bg-[#0f294d]'
-                        }`}
+                    {[
+                      { href: '/dashboard/assets', label: t('sidebar.assets'), delay: 0.15 },
+                      {
+                        href: '/dashboard/assets/trading-account',
+                        label: 'Trading Account',
+                        delay: 0.2,
+                      },
+                      {
+                        href: '/dashboard/assets/funding-account',
+                        label: 'Funding Account',
+                        delay: 0.25,
+                      },
+                      { href: '/dashboard/records', label: t('sidebar.records'), delay: 0.3 },
+                      {
+                        href: '/dashboard/withdraw-records',
+                        label: t('sidebar.withdraw-records'),
+                        delay: 0.35,
+                      },
+                    ].map((item, index) => (
+                      <motion.div
+                        key={item.href}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: item.delay, duration: 0.3 }}
                       >
-                        {t('sidebar.assets')}
-                      </Link>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <Link
-                        href="/dashboard/assets/trading-account"
-                        className={`block cursor-pointer py-1 px-2 rounded-md transition-colors duration-200 ${
-                          isActive('/dashboard/assets/trading-account')
-                            ? 'font-bold text-white'
-                            : 'hover:text-white hover:bg-[#0f294d]'
-                        }`}
-                      >
-                        Trading Account
-                      </Link>
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <Link
-                        href="/dashboard/assets/funding-account"
-                        className={`block cursor-pointer py-1 px-2 rounded-md transition-colors duration-200 ${
-                          isActive('/dashboard/assets/funding-account')
-                            ? 'font-bold text-white'
-                            : 'hover:text-white hover:bg-[#0f294d]'
-                        }`}
-                      >
-                        Funding Account
-                      </Link>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.25 }}
-                    >
-                      <Link
-                        href="/dashboard/records"
-                        className={`block cursor-pointer py-1 px-2 rounded-md transition-colors duration-200 ${
-                          isActive('/dashboard/records')
-                            ? 'font-bold text-white'
-                            : 'hover:text-white hover:bg-[#0f294d]'
-                        }`}
-                      >
-                        {t('sidebar.records')}
-                      </Link>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.35 }}
-                    >
-                      <Link
-                        href="/dashboard/withdraw-records"
-                        className={`block cursor-pointer py-1 px-2 rounded-md transition-colors duration-200 ${
-                          isActive('/dashboard/withdraw-records')
-                            ? 'font-bold text-white'
-                            : 'hover:text-white hover:bg-[#0f294d]'
-                        }`}
-                      >
-                        {t('sidebar.withdraw-records')}
-                      </Link>
-                    </motion.div>
+                        <Link
+                          href={item.href}
+                          className={`group relative block cursor-pointer py-2 px-3 rounded-lg transition-all duration-300 ${
+                            isActive(item.href)
+                              ? 'font-semibold text-white bg-gradient-to-r from-[#EC3B3B]/20 to-[#D13535]/20 border border-[#EC3B3B]/30 shadow-lg shadow-[#EC3B3B]/20'
+                              : 'hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d]/50 hover:to-[#22304A]/50 hover:border hover:border-[#EC3B3B]/20'
+                          }`}
+                        >
+                          <motion.div whileHover={{ x: 3 }} className="flex items-center gap-2">
+                            <div
+                              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                isActive(item.href)
+                                  ? 'bg-[#EC3B3B] shadow-lg shadow-[#EC3B3B]/50'
+                                  : 'bg-[#4a5c7a] group-hover:bg-[#EC3B3B]/60'
+                              }`}
+                            />
+                            {item.label}
+                          </motion.div>
+                        </Link>
+                      </motion.div>
+                    ))}
                   </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         )}
 
         {/* Order History - Only show if verified */}
-        {isAuthenticated && (
-          <Link
-            href="/dashboard/order-history"
-            className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer ${
-              isActive('/dashboard/order-history')
-                ? 'bg-[#EC3B3B] text-white'
-                : 'text-[#DAE6EA] hover:text-white'
-            }`}
-          >
-            <History className="w-5 h-5" />
-            {t('sidebar.orderHistory')}
-          </Link>
+        {isAuthenticated && isVerified && (
+          <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/dashboard/order-history"
+              className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+                isActive('/dashboard/order-history')
+                  ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+                  : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+              } border border-transparent hover:border-[#EC3B3B]/20`}
+            >
+              <motion.div
+                animate={isActive('/dashboard/order-history') ? 'active' : {}}
+                variants={activeVariants}
+                className="flex items-center gap-3 w-full"
+              >
+                <div
+                  className={`p-2 rounded-lg ${
+                    isActive('/dashboard/order-history')
+                      ? 'bg-white/20'
+                      : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                  } transition-all duration-300`}
+                >
+                  <History className="w-5 h-5" />
+                </div>
+                <span className="font-medium">{t('sidebar.orderHistory')}</span>
+              </motion.div>
+            </Link>
+          </motion.div>
         )}
 
         {/* Preferences */}
-        <Link
-          href="/dashboard/preferences"
-          className={`flex items-center gap-2 px-2 py-2 rounded-md cursor-pointer ${
-            isActive('/dashboard/preferences')
-              ? 'bg-[#EC3B3B] text-white'
-              : 'text-[#DAE6EA] hover:text-white'
-          }`}
-        >
-          <Cog className="w-5 h-5" />
-          {t('sidebar.preferences')}
-        </Link>
+        <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
+          <Link
+            href="/dashboard/preferences"
+            className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+              isActive('/dashboard/preferences')
+                ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+                : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+            } border border-transparent hover:border-[#EC3B3B]/20`}
+          >
+            <motion.div
+              animate={isActive('/dashboard/preferences') ? 'active' : {}}
+              variants={activeVariants}
+              className="flex items-center gap-3 w-full"
+            >
+              <div
+                className={`p-2 rounded-lg ${
+                  isActive('/dashboard/preferences')
+                    ? 'bg-white/20'
+                    : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                } transition-all duration-300`}
+              >
+                <Cog className="w-5 h-5" />
+              </div>
+              <span className="font-medium">{t('sidebar.preferences')}</span>
+            </motion.div>
+          </Link>
+        </motion.div>
 
         {/* Logout */}
-        <div
-          className="flex items-center gap-2 hover:text-red-500 cursor-pointer px-2"
-          onClick={() => setShowLogoutPrompt(true)}
+        <motion.div
+          variants={itemVariants}
+          whileHover={{ x: 5, scale: 1.02 }}
+          whileTap={{ scale: 0.95 }}
+          className="mt-8"
         >
-          <LogOut className="w-5 h-5" /> {t('sidebar.logout')}
-        </div>
+          <div
+            className="group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 text-[#DAE6EA] hover:text-red-400 hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A] border border-transparent hover:border-red-500/20"
+            onClick={() => setShowLogoutPrompt(true)}
+          >
+            <div className="p-2 rounded-lg bg-[#1a2f4d]/50 group-hover:bg-red-500/20 transition-all duration-300">
+              <LogOut className="w-5 h-5" />
+            </div>
+            <span className="font-medium">{t('sidebar.logout')}</span>
+          </div>
+        </motion.div>
       </nav>
+
       {/* Logout Confirmation Modal */}
       <AnimatePresence>
         {showLogoutPrompt && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-[#101C36] rounded-xl shadow-2xl p-8 w-full max-w-sm text-center relative"
-              initial={{ scale: 0.8, opacity: 0, y: 40 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 40 }}
+              className="relative bg-gradient-to-br from-[#101C36] via-[#0a1f3d] to-[#081935] rounded-2xl shadow-2xl p-8 w-full max-w-sm text-center border border-[#1a2f4d] overflow-hidden"
+              initial={{ scale: 0.8, opacity: 0, y: 40, rotateX: -15 }}
+              animate={{ scale: 1, opacity: 1, y: 0, rotateX: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 40, rotateX: -15 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             >
-              <div className="text-lg font-semibold mb-4 text-white">{t('logoutPrompt')}</div>
-              <div className="flex justify-center gap-4 mt-6">
-                <button
-                  className="px-6 py-2 rounded-md bg-[#EC3B3B] text-white font-medium hover:bg-[#D13535] transition-colors"
-                  onClick={() => {
-                    // setShowLogoutPrompt(false);
-                    // setTimeout(() => signOut(), 300); // allow animation to finish
-                  }}
-                >
-                  {t('yes')}
-                </button>
-                <button
-                  className="px-6 py-2 rounded-md bg-[#22304A] text-white font-medium hover:bg-[#1a2536] transition-colors"
-                  onClick={() => setShowLogoutPrompt(false)}
-                >
-                  {t('no')}
-                </button>
+              {/* Modal background effects */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#EC3B3B]/5 via-transparent to-[#1a2f4d]/20" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#EC3B3B] to-transparent opacity-10 rounded-full blur-3xl" />
+
+              <div className="relative z-10">
+                <div className="text-xl font-bold mb-6 text-white bg-gradient-to-r from-[#EC3B3B] to-[#D13535] bg-clip-text text-transparent">
+                  {t('logoutPrompt')}
+                </div>
+                <div className="flex justify-center gap-4 mt-8">
+                  <motion.button
+                    className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white font-semibold shadow-lg shadow-[#EC3B3B]/30 border border-[#EC3B3B]/20 hover:shadow-xl hover:shadow-[#EC3B3B]/40 transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      // setShowLogoutPrompt(false);
+                      // setTimeout(() => signOut(), 300); // allow animation to finish
+                    }}
+                  >
+                    {t('yes')}
+                  </motion.button>
+                  <motion.button
+                    className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#22304A] to-[#1a2536] text-white font-semibold shadow-lg shadow-[#1a2536]/30 border border-[#1a2536]/20 hover:shadow-xl hover:shadow-[#1a2536]/40 transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowLogoutPrompt(false)}
+                  >
+                    {t('no')}
+                  </motion.button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </aside>
+    </motion.aside>
   );
 };
 

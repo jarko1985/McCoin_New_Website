@@ -22,7 +22,6 @@ import { TbDeviceAnalytics } from 'react-icons/tb';
 import { FaGraduationCap } from 'react-icons/fa';
 import { ImNewspaper } from 'react-icons/im';
 import { GiSattelite } from 'react-icons/gi';
-import { LiaHotjar } from 'react-icons/lia';
 import { FaPodcast } from 'react-icons/fa';
 import { TiUserAddOutline } from 'react-icons/ti';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
@@ -49,7 +48,7 @@ export type PrivacyPolicyItem = {
 };
 
 export const NAV_DATA = [
-  { title: 'About', href: '/about' },
+  { title: 'Home', href: '/' },
   {
     title: 'Markets',
     children: [
@@ -101,18 +100,18 @@ export const NAV_DATA = [
       { title: 'Withdraw Funds', icon: PiHandWithdraw, href: '/withdraw' },
     ],
   },
-  {
-    title: 'Support center',
-    children: [
-      {
-        title: 'Frequently Asked Questions (FAQs)',
-        icon: LuMailQuestion,
-        href: '/faqs',
-      },
-      { title: 'Contact Us', icon: GrContact, href: '/contact' },
-      { title: 'Help Topics', icon: FaHandsHelping, href: '/help-topics' },
-    ],
-  },
+  // {
+  //   title: 'Support center',
+  //   children: [
+  //     {
+  //       title: 'Frequently Asked Questions (FAQs)',
+  //       icon: LuMailQuestion,
+  //       href: '/faqs',
+  //     },
+  //     { title: 'Contact Us', icon: GrContact, href: '/contact' },
+  //     { title: 'Help Topics', icon: FaHandsHelping, href: '/help-topics' },
+  //   ],
+  // },
 ];
 export const OurGoalsData = [
   {
@@ -483,13 +482,13 @@ export const FooterLinks: FooterLink[] = [
       {
         id: 51,
         label: 'Create-an-Account',
-        href: 'create-an-account',
+        href: '/how-to/create-an-account',
         iconName: 'PlusCircle',
       },
       {
         id: 52,
         label: 'Verify-your-Account(KYC)',
-        href: 'verify-your-account',
+        href: '/how-to/verify-your-account',
         iconName: 'User',
       },
       {

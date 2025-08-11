@@ -13,11 +13,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isLoading && !isAuthenticated) {
       const locale = window.location.pathname.split('/')[1];
       router.push(`/${locale}/login`);
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, isLoading, router]);
 
   // Show loading while checking authentication
   if (isLoading) {
@@ -41,14 +41,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex lg:flex-row flex-col">
         <Sidebar />
         <main className="flex-1 py-4.5">
-          <div>
+          <div className="text-center sm:text-left">
             <Button
               onClick={() => router.push('/')}
               className="mb-2 border border-transparent cursor-pointer bg-[#DAE6EA] text-[#07153B] 
             hover:bg-[#07153B] hover:text-[#DAE6EA] hover:border-[#DAE6EA]"
             >
               <ChevronLeft />
-              Back to Home
+              <p className="text-center">Back to Home</p>
             </Button>
           </div>
           {children}

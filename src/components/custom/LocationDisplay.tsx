@@ -14,8 +14,6 @@ const labelsByLocale: Record<string, { detecting: string; retry: string; detect:
 export default function LocationDisplay() {
   const { locale } = useParams() as { locale: string };
   const { location, isLoading, error, refresh } = useLocation();
-  console.log(location);
-  
 
   const localizedLabels = labelsByLocale[locale as string] ?? labelsByLocale['en'];
 
@@ -27,10 +25,7 @@ export default function LocationDisplay() {
     return (
       <div className="text-sm text-red-500 hidden">
         {error}
-        <button
-          onClick={refresh}
-          className="ml-2 text-blue-500 hover:underline hidden"
-        >
+        <button onClick={refresh} className="ml-2 text-blue-500 hover:underline hidden">
           {localizedLabels.retry}
         </button>
       </div>
@@ -39,10 +34,7 @@ export default function LocationDisplay() {
 
   if (!location) {
     return (
-      <button
-        onClick={refresh}
-        className="text-sm text-blue-500 hover:underline hidden"
-      >
+      <button onClick={refresh} className="text-sm text-blue-500 hover:underline hidden">
         {localizedLabels.detect}
       </button>
     );
@@ -57,8 +49,7 @@ export default function LocationDisplay() {
         onClick={refresh}
         className="ml-2 text-blue-500 hover:underline text-xs"
         title={localizedLabels.retry}
-      >
-      </button>
+      ></button>
     </div>
   );
 }

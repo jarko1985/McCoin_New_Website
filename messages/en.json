@@ -43,6 +43,7 @@
     "resend_verification_hint": "Didn't receive the email? Check your spam folder or contact support."
   },
   "navbar": {
+    "verify-your-account": "Verify Your Account",
     "profile": "Profile",
     "logout": "Logout",
     "signup": "Sign up",

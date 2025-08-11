@@ -34,12 +34,15 @@ import ThemeToggle from './ThemeToggle';
 import AnimatedLogoLight from './AnimatedLogoLight';
 import UserAvatar from './UserAvatar';
 import { useSession } from 'next-auth/react';
+import { LuMailQuestion } from 'react-icons/lu';
+import { GrContact } from 'react-icons/gr';
+import { FaHandsHelping } from 'react-icons/fa';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   // Track authentication state more precisely
   const isAuthenticated = status === 'authenticated' && session;
@@ -48,6 +51,47 @@ const Navbar = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    // Check verification status from localStorage
+    const checkVerificationStatus = () => {
+      const status = localStorage.getItem('userVerificationStatus');
+      setIsVerified(status === 'verified');
+    };
+
+    checkVerificationStatus();
+
+    // Listen for storage changes (for cross-tab updates)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'userVerificationStatus') {
+        setIsVerified(e.newValue === 'verified');
+      }
+    };
+
+    // Listen for custom verification status change events (same tab)
+    const handleVerificationChange = (e: CustomEvent) => {
+      setIsVerified(e.detail === 'verified');
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('verificationStatusChanged', handleVerificationChange as EventListener);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener(
+        'verificationStatusChanged',
+        handleVerificationChange as EventListener,
+      );
+    };
+  }, []);
+
+  // Also check verification status when session changes
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user) {
+      const status = localStorage.getItem('userVerificationStatus');
+      setIsVerified(status === 'verified');
+    }
+  }, [status, session]);
 
   // Force re-render when authentication status changes
   useEffect(() => {}, [session, status, isAuthenticated]);
@@ -95,13 +139,6 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-2">
             <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
-              <Link
-                target="_blank"
-                href="https://mccoin-platform-demo.vercel.app"
-                className="px-3 py-1 border dark:border-white border-[#07153b] rounded-lg text-white hover:text-[#07153b] bg-[#07153b] hover:bg-white hover:border-[#07153b] hover:-translate-y-1 duration-300 transition-all"
-              >
-                Trade
-              </Link>
               <UserAvatar />
             </div>
             <div className="lg:hidden">
@@ -140,7 +177,8 @@ const Navbar = () => {
                 <Link href="/">Home</Link>
               </NavigationMenuItem>
 
-              {isAuthenticated && (
+              {/* Only show Assets and Spot if user is authenticated AND verified */}
+              {isAuthenticated && isVerified && (
                 <>
                   <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                     <Link href="/dashboard/assets">Assets</Link>
@@ -275,51 +313,157 @@ const Navbar = () => {
                 </Link>
               </SheetHeader>
               <div className="flex flex-row items-center justify-start gap-x-2 pl-3">
-                <Link
-                  href="https://mccoin-platform-demo.vercel.app"
-                  className="px-3 py-1 border border-white rounded-lg text-white hover:text-[#07153b] hover:bg-white hover:-translate-y-1 duration-300 transition-all"
-                >
-                  Trade
-                </Link>
                 <UserAvatar className="lg:hidden" />
+                {session?.user?.email}
               </div>
-              <Accordion className="px-4" type="single" collapsible>
-                {/* Add Spot menu item for authenticated users */}
-                {isAuthenticated && (
+              <span className={`text-xs pl-5 ${isVerified ? 'text-green-500' : 'text-red-500'}`}>
+                {isVerified ? 'Verified' : 'Not Verified'}
+              </span>
+
+              {/* Mobile Menu Items - Same as Desktop for Authenticated & Verified Users */}
+              <div className="px-4 py-4 space-y-4">
+                {/* Home */}
+                <div className="py-2">
+                  <Link href="/" className="hover:underline hover:text-[#EC3B3B] font-semibold">
+                    Home
+                  </Link>
+                </div>
+
+                {/* Assets - Only show if authenticated AND verified */}
+                {isAuthenticated && isVerified && (
                   <div className="py-2">
-                    <Link href="/spot" className="hover:underline text-[#EC3B3B] font-semibold">
-                      Spot Trading
+                    <Link
+                      href="/dashboard/assets"
+                      className="hover:underline hover:text-[#EC3B3B] font-semibold"
+                    >
+                      Assets
                     </Link>
                   </div>
                 )}
-                {NAV_DATA.map((item, index) =>
-                  item.children ? (
-                    <AccordionItem key={index} value={`item-${index}`} className="text-white">
-                      <SheetTitle></SheetTitle>
 
-                      <AccordionTrigger>{item.title}</AccordionTrigger>
-                      <AccordionContent className="flex flex-col gap-y-3 pl-2">
-                        {item.children.map((child, idx) => (
-                          <Link
-                            key={idx}
-                            href={child.href}
-                            className="flex items-center gap-x-2 hover:underline"
-                          >
-                            <child.icon className="w-4 h-4" />
-                            {child.title}
-                          </Link>
-                        ))}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ) : (
-                    <div key={index} className="py-2">
-                      <Link href={item.href} className="hover:underline">
-                        {item.title}
-                      </Link>
-                    </div>
-                  ),
+                {/* Spot - Only show if authenticated AND verified */}
+                {isAuthenticated && isVerified && (
+                  <div className="py-2">
+                    <Link
+                      href="/spot"
+                      className="hover:underline hover:text-[#EC3B3B] font-semibold"
+                    >
+                      Spot
+                    </Link>
+                  </div>
                 )}
-              </Accordion>
+
+                {/* Markets Accordion */}
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="markets" className="border-none">
+                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
+                      Markets
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
+                      <Link
+                        href="/market-overview"
+                        className="flex items-center gap-x-2 hover:underline"
+                      >
+                        <FaLandmark size={20} />
+                        Overview
+                      </Link>
+                      <Link
+                        href="/market-explorer"
+                        className="flex items-center gap-x-2 hover:underline"
+                      >
+                        <MdOutlineExplore size={20} />
+                        Explorer
+                      </Link>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                {/* Insider Accordion */}
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="insider" className="border-none">
+                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
+                      McCoin insider
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
+                      <Link href="/top-news" className="flex items-center gap-x-2 hover:underline">
+                        <ImNewspaper size={20} />
+                        Top News
+                      </Link>
+                      <Link href="/news-room" className="flex items-center gap-x-2 hover:underline">
+                        <GiSattelite size={20} />
+                        Newsroom
+                      </Link>
+                      <Link href="/podcasts" className="flex items-center gap-x-2 hover:underline">
+                        <FaPodcast size={20} />
+                        Podcasts
+                      </Link>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                {/* How to Accordion */}
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="how-to" className="border-none">
+                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
+                      How to
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
+                      <Link
+                        href="/how-to/create-account"
+                        className="flex items-center gap-x-2 hover:underline"
+                      >
+                        <TiUserAddOutline size={20} />
+                        Create an Account
+                      </Link>
+                      <Link
+                        href="/how-to/kyc-verification"
+                        className="flex items-center gap-x-2 hover:underline"
+                      >
+                        <RiVerifiedBadgeLine size={20} />
+                        Verify Your Identity (KYC)
+                      </Link>
+                      <Link href="#" className="flex items-center gap-x-2 hover:underline">
+                        <PiHandDeposit size={20} />
+                        Deposit Funds
+                      </Link>
+                      <Link href="#" className="flex items-center gap-x-2 hover:underline">
+                        <RiExchangeLine size={20} />
+                        Trade Cryptocurrency
+                      </Link>
+                      <Link href="#" className="flex items-center gap-x-2 hover:underline">
+                        <PiHandWithdraw size={20} />
+                        Withdraw Funds
+                      </Link>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                {/* Support Center */}
+                {/* <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="support" className="border-none">
+                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
+                      Support center
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
+                      <Link href="/faqs" className="flex items-center gap-x-2 hover:underline">
+                        <LuMailQuestion size={20} />
+                        Frequently Asked Questions (FAQs)
+                      </Link>
+                      <Link href="/contact" className="flex items-center gap-x-2 hover:underline">
+                        <GrContact size={20} />
+                        Contact Us
+                      </Link>
+                      <Link
+                        href="/help-topics"
+                        className="flex items-center gap-x-2 hover:underline"
+                      >
+                        <FaHandsHelping size={20} />
+                        Help Topics
+                      </Link>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion> */}
+              </div>
             </SheetContent>
           </Sheet>
         </div>
