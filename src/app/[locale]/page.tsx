@@ -1,6 +1,7 @@
 'use client';
 import AnimatedLogo from '@/components/custom/AnimatedLogo';
 import LocationDisplay from '@/components/custom/LocationDisplay';
+import MultiSwiper from '@/components/custom/MultiSwiper';
 import PodcastTeaserBanner from '@/components/homepage/PodcastBanner';
 import TradeNow from '@/components/homepage/TradeNow';
 import CryptoNewsUAE from '@/components/sections/CryptoNewsUAE';
@@ -42,6 +43,7 @@ export default function Home() {
       )}
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}>
         <Hero />
+        <MultiSwiper />
         <PricesTable />
         <OurPartners />
         <WhyMccoin />

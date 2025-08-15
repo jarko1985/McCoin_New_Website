@@ -45,6 +45,7 @@
     "date-fns": "^4.1.0",
     "formidable": "^3.5.4",
     "framer-motion": "^12.8.0",
+    "gsap": "^3.13.0",
     "lightweight-charts": "^5.0.8",
     "lucide-react": "^0.487.0",
     "mongodb": "^6.18.0",

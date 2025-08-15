@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
 interface Article {
   title: string;
@@ -109,14 +110,14 @@ export default function CryptoNewsUAE() {
       </div>
 
       {lastUpdated && (
-        <p className="text-center text-sm opacity-70 mb-4">
+        <p className="text-center text-sm dark:text-[#DAE6EA]/70 text-[#07153b]/70 mb-8">
           Last updated: {lastUpdated.toLocaleTimeString()}
         </p>
       )}
 
       {error && (
-        <div className="text-center text-red-500 mb-4 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg max-w-md mx-auto">
-          <p>Error: {error}</p>
+        <div className="text-center mb-8">
+          <p className="text-red-500 mb-4">{error}</p>
           <button
             onClick={handleManualRefresh}
             className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
@@ -152,12 +153,16 @@ export default function CryptoNewsUAE() {
                   rel="noreferrer"
                   className="flex gap-4 p-2 rounded-md border dark:border-white/10 border-[#07153b] shadow hover:shadow-lg dark:hover:bg-white/5 hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="w-20 h-20 bg-gray-300 rounded overflow-hidden flex-shrink-0">
-                    <img
+                  <div className="relative aspect-square w-20 h-20 rounded overflow-hidden flex-shrink-0">
+                    <Image
                       src={article.image || fallbackImage}
-                      onError={e => (e.currentTarget.src = fallbackImage)}
                       alt={article.title}
-                      className="object-cover w-full h-full"
+                      fill
+                      className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                      sizes="80px"
+                      onError={() => {
+                        // Fallback is handled by the src prop
+                      }}
                     />
                   </div>
                   <div>
@@ -185,12 +190,18 @@ export default function CryptoNewsUAE() {
             className="md:col-span-2 dark:bg-white/5 border-[#07153b] rounded-lg overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-2xl border dark:transition-all duration-300"
           >
             <a href={featured.url} target="_blank" rel="noreferrer">
-              <img
-                src={featured.image || fallbackImage}
-                onError={e => (e.currentTarget.src = fallbackImage)}
-                alt={featured.title}
-                className="w-full h-72 object-cover"
-              />
+              <div className="relative aspect-video w-full">
+                <Image
+                  src={featured.image || fallbackImage}
+                  alt={featured.title}
+                  fill
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  onError={() => {
+                    // Fallback is handled by the src prop
+                  }}
+                />
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 text-xs dark:text-[#DAE6EA]/70 text-[#07153b]">
                   <span className="bg-[#EC3B3B] dark:text-white text-[#07153b] px-2 py-1 rounded-full text-xs">

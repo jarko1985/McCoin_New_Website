@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { NewsItem } from '@/types/Messari';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+
 export default function BitcoinNews({ newsItems }: { newsItems: NewsItem[] }) {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const bitcoinNews = newsItems.filter(
@@ -22,10 +23,7 @@ export default function BitcoinNews({ newsItems }: { newsItems: NewsItem[] }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {bitcoinNews.slice(0, 6).map(news => (
           <Link key={news.id} href={`/${locale}/articles/${news.id}`} passHref>
-            <div
-              key={news.id}
-              className="bg-[#DAE6EA] dark:bg-[#07153b] shadow-xl rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-slate-400 group cursor-pointer"
-            >
+            <div className="bg-[#DAE6EA] dark:bg-[#07153b] shadow-xl rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-slate-400 group cursor-pointer">
               <div className="relative w-full aspect-video group-hover:scale-105 transition-all duration-500">
                 <Image
                   src={news.previewImage || '/placeholder-bitcoin.jpg'}
@@ -49,12 +47,9 @@ export default function BitcoinNews({ newsItems }: { newsItems: NewsItem[] }) {
                 </p>
 
                 {/* Read More */}
-                <Link
-                  href={`/${locale}/articles/${news.id}`}
-                  className="text-[#EC3B3B] font-medium mb-4 hover:underline cursor-pointer"
-                >
+                <div className="text-[#EC3B3B] font-medium mb-4 hover:underline cursor-pointer">
                   View More
-                </Link>
+                </div>
 
                 {/* Meta info */}
                 <div className="flex flex-col items-start text-sm text-[#07153b] dark:text-[#DAE6EA] border-t pt-3">

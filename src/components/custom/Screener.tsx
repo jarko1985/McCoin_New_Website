@@ -64,7 +64,7 @@ export default function Screener() {
         .ticker-track {
           display: flex;
           width: max-content;
-          animation: scrollLoop 60s linear infinite;
+          animation: scrollLoop 200s linear infinite;
         }
 
         .ticker-item {
