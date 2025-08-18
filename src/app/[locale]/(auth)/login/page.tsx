@@ -41,9 +41,10 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({ resolver: zodResolver(formSchema) });
 
-  // Check for NextAuth error parameters
+  // Check for NextAuth error parameters and pre-fill email
   useEffect(() => {
     const error = searchParams?.get('error');
     if (error) {
@@ -62,7 +63,13 @@ export default function LoginPage() {
           toast.error('An authentication error occurred. Please try again.');
       }
     }
-  }, [searchParams]);
+
+    // Pre-fill email from URL parameter
+    const emailParam = searchParams?.get('email');
+    if (emailParam) {
+      setValue('email', emailParam);
+    }
+  }, [searchParams, setValue]);
 
   const onSubmit = async (data: any) => {
     try {

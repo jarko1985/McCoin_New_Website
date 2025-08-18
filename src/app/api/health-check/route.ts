@@ -11,8 +11,10 @@ export async function GET(req: NextRequest) {
         nextAuthSecret: !!process.env.NEXTAUTH_SECRET,
         nextAuthUrl: !!process.env.NEXTAUTH_URL,
         mongodbUri: !!process.env.MONGODB_URI,
-        smtpEmail: !!process.env.SMTP_EMAIL,
-        smtpPassword: !!process.env.SMTP_PASSWORD,
+        smtpUser: !!process.env.SMTP_USER,
+        microsoftClientId: !!process.env.MICROSOFT_CLIENT_ID,
+        microsoftClientSecret: !!process.env.MICROSOFT_CLIENT_SECRET,
+        microsoftTenantId: !!process.env.MICROSOFT_TENANT_ID,
       },
       database: {
         connected: false,
@@ -24,7 +26,7 @@ export async function GET(req: NextRequest) {
     try {
       if (mongoose.connection.readyState !== 1) {
         await mongoose.connect(process.env.MONGODB_URI!, {
-          serverSelectionTimeoutMS: 5000, // 5 second timeout
+          serverSelectionTimeoutMS: 5000,
         });
       }
       healthStatus.database.connected = true;

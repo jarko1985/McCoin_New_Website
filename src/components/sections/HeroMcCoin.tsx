@@ -2,9 +2,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import Dashboard from '../homepage/Dashboard';
+import { getVerificationStatus } from '@/lib/verification';
+import { X, User, Shield, Wallet, TrendingUp } from 'lucide-react';
 
 const BG = '#07153B'; // page background
 const BRAND = '#EC3B3B'; // primary red
@@ -21,6 +26,23 @@ type IconSpec = {
   alt: string;
 };
 
+// Modal Types
+type ModalType = 'logged-in-not-verified' | 'not-logged-in' | 'logged-in-verified' | null;
+
+// Email validation function
+const validateEmail = (email: string): { isValid: boolean; error?: string } => {
+  if (!email.trim()) {
+    return { isValid: false, error: 'Email is required' };
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { isValid: false, error: 'Please enter a valid email address' };
+  }
+
+  return { isValid: true };
+};
+
 export default function HeroMcCoin() {
   // parallax
   const ref = useRef<HTMLDivElement>(null);
@@ -31,6 +53,39 @@ export default function HeroMcCoin() {
   const rotateX = useTransform(smy, [-200, 200], [6, -6]);
   const rotateY = useTransform(smx, [-200, 200], [-6, 6]);
   const shineX = useTransform(smx, [-200, 200], ['0%', '100%']);
+
+  // Session and state management
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const locale = useLocale();
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [showModal, setShowModal] = useState<ModalType>(null);
+  const [isVerified, setIsVerified] = useState(false);
+
+  // Check verification status
+  useEffect(() => {
+    const checkVerificationStatus = () => {
+      const status = getVerificationStatus();
+      setIsVerified(status === 'verified');
+    };
+
+    checkVerificationStatus();
+
+    // Listen for verification status changes
+    const handleVerificationChange = (e: CustomEvent) => {
+      setIsVerified(e.detail === 'verified');
+    };
+
+    window.addEventListener('verificationStatusChanged', handleVerificationChange as EventListener);
+    return () => {
+      window.removeEventListener(
+        'verificationStatusChanged',
+        handleVerificationChange as EventListener,
+      );
+    };
+  }, []);
 
   const onMouseMove = useCallback(
     (e: React.MouseEvent) => {
@@ -162,20 +217,183 @@ export default function HeroMcCoin() {
     ];
   }, []);
 
-  const [email, setEmail] = useState('');
-  const [busy, setBusy] = useState(false);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    // Clear error when user starts typing
+    if (emailError) {
+      setEmailError(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!/^\S+@\S+\.\S+$/.test(email)) return alert('Please enter a valid email.');
+
+    // Validate email
+    const validation = validateEmail(email);
+    if (!validation.isValid) {
+      setEmailError(validation.error || 'Invalid email');
+      return;
+    }
+
     setBusy(true);
+
     try {
-      // TODO: connect to your API/newsletter/auth flow
-      await new Promise(r => setTimeout(r, 800));
-      alert("Thanks! We'll be in touch shortly.");
-      setEmail('');
+      // Determine user state and show appropriate modal
+      const isAuthenticated = status === 'authenticated' && session;
+
+      if (isAuthenticated && !isVerified) {
+        // Case 1: User is logged in but not verified
+        setShowModal('logged-in-not-verified');
+      } else if (!isAuthenticated) {
+        // Case 2: User is not logged in
+        setShowModal('not-logged-in');
+      } else if (isAuthenticated && isVerified) {
+        // Case 3: User is logged in and verified
+        setShowModal('logged-in-verified');
+      }
+    } catch (error) {
+      console.error('Error handling submit:', error);
     } finally {
       setBusy(false);
     }
+  };
+
+  const closeModal = () => {
+    setShowModal(null);
+  };
+
+  const handleVerifyIdentity = () => {
+    closeModal();
+    router.push(`/${locale}/verify-your-account`);
+  };
+
+  const handleRegisterNow = () => {
+    closeModal();
+    router.push(`/${locale}/signup?email=${encodeURIComponent(email)}`);
+  };
+
+  const handleLogin = () => {
+    closeModal();
+    router.push(`/${locale}/login?email=${encodeURIComponent(email)}`);
+  };
+
+  const handleMyWallet = () => {
+    closeModal();
+    router.push(`/${locale}/dashboard/assets/overview`);
+  };
+
+  const handleTradeNow = () => {
+    closeModal();
+    router.push(`/${locale}/spot`);
+  };
+
+  // Modal Component
+  const Modal = ({ type }: { type: ModalType }) => {
+    if (!type) return null;
+
+    const modalContent = {
+      'logged-in-not-verified': {
+        icon: <Shield className="w-12 h-12 text-[#EC3B3B]" />,
+        title: 'Identity Verification Required',
+        message:
+          'You are already logged in. Please verify your identity to start trading with McCoin.',
+        buttons: [
+          { text: 'Cancel', onClick: closeModal, variant: 'secondary' },
+          { text: 'Verify Your Identity', onClick: handleVerifyIdentity, variant: 'primary' },
+        ],
+      },
+      'not-logged-in': {
+        icon: <User className="w-12 h-12 text-[#EC3B3B]" />,
+        title: 'Create Your Account',
+        message: 'Register an Account with McCoin to Enjoy seamless trading opportunity',
+        buttons: [
+          { text: 'Cancel', onClick: closeModal, variant: 'secondary' },
+          { text: 'Register Now', onClick: handleRegisterNow, variant: 'primary' },
+          { text: 'Login', onClick: handleLogin, variant: 'outline' },
+        ],
+      },
+      'logged-in-verified': {
+        icon: <Wallet className="w-12 h-12 text-[#EC3B3B]" />,
+        title: 'Welcome Back!',
+        message: 'You are already logged in and KYC verified. Please choose where to go next:',
+        buttons: [
+          { text: 'Cancel', onClick: closeModal, variant: 'secondary' },
+          { text: 'My Wallet', onClick: handleMyWallet, variant: 'primary' },
+          { text: 'Trade Now', onClick: handleTradeNow, variant: 'outline' },
+        ],
+      },
+    };
+
+    const content = modalContent[type];
+
+    return (
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+
+          {/* Modal */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-md bg-gradient-to-br from-[#0B1A40] to-[#07153B] rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Content */}
+            <div className="p-6 text-center">
+              {/* Icon */}
+              <div className="flex justify-center mb-4">{content.icon}</div>
+
+              {/* Title */}
+              <h3 className="text-xl font-bold text-white mb-3">{content.title}</h3>
+
+              {/* Message */}
+              <p className="text-[#DAE6EA]/80 text-sm leading-relaxed mb-6">{content.message}</p>
+
+              {/* Buttons */}
+              <div className="flex flex-col gap-3">
+                {content.buttons.map((button, index) => (
+                  <button
+                    key={index}
+                    onClick={button.onClick}
+                    className={`
+                      px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-200
+                      ${
+                        button.variant === 'primary'
+                          ? 'bg-gradient-to-r from-[#EC3B3B] to-[#B22525] text-white hover:from-[#B22525] hover:to-[#8A1E1E] shadow-lg hover:shadow-xl'
+                          : button.variant === 'outline'
+                          ? 'border border-[#EC3B3B] text-[#EC3B3B] hover:bg-[#EC3B3B] hover:text-white'
+                          : 'bg-white/10 text-white hover:bg-white/20'
+                      }
+                    `}
+                  >
+                    {button.text}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+    );
   };
 
   return (
@@ -218,19 +436,32 @@ export default function HeroMcCoin() {
               onSubmit={handleSubmit}
               className="mx-auto xl:mx-0 mt-6 xl:mt-8 flex w-full max-w-md flex-col gap-3 sm:max-w-lg sm:flex-row"
             >
-              <label className="sr-only" htmlFor="hero-email">
-                Email
-              </label>
-              <input
-                id="hero-email"
-                type="email"
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 rounded-2xl bg-[#0B1A40] px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-[15px] text-white outline-none ring-1 ring-white/10 placeholder:text-white/50 focus:ring-2 focus:ring-[rgba(236,59,59,.75)]"
-                aria-label="Email address"
-              />
+              <div className="flex-1">
+                <label className="sr-only" htmlFor="hero-email">
+                  Email
+                </label>
+                <input
+                  id="hero-email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Enter your email"
+                  className={`w-full rounded-2xl bg-[#0B1A40] px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-[15px] text-white outline-none ring-1 transition-all duration-200 placeholder:text-white/50 focus:ring-2 focus:ring-[rgba(236,59,59,.75)] ${
+                    emailError ? 'ring-[#EC3B3B]' : 'ring-white/10'
+                  }`}
+                  aria-label="Email address"
+                />
+                {emailError && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-1 text-xs text-[#EC3B3B] text-left"
+                  >
+                    {emailError}
+                  </motion.p>
+                )}
+              </div>
               <button
                 type="submit"
                 disabled={busy}
@@ -322,6 +553,9 @@ export default function HeroMcCoin() {
           </div>
         </div>
       </motion.div>
+
+      {/* Modal */}
+      <Modal type={showModal} />
     </section>
   );
 }
