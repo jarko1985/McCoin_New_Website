@@ -41,7 +41,15 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: {
       title: post.title,
       description: post.subtitle,
-      images: post.images,
+      images: post.images || ['/og-image.svg'],
+      type: 'article',
+      url: `https://mc-coin-new-website.vercel.app/en/crypto101/${id}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.subtitle,
+      images: post.images || ['/og-image.svg'],
     },
   };
 }

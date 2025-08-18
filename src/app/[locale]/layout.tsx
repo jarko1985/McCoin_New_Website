@@ -14,6 +14,7 @@ import { CookieConsent } from '@/components/cookies/CookieConsent';
 import { getLocation } from '@/lib/location';
 import { LocationProvider } from '@/context/LocationContext';
 import { ClientProviders } from './client-providers';
+import { defaultMetadata } from '@/lib/metadata';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -36,27 +37,7 @@ const atma = localFont({
   preload: true,
 });
 
-export const metadata: Metadata = {
-  title: 'Mccoin Virtual Assets',
-  description: 'Your trusted crypto exchange platform',
-  openGraph: {
-    title: 'Mccoin Virtual Assets',
-    description: 'Your trusted crypto exchange platform',
-    url: 'https://mc-coin-new-website.vercel.app/en',
-    siteName: 'Mccoin',
-    images: [
-      {
-        url: '/banner1.png',
-        width: 1200,
-        height: 630,
-        alt: 'Mccoin Banner',
-      },
-    ],
-  },
-  icons: {
-    icon: '/favicon.ico',
-  },
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default async function LocaleLayout({
   children,
