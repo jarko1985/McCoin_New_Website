@@ -515,7 +515,7 @@ export default function HeroMcCoin() {
             <div className="relative rounded-[20px] sm:rounded-[28px] border border-white/10 bg-[#0B1A40] p-2 shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
               <div className="overflow-hidden rounded-xl sm:rounded-2xl ring-1 ring-white/10">
                 <Image
-                  src="/images/hero_bg1.png"
+                  src="/images/hero_bg1.webp"
                   alt="McCoin trading platform preview"
                   width={1120}
                   height={700}
