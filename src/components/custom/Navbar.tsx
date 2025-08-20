@@ -182,7 +182,14 @@ const Navbar = () => {
               {(isArabic ? [...NavbarLinks].reverse() : NavbarLinks).map(item => {
                 // Check if item requires authentication and verification
                 if (item.requiresAuth && !isAuthenticated) return null;
-                if (item.requiresVerification && !isVerified) return null;
+
+                // Special case for Spot menu: show when logged in but not verified
+                if (item.label === 'spot') {
+                  if (!isAuthenticated) return null; // Don't show if not logged in
+                  // Show spot menu for both verified and unverified users
+                } else if (item.requiresVerification && !isVerified) {
+                  return null; // Hide other verification-required items
+                }
 
                 if (item.type === 'link' && item.href) {
                   return (
@@ -347,7 +354,14 @@ const Navbar = () => {
                 {NavbarLinks.map((item, index) => {
                   // Check if item requires authentication and verification
                   if (item.requiresAuth && !isAuthenticated) return null;
-                  if (item.requiresVerification && !isVerified) return null;
+
+                  // Special case for Spot menu: show when logged in but not verified
+                  if (item.label === 'spot') {
+                    if (!isAuthenticated) return null; // Don't show if not logged in
+                    // Show spot menu for both verified and unverified users
+                  } else if (item.requiresVerification && !isVerified) {
+                    return null; // Hide other verification-required items
+                  }
 
                   if (item.type === 'link' && item.href) {
                     return (

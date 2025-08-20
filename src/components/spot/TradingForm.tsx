@@ -4,7 +4,9 @@ import { useTranslations } from 'next-intl';
 import type React from 'react';
 import { toast } from 'react-hot-toast';
 import { useBalanceManager } from '@/lib/balance-manager';
-import { Lock } from 'lucide-react';
+import { Lock, X, Shield } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 interface SliderProps {
   value: number;
@@ -106,9 +108,17 @@ const TradingForm: React.FC = () => {
   const t = useTranslations('spot.tradingForm');
   const [activeTab, setActiveTab] = useState<'limit' | 'market'>('limit');
   const [isClient, setIsClient] = useState(false);
+  const [showVerificationModal, setShowVerificationModal] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+    // Check verification status from localStorage
+    const checkVerificationStatus = () => {
+      const status = localStorage.getItem('userVerificationStatus');
+      setIsVerified(status === 'verified');
+    };
+    checkVerificationStatus();
   }, []);
 
   // Get trading account balances from local storage (unified with dashboard)
@@ -178,6 +188,13 @@ const TradingForm: React.FC = () => {
 
   const handleBuySubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if user is verified
+    if (!isVerified) {
+      setShowVerificationModal(true);
+      return;
+    }
+
     const amount = parseFloat(buyForm.amount);
     const price = activeTab === 'market' ? state.currentPrice.price : parseFloat(buyForm.price);
     const total = amount * price;
@@ -220,6 +237,13 @@ const TradingForm: React.FC = () => {
 
   const handleSellSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if user is verified
+    if (!isVerified) {
+      setShowVerificationModal(true);
+      return;
+    }
+
     const amount = parseFloat(sellForm.amount);
     const price = activeTab === 'market' ? state.currentPrice.price : parseFloat(sellForm.price);
 
@@ -666,6 +690,73 @@ const TradingForm: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Verification Modal */}
+      <AnimatePresence>
+        {showVerificationModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowVerificationModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="bg-[#07153b] border border-slate-700 rounded-xl p-6 w-full max-w-md mx-4 relative"
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowVerificationModal(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-1"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Modal Content */}
+              <div className="text-center space-y-6">
+                {/* Icon */}
+                <div className="flex justify-center">
+                  <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center">
+                    <Shield className="w-8 h-8 text-orange-500" />
+                  </div>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Profile Verification Required
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Please verify your identity to be able to trade
+                  </p>
+                </div>
+
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                  <Link
+                    href="/verify-your-account"
+                    className="flex-1 bg-[#EC3B3B] hover:bg-[#d63333] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 text-center"
+                    onClick={() => setShowVerificationModal(false)}
+                  >
+                    Verify Account
+                  </Link>
+                  <button
+                    onClick={() => setShowVerificationModal(false)}
+                    className="flex-1 bg-transparent border border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
