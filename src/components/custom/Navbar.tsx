@@ -34,7 +34,7 @@ import AnimatedLogo from './AnimatedLogo';
 import ThemeToggle from './ThemeToggle';
 import AnimatedLogoLight from './AnimatedLogoLight';
 import UserAvatar from './UserAvatar';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { LuMailQuestion } from 'react-icons/lu';
 import { GrContact } from 'react-icons/gr';
 import { FaHandsHelping } from 'react-icons/fa';
@@ -102,44 +102,44 @@ const Navbar = () => {
 
   if (!mounted) {
     return (
-      <nav className="mx-auto container w-full bg-[#DAE6EA] py-6 sticky top-0 z-50">
+      <nav className="mx-auto w-full py-6 sticky top-0 z-50">
         <div className="flex justify-between px-5 lg:justify-around">
           <Link href="/">
             <AnimatedLogoLight />
           </Link>
           <div className="lg:block hidden">
-            <NavigationMenu className="bg-[#DAE6EA]! navigation-menu">
+            <NavigationMenu className="navigation-menu">
               <NavigationMenuList
-                className={`${isArabic ? 'flex-row-reverse!' : 'flex-row!'} gap-5 bg-[#DAE6EA]!`}
+                className={`${isArabic ? 'flex-row-reverse!' : 'flex-row!'} gap-5`}
               >
-                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                {/* <NavigationMenuItem className="p-0 hover:font-bold cursor-pointer!">
                   <Link href="/about">{t('about')}</Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                </NavigationMenuItem> */}
+                <NavigationMenuItem className="p-0 hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="dark:bg-[#07153b]! p-0 hover:font-bold cursor-pointer!">
                     {t('markets')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
-                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                {/* <NavigationMenuItem className="p-0 hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="p-0 hover:font-bold cursor-pointer!">
                     {t('learn')}
                   </NavigationMenuTrigger>
-                </NavigationMenuItem>
-                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                </NavigationMenuItem> */}
+                <NavigationMenuItem className="p-0 hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="dark:bg-[#07153b]! p-0 hover:font-bold cursor-pointer!">
                     {t('insider')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
-                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                <NavigationMenuItem className="p-0 hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="dark:bg-[#07153b]! p-0 hover:font-bold cursor-pointer!">
                     {t('how_to')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
-                <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
+                {/* <NavigationMenuItem className="p-0 hover:font-bold cursor-pointer!">
+                  <NavigationMenuTrigger className="p-0 hover:font-bold cursor-pointer!">
                     {t('support')}
                   </NavigationMenuTrigger>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
               </NavigationMenuList>
             </NavigationMenu>
           </div>
@@ -170,7 +170,7 @@ const Navbar = () => {
   const isDark = resolvedTheme === 'dark';
   return (
     <nav
-      className={`mx-auto container w-full ${
+      className={`mx-auto w-full ${
         isDark ? 'bg-[#07153b]' : 'bg-[#DAE6EA]'
       }   py-6 sticky top-0 z-50`}
     >
@@ -224,7 +224,10 @@ const Navbar = () => {
                                 key={child.id}
                                 className="flex gap-x-2 hover:font-bold cursor-pointer!"
                               >
-                                <Link className="flex gap-x-1 items-center" href={child.href}>
+                                <Link
+                                  className="flex gap-x-1 items-center gap-y-2 hover:text-[#EC3B3B] font-semibold"
+                                  href={child.href}
+                                >
                                   {IconComponent && <IconComponent size={25} />}
                                   {t(`menu_items.${translationKey}`)}
                                 </Link>
@@ -260,78 +263,167 @@ const Navbar = () => {
 
             <SheetContent className="lg:hidden bg-[#07153b] text-white overflow-y-auto">
               <SheetHeader>
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <Link href="/" className="block py-4">
                   <Image src={LOGO} alt="Logo Image" width={120} height={40} />
                 </Link>
               </SheetHeader>
-              <div className="flex flex-row items-center justify-start gap-x-2 pl-3">
-                <UserAvatar className="lg:hidden" />
-                {session?.user?.email}
+              {/* User Authentication Status Section */}
+              <div className="px-4 py-4 border-b border-gray-600/30">
+                {!isAuthenticated ? (
+                  // Not logged in state
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="text-red-400 font-medium text-sm">Not Logged In</span>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">
+                      Please Login or Register to Enjoy Seamless Trading Experience
+                    </p>
+                    <div className="flex flex-col gap-2">
+                      <Link
+                        href="/login"
+                        className="w-full bg-[#EC3B3B] hover:bg-[#d63333] text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        href="/signup"
+                        className="w-full bg-transparent border border-[#EC3B3B] text-[#EC3B3B] hover:bg-[#EC3B3B] hover:text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                      >
+                        Register
+                      </Link>
+                    </div>
+                  </div>
+                ) : !isVerified ? (
+                  // Logged in but not verified state
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <UserAvatar className="lg:hidden w-8 h-8" />
+                      <div className="flex-1">
+                        <p className="text-white font-semibold text-sm">
+                          Welcome,{' '}
+                          {session?.user?.name || session?.user?.email?.split('@')[0] || 'User'}
+                        </p>
+                        <p className="text-gray-400 text-xs">{session?.user?.email}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                      <span className="text-yellow-400 font-medium text-sm">
+                        User is not Verified
+                      </span>
+                    </div>
+                    <Link
+                      href="/verify-your-account"
+                      className="w-full bg-[#EC3B3B] hover:bg-[#d63333] text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                    >
+                      Verify Your Account
+                    </Link>
+                  </div>
+                ) : (
+                  // Logged in and verified state
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <UserAvatar className="lg:hidden w-8 h-8" />
+                      <div className="flex-1">
+                        <p className="text-white font-semibold text-sm">
+                          Welcome,{' '}
+                          {session?.user?.name || session?.user?.email?.split('@')[0] || 'User'}
+                        </p>
+                        <p className="text-gray-400 text-xs">{session?.user?.email}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-green-400 font-medium text-sm">Verified</span>
+                    </div>
+                  </div>
+                )}
               </div>
-              <span className={`text-xs pl-5 ${isVerified ? 'text-green-500' : 'text-red-500'}`}>
-                {isVerified ? t('verified') : t('not_verified')}
-              </span>
 
               {/* Mobile Menu Items - Using NavbarLinks Array */}
-              <div className="px-4 py-4 space-y-4">
-                {NavbarLinks.map(item => {
+              <div className="px-4 py-4 space-y-0">
+                {NavbarLinks.map((item, index) => {
                   // Check if item requires authentication and verification
                   if (item.requiresAuth && !isAuthenticated) return null;
                   if (item.requiresVerification && !isVerified) return null;
 
                   if (item.type === 'link' && item.href) {
                     return (
-                      <div key={item.id} className="py-2">
-                        <Link
-                          href={item.href}
-                          className="hover:underline hover:text-[#EC3B3B] font-semibold"
-                        >
-                          {t(`menu_items.${item.label}`)}
-                        </Link>
+                      <div key={item.id}>
+                        <div className="py-3 border-b border-gray-600/30">
+                          <Link
+                            href={item.href}
+                            className="hover:underline hover:text-[#EC3B3B] font-semibold block"
+                          >
+                            {t(`menu_items.${item.label}`)}
+                          </Link>
+                        </div>
                       </div>
                     );
                   }
 
                   if (item.type === 'dropdown' && item.children) {
                     return (
-                      <Accordion key={item.id} type="single" collapsible className="w-full">
-                        <AccordionItem value={item.label.toLowerCase()} className="border-none">
-                          <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
-                            {t(`menu_items.${item.label}`)}
-                          </AccordionTrigger>
-                          <AccordionContent className="flex flex-col gap-y-3 pl-4">
-                            {item.children.map(child => {
-                              const IconComponent = child.icon;
-                              // Map child labels to translation keys based on parent
-                              let translationKey = child.label;
-                              if (item.label === 'markets') {
-                                translationKey = `markets_children.${child.label}`;
-                              } else if (item.label === 'insider') {
-                                translationKey = `insider_children.${child.label}`;
-                              } else if (item.label === 'how_to') {
-                                translationKey = `how_to_children.${child.label}`;
-                              }
+                      <div key={item.id}>
+                        <Accordion type="single" collapsible className="w-full">
+                          <AccordionItem value={item.label.toLowerCase()} className="border-none">
+                            <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-3 border-b border-gray-600/30">
+                              {t(`menu_items.${item.label}`)}
+                            </AccordionTrigger>
+                            <AccordionContent className="flex flex-col gap-y-0 pt-2">
+                              {item.children.map((child, childIndex) => {
+                                const IconComponent = child.icon;
+                                // Map child labels to translation keys based on parent
+                                let translationKey = child.label;
+                                if (item.label === 'markets') {
+                                  translationKey = `markets_children.${child.label}`;
+                                } else if (item.label === 'insider') {
+                                  translationKey = `insider_children.${child.label}`;
+                                } else if (item.label === 'how_to') {
+                                  translationKey = `how_to_children.${child.label}`;
+                                }
 
-                              return (
-                                <Link
-                                  key={child.id}
-                                  href={child.href}
-                                  className="flex items-center gap-x-2 hover:underline"
-                                >
-                                  {IconComponent && <IconComponent size={20} />}
-                                  {t(`menu_items.${translationKey}`)}
-                                </Link>
-                              );
-                            })}
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
+                                return (
+                                  <div key={child.id}>
+                                    <Link
+                                      href={child.href}
+                                      className="flex items-center gap-x-3 hover:underline py-2.5 px-2 rounded-md hover:bg-gray-700/30 transition-colors duration-200"
+                                    >
+                                      {IconComponent && <IconComponent size={18} />}
+                                      <span className="text-sm">
+                                        {t(`menu_items.${translationKey}`)}
+                                      </span>
+                                    </Link>
+                                    {childIndex < (item.children?.length || 0) - 1 && (
+                                      <div className="h-px bg-gray-600/20 mx-2"></div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                      </div>
                     );
                   }
 
                   return null;
                 })}
               </div>
+
+              {/* Logout Button - Only show for authenticated users */}
+              {isAuthenticated && (
+                <div className="px-4 py-4 border-t border-gray-600/30 mt-auto">
+                  <button
+                    onClick={() => signOut({ callbackUrl: '/' })}
+                    className="w-full bg-transparent border border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </SheetContent>
           </Sheet>
         </div>
