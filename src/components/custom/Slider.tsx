@@ -32,6 +32,9 @@ const Slider = ({ id, coins, direction }: SliderProps) => {
           </div>
         ))}
       </div>
+      {slides.length === 0 && (
+        <div className="text-center text-white/50 text-sm py-4">No coins in {id}</div>
+      )}
     </div>
   );
 };

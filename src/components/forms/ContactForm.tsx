@@ -16,11 +16,15 @@ import { Textarea } from '@/components/ui/textarea';
 import toast from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { SuccessModal } from '@/components/ui/success-modal';
 
 const ContactForm = () => {
   const t = useTranslations('Contact');
   const pathname = usePathname();
   const locale = pathname?.split('/')[1] ?? 'en';
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const formSchema = z.object({
     name: z.string().min(2, {
       message: t('name_error'),
@@ -50,6 +54,7 @@ const ContactForm = () => {
     },
   });
   const onSubmit = async (values: FormValues) => {
+    setIsSubmitting(true);
     try {
       console.log('Form values submitted:', values);
       const response = await fetch(`/${locale}/api/contact`, {
@@ -62,19 +67,17 @@ const ContactForm = () => {
       const result = await response.json();
       console.log(response);
       if (response.ok) {
-        toast.success('Message sent successfully!');
+        setIsModalOpen(true);
+        form.reset();
       } else {
         toast.error(`Error: ${result.error}`);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error('An error occurred while submitting the form.');
+    } finally {
+      setIsSubmitting(false);
     }
-    toast.success('Message Submitted', {
-      position: 'bottom-right',
-      duration: 5000,
-    });
-    form.reset();
   };
   const handleBlur = async (fieldName: keyof FormValues) => {
     await form.trigger(fieldName);
@@ -189,13 +192,16 @@ const ContactForm = () => {
         <div className="flex items-center justify-center">
           <Button
             className="bg-[#ec3b3b]! text-white cursor-pointer hover:bg-white! hover:text-[#ec3b3b] 
-            hover:border hover:border-[#ec3b3b] hover:-translate-y-1 transition-all duration-300"
+            hover:border hover:border-[#ec3b3b] hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             type="submit"
+            disabled={isSubmitting}
           >
-            {t('send_message')}
+            {isSubmitting ? 'Sending...' : t('send_message')}
           </Button>
         </div>
       </form>
+
+      <SuccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </Form>
   );
 };

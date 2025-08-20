@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import nodemailer from 'nodemailer';
+import { sendContactFormEmail } from '@/lib/mail';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -12,22 +12,6 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.NEXT_PUBLIC_MICROSOFT_EMAIL_USER,
-    pass: process.env.NEXT_PUBLIC_MICROSOFT_EMAIL_PASSWORD,
-  },
-  tls: {
-    minVersion: 'TLSv1.2',
-    ciphers: 'TLS_AES_256_GCM_SHA384',
-  },
-  debug: true,
-  logger: true,
-});
-
 export async function POST(request: Request) {
   try {
     const body: unknown = await request.json();
@@ -38,27 +22,15 @@ export async function POST(request: Request) {
     }
 
     const { name, email, phone, subject, message }: FormData = validatedData.data;
-    const mailOptions = {
-      from: `"McCoin Contact Form" <${process.env.MICROSOFT_EMAIL_USER}>`,
-      to: 'info@mccoin.com',
-      replyTo: email,
-      subject: `New Contact Form Submission: ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
-      html: `
-        <h1>New Contact Form Submission</h1>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-    };
 
-    // Test the SMTP connection first
-    await transporter.verify();
-
-    // Send the email
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.messageId);
+    // Send the email using Microsoft Graph API
+    await sendContactFormEmail({
+      name,
+      email,
+      phone,
+      subject,
+      message,
+    });
 
     return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
   } catch (error: any) {

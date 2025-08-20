@@ -1,5 +1,160 @@
 {
   "HomePage": {
+    "HeroMcCoin": {
+      "main_title": "Invest in",
+      "main_title_highlight": "McCoin",
+      "main_title_suffix": "Way to Trade",
+      "subtitle": "The global crypto currency exchange",
+      "email_placeholder": "Enter your email",
+      "email_required": "Email is required",
+      "email_invalid": "Please enter a valid email address",
+      "join_now": "Join Now",
+      "submitting": "Submitting…",
+      "modal": {
+        "logged_in_not_verified": {
+          "title": "Identity Verification Required",
+          "message": "You are already logged in. Please verify your identity to start trading with McCoin.",
+          "cancel": "Cancel",
+          "verify_identity": "Verify Your Identity"
+        },
+        "not_logged_in": {
+          "title": "Create Your Account",
+          "message": "Register an Account with McCoin to Enjoy seamless trading opportunity",
+          "cancel": "Cancel",
+          "register_now": "Register Now",
+          "login": "Login"
+        },
+        "logged_in_verified": {
+          "title": "Welcome Back!",
+          "message": "You are already logged in and KYC verified. Please choose where to go next:",
+          "cancel": "Cancel",
+          "my_wallet": "My Wallet",
+          "trade_now": "Trade Now"
+        }
+      }
+    },
+    "Dashboard": {
+      "price_change_24h": "24H Price Change",
+      "price_up": "Price up",
+      "price_down": "Price down",
+      "total_market_cap": "Total Market Cap (USD)",
+      "total_value": "Total Value",
+      "global_market_value": "Global cryptocurrency market value",
+      "market_statistics": "Market Statistics",
+      "total_coins": "Total Coins",
+      "gaining": "Gaining",
+      "declining": "Declining"
+    },
+    "PricesTable": {
+      "title": "VA Offered",
+      "search_placeholder": "Search any column...",
+      "columns": {
+        "name": "Name",
+        "price": "Price",
+        "percent_1h": "1h %",
+        "percent_24h": "24h %",
+        "percent_7d": "7d %",
+        "market_cap": "Market Cap",
+        "volume_24h": "Volume(24h)",
+        "circulating_supply": "Circulating Supply",
+        "last_7_days": "Last 7 Days"
+      },
+      "pagination": {
+        "prev": "Prev",
+        "next": "Next",
+        "page_info": "Page {currentPage} of {totalPages}"
+      }
+    },
+    "WhyMccoin": {
+      "title": "Why Choose McCoin",
+      "subtitle": "McCoin combines advanced features, zero-fee trading, and bank-grade security—all in one place.",
+      "features": {
+        "zero_fee": {
+          "title1": "Zero Fee",
+          "title2": "Spot Trading",
+          "paragraph": "Trade freely without worrying about hidden costs. Enjoy true zero-fee spot trading on all major pairs."
+        },
+        "ultimate_option": {
+          "title1": "The Ultimate",
+          "title2": "Option Wizard",
+          "paragraph": "Master the markets with advanced options trading tools designed for precision and flexibility."
+        },
+        "safety": {
+          "title1": "Safety",
+          "title2": "Comes Standard",
+          "paragraph": "From multi-layer encryption to cold storage, McCoin keeps your assets protected—always."
+        },
+        "global_access": {
+          "title1": "Global",
+          "title2": "Market Access",
+          "paragraph": "Trade on a platform that connects you to crypto markets around the world, anytime, anywhere."
+        },
+        "full_stack": {
+          "title1": "Full-Stack",
+          "title2": "Infrastructure",
+          "paragraph": "Built with a robust backend and blazing-fast performance to support every trading move you make."
+        }
+      }
+    },
+    "Steps": {
+      "title": "Steps to Start Trading",
+      "subtitle": "To start trading with McCoin, all you need to do is to follow these simple steps",
+      "steps": {
+        "create_account": {
+          "title": "Create Account",
+          "subtitle": "Create and verify your account in minutes."
+        },
+        "fund_account": {
+          "title": "Fund Your Account",
+          "subtitle": "Use Bitcoin, Ethereum, or USDC to fund your account."
+        },
+        "start_trading": {
+          "title": "Start Trading",
+          "subtitle": "Use all our advanced strategy tools to get the most of your trades."
+        }
+      }
+    },
+    "CryptoNewsUAE": {
+      "title": "Local News",
+      "refresh_button": "Refresh news",
+      "last_updated": "Last updated: {time}",
+      "error_fetch": "Failed to fetch news",
+      "try_again": "Try Again"
+    },
+    "Testimonials": {
+      "title": "What {brand} Users Say",
+      "testimonials": {
+        "cameron": {
+          "name": "Cameron Lehner",
+          "designation": "Global Research Strategist",
+          "quote": "McCoin's trading platform is remarkably intuitive. I was impressed with how seamless the onboarding experience was."
+        },
+        "sara": {
+          "name": "Sara Mitchell",
+          "designation": "Marketing Director",
+          "quote": "The customer service at McCoin is unmatched. They responded instantly and were incredibly helpful in guiding us through the platform."
+        },
+        "liam": {
+          "name": "Liam Scott",
+          "designation": "Product Manager",
+          "quote": "We use McCoin daily for trading. The real-time data and transparent interface have made decision-making faster and more confident."
+        },
+        "emily": {
+          "name": "Emily Stone",
+          "designation": "UX Lead",
+          "quote": "McCoin is clearly built with the user in mind. The platform is smooth, secure, and incredibly easy to navigate even for beginners."
+        }
+      }
+    },
+    "PodcastBanner": {
+      "title": "🎙️ Tune Into {brand} Talks",
+      "description": "Discover expert insights, crypto trends, and market news in our exclusive podcast series.",
+      "button": "Visit Podcast Page"
+    },
+    "TradeNow": {
+      "title": "Explore the Crypto World with {brand}",
+      "button": "Trade now"
+    },
     "title": "Mccoin Virtual Assets Market",
     "famous_crypto": "Famous Cryptocurrencies"
   },
@@ -150,6 +305,70 @@
     "continueToLogin": "Continue to Login",
     "passwordResetSuccess": "Password reset successfully!",
     "passwordResetFailed": "Failed to reset password"
+  },
+  "Navbar": {
+    "menu": "Menu",
+    "verified": "Verified",
+    "not_verified": "Not Verified",
+    "about": "About",
+    "markets": "Markets",
+    "learn": "Learn",
+    "insider": "Insider",
+    "how_to": "How to",
+    "support": "Support",
+    "menu_items": {
+      "home": "Home",
+      "assets": "Assets",
+      "spot": "Spot",
+      "markets": "Markets",
+      "insider": "insider",
+      "how_to": "How to",
+      "markets_children": {
+        "overview": "Overview",
+        "explorer": "Explorer"
+      },
+      "insider_children": {
+        "top_news": "Top News",
+        "newsroom": "Newsroom",
+        "podcasts": "Podcasts"
+      },
+      "how_to_children": {
+        "create_account": "Create an Account",
+        "verify_identity": "Verify Your Identity (KYC)",
+        "deposit_funds": "Deposit Funds",
+        "trade_cryptocurrency": "Trade Cryptocurrency",
+        "withdraw_funds": "Withdraw Funds"
+      }
+    }
+  },
+  "Footer": {
+    "copyright": "© 2025 - McCoin.com. All rights reserved.",
+    "sections": {
+      "about": "About",
+      "learn": "Learn",
+      "how_to": "How to",
+      "support": "Support",
+      "resources": "Resources"
+    },
+    "sub_links": {
+      "about_mccoin": "About McCoin",
+      "articles": "Articles",
+      "market_sentiment": "Market-Sentiment",
+      "crypto101": "Crypto101",
+      "create_account": "Create-an-Account",
+      "verify_account": "Verify-your-Account(KYC)",
+      "deposit_funds": "Deposit-Funds",
+      "withdraw_funds": "Withdraw-Funds",
+      "trade_cryptocurrency": "Trade-Cryptocurrency",
+      "faq": "Frequently-asked-questions(FAQ)",
+      "contact_us": "Contact-us",
+      "help_topics": "Help-Topics",
+      "privacy_policy": "Privacy Policy",
+      "terms_conditions": "Terms & Conditions",
+      "disclosure": "Disclosure",
+      "careers": "Careers",
+      "others": "Others"
+    }
   },
   "NotFound": {
     "title": "Page not found",

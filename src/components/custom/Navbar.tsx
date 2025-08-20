@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import LOGO from '../../../public/images/logo1.png';
 import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,7 +22,7 @@ import {
 import { Button } from '../ui/button';
 import LangSwitcher from './LangSwitcher';
 import { Menu } from 'lucide-react';
-import { NAV_DATA } from '../../../utils/data';
+import { NavbarLinks } from '../../../utils/data';
 import { FaPodcast, FaLandmark } from 'react-icons/fa';
 import { MdOutlineExplore } from 'react-icons/md';
 import { ImNewspaper } from 'react-icons/im';
@@ -43,6 +44,9 @@ const Navbar = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const t = useTranslations('Navbar');
+  const locale = useLocale();
+  const isArabic = locale === 'ar';
 
   // Track authentication state more precisely
   const isAuthenticated = status === 'authenticated' && session;
@@ -105,33 +109,35 @@ const Navbar = () => {
           </Link>
           <div className="lg:block hidden">
             <NavigationMenu className="bg-[#DAE6EA]! navigation-menu">
-              <NavigationMenuList className="gap-5 bg-[#DAE6EA]!">
+              <NavigationMenuList
+                className={`${isArabic ? 'flex-row-reverse!' : 'flex-row!'} gap-5 bg-[#DAE6EA]!`}
+              >
                 <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  <Link href="/about">About</Link>
+                  <Link href="/about">{t('about')}</Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    Markets
+                    {t('markets')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
                 <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    Learn
+                    {t('learn')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
                 <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    insider
+                    {t('insider')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
                 <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    How to
+                    {t('how_to')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
                 <NavigationMenuItem className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
                   <NavigationMenuTrigger className="text-[#07153b]! p-0 bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    Support
+                    {t('support')}
                   </NavigationMenuTrigger>
                 </NavigationMenuItem>
               </NavigationMenuList>
@@ -150,7 +156,7 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent>
                   <SheetHeader>
-                    <SheetTitle>Menu</SheetTitle>
+                    <SheetTitle>{t('menu')}</SheetTitle>
                   </SheetHeader>
                 </SheetContent>
               </Sheet>
@@ -173,120 +179,66 @@ const Navbar = () => {
         <div className="lg:block hidden">
           <NavigationMenu className="dark:bg-[#07153b]! bg-[#DAE6EA]! navigation-menu">
             <NavigationMenuList className="gap-5 dark:bg-[#07153b]! bg-[#DAE6EA]!">
-              <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                <Link href="/">Home</Link>
-              </NavigationMenuItem>
+              {(isArabic ? [...NavbarLinks].reverse() : NavbarLinks).map(item => {
+                // Check if item requires authentication and verification
+                if (item.requiresAuth && !isAuthenticated) return null;
+                if (item.requiresVerification && !isVerified) return null;
 
-              {/* Only show Assets and Spot if user is authenticated AND verified */}
-              {isAuthenticated && isVerified && (
-                <>
-                  <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    <Link href="/dashboard/assets">Assets</Link>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                    <Link href="/spot">Spot</Link>
-                  </NavigationMenuItem>
-                </>
-              )}
+                if (item.type === 'link' && item.href) {
+                  return (
+                    <NavigationMenuItem
+                      key={item.id}
+                      className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!"
+                    >
+                      <Link href={item.href}>{t(`menu_items.${item.label}`)}</Link>
+                    </NavigationMenuItem>
+                  );
+                }
 
-              <NavigationMenuItem className="text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  Markets
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
-                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link className="flex gap-x-1 items-center" href="/market-overview">
-                        <FaLandmark size={25} /> Overview
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      <Link className="flex gap-x-1 items-center" href="/market-explorer">
-                        <MdOutlineExplore size={25} /> Explorer
-                      </Link>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  insider
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
-                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="top-news">
-                        {' '}
-                        <ImNewspaper size={25} /> Top News
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/news-room">
-                        {' '}
-                        <GiSattelite size={25} />
-                        Newsroom
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="podcasts">
-                        {' '}
-                        <FaPodcast size={25} />
-                        Podcasts
-                      </Link>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!">
-                  How to
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
-                  <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/how-to/create-account">
-                        <TiUserAddOutline size={25} /> Create an Account
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="/how-to/kyc-verification">
-                        {' '}
-                        <RiVerifiedBadgeLine size={25} />
-                        Verify Your Identity (KYC)
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="#">
-                        {' '}
-                        <PiHandDeposit size={25} />
-                        Deposit Funds
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="#">
-                        {' '}
-                        <RiExchangeLine size={25} />
-                        Trade Cryptocurrency
-                      </Link>
-                    </li>
-                    <li className="flex gap-x-2 hover:font-bold cursor-pointer!">
-                      {' '}
-                      <Link className="flex gap-x-1 items-center" href="#">
-                        {' '}
-                        <PiHandWithdraw size={25} />
-                        Withdraw Funds
-                      </Link>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+                if (item.type === 'dropdown' && item.children) {
+                  return (
+                    <NavigationMenuItem key={item.id}>
+                      <NavigationMenuTrigger
+                        className={`text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer! ${
+                          isArabic ? '[&>svg]:ml-0 [&>svg]:mr-1 [&>svg]:order-first' : ''
+                        }`}
+                      >
+                        {t(`menu_items.${item.label}`)}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="dark:bg-[#07153b]! bg-[#DAE6EA]! dark:text-white text-[#07153b]">
+                        <ul className="flex flex-col dark:text-white text-[#07153b] space-y-3 p-2 md:w-[400px] lg:w-[470px] leading-normal tracking-widest">
+                          {item.children.map(child => {
+                            const IconComponent = child.icon;
+                            // Map child labels to translation keys based on parent
+                            let translationKey = child.label;
+                            if (item.label === 'markets') {
+                              translationKey = `markets_children.${child.label}`;
+                            } else if (item.label === 'insider') {
+                              translationKey = `insider_children.${child.label}`;
+                            } else if (item.label === 'how_to') {
+                              translationKey = `how_to_children.${child.label}`;
+                            }
+
+                            return (
+                              <li
+                                key={child.id}
+                                className="flex gap-x-2 hover:font-bold cursor-pointer!"
+                              >
+                                <Link className="flex gap-x-1 items-center" href={child.href}>
+                                  {IconComponent && <IconComponent size={25} />}
+                                  {t(`menu_items.${translationKey}`)}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  );
+                }
+
+                return null;
+              })}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -317,152 +269,68 @@ const Navbar = () => {
                 {session?.user?.email}
               </div>
               <span className={`text-xs pl-5 ${isVerified ? 'text-green-500' : 'text-red-500'}`}>
-                {isVerified ? 'Verified' : 'Not Verified'}
+                {isVerified ? t('verified') : t('not_verified')}
               </span>
 
-              {/* Mobile Menu Items - Same as Desktop for Authenticated & Verified Users */}
+              {/* Mobile Menu Items - Using NavbarLinks Array */}
               <div className="px-4 py-4 space-y-4">
-                {/* Home */}
-                <div className="py-2">
-                  <Link href="/" className="hover:underline hover:text-[#EC3B3B] font-semibold">
-                    Home
-                  </Link>
-                </div>
+                {NavbarLinks.map(item => {
+                  // Check if item requires authentication and verification
+                  if (item.requiresAuth && !isAuthenticated) return null;
+                  if (item.requiresVerification && !isVerified) return null;
 
-                {/* Assets - Only show if authenticated AND verified */}
-                {isAuthenticated && isVerified && (
-                  <div className="py-2">
-                    <Link
-                      href="/dashboard/assets"
-                      className="hover:underline hover:text-[#EC3B3B] font-semibold"
-                    >
-                      Assets
-                    </Link>
-                  </div>
-                )}
+                  if (item.type === 'link' && item.href) {
+                    return (
+                      <div key={item.id} className="py-2">
+                        <Link
+                          href={item.href}
+                          className="hover:underline hover:text-[#EC3B3B] font-semibold"
+                        >
+                          {t(`menu_items.${item.label}`)}
+                        </Link>
+                      </div>
+                    );
+                  }
 
-                {/* Spot - Only show if authenticated AND verified */}
-                {isAuthenticated && isVerified && (
-                  <div className="py-2">
-                    <Link
-                      href="/spot"
-                      className="hover:underline hover:text-[#EC3B3B] font-semibold"
-                    >
-                      Spot
-                    </Link>
-                  </div>
-                )}
+                  if (item.type === 'dropdown' && item.children) {
+                    return (
+                      <Accordion key={item.id} type="single" collapsible className="w-full">
+                        <AccordionItem value={item.label.toLowerCase()} className="border-none">
+                          <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
+                            {t(`menu_items.${item.label}`)}
+                          </AccordionTrigger>
+                          <AccordionContent className="flex flex-col gap-y-3 pl-4">
+                            {item.children.map(child => {
+                              const IconComponent = child.icon;
+                              // Map child labels to translation keys based on parent
+                              let translationKey = child.label;
+                              if (item.label === 'markets') {
+                                translationKey = `markets_children.${child.label}`;
+                              } else if (item.label === 'insider') {
+                                translationKey = `insider_children.${child.label}`;
+                              } else if (item.label === 'how_to') {
+                                translationKey = `how_to_children.${child.label}`;
+                              }
 
-                {/* Markets Accordion */}
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="markets" className="border-none">
-                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
-                      Markets
-                    </AccordionTrigger>
-                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
-                      <Link
-                        href="/market-overview"
-                        className="flex items-center gap-x-2 hover:underline"
-                      >
-                        <FaLandmark size={20} />
-                        Overview
-                      </Link>
-                      <Link
-                        href="/market-explorer"
-                        className="flex items-center gap-x-2 hover:underline"
-                      >
-                        <MdOutlineExplore size={20} />
-                        Explorer
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+                              return (
+                                <Link
+                                  key={child.id}
+                                  href={child.href}
+                                  className="flex items-center gap-x-2 hover:underline"
+                                >
+                                  {IconComponent && <IconComponent size={20} />}
+                                  {t(`menu_items.${translationKey}`)}
+                                </Link>
+                              );
+                            })}
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    );
+                  }
 
-                {/* Insider Accordion */}
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="insider" className="border-none">
-                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
-                      McCoin insider
-                    </AccordionTrigger>
-                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
-                      <Link href="/top-news" className="flex items-center gap-x-2 hover:underline">
-                        <ImNewspaper size={20} />
-                        Top News
-                      </Link>
-                      <Link href="/news-room" className="flex items-center gap-x-2 hover:underline">
-                        <GiSattelite size={20} />
-                        Newsroom
-                      </Link>
-                      <Link href="/podcasts" className="flex items-center gap-x-2 hover:underline">
-                        <FaPodcast size={20} />
-                        Podcasts
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-
-                {/* How to Accordion */}
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="how-to" className="border-none">
-                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
-                      How to
-                    </AccordionTrigger>
-                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
-                      <Link
-                        href="/how-to/create-account"
-                        className="flex items-center gap-x-2 hover:underline"
-                      >
-                        <TiUserAddOutline size={20} />
-                        Create an Account
-                      </Link>
-                      <Link
-                        href="/how-to/kyc-verification"
-                        className="flex items-center gap-x-2 hover:underline"
-                      >
-                        <RiVerifiedBadgeLine size={20} />
-                        Verify Your Identity (KYC)
-                      </Link>
-                      <Link href="#" className="flex items-center gap-x-2 hover:underline">
-                        <PiHandDeposit size={20} />
-                        Deposit Funds
-                      </Link>
-                      <Link href="#" className="flex items-center gap-x-2 hover:underline">
-                        <RiExchangeLine size={20} />
-                        Trade Cryptocurrency
-                      </Link>
-                      <Link href="#" className="flex items-center gap-x-2 hover:underline">
-                        <PiHandWithdraw size={20} />
-                        Withdraw Funds
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-
-                {/* Support Center */}
-                {/* <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="support" className="border-none">
-                    <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-2">
-                      Support center
-                    </AccordionTrigger>
-                    <AccordionContent className="flex flex-col gap-y-3 pl-4">
-                      <Link href="/faqs" className="flex items-center gap-x-2 hover:underline">
-                        <LuMailQuestion size={20} />
-                        Frequently Asked Questions (FAQs)
-                      </Link>
-                      <Link href="/contact" className="flex items-center gap-x-2 hover:underline">
-                        <GrContact size={20} />
-                        Contact Us
-                      </Link>
-                      <Link
-                        href="/help-topics"
-                        className="flex items-center gap-x-2 hover:underline"
-                      >
-                        <FaHandsHelping size={20} />
-                        Help Topics
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion> */}
+                  return null;
+                })}
               </div>
             </SheetContent>
           </Sheet>

@@ -22,6 +22,7 @@ import {
   Mail,
 } from 'lucide-react';
 import AnimatedLogo from './AnimatedLogo';
+import { useTranslations, useLocale } from 'next-intl';
 const iconComponents = {
   Info,
   TrendingUp,
@@ -41,6 +42,10 @@ const iconComponents = {
   Mail,
 };
 const Footer = () => {
+  const t = useTranslations('Footer');
+  const locale = useLocale();
+  const isArabic = locale === 'ar';
+
   const getIconComponent = (iconName?: string) => {
     if (!iconName) return null;
     const Icon = iconComponents[iconName as keyof typeof iconComponents];
@@ -57,7 +62,7 @@ const Footer = () => {
               className="dark:text-[#DAE6EA] text-[#050e27] text-[1rem] font-semibold hover:text-[#EC3B3B] transition-all duration-300 hover:-translate-y-1 flex items-center gap-1"
             >
               {getIconComponent(item.iconName)}
-              {item.label}
+              {t(`sections.${item.label}`)}
             </Link>
 
             {item.subLinks && (
@@ -68,7 +73,7 @@ const Footer = () => {
                     href={subItem.href}
                     className="dark:text-gray-300 text-[#050e27] text-sm hover:text-[#EC3B3B] transition-all duration-300 hover:translate-x-1 flex items-center"
                   >
-                    {subItem.label}
+                    {t(`sub_links.${subItem.label}`)}
                   </Link>
                 ))}
               </div>
@@ -82,9 +87,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row lg:justify-between justify-center items-center gap-y-6 lg:gap-y-0">
-          <p className="dark:text-gray-300 text-[#050e27]  text-sm">
-            © 2025 - McCoin.com. All rights reserved.
-          </p>
+          <p className="dark:text-gray-300 text-[#050e27]  text-sm">{t('copyright')}</p>
         </div>
         <div className="flex gap-5">
           <Link target="_blank" href="https://www.facebook.com/mccoin">

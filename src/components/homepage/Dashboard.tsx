@@ -5,9 +5,11 @@ import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Skeleton } from '@/components/ui/skeleton';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 // 3D Cube Component
 const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) => {
+  const t = useTranslations('HomePage.Dashboard');
   return (
     <div className="flex justify-center items-center h-[400px] perspective-1000 select-none">
       <div
@@ -25,21 +27,21 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">24H Price Change</h3>
+          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('price_change_24h')}</h3>
           <div className="flex items-center gap-8 mb-6">
             <div className="flex items-center gap-2">
               <div className="text-green-400 flex items-center gap-1 text-lg font-semibold">
                 <ArrowUp className="w-4 h-4" />
                 {data.up}
               </div>
-              <p className="text-xs text-[#DAE6EA]">Price up</p>
+              <p className="text-xs text-[#DAE6EA]">{t('price_up')}</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="text-red-400 flex items-center gap-1 text-lg font-semibold">
                 <ArrowDown className="w-4 h-4" />
                 {data.down}
               </div>
-              <p className="text-xs text-[#DAE6EA]">Price down</p>
+              <p className="text-xs text-[#DAE6EA]">{t('price_down')}</p>
             </div>
           </div>
           <div className="relative w-20 h-20">
@@ -79,7 +81,7 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">Total Market Cap (USD)</h3>
+          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('total_market_cap')}</h3>
           <div className="text-4xl text-[#FFF] font-bold mb-4">
             {(data.totalMarketCap / 1e9).toFixed(2)} B
           </div>
@@ -97,12 +99,12 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">Total Value</h3>
+          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('total_value')}</h3>
           <div className="text-2xl font-bold text-[#FFF] text-center">
             {Number(data.totalValue).toLocaleString()}
           </div>
           <div className="text-[#DAE6EA]/70 text-sm mt-4 text-center">
-            Global cryptocurrency market value
+            {t('global_market_value')}
           </div>
         </div>
 
@@ -115,19 +117,19 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">Market Statistics</h3>
+          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('market_statistics')}</h3>
           <div className="space-y-4 text-center">
             <div>
               <div className="text-2xl text-[#FFF] font-bold">{data.up + data.down}</div>
-              <div className="text-sm text-[#DAE6EA]/70">Total Coins</div>
+              <div className="text-sm text-[#DAE6EA]/70">{t('total_coins')}</div>
             </div>
             <div>
               <div className="text-2xl text-green-400 font-bold">{data.up}</div>
-              <div className="text-sm text-[#DAE6EA]/70">Gaining</div>
+              <div className="text-sm text-[#DAE6EA]/70">{t('gaining')}</div>
             </div>
             <div>
               <div className="text-2xl text-red-400 font-bold">{data.down}</div>
-              <div className="text-sm text-[#DAE6EA]/70">Declining</div>
+              <div className="text-sm text-[#DAE6EA]/70">{t('declining')}</div>
             </div>
           </div>
         </div>

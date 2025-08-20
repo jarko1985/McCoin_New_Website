@@ -303,6 +303,7 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
+  min-height: 500px; /* Ensure container has enough height for all sliders */
 }
 
 .sliders-container::before,
@@ -358,9 +359,10 @@ body {
   --slider-gap: 5px;
   --slider-time: 200s;
   position: relative;
-  width: full;
+  width: 100%;
   height: calc(var(--slide-height) + 10px);
   overflow: hidden;
+  margin-bottom: 10px; /* Add some spacing between sliders */
 }
 
 .multi_slider-track {
@@ -368,6 +370,7 @@ body {
   top: 0;
   display: flex;
 }
+
 .multi_slider-slide {
   width: var(--slide-width);
   height: var(--slide-height);
@@ -395,6 +398,11 @@ body {
 
 .scrollRight {
   animation: scrollRight var(--slider-time) linear infinite;
+}
+
+/* Ensure sliders are visible in RTL */
+[dir='rtl'] .multi_slider {
+  direction: ltr; /* Force LTR for slider animations */
 }
 
 @keyframes scrollLeft {

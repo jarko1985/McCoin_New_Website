@@ -1,12 +1,12 @@
-import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
+import { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**",
+        protocol: 'https',
+        hostname: '**',
       },
       {
         protocol: 'https',
@@ -14,10 +14,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'http',
-        hostname: 'cryptoramble.com', 
-      }
+        hostname: 'cryptoramble.com',
+      },
     ],
-  }
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

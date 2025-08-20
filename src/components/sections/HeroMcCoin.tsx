@@ -6,14 +6,10 @@ import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Dashboard from '../homepage/Dashboard';
 import { getVerificationStatus } from '@/lib/verification';
 import { X, User, Shield, Wallet, TrendingUp } from 'lucide-react';
-
-const BG = '#07153B'; // page background
-const BRAND = '#EC3B3B'; // primary red
-const PALE = '#DAE6EA'; // light accent
 
 type IconSpec = {
   id: string;
@@ -29,21 +25,22 @@ type IconSpec = {
 // Modal Types
 type ModalType = 'logged-in-not-verified' | 'not-logged-in' | 'logged-in-verified' | null;
 
-// Email validation function
-const validateEmail = (email: string): { isValid: boolean; error?: string } => {
-  if (!email.trim()) {
-    return { isValid: false, error: 'Email is required' };
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return { isValid: false, error: 'Please enter a valid email address' };
-  }
-
-  return { isValid: true };
-};
-
 export default function HeroMcCoin() {
+  const t = useTranslations('HomePage.HeroMcCoin');
+
+  // Email validation function
+  const validateEmail = (email: string): { isValid: boolean; error?: string } => {
+    if (!email.trim()) {
+      return { isValid: false, error: t('email_required') };
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return { isValid: false, error: t('email_invalid') };
+    }
+
+    return { isValid: true };
+  };
   // parallax
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0);
@@ -58,6 +55,7 @@ export default function HeroMcCoin() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const locale = useLocale();
+  const isArabic = locale === 'ar';
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -296,32 +294,51 @@ export default function HeroMcCoin() {
     const modalContent = {
       'logged-in-not-verified': {
         icon: <Shield className="w-12 h-12 text-[#EC3B3B]" />,
-        title: 'Identity Verification Required',
-        message:
-          'You are already logged in. Please verify your identity to start trading with McCoin.',
+        title: t('modal.logged_in_not_verified.title'),
+        message: t('modal.logged_in_not_verified.message'),
         buttons: [
-          { text: 'Cancel', onClick: closeModal, variant: 'secondary' },
-          { text: 'Verify Your Identity', onClick: handleVerifyIdentity, variant: 'primary' },
+          {
+            text: t('modal.logged_in_not_verified.cancel'),
+            onClick: closeModal,
+            variant: 'secondary',
+          },
+          {
+            text: t('modal.logged_in_not_verified.verify_identity'),
+            onClick: handleVerifyIdentity,
+            variant: 'primary',
+          },
         ],
       },
       'not-logged-in': {
         icon: <User className="w-12 h-12 text-[#EC3B3B]" />,
-        title: 'Create Your Account',
-        message: 'Register an Account with McCoin to Enjoy seamless trading opportunity',
+        title: t('modal.not_logged_in.title'),
+        message: t('modal.not_logged_in.message'),
         buttons: [
-          { text: 'Cancel', onClick: closeModal, variant: 'secondary' },
-          { text: 'Register Now', onClick: handleRegisterNow, variant: 'primary' },
-          { text: 'Login', onClick: handleLogin, variant: 'outline' },
+          { text: t('modal.not_logged_in.cancel'), onClick: closeModal, variant: 'secondary' },
+          {
+            text: t('modal.not_logged_in.register_now'),
+            onClick: handleRegisterNow,
+            variant: 'primary',
+          },
+          { text: t('modal.not_logged_in.login'), onClick: handleLogin, variant: 'outline' },
         ],
       },
       'logged-in-verified': {
         icon: <Wallet className="w-12 h-12 text-[#EC3B3B]" />,
-        title: 'Welcome Back!',
-        message: 'You are already logged in and KYC verified. Please choose where to go next:',
+        title: t('modal.logged_in_verified.title'),
+        message: t('modal.logged_in_verified.message'),
         buttons: [
-          { text: 'Cancel', onClick: closeModal, variant: 'secondary' },
-          { text: 'My Wallet', onClick: handleMyWallet, variant: 'primary' },
-          { text: 'Trade Now', onClick: handleTradeNow, variant: 'outline' },
+          { text: t('modal.logged_in_verified.cancel'), onClick: closeModal, variant: 'secondary' },
+          {
+            text: t('modal.logged_in_verified.my_wallet'),
+            onClick: handleMyWallet,
+            variant: 'primary',
+          },
+          {
+            text: t('modal.logged_in_verified.trade_now'),
+            onClick: handleTradeNow,
+            variant: 'outline',
+          },
         ],
       },
     };
@@ -425,11 +442,20 @@ export default function HeroMcCoin() {
         {/* Left */}
         <div className="flex flex-col order-1">
           <div className="relative z-10 text-center xl:text-left">
-            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-left">
-              Invest in <span className="text-[#EC3B3B]">McCoin</span> Way to Trade
+            <h1
+              className={`text-3xl font-extrabold  text-white sm:text-4xl md:text-5xl lg:text-6xl ${
+                isArabic ? 'xl:text-right tracking-wide leading-20' : 'xl:text-left tracking-wide'
+              } `}
+            >
+              {t('main_title')} <span className="text-[#EC3B3B]">{t('main_title_highlight')}</span>{' '}
+              {t('main_title_suffix')}
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-[rgba(218,230,234,0.85)] sm:text-lg md:text-xl xl:text-left">
-              The global crypto currency exchange
+            <p
+              className={`${
+                isArabic ? 'xl:text-right' : 'xl:text-left'
+              } mt-4 text-base leading-relaxed text-[rgba(218,230,234,0.85)] sm:text-lg md:text-xl`}
+            >
+              {t('subtitle')}
             </p>
 
             <form
@@ -446,7 +472,7 @@ export default function HeroMcCoin() {
                   required
                   value={email}
                   onChange={handleEmailChange}
-                  placeholder="Enter your email"
+                  placeholder={t('email_placeholder')}
                   className={`w-full rounded-2xl bg-[#0B1A40] px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-[15px] text-white outline-none ring-1 transition-all duration-200 placeholder:text-white/50 focus:ring-2 focus:ring-[rgba(236,59,59,.75)] ${
                     emailError ? 'ring-[#EC3B3B]' : 'ring-white/10'
                   }`}
@@ -472,7 +498,7 @@ export default function HeroMcCoin() {
                 }}
               >
                 <span className="translate-y-0 transition-transform group-active:translate-y-[1px]">
-                  {busy ? 'Submitting…' : 'Join Now'}
+                  {busy ? t('submitting') : t('join_now')}
                 </span>
               </button>
             </form>

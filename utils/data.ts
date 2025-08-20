@@ -32,6 +32,7 @@ import { LuMailQuestion } from 'react-icons/lu';
 import { GrContact } from 'react-icons/gr';
 import { FaHandsHelping, FaLandmark } from 'react-icons/fa';
 import { FooterLink } from '@/types/FooterLink';
+import { NavbarLink } from '@/types/NavbarLink';
 import { MdOutlineExplore } from 'react-icons/md';
 
 export type PolicySubsection = {
@@ -427,85 +428,175 @@ export const dummyEvents = [
     imageUrl: '/images/event3.jpg',
   },
 ];
+export const NavbarLinks: NavbarLink[] = [
+  {
+    id: 1,
+    label: 'home',
+    href: '/',
+    type: 'link',
+  },
+  {
+    id: 2,
+    label: 'assets',
+    href: '/dashboard/assets',
+    type: 'link',
+    requiresAuth: true,
+    requiresVerification: true,
+  },
+  {
+    id: 3,
+    label: 'spot',
+    href: '/spot',
+    type: 'link',
+    requiresAuth: true,
+    requiresVerification: true,
+  },
+  {
+    id: 4,
+    label: 'markets',
+    type: 'dropdown',
+    children: [
+      {
+        id: 41,
+        label: 'overview',
+        href: '/market-overview',
+        icon: FaLandmark,
+      },
+      {
+        id: 42,
+        label: 'explorer',
+        href: '/market-explorer',
+        icon: MdOutlineExplore,
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: 'insider',
+    type: 'dropdown',
+    children: [
+      {
+        id: 51,
+        label: 'top_news',
+        href: '/top-news',
+        icon: ImNewspaper,
+      },
+      {
+        id: 52,
+        label: 'newsroom',
+        href: '/news-room',
+        icon: GiSattelite,
+      },
+      {
+        id: 53,
+        label: 'podcasts',
+        href: '/podcasts',
+        icon: FaPodcast,
+      },
+    ],
+  },
+  {
+    id: 6,
+    label: 'how_to',
+    type: 'dropdown',
+    children: [
+      {
+        id: 61,
+        label: 'create_account',
+        href: '/how-to/create-account',
+        icon: TiUserAddOutline,
+      },
+      {
+        id: 62,
+        label: 'verify_identity',
+        href: '/how-to/kyc-verification',
+        icon: RiVerifiedBadgeLine,
+      },
+      {
+        id: 63,
+        label: 'deposit_funds',
+        href: '#',
+        icon: PiHandDeposit,
+      },
+      {
+        id: 64,
+        label: 'trade_cryptocurrency',
+        href: '#',
+        icon: RiExchangeLine,
+      },
+      {
+        id: 65,
+        label: 'withdraw_funds',
+        href: '#',
+        icon: PiHandWithdraw,
+      },
+    ],
+  },
+];
+
 export const FooterLinks: FooterLink[] = [
   {
     id: 1,
-    label: 'About',
+    label: 'about',
     href: 'about',
     iconName: 'FileText',
     subLinks: [
       {
         id: 32,
-        label: 'About McCoin',
+        label: 'about_mccoin',
         href: 'about',
       },
     ],
   },
   {
     id: 2,
-    label: 'Learn',
+    label: 'learn',
     href: 'learn',
     iconName: 'BookOpen',
     subLinks: [
-      { id: 31, label: 'Articles', href: 'articles', iconName: 'FileText' },
+      { id: 31, label: 'articles', href: 'articles', iconName: 'FileText' },
       {
         id: 33,
-        label: 'Market-Sentiment',
+        label: 'market_sentiment',
         href: 'market-sentiment',
         iconName: 'Briefcase',
       },
-      { id: 34, label: 'Crypto101', href: 'crypto101', iconName: 'Home' },
+      { id: 34, label: 'crypto101', href: 'crypto101', iconName: 'Home' },
     ],
   },
-  // {
-  //   id: 3,
-  //   label: 'Insider',
-  //   href: 'insider',
-  //   iconName: 'User',
-  //   subLinks: [
-  //     { id: 41, label: 'Top-news', href: 'top-news', iconName: 'Newspaper' },
-  //     {
-  //       id: 42,
-  //       label: 'Newsroom',
-  //       href: 'newsroom',
-  //       iconName: 'MessageSquare',
-  //     },
-  //     { id: 44, label: 'Podcasts', href: 'podcasts', iconName: 'Podcast' },
-  //   ],
-  // },
   {
     id: 4,
-    label: 'How to',
+    label: 'how_to',
     href: 'how-to',
     iconName: 'Settings',
     subLinks: [
       {
         id: 51,
-        label: 'Create-an-Account',
+        label: 'create_account',
         href: '/how-to/create-an-account',
         iconName: 'PlusCircle',
       },
       {
         id: 52,
-        label: 'Verify-your-Account(KYC)',
+        label: 'verify_account',
         href: '/how-to/verify-your-account',
         iconName: 'User',
       },
       {
         id: 53,
-        label: 'Deposit-Funds',
+        label: 'deposit_funds',
         href: 'deposit-funds',
         iconName: 'Wallet',
       },
       {
         id: 54,
-        label: 'Withdraw-Funds',
+        label: 'withdraw_funds',
         href: 'withdraw-funds',
         iconName: 'Wallet',
       },
       {
         id: 55,
-        label: 'Trade-Cryptocurrency',
+        label: 'trade_cryptocurrency',
         href: 'trade-cryptocurrency',
         iconName: 'TrendingUp',
       },
@@ -513,20 +604,20 @@ export const FooterLinks: FooterLink[] = [
   },
   {
     id: 5,
-    label: 'Support',
+    label: 'support',
     href: 'support',
     iconName: 'CircleHelp',
     subLinks: [
       {
         id: 61,
-        label: 'Frequently-asked-questions(FAQ)',
+        label: 'faq',
         href: 'faq',
         iconName: 'FileText',
       },
-      { id: 62, label: 'Contact-us', href: 'contact-us', iconName: 'Mail' },
+      { id: 62, label: 'contact_us', href: 'contact', iconName: 'Mail' },
       {
         id: 63,
-        label: 'Help-Topics',
+        label: 'help_topics',
         href: 'help-topics',
         iconName: 'CircleHelp',
       },
@@ -534,30 +625,30 @@ export const FooterLinks: FooterLink[] = [
   },
   {
     id: 6,
-    label: 'Resources',
+    label: 'resources',
     href: 'resources',
     iconName: 'Info',
     subLinks: [
       {
         id: 64,
-        label: 'Privacy Policy',
+        label: 'privacy_policy',
         href: 'privacy-policy',
         iconName: 'FileText',
       },
-      { id: 65, label: 'Terms & Conditions', href: 'terms-and-conditions', iconName: 'Mail' },
+      { id: 65, label: 'terms_conditions', href: 'terms-and-conditions', iconName: 'Mail' },
       {
         id: 66,
-        label: 'Disclosure',
+        label: 'disclosure',
         href: 'risk-disclosure',
         iconName: 'CircleHelp',
       },
       {
-        id: 66,
-        label: 'Careers',
+        id: 67,
+        label: 'careers',
         href: 'careers',
         iconName: 'CgWorkAlt',
       },
-      { id: 66, label: 'Others', href: 'others', iconName: 'CircleHelp' },
+      { id: 68, label: 'others', href: 'others', iconName: 'CircleHelp' },
     ],
   },
 ];

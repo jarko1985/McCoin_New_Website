@@ -362,7 +362,7 @@ const Sidebar = () => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#EC3B3B] to-transparent opacity-10 rounded-full blur-3xl" />
 
               <div className="relative z-10">
-                <div className="text-xl font-bold mb-6 text-white bg-gradient-to-r from-[#EC3B3B] to-[#D13535] bg-clip-text text-transparent">
+                <div className="text-xl font-bold mb-6 text-white bg-gradient-to-r from-[#EC3B3B] to-[#D13535] bg-clip-text">
                   {t('logoutPrompt')}
                 </div>
                 <div className="flex justify-center gap-4 mt-8">

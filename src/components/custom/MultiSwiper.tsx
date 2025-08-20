@@ -75,6 +75,9 @@ const MultiSwiper = () => {
       {sliders.map(slider => (
         <Slider key={slider.id} id={slider.id} coins={slider.coins} direction={slider.direction} />
       ))}
+      {sliders.length === 0 && (
+        <div className="text-center text-white/70 py-8">Loading sliders...</div>
+      )}
     </section>
   );
 };

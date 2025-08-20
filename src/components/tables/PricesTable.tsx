@@ -8,6 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface Coin {
   id: string;
@@ -28,6 +29,8 @@ type SortKey = keyof Coin;
 
 export default function PricesTable() {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const isArabic = locale === 'ar';
+  const t = useTranslations('HomePage.PricesTable');
   const [coins, setCoins] = useState<Coin[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -74,11 +77,11 @@ export default function PricesTable() {
   return (
     <div className="xl:w-[70%] mx-auto py-12 px-4 xl:px-0">
       <h2 className="text-lg lg:text-3xl font-bold dark:text-[#DAE6EA] text-[#07153b] text-center ">
-        VA Offered
+        {t('title')}
       </h2>
       <div className="flex justify-start items-center">
         <Input
-          placeholder="Search any column..."
+          placeholder={t('search_placeholder')}
           value={search}
           onChange={e => {
             setSearch(e.target.value);
@@ -92,15 +95,15 @@ export default function PricesTable() {
           <thead>
             <tr className="text-left">
               {[
-                { key: 'name', label: 'Name' },
-                { key: 'price', label: 'Price' },
-                { key: 'percent_change_1h', label: '1h %' },
-                { key: 'percent_change_24h', label: '24h %' },
-                { key: 'percent_change_7d', label: '7d %' },
-                { key: 'market_cap', label: 'Market Cap' },
-                { key: 'volume_24h', label: 'Volume(24h)' },
-                { key: 'circulating_supply', label: 'Circulating Supply' },
-                { key: 'sparkline_7d', label: 'Last 7 Days' },
+                { key: 'name', label: t('columns.name') },
+                { key: 'price', label: t('columns.price') },
+                { key: 'percent_change_1h', label: t('columns.percent_1h') },
+                { key: 'percent_change_24h', label: t('columns.percent_24h') },
+                { key: 'percent_change_7d', label: t('columns.percent_7d') },
+                { key: 'market_cap', label: t('columns.market_cap') },
+                { key: 'volume_24h', label: t('columns.volume_24h') },
+                { key: 'circulating_supply', label: t('columns.circulating_supply') },
+                { key: 'sparkline_7d', label: t('columns.last_7_days') },
               ].map(({ key, label }) => (
                 <th
                   key={key}
@@ -193,19 +196,17 @@ export default function PricesTable() {
           onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
           className="flex items-center gap-2 disabled:opacity-40"
         >
-          <ChevronLeft className="w-4 h-4" />
-          Prev
+          <ChevronLeft className={`${isArabic ? 'rotate-180' : ''} w-4 h-4`} />
+          {t('pagination.prev')}
         </button>
-        <span className="text-sm">
-          Page {currentPage} of {totalPages}
-        </span>
+        <span className="text-sm">{t('pagination.page_info', { currentPage, totalPages })}</span>
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
           className="flex items-center gap-2 disabled:opacity-40"
         >
-          Next
-          <ChevronRight className="w-4 h-4" />
+          {t('pagination.next')}
+          <ChevronRight className={`${isArabic ? 'rotate-180' : ''} w-4 h-4`} />
         </button>
       </div>
     </div>

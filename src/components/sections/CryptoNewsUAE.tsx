@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface Article {
   title: string;
@@ -28,6 +29,9 @@ export default function CryptoNewsUAE() {
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('HomePage.CryptoNewsUAE');
+  const currentLocale = useLocale();
+  const isArabic = currentLocale === 'ar';
 
   const fetchNews = useCallback(
     async (isRefresh = false) => {
@@ -44,14 +48,14 @@ export default function CryptoNewsUAE() {
         });
 
         if (!response.ok) {
-          throw new Error('Failed to fetch news');
+          throw new Error(t('error_fetch'));
         }
 
         const data = await response.json();
-        setArticles(data.slice(0, 5));
+        setArticles(data.slice(0, 7));
         setLastUpdated(new Date());
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch news');
+        setError(err instanceof Error ? err.message : t('error_fetch'));
       } finally {
         setLoading(false);
         setRefreshing(false);
@@ -81,7 +85,7 @@ export default function CryptoNewsUAE() {
   return (
     <section className="dark:bg-[#07153b] bg-[#DAE6EA] py-16 dark:text-[#DAE6EA] text-[#07153b]">
       <div className="flex items-center justify-center gap-4 mb-5 lg:mb-12">
-        <h1 className="text-xl lg:text-4xl font-semibold text-center">Local News</h1>
+        <h1 className="text-xl lg:text-4xl font-semibold text-center">{t('title')}</h1>
         <button
           onClick={handleManualRefresh}
           disabled={refreshing}
@@ -90,7 +94,7 @@ export default function CryptoNewsUAE() {
               ? 'animate-spin cursor-not-allowed opacity-50'
               : 'hover:bg-white/10 hover:scale-110'
           }`}
-          title="Refresh news"
+          title={t('refresh_button')}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +115,7 @@ export default function CryptoNewsUAE() {
 
       {lastUpdated && (
         <p className="text-center text-sm dark:text-[#DAE6EA]/70 text-[#07153b]/70 mb-8">
-          Last updated: {lastUpdated.toLocaleTimeString()}
+          {t('last_updated', { time: lastUpdated.toLocaleTimeString() })}
         </p>
       )}
 
@@ -122,7 +126,7 @@ export default function CryptoNewsUAE() {
             onClick={handleManualRefresh}
             className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
           >
-            Try Again
+            {t('try_again')}
           </button>
         </div>
       )}
@@ -167,11 +171,14 @@ export default function CryptoNewsUAE() {
                   </div>
                   <div>
                     <p className="text-xs text-[#EC3B3B]">
-                      {new Date(article.publishedAt).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
+                      {new Date(article.publishedAt).toLocaleDateString(
+                        isArabic ? 'ar-SA' : 'en-US',
+                        {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        },
+                      )}
                     </p>
                     <h3 className="font-semibold text-sm leading-snug line-clamp-2">
                       {article.title}
@@ -208,11 +215,14 @@ export default function CryptoNewsUAE() {
                     {featured.source.name}
                   </span>
                   <span>
-                    {new Date(featured.publishedAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
+                    {new Date(featured.publishedAt).toLocaleDateString(
+                      isArabic ? 'ar-SA' : 'en-US',
+                      {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      },
+                    )}
                   </span>
                 </div>
                 <h2 className="text-2xl font-bold dark:text-white text-[#07153b] mt-3 mb-2 leading-snug hover:underline">

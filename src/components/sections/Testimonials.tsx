@@ -8,43 +8,22 @@ import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 import { Star, ThumbsUp } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
-const testimonials = [
-  {
-    name: 'Cameron Lehner',
-    designation: 'Global Research Strategist',
-    image: '/images/emp1.png',
-    quote:
-      "McCoin's trading platform is remarkably intuitive. I was impressed with how seamless the onboarding experience was.",
-  },
-  {
-    name: 'Sara Mitchell',
-    designation: 'Marketing Director',
-    image: '/images/emp2.png',
-    quote:
-      'The customer service at McCoin is unmatched. They responded instantly and were incredibly helpful in guiding us through the platform.',
-  },
-  {
-    name: 'Liam Scott',
-    designation: 'Product Manager',
-    image: '/images/emp1.png',
-    quote:
-      'We use McCoin daily for trading. The real-time data and transparent interface have made decision-making faster and more confident.',
-  },
-  {
-    name: 'Emily Stone',
-    designation: 'UX Lead',
-    image: '/images/emp4.png',
-    quote:
-      'McCoin is clearly built with the user in mind. The platform is smooth, secure, and incredibly easy to navigate even for beginners.',
-  },
+const testimonialImages = [
+  '/images/emp1.png',
+  '/images/emp2.png',
+  '/images/emp1.png',
+  '/images/emp4.png',
 ];
 
 export default function Testimonials() {
+  const t = useTranslations('HomePage.Testimonials');
+
   return (
     <section className="dark:bg-[#07153b] bg-[#DAE6EA] py-16 px-4">
       <h1 className="dark:text-white text-[#07153b] lg:text-4xl text-xl font-semibold text-center mb-16">
-        What <span className="text-[#EC3B3B]">McCoin</span> Users Say
+        {t('title', { brand: 'McCoin' })}
       </h1>
       <Swiper
         spaceBetween={20}
@@ -59,7 +38,12 @@ export default function Testimonials() {
         modules={[Autoplay]}
         className="w-full max-w-7xl mx-auto"
       >
-        {testimonials.map((t, idx) => (
+        {[
+          { key: 'cameron', image: testimonialImages[0] },
+          { key: 'sara', image: testimonialImages[1] },
+          { key: 'liam', image: testimonialImages[2] },
+          { key: 'emily', image: testimonialImages[3] },
+        ].map((testimonial, idx) => (
           <SwiperSlide key={idx}>
             <div className="relative flex flex-col justify-between h-[480px] bg-[#DAE6EA] border  dark:border-white border-[#07153b] rounded-xl pt-24 pb-6 px-6 text-center shadow-xl overflow-hidden">
               {/* Polygon triangle background */}
@@ -72,8 +56,8 @@ export default function Testimonials() {
               <div className="absolute top-16 left-1/2 transform -translate-x-1/2 z-10">
                 <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white bg-white">
                   <Image
-                    src={t.image}
-                    alt={t.name}
+                    src={testimonial.image}
+                    alt={t(`testimonials.${testimonial.key}.name`)}
                     width={96}
                     height={96}
                     className="object-cover w-full h-full"
@@ -92,9 +76,15 @@ export default function Testimonials() {
                 </div>
 
                 {/* Name, title, quote */}
-                <h3 className="font-semibold text-lg text-[#07153b]">{t.name}</h3>
-                <p className="text-sm text-[#07153b]/70 mb-4">{t.designation}</p>
-                <p className="text-[#07153b] italic text-sm max-w-xs mx-auto">"{t.quote}"</p>
+                <h3 className="font-semibold text-lg text-[#07153b]">
+                  {t(`testimonials.${testimonial.key}.name`)}
+                </h3>
+                <p className="text-sm text-[#07153b]/70 mb-4">
+                  {t(`testimonials.${testimonial.key}.designation`)}
+                </p>
+                <p className="text-[#07153b] italic text-sm max-w-xs mx-auto">
+                  "{t(`testimonials.${testimonial.key}.quote`)}"
+                </p>
               </div>
             </div>
           </SwiperSlide>

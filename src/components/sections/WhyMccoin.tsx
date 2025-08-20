@@ -1,20 +1,31 @@
 import Image from 'next/image';
 import React from 'react';
 import { WhyMcCoinData } from '../../../utils/data';
+import { useLocale, useTranslations } from 'next-intl';
 
 const WhyMccoin = () => {
+  const t = useTranslations('HomePage.WhyMccoin');
+  const locale = useLocale();
+  const isArabic = locale === 'ar';
+
   return (
     <section className="container mx-auto xl:w-[70%] pt-24 pb-12 px-4 sm:px-6">
       <h1 className="text-center dark:text-[#DAE6EA] text-[#07153b]  font-[600] text-3xl sm:text-4xl xl:text-[2.225rem]">
-        Why Choose McCoin
+        {t('title')}
       </h1>
       <p className="text-center dark:text-[#DAE6EA] text-[#07153b] font-[400] text-lg sm:text-xl xl:text-[1.5rem] mt-6 mb-12 max-w-3xl mx-auto">
-        McCoin combines advanced features, zero-fee trading, and bank-grade security—all in one
-        place.
+        {t('subtitle')}
       </p>
 
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
-        {WhyMcCoinData.slice(0, 2).map(card => (
+      <div
+        className={`flex ${
+          isArabic ? 'flex-row-reverse' : 'flex-row'
+        } justify-between items-center gap-8 mb-8`}
+      >
+        {[
+          { id: 1, imgSRC: WhyMcCoinData[0].imgSRC, featureKey: 'zero_fee' },
+          { id: 2, imgSRC: WhyMcCoinData[1].imgSRC, featureKey: 'ultimate_option' },
+        ].map(card => (
           <div
             key={card.id}
             className="
@@ -32,24 +43,31 @@ const WhyMccoin = () => {
             <div className="mb-6 transition-transform duration-300 group-hover:scale-110">
               <Image
                 src={card.imgSRC}
-                alt={card.title1}
+                alt={t(`features.${card.featureKey}.title1`)}
                 width={300}
                 height={140}
                 className="transition-opacity duration-300 group-hover:opacity-90"
               />
             </div>
             <h1 className="dark:text-[#DAE6EA] text-[#07153b] font-[600] text-2xl dark:group-hover:text-white group-hover:text-[#07153b]">
-              {card.title1} <span className="block group-hover:text-[#EC3B3B]">{card.title2}</span>
+              {t(`features.${card.featureKey}.title1`)}{' '}
+              <span className="block group-hover:text-[#EC3B3B]">
+                {t(`features.${card.featureKey}.title2`)}
+              </span>
             </h1>
             <p className="dark:text-[#8A939B] text-[#07153b]  mt-4 text-[1rem] dark:group-hover:text-[#a0b3c8] group-hover:text-[#07153b] transition-colors duration-300">
-              {card.paragraph}
+              {t(`features.${card.featureKey}.paragraph`)}
             </p>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {WhyMcCoinData.slice(2).map(card => (
+        {[
+          { id: 3, imgSRC: WhyMcCoinData[2].imgSRC, featureKey: 'safety' },
+          { id: 4, imgSRC: WhyMcCoinData[3].imgSRC, featureKey: 'global_access' },
+          { id: 5, imgSRC: WhyMcCoinData[4].imgSRC, featureKey: 'full_stack' },
+        ].map(card => (
           <div
             key={card.id}
             className="
@@ -72,17 +90,28 @@ const WhyMccoin = () => {
             >
               <Image
                 src={card.imgSRC}
-                alt={card.title1}
+                alt={t(`features.${card.featureKey}.title1`)}
                 width={64}
                 height={64}
                 className="transition-transform duration-500 group-hover:rotate-[180deg]"
               />
             </div>
-            <h1 className="dark:text-[#DAE6EA] text-[#07153b] font-[600] text-xl dark:group-hover:text-white group-hover:text-[#07153b]">
-              {card.title1} <span className="block group-hover:text-[#EC3B3B]">{card.title2}</span>
+            <h1
+              className={`dark:text-[#DAE6EA] text-[#07153b] font-[600] text-xl dark:group-hover:text-white group-hover:text-[#07153b] ${
+                isArabic ? 'text-right' : 'text-left'
+              }`}
+            >
+              {t(`features.${card.featureKey}.title1`)}{' '}
+              <span className="block group-hover:text-[#EC3B3B]">
+                {t(`features.${card.featureKey}.title2`)}
+              </span>
             </h1>
-            <p className="dark:text-[#8A939B] text-[#07153b] mt-2 text-base dark:group-hover:text-[#a0b3c8] group-hover:text-[#07153b] transition-colors duration-300">
-              {card.paragraph}
+            <p
+              className={`dark:text-[#8A939B] text-[#07153b] mt-2 text-base dark:group-hover:text-[#a0b3c8] group-hover:text-[#07153b] transition-colors duration-300 ${
+                isArabic ? 'text-right' : 'text-left'
+              }`}
+            >
+              {t(`features.${card.featureKey}.paragraph`)}
             </p>
             <div
               className="

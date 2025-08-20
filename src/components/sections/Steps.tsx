@@ -1,18 +1,40 @@
 import Image from 'next/image';
 import { StepsData } from '../../../utils/data';
+import { useTranslations } from 'next-intl';
 
 const Steps = () => {
+  const t = useTranslations('HomePage.Steps');
+
   return (
     <section className="container mx-auto xl:w-[70%] py-12 px-4 sm:px-6">
       <h1 className="text-center dark:text-[#DAE6EA] text-[#07153b] font-[600] text-3xl sm:text-4xl xl:text-[2.225rem]">
-        Steps to Start Trading
+        {t('title')}
       </h1>
       <p className="text-center dark:text-[#DAE6EA] text-[#07153b] font-[400] text-lg sm:text-xl xl:text-[1.5rem] mt-6 mb-18 max-w-3xl mx-auto">
-        To start trading with McCoin, all you need to do is to follow these simple steps
+        {t('subtitle')}
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {StepsData.map(step => (
+        {[
+          {
+            id: 1,
+            imgSRC: StepsData[0].imgSRC,
+            iconSRC: StepsData[0].iconSRC,
+            stepKey: 'create_account',
+          },
+          {
+            id: 2,
+            imgSRC: StepsData[1].imgSRC,
+            iconSRC: StepsData[1].iconSRC,
+            stepKey: 'fund_account',
+          },
+          {
+            id: 3,
+            imgSRC: StepsData[2].imgSRC,
+            iconSRC: StepsData[2].iconSRC,
+            stepKey: 'start_trading',
+          },
+        ].map(step => (
           <div
             key={step.id}
             className="
@@ -64,7 +86,7 @@ const Steps = () => {
                 dark:group-hover:text-white group-hover:text-[#EC3B3B]
               "
               >
-                {step.title}
+                {t(`steps.${step.stepKey}.title`)}
               </h2>
               <p
                 className="
@@ -74,7 +96,7 @@ const Steps = () => {
                 group-hover:text-[#07153b]
               "
               >
-                {step.subTitle}
+                {t(`steps.${step.stepKey}.subtitle`)}
               </p>
             </div>
             <div
