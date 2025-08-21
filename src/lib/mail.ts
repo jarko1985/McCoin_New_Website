@@ -128,7 +128,7 @@ export async function sendVerificationEmail(email: string, token: string) {
                   <tr>
                     <td align="left" valign="middle">
                       <a href="${siteUrl}" target="_blank" style="display:inline-block;">
-                        <img src="${logoUrl}" width="96" alt="McCoin" style="display:block; height:auto;">
+                        <img src="${logoUrl}" width="100" alt="McCoin" style="display:block; height:auto;">
                       </a>
                     </td>
                     <td align="right">&nbsp;</td>
@@ -140,7 +140,7 @@ export async function sendVerificationEmail(email: string, token: string) {
             <!-- Hero icon -->
             <tr>
               <td bgcolor="#DAE6EA" align="center" style="padding:28px 24px 16px;">
-                <img src="${envelopeUrl}" width="96" alt="Email Icon" style="display:block; height:auto;">
+                <img src="${envelopeUrl}" width="100" alt="Email Icon" style="display:block; height:auto;">
               </td>
             </tr>
 
@@ -149,17 +149,17 @@ export async function sendVerificationEmail(email: string, token: string) {
               <td bgcolor="#ffffff" class="px-24" style="padding:24px;">
                 <!-- Headline with dark highlight -->
                 <div style="font-family:Arial, Helvetica, sans-serif; font-size:28px; line-height:1.2; margin:0 0 16px 0; color:#07153B;">
-                  <span style="background-color:#07153B; color:#ffffff; padding:4px 8px; display:inline-block;">
-                    Account Confirmation!
+                  <span style="color:##07153B; padding:4px 8px; display:inline-block;">
+                    Confirm your email to activate your account
                   </span>
                 </div>
 
-                <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.6; color:#07153B; margin:0 0 12px 0;">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.6; color:#07153B; margin:0 0 20px 0;">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
+                <p style="margin:0 0 16px 0;color:#334155;">
+                Hi ${email}, welcome to McCoin! Please verify your email address to finish setting up your account and keep it secure.
+              </p>
+              <p style="margin:0 0 20px 0;color:#334155;">
+                This verification link expires in <strong>24 hours</strong>. If it expires, you can request a new one from the sign-in page.
+              </p>
 
                 <!-- Bulletproof button -->
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left" style="margin:0 0 8px 0;">
@@ -185,7 +185,13 @@ export async function sendVerificationEmail(email: string, token: string) {
                 </table>
               </td>
             </tr>
+              <p style="color: #666; font-size: 14px; margin-top: 30px; margin-bottom: 10px;">
+                    If the button doesn't work, copy and paste this link into your browser:
+                  </p>
 
+ 		    <p style="color: #EC3B3B; font-size: 14px; word-break: break-all; margin-bottom: 30px;">
+                    <a href="${verifyUrl}" style="color: #EC3B3B;">${verifyUrl}</a>
+                   </p>
             <!-- Info band -->
             <tr>
               <td bgcolor="#DAE6EA" class="px-24" style="padding:20px 24px;">
