@@ -59,11 +59,20 @@ export function generateMetadata({
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'McCoin Virtual Assets',
-  description: 'Your trusted crypto exchange platform',
+  title: 'McCoin - Everything Crypto | Global Cryptocurrency Exchange',
+  description:
+    'Join McCoin, the global cryptocurrency exchange platform. Trade Bitcoin, Ethereum, and 100+ cryptocurrencies with zero fees, advanced trading tools, and bank-grade security. Start your crypto journey today!',
+  keywords:
+    'cryptocurrency, bitcoin, ethereum, crypto exchange, digital assets, trading platform, blockchain, crypto trading, virtual assets, McCoin',
+  authors: [{ name: 'McCoin Team' }],
+  creator: 'McCoin',
+  publisher: 'McCoin',
+  applicationName: 'McCoin',
+  referrer: 'origin-when-cross-origin',
   openGraph: {
-    title: 'McCoin Virtual Assets',
-    description: 'Your trusted crypto exchange platform',
+    title: 'McCoin - Everything Crypto | Global Cryptocurrency Exchange',
+    description:
+      'Join McCoin, the global cryptocurrency exchange platform. Trade Bitcoin, Ethereum, and 100+ cryptocurrencies with zero fees, advanced trading tools, and bank-grade security. Start your crypto journey today!',
     url: `${baseUrl}/en`,
     siteName: 'McCoin',
     images: [
@@ -71,22 +80,27 @@ export const defaultMetadata: Metadata = {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: 'McCoin - Your Trusted Crypto Exchange Platform',
+        alt: 'McCoin - Global Cryptocurrency Exchange Platform',
+        type: 'image/svg+xml',
       },
     ],
     type: 'website',
     locale: 'en_US',
+    countryName: 'United Arab Emirates',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'McCoin Virtual Assets',
-    description: 'Your trusted crypto exchange platform',
+    title: 'McCoin - Everything Crypto | Global Cryptocurrency Exchange',
+    description:
+      'Join McCoin, the global cryptocurrency exchange platform. Trade Bitcoin, Ethereum, and 100+ cryptocurrencies with zero fees, advanced trading tools, and bank-grade security.',
     images: ['/og-image.svg'],
     creator: '@mccoin',
+    site: '@mccoin',
   },
   icons: {
     icon: '/favicon.ico',
     apple: '/favicon.ico',
+    shortcut: '/favicon.ico',
   },
   robots: {
     index: true,
@@ -99,4 +113,9 @@ export const defaultMetadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: `${baseUrl}/en`,
+  },
+  category: 'Finance',
+  classification: 'Cryptocurrency Exchange',
 };
