@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import { createHash } from 'crypto';
+import { sendWelcomeEmail } from '@/lib/mail';
 
 export async function GET(req: NextRequest) {
   try {
@@ -66,6 +67,15 @@ export async function GET(req: NextRequest) {
       },
       { new: true }, // Return the updated document
     );
+
+    // Send welcome email after successful verification
+    try {
+      await sendWelcomeEmail(email.toLowerCase(), user.name);
+    } catch (emailError) {
+      console.error('Error sending welcome email:', emailError);
+      // Don't fail the verification process if welcome email fails
+      // Just log the error and continue
+    }
 
     return NextResponse.json({
       success: true,

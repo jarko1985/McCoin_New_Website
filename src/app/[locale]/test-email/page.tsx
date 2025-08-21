@@ -29,12 +29,12 @@ export default function TestEmailPage() {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success('Test email sent! Check your inbox.');
+        toast.success('Verification email sent! Check your inbox.');
       } else {
-        toast.error(data.error || 'Failed to send test email');
+        toast.error(data.error || 'Failed to send verification email');
       }
     } catch (error) {
-      toast.error('Failed to send test email');
+      toast.error('Failed to send verification email');
       console.error('Error:', error);
     } finally {
       setIsLoading(false);
@@ -64,8 +64,9 @@ export default function TestEmailPage() {
               className="w-full"
             />
           </div>
+
           <Button onClick={handleSendTestEmail} disabled={isLoading} className="w-full">
-            {isLoading ? 'Sending...' : 'Send Test Email'}
+            {isLoading ? 'Sending...' : 'Send Verification Email'}
           </Button>
 
           <div className="text-xs text-gray-500 mt-4">

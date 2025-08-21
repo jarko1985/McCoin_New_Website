@@ -428,3 +428,199 @@ export async function sendContactFormEmail(formData: {
     emailContent,
   );
 }
+
+/**
+ * Sends a welcome email to users after their email is verified
+ * This function is automatically called in the email verification process
+ *
+ * @param email - The user's email address
+ * @param userName - Optional user name for personalization
+ */
+export async function sendWelcomeEmail(email: string, userName?: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+
+  // Social media URLs
+  const fbUrl = 'https://facebook.com/mccoin';
+  const xUrl = 'https://twitter.com/mccoin';
+  const lnUrl = 'https://linkedin.com/company/mccoin';
+  const igUrl = 'https://instagram.com/mccoin';
+
+  const emailContent = `
+<!doctype html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to McCoin</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <style>
+    html,body{margin:0!important;padding:0!important;width:100%!important;height:100%!important}
+    img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;line-height:100%}
+    table{border-collapse:collapse!important}
+    a{text-decoration:underline}
+    @media screen and (max-width:660px){
+      .container{width:100%!important}
+      .px-24{padding-left:24px!important;padding-right:24px!important}
+    }
+  </style>
+</head>
+<body style="background-color:#ffffff;margin:0;padding:0;">
+  <center role="article" aria-roledescription="email" style="width:100%;background:#ffffff;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+      <tr>
+        <td align="center">
+          <!-- Container -->
+          <table role="presentation" class="container" width="640" cellspacing="0" cellpadding="0" border="0" style="width:640px;max-width:640px;">
+            <!-- Header band -->
+            <tr>
+              <td bgcolor="#DAE6EA" style="padding:16px 24px;">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td align="left" valign="middle">
+                      <a href="${baseUrl}" target="_blank" style="display:inline-block;">
+                        <img src="${baseUrl}/images/mccoin_logo_light.png" width="96" alt="McCoin" style="display:block;height:auto;">
+                      </a>
+                    </td>
+                    <td align="right">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Decorative coin -->
+            <tr>
+              <td bgcolor="#DAE6EA" align="center" style="padding:24px 24px 8px;">
+                <img src="${baseUrl}/images/coin.svg" width="120" alt="" style="display:block;height:auto;">
+              </td>
+            </tr>
+
+            <!-- Content card -->
+            <tr>
+              <td class="px-24" bgcolor="#ffffff" style="padding:24px;">
+                <!-- Headline -->
+                <h1 style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:1.4;color:#07153B;font-weight:400;">
+                  Welcome to <strong>McCoin</strong> – we're thrilled to have you on board! 🎉
+                </h1>
+
+                <!-- Intro -->
+                <p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#07153B;">
+                  Your account has been successfully created, and you're now part of a growing community trading and exploring digital assets with confidence.
+                </p>
+
+                <!-- How to get started -->
+                <p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#07153B;">
+                  <strong>Here's how to get started:</strong>
+                </p>
+                <ul style="margin:0 0 16px 20px;padding:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#07153B;">
+                  <li><strong>Secure your account</strong> – Enable Two-Factor Authentication (2FA) for maximum protection.</li>
+                  <li><strong>Verify your identity</strong> – Complete KYC to unlock deposits, withdrawals, and full platform access.</li>
+                  <li><strong>Fund your account</strong> – Add crypto or fiat to start trading instantly.</li>
+                  <li><strong>Explore McCoin Pulse</strong> – Stay updated with the latest market news, insights, and trends.</li>
+                </ul>
+
+                <!-- Why McCoin -->
+                <p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#07153B;">
+                  <strong>Why McCoin?</strong>
+                </p>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 16px 0;">
+                  <tr>
+                    <td style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;">
+                      ✅ Enterprise-grade security &amp; compliance.<br>
+                      ✅ Seamless crypto trading experience.<br>
+                      ✅ Real-time insights to help you make smarter moves.<br>
+                      ✅ Dedicated support when you need it.
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Support line -->
+                <p style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#07153B;">
+                  We're excited to see you thrive in the McCoin ecosystem. If you ever need help, our support team is here 24/7 at
+                  <a href="mailto:support@mccoin.com" style="color:#07153B;">support@mccoin.com</a>.
+                </p>
+
+                <!-- Small note -->
+                <p style="margin:8px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  By confirming your subscription, you'll be joining a community of like-minded mccoiners who are passionate about "everything crypto". Get ready to stay informed and inspired!
+                </p>
+              </td>
+            </tr>
+
+            <!-- Light band with CTA links -->
+            <tr>
+              <td bgcolor="#DAE6EA" class="px-24" style="padding:18px 24px;">
+                <p style="margin:0 0 10px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#07153B;">
+                  ✳️ Invite your friends to our community and earn credits to win gifts
+                </p>
+
+                <p style="margin:0 12px 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;">
+                  <a href="${baseUrl}/share" style="color:#EC3B3B;font-weight:bold;">Share with Friends</a>
+                </p>
+
+                <!-- Simple nav -->
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;">
+                  <a href="${baseUrl}/news" style="color:#07153B;">News</a>
+                  &nbsp;|&nbsp;
+                  <a href="${baseUrl}/about" style="color:#07153B;">About us</a>
+                  &nbsp;|&nbsp;
+                  <a href="${baseUrl}/resources" style="color:#07153B;">Resources</a>
+                  &nbsp;|&nbsp;
+                  <a href="${baseUrl}/contact" style="color:#07153B;">Contact us</a>
+                </p>
+
+                <!-- Optional: social text links (use icons if you have hosted PNGs) -->
+                <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#07153B;">
+                  <a href="${fbUrl}" style="color:#07153B;">Facebook</a> &nbsp;&nbsp;
+                  <a href="${xUrl}" style="color:#07153B;">X</a> &nbsp;&nbsp;
+                  <a href="${lnUrl}" style="color:#07153B;">LinkedIn</a> &nbsp;&nbsp;
+                  <a href="${igUrl}" style="color:#07153B;">Instagram</a>
+                </p>
+              </td>
+            </tr>
+
+            <!-- Divider -->
+            <tr>
+              <td style="padding:0 24px;">
+                <table role="presentation" width="100%"><tr><td style="border-bottom:2px solid #DAE6EA;line-height:0;font-size:0;">&nbsp;</td></tr></table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="px-24" style="padding:16px 24px 24px;">
+                <p style="margin:0 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  You have received this email because you are a subscriber of
+                  <a href="${baseUrl}" style="color:#07153B;">this site</a>.
+                </p>
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  If you feel you received it by mistake or wish to unsubscribe,
+                  <a href="${baseUrl}/unsubscribe" style="color:#07153B;">click here</a>.
+                </p>
+              </td>
+            </tr>
+
+            <tr><td height="12" style="height:12px;line-height:12px;font-size:0;">&nbsp;</td></tr>
+          </table>
+          <!-- /Container -->
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+</html>
+  `;
+
+  await sendEmailViaGraph(
+    email,
+    'Welcome to McCoin – Your Crypto Journey Starts Here! 🚀',
+    emailContent,
+  );
+}
