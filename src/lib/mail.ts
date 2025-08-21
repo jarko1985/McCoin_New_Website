@@ -289,61 +289,190 @@ export async function sendPasswordResetEmail(email: string, token: string) {
     process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
   }/en/reset-password?token=${token}&email=${encodeURIComponent(email)}`;
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+
+  // Social media URLs
+  const fbUrl = 'https://facebook.com/mccoin';
+  const xUrl = 'https://twitter.com/mccoin';
+  const lnUrl = 'https://linkedin.com/company/mccoin';
+  const igUrl = 'https://instagram.com/mccoin';
+
   const emailContent = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Reset Your McCoin Password</title>
-    </head>
-    <body style="font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4;">
-        <tr>
-          <td align="center" style="padding: 20px;">
-            <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              <tr>
-                <td style="background: linear-gradient(135deg, #07153B 0%, #1A0A2E 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
-                  <img src="https://mc-coin-new-website.vercel.app/images/logo1.png" alt="McCoin Logo" style="max-width: 150px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
-                  <h1 style="color: #07153B; margin-bottom: 20px; font-size: 28px; margin-top: 0;">Reset Your Password</h1>
-                  <p style="color: #07153B; font-size: 16px; margin-bottom: 30px; margin-top: 0;">
-                    We received a request to reset your McCoin account password. Click the button below to set a new password.
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding: 30px; text-align: center;">
-                  <table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-                    <tr>
-                      <td style="background-color: #EC3B3B; border-radius: 8px; text-align: center;">
-                        <a href="${resetUrl}" style="display: inline-block; padding: 15px 30px; color: #07153B; text-decoration: none; font-weight: bold; font-size: 16px; border-radius: 8px; background-color: #EC3B3B;">
-                          Reset Password
-                        </a>
-                      </td>
-                    </tr>
-                  </table>
-                  
-                  <p style="color: #666; font-size: 14px; margin-top: 30px; margin-bottom: 10px;">
-                    If the button doesn't work, copy and paste this link into your browser:
-                  </p>
-                  <p style="color: #EC3B3B; font-size: 14px; word-break: break-all; margin-bottom: 30px;">
-                    <a href="${resetUrl}" style="color: #EC3B3B;">${resetUrl}</a>
-                  </p>
-                  
-                  <p style="color: #666; font-size: 12px; margin-top: 30px; margin-bottom: 0;">
-                    This password reset link will expire in 1 hour. If you didn't request a password reset, please ignore this email and your password will remain unchanged.
-                  </p>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </body>
-    </html>
+<!doctype html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Recovery</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <style>
+    html,body{margin:0!important;padding:0!important;width:100%!important;height:100%!important}
+    img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;line-height:100%}
+    table{border-collapse:collapse!important}
+    a{text-decoration:underline}
+    @media screen and (max-width:660px){
+      .container{width:100%!important}
+      .px-24{padding-left:24px!important;padding-right:24px!important}
+    }
+  </style>
+</head>
+<body style="background-color:#ffffff;margin:0;padding:0;">
+  <center role="article" aria-roledescription="email" style="width:100%;background:#ffffff;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+      <tr>
+        <td align="center">
+          <!-- Container -->
+          <table role="presentation" class="container" width="640" cellspacing="0" cellpadding="0" border="0" style="width:640px;max-width:640px;">
+            <!-- Header band with logo -->
+            <tr>
+              <td bgcolor="#DAE6EA" style="padding:16px 24px;">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td align="left" valign="middle">
+                      <a href="${baseUrl}" target="_blank" style="display:inline-block;">
+                        <img src="${baseUrl}/images/mccoin_logo_light.png" width="96" alt="McCoin" style="display:block;height:auto;">
+                      </a>
+                    </td>
+                    <td align="right">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- User icon -->
+            <tr>
+              <td bgcolor="#DAE6EA" align="center" style="padding:28px 24px 0;">
+                <img src="${baseUrl}/images/user.png" width="96" alt="User Icon" style="display:block;height:auto;">
+                <!-- If you only have SVG, some clients will show it, Outlook desktop won't:
+                <img src="${baseUrl}/images/user.svg" width="96" alt="User Icon" style="display:block;height:auto;">
+                -->
+              </td>
+            </tr>
+
+            <!-- White content area -->
+            <tr>
+              <td bgcolor="#ffffff" class="px-24" style="padding:24px;">
+                <!-- Title -->
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:1.2;color:#07153B;font-weight:700;margin:0 0 16px 0;">
+                  Account Recovery
+                </div>
+
+                <!-- Button (bulletproof for Outlook) -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left" style="margin:0 0 18px 0;">
+                  <tr>
+                    <td align="center" bgcolor="#07153B" style="border-radius:6px;">
+                      <!--[if mso]>
+                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="${resetUrl}"
+                        style="height:44px;v-text-anchor:middle;width:180px;" arcsize="8%" stroke="f" fillcolor="#07153B">
+                        <w:anchorlock/>
+                        <center style="color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:14px;">
+                          Password Reset
+                        </center>
+                      </v:roundrect>
+                      <![endif]-->
+                      <!--[if !mso]><!-- -->
+                      <a href="${resetUrl}"
+                         style="background-color:#07153B;border:1px solid #07153B;border-radius:6px;color:#ffffff;display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:44px;text-align:center;text-decoration:none;width:180px;-webkit-text-size-adjust:none;mso-hide:all;">
+                        Password Reset
+                      </a>
+                      <!--<![endif]-->
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Copy -->
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:12px 0 12px 0; clear:both;">
+                  We received a request to reset the password for your McCoin account. If you made this request, please click the button above to create a new password.
+                </p>
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:0 0 12px 0;">
+                  For security, this link is valid for a limited time and can only be used once. If you didn't request a password reset, you can safely ignore this email—your account will remain secure.
+                </p>
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:0 0 18px 0;">
+                  If the button doesn't work, copy and paste this URL into your browser:<br>
+                  <a href="${resetUrl}" style="color:#EC3B3B; word-break:break-all;">${resetUrl}</a>
+                </p>
+
+                <!-- Disclaimer -->
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;margin:0;">
+                  Disclaimer: Never share your password or reset link with anyone. McCoin will never ask for your password via email.
+                </p>
+              </td>
+            </tr>
+
+            <!-- Light band with invite + nav -->
+            <tr>
+              <td bgcolor="#DAE6EA" class="px-24" style="padding:18px 24px;">
+                <p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#07153B;">
+                  🐘 Invite your friends to our community and earn credits to win gifts
+                </p>
+                <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;">
+                  <a href="${baseUrl}/share" style="color:#EC3B3B;font-weight:bold;">Share with Friends</a>
+                </p>
+
+                <!-- Nav links -->
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;">
+                  <a href="${baseUrl}/news" style="color:#07153B;">News</a>
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="${baseUrl}/about" style="color:#07153B;">About us</a>
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="${baseUrl}/resources" style="color:#07153B;">Resources</a>
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="${baseUrl}/contact" style="color:#07153B;">Contact us</a>
+                </p>
+
+                <!-- Social text links (swap for hosted PNG icons if desired) -->
+                <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#07153B;">
+                  <a href="${fbUrl}" style="color:#07153B;">Facebook</a> &nbsp;&nbsp;
+                  <a href="${xUrl}" style="color:#07153B;">X</a> &nbsp;&nbsp;
+                  <a href="${lnUrl}" style="color:#07153B;">LinkedIn</a> &nbsp;&nbsp;
+                  <a href="${igUrl}" style="color:#07153B;">Instagram</a>
+                </p>
+              </td>
+            </tr>
+
+            <!-- Divider -->
+            <tr>
+              <td style="padding:0 24px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top:16px;">
+                  <tr><td style="border-bottom:2px solid #DAE6EA;line-height:0;font-size:0;">&nbsp;</td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="px-24" style="padding:16px 24px 24px;">
+                <p style="margin:0 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  You have received this email because you are a subscriber of
+                  <a href="${baseUrl}" style="color:#07153B;">this site</a>.
+                </p>
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  If you feel you received it by mistake or wish to unsubscribe,
+                  <a href="${baseUrl}/unsubscribe" style="color:#07153B;">click here</a>.
+                </p>
+              </td>
+            </tr>
+
+            <tr><td height="12" style="height:12px;line-height:12px;font-size:0;">&nbsp;</td></tr>
+          </table>
+          <!-- /Container -->
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+</html>
   `;
 
-  await sendEmailViaGraph(email, 'Reset Your McCoin Password', emailContent);
+  await sendEmailViaGraph(email, 'Account Recovery - Reset Your McCoin Password', emailContent);
 }
 
 export async function sendContactFormEmail(formData: {
@@ -425,6 +554,188 @@ export async function sendContactFormEmail(formData: {
   await sendEmailViaGraph(
     process.env.CONTACT_EMAIL || 'dev@mccoin.com',
     `New Contact Form Submission: ${subject}`,
+    emailContent,
+  );
+}
+
+/**
+ * Sends a contact acknowledgment email to users who submit the contact form
+ * This function is automatically called in the contact form submission process
+ *
+ * @param formData - The contact form data including name, email, phone, subject, and message
+ */
+export async function sendContactAcknowledgmentEmail(formData: {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}) {
+  const { name, email } = formData;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+
+  // Social media URLs
+  const fbUrl = 'https://facebook.com/mccoin';
+  const xUrl = 'https://twitter.com/mccoin';
+  const lnUrl = 'https://linkedin.com/company/mccoin';
+  const igUrl = 'https://instagram.com/mccoin';
+
+  const emailContent = `
+<!doctype html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Acknowledgment</title>
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <style>
+    html,body{margin:0!important;padding:0!important;width:100%!important;height:100%!important}
+    img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;line-height:100%}
+    table{border-collapse:collapse!important}
+    a{text-decoration:underline}
+    @media screen and (max-width:660px){
+      .container{width:100%!important}
+      .px-24{padding-left:24px!important;padding-right:24px!important}
+    }
+  </style>
+</head>
+<body style="background-color:#ffffff;margin:0;padding:0;">
+  <center role="article" aria-roledescription="email" style="width:100%;background:#ffffff;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+      <tr>
+        <td align="center">
+          <!-- Container -->
+          <table role="presentation" class="container" width="640" cellspacing="0" cellpadding="0" border="0" style="width:640px;max-width:640px;">
+            <!-- Header band -->
+            <tr>
+              <td bgcolor="#DAE6EA" style="padding:16px 24px;">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td align="left" valign="middle">
+                      <a href="${baseUrl}" target="_blank" style="display:inline-block;">
+                        <img src="${baseUrl}/images/mccoin_logo_light.png" width="120" alt="McCoin" style="display:block;height:auto;">
+                      </a>
+                    </td>
+                    <td align="right">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Handshake icon -->
+            <tr>
+              <td bgcolor="#DAE6EA" align="center" style="padding:28px 24px 0;">
+                <img src="${baseUrl}/images/handshake_icon.png" width="120" alt="Handshake" style="display:block;height:auto;">
+              </td>
+            </tr>
+
+            <!-- White content area -->
+            <tr>
+              <td bgcolor="#ffffff" class="px-24" style="padding:24px;">
+                <!-- Headline -->
+                <div style="font-family:Arial,Helvetica,sans-serif;font-size:32px;line-height:1.2;color:#07153B;font-weight:800;letter-spacing:0.5px;margin:0 0 8px 0;">
+                  HEY THERE, ${name}!
+                </div>
+
+                <!-- Body copy -->
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:8px 0 16px 0;">
+                  Thanks for reaching out to us.
+                </p>
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:0 0 16px 0;">
+                  This email is to confirm that we have received your inquiry and our team will get back to you as soon as possible.
+                </p>
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:0 0 16px 0;">
+                  We typically respond within 24-48 hours during business days. If your inquiry is urgent, please don't hesitate to reach out to our support team directly.
+                </p>
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;margin:0 0 16px 0;">
+                  In the meantime, feel free to explore our platform and discover everything McCoin has to offer for your crypto trading journey.
+                </p>
+
+                <!-- Small note -->
+                <p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;margin:10px 0 0 0;">
+                  By confirming your subscription, you'll be joining a community of like-minded mccoiners who are passionate about "everything crypto". Get ready to stay informed and inspired!
+                </p>
+              </td>
+            </tr>
+
+            <!-- Light band with invite + nav -->
+            <tr>
+              <td bgcolor="#DAE6EA" class="px-24" style="padding:18px 24px;">
+                <p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#07153B;">
+                  🐘 Invite your friends to our community and earn credits to win gifts
+                </p>
+                <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;">
+                  <a href="${baseUrl}/share" style="color:#EC3B3B;font-weight:bold;">Share with Friends</a>
+                </p>
+
+                <!-- Nav links -->
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.8;color:#07153B;">
+                  <a href="${baseUrl}/news" style="color:#07153B;">News</a>
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="${baseUrl}/about" style="color:#07153B;">About us</a>
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="${baseUrl}/resources" style="color:#07153B;">Resources</a>
+                  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="${baseUrl}/contact" style="color:#07153B;">Contact us</a>
+                </p>
+
+                <!-- Social text links -->
+                <p style="margin:12px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#07153B;">
+                  <a href="${fbUrl}" style="color:#07153B;">Facebook</a> &nbsp;&nbsp;
+                  <a href="${xUrl}" style="color:#07153B;">X</a> &nbsp;&nbsp;
+                  <a href="${lnUrl}" style="color:#07153B;">LinkedIn</a> &nbsp;&nbsp;
+                  <a href="${igUrl}" style="color:#07153B;">Instagram</a>
+                </p>
+              </td>
+            </tr>
+
+            <!-- Thin divider -->
+            <tr>
+              <td style="padding:0 24px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top:16px;">
+                  <tr>
+                    <td style="border-bottom:2px solid #DAE6EA; line-height:0; font-size:0;">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="px-24" style="padding:16px 24px 24px;">
+                <p style="margin:0 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  You have received this email because you are a subscriber of
+                  <a href="${baseUrl}" style="color:#07153B;">this site</a>.
+                </p>
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b6f76;">
+                  If you feel you received it by mistake or wish to unsubscribe,
+                  <a href="${baseUrl}/unsubscribe" style="color:#07153B;">click here</a>.
+                </p>
+              </td>
+            </tr>
+
+            <tr><td height="12" style="height:12px;line-height:12px;font-size:0;">&nbsp;</td></tr>
+          </table>
+          <!-- /Container -->
+        </td>
+      </tr>
+    </table>
+  </center>
+</body>
+</html>
+  `;
+
+  await sendEmailViaGraph(
+    email,
+    "Thank You for Contacting McCoin - We've Received Your Message! 🤝",
     emailContent,
   );
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { sendContactFormEmail } from '@/lib/mail';
+import { sendContactFormEmail, sendContactAcknowledgmentEmail } from '@/lib/mail';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters.'),
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     const { name, email, phone, subject, message }: FormData = validatedData.data;
 
-    // Send the email using Microsoft Graph API
+    // Send the contact form email to admin
     await sendContactFormEmail({
       name,
       email,
@@ -31,6 +31,21 @@ export async function POST(request: Request) {
       subject,
       message,
     });
+
+    // Send acknowledgment email to the user
+    try {
+      await sendContactAcknowledgmentEmail({
+        name,
+        email,
+        phone,
+        subject,
+        message,
+      });
+    } catch (acknowledgmentError) {
+      console.error('Error sending acknowledgment email:', acknowledgmentError);
+      // Don't fail the contact form submission if acknowledgment email fails
+      // Just log the error and continue
+    }
 
     return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
   } catch (error: any) {
