@@ -160,7 +160,8 @@ export async function sendVerificationEmail(email: string, token: string) {
               <p style="margin:0 0 20px 0;color:#334155;">
                 This verification link expires in <strong>24 hours</strong>. If it expires, you can request a new one from the sign-in page.
               </p>
-
+              </td>
+            </tr>
                 <!-- Bulletproof button -->
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left" style="margin:0 0 8px 0;">
                   <tr>
@@ -185,6 +186,8 @@ export async function sendVerificationEmail(email: string, token: string) {
                 </table>
               </td>
             </tr>
+            <tr>
+              <td bgcolor="#ffffff" class="px-24" style="padding:24px;">
               <p style="color: #666; font-size: 14px; margin-top: 30px; margin-bottom: 10px;">
                     If the button doesn't work, copy and paste this link into your browser:
                   </p>
@@ -192,6 +195,8 @@ export async function sendVerificationEmail(email: string, token: string) {
  		    <p style="color: #EC3B3B; font-size: 14px; word-break: break-all; margin-bottom: 30px;">
                     <a href="${verifyUrl}" style="color: #EC3B3B;">${verifyUrl}</a>
                    </p>
+                    </td>
+                   </tr>
             <!-- Info band -->
             <tr>
               <td bgcolor="#DAE6EA" class="px-24" style="padding:20px 24px;">
