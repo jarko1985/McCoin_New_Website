@@ -1,44 +1,48 @@
 'use client';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { motion } from 'framer-motion';
-const team = [
+import { useTranslations } from 'next-intl';
+const getTeamData = (t: any) => [
   {
-    name: 'Kasra Taghavi',
-    role: 'Co-Founder | Director',
-    bio: 'Blockchain pioneer with 10+ years in crypto markets',
+    name: t('team.members.kasra.name'),
+    role: t('team.members.kasra.role'),
+    bio: t('team.members.kasra.bio'),
     avatar: '/images/team/kasra.png',
   },
   {
-    name: 'Kiyan Taghavi',
-    role: 'Co-Founder | CEO',
-    bio: 'Former lead engineer at major crypto exchange',
+    name: t('team.members.kiyan.name'),
+    role: t('team.members.kiyan.role'),
+    bio: t('team.members.kiyan.bio'),
     avatar: '/images/team/kiyan.png',
   },
   {
-    name: 'Sunil Nair',
-    role: 'CISO',
-    bio: 'Chief Information Security Officer with 15+ years in cybersecurity',
+    name: t('team.members.sunil.name'),
+    role: t('team.members.sunil.role'),
+    bio: t('team.members.sunil.bio'),
     avatar: '/images/team/sunil.png',
   },
   {
-    name: 'Vahid Sobati',
-    role: 'Operations Manager',
-    bio: 'Operations Manager with 10+ years in crypto markets',
+    name: t('team.members.vahid.name'),
+    role: t('team.members.vahid.role'),
+    bio: t('team.members.vahid.bio'),
     avatar: '/images/team/vahid.png',
   },
   {
-    name: 'Mohamed Elsayed',
-    role: 'CIO',
-    bio: 'Chief Information Officer with 10+ years in Blockchain',
+    name: t('team.members.mohamed.name'),
+    role: t('team.members.mohamed.role'),
+    bio: t('team.members.mohamed.bio'),
     avatar: '/images/team/moe.png',
   },
 ];
 
 const OurTeam = () => {
+  const t = useTranslations('aboutPage');
+  const team = getTeamData(t);
+
   return (
     <section id="team" className="py-16 xl:max-w-[70%] px-4 xl:px-0 mx-auto">
       <h2 className="text-3xl text-[#07153B] dark:text-white  font-bold text-center mb-16">
-        Meet Our <span className="text-[#EC3B3B]">Team</span>
+        {t('team.title')} <span className="text-[#EC3B3B]">{t('team.title_highlight')}</span>
       </h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {team.map((member, index) => (
@@ -69,7 +73,7 @@ const OurTeam = () => {
                 <h3 className="text-xl font-bold text-[#07153B] dark:text-white">{member.name}</h3>
                 <p className="text-[#EC3B3B]">{member.role}</p>
                 <p className="text-sm mt-2 text-center text-[#07153B] dark:text-white">
-                  Hover to flip
+                  {t('team.hover_text')}
                 </p>
               </div>
 

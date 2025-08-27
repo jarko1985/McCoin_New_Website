@@ -30,20 +30,24 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin }) => {
           </div>
         </div>
         <div className="flex flex-row justify-between px-2">
-          <strong className="coin-name text-white/90 font-semibold text-sm">
+          <strong className="coin-name dark:text-white/90 text-[#07153B] font-semibold text-sm">
             {coin.name.substring(0, 19)}
           </strong>
-          <span className="coin-price text-white font-bold text-sm">${coin.price.toFixed(4)}</span>
+          <span className="coin-price dark:text-white text-[#07153B] font-bold text-sm">
+            ${coin.price.toFixed(4)}
+          </span>
         </div>
       </div>
       <div className="flex flex-row justify-between px-2 py-1">
-        <strong className="text-white/70 text-xs">Price change:</strong>
-        <p className="text-white/80 text-xs font-medium">{coin.price_change.toFixed(4)}</p>
+        <strong className="dark:text-white/70 text-[#07153B] text-xs">Price change:</strong>
+        <p className="dark:text-white/80 text-[#07153B] text-xs font-medium">
+          {coin.price_change.toFixed(4)}
+        </p>
       </div>
       <div className="flex flex-row justify-between px-2 py-1">
-        <strong className="text-white/70 text-xs">Percent:</strong>
+        <strong className="dark:text-white/70 text-[#07153B] text-xs">Percent:</strong>
         <p
-          className={`text-xs font-bold ${
+          className={`dark:text-white/80 text-[#07153B] text-xs font-bold ${
             isPositive_percent ? 'text-green-400' : 'text-red-400'
           } drop-shadow-sm`}
         >

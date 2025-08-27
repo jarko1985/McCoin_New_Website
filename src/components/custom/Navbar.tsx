@@ -44,6 +44,7 @@ const Navbar = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const t = useTranslations('Navbar');
   const locale = useLocale();
   const isArabic = locale === 'ar';
@@ -99,6 +100,11 @@ const Navbar = () => {
 
   // Force re-render when authentication status changes
   useEffect(() => {}, [session, status, isAuthenticated]);
+
+  // Function to handle navigation and close the mobile drawer
+  const handleNavigation = () => {
+    setIsSheetOpen(false);
+  };
 
   if (!mounted) {
     return (
@@ -256,9 +262,11 @@ const Navbar = () => {
           <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
             <UserAvatar />
           </div>
-          <ThemeToggle />
-          <LangSwitcher />
-          <Sheet>
+          <div className="hidden lg:flex lg:flex-row items-center justify-center gap-2">
+            <ThemeToggle />
+            <LangSwitcher />
+          </div>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button
                 className="lg:hidden text-[#EC3B3B] bg-[#07153b] border-2 border-[#EC3B3B] hover:text-[#EC3B3B] cursor-pointer"
@@ -268,35 +276,37 @@ const Navbar = () => {
               </Button>
             </SheetTrigger>
 
-            <SheetContent className="lg:hidden bg-[#07153b] text-white overflow-y-auto">
-              <SheetHeader>
+            <SheetContent className="lg:hidden bg-gradient-to-b from-[#07153b] to-[#0a1f4a] text-white overflow-y-auto">
+              <SheetHeader className="border-b border-gray-600/20 pb-4">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-                <Link href="/" className="block py-4">
-                  <Image src={LOGO} alt="Logo Image" width={120} height={40} />
+                <Link href="/" className="block py-6" onClick={handleNavigation}>
+                  <Image src={LOGO} alt="Logo Image" width={140} height={45} className="mx-auto" />
                 </Link>
               </SheetHeader>
               {/* User Authentication Status Section */}
-              <div className="px-4 py-4 border-b border-gray-600/30">
+              <div className="px-6 py-6 border-b border-gray-600/20 bg-gradient-to-r from-gray-800/20 to-transparent">
                 {!isAuthenticated ? (
                   // Not logged in state
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-red-400 font-medium text-sm">Not Logged In</span>
+                  <div className="space-y-5">
+                    <div className="flex items-center gap-3 bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+                      <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                      <span className="text-red-300 font-semibold text-sm">Not Logged In</span>
                     </div>
-                    <p className="text-gray-400 text-xs leading-relaxed">
+                    <p className="text-gray-300 text-sm leading-relaxed bg-gray-800/30 rounded-lg p-3">
                       Please Login or Register to Enjoy Seamless Trading Experience
                     </p>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3">
                       <Link
                         href="/login"
-                        className="w-full bg-[#EC3B3B] hover:bg-[#d63333] text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                        className="w-full bg-gradient-to-r from-[#EC3B3B] to-[#d63333] hover:from-[#d63333] hover:to-[#c02a2a] text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                        onClick={handleNavigation}
                       >
                         Login
                       </Link>
                       <Link
                         href="/signup"
-                        className="w-full bg-transparent border border-[#EC3B3B] text-[#EC3B3B] hover:bg-[#EC3B3B] hover:text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                        className="w-full bg-transparent border-2 border-[#EC3B3B] text-[#EC3B3B] hover:bg-[#EC3B3B] hover:text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 text-center hover:shadow-lg transform hover:scale-[1.02]"
+                        onClick={handleNavigation}
                       >
                         Register
                       </Link>
@@ -304,53 +314,68 @@ const Navbar = () => {
                   </div>
                 ) : !isVerified ? (
                   // Logged in but not verified state
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <UserAvatar className="lg:hidden w-8 h-8" />
+                  <div className="space-y-5">
+                    <div className="flex items-center gap-4 bg-gray-800/30 rounded-lg p-4 border border-gray-600/30">
+                      <UserAvatar className="lg:hidden w-12 h-12" />
                       <div className="flex-1">
-                        <p className="text-white font-semibold text-sm">
+                        <p className="text-white font-semibold text-base">
                           Welcome,{' '}
                           {session?.user?.name || session?.user?.email?.split('@')[0] || 'User'}
                         </p>
-                        <p className="text-gray-400 text-xs">{session?.user?.email}</p>
+                        <p className="text-gray-300 text-sm">{session?.user?.email}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                      <span className="text-yellow-400 font-medium text-sm">
+                    <div className="flex items-center gap-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <span className="text-yellow-300 font-semibold text-sm">
                         User is not Verified
                       </span>
                     </div>
                     <Link
                       href="/verify-your-account"
-                      className="w-full bg-[#EC3B3B] hover:bg-[#d63333] text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                      className="w-full bg-gradient-to-r from-[#EC3B3B] to-[#d63333] hover:from-[#d63333] hover:to-[#c02a2a] text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 text-center shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                      onClick={handleNavigation}
                     >
                       Verify Your Account
                     </Link>
                   </div>
                 ) : (
                   // Logged in and verified state
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <UserAvatar className="lg:hidden w-8 h-8" />
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4 bg-gray-800/30 rounded-lg p-4 border border-gray-600/30">
+                      <UserAvatar className="lg:hidden w-12 h-12" />
                       <div className="flex-1">
-                        <p className="text-white font-semibold text-sm">
+                        <p className="text-white font-semibold text-base">
                           Welcome,{' '}
                           {session?.user?.name || session?.user?.email?.split('@')[0] || 'User'}
                         </p>
-                        <p className="text-gray-400 text-xs">{session?.user?.email}</p>
+                        <p className="text-gray-300 text-sm">{session?.user?.email}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-green-400 font-medium text-sm">Verified</span>
+                    <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/20 rounded-lg p-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-green-300 font-semibold text-sm">Verified</span>
                     </div>
                   </div>
                 )}
               </div>
 
+              {/* Mobile Theme and Language Switchers */}
+              <div className="px-6 py-6 border-b border-gray-600/20 bg-gradient-to-r from-gray-800/10 to-transparent">
+                <div className="flex flex-col gap-y-2">
+                  <div className="flex items-center gap-3 bg-gray-800/30 rounded-lg p-3 border border-gray-600/30">
+                    <span className="text-gray-300 text-sm font-medium">Theme</span>
+                    <ThemeToggle />
+                  </div>
+                  <div className="flex items-center gap-3 bg-gray-800/30 rounded-lg p-3 border border-gray-600/30">
+                    <span className="text-gray-300 text-sm font-medium">Language</span>
+                    <LangSwitcher />
+                  </div>
+                </div>
+              </div>
+
               {/* Mobile Menu Items - Using NavbarLinks Array */}
-              <div className="px-4 py-4 space-y-0">
+              <div className="px-6 py-6 space-y-0">
                 {NavbarLinks.map((item, index) => {
                   // Check if item requires authentication and verification
                   if (item.requiresAuth && !isAuthenticated) return null;
@@ -366,10 +391,11 @@ const Navbar = () => {
                   if (item.type === 'link' && item.href) {
                     return (
                       <div key={item.id}>
-                        <div className="py-3 border-b border-gray-600/30">
+                        <div className="py-4 border-b border-gray-600/20 hover:bg-gray-800/20 rounded-lg px-3 transition-all duration-200">
                           <Link
                             href={item.href}
-                            className="hover:underline hover:text-[#EC3B3B] font-semibold block"
+                            className="hover:text-[#EC3B3B] font-semibold block text-base transition-colors duration-200"
+                            onClick={handleNavigation}
                           >
                             {t(`menu_items.${item.label}`)}
                           </Link>
@@ -383,10 +409,10 @@ const Navbar = () => {
                       <div key={item.id}>
                         <Accordion type="single" collapsible className="w-full">
                           <AccordionItem value={item.label.toLowerCase()} className="border-none">
-                            <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-3 border-b border-gray-600/30">
+                            <AccordionTrigger className="text-white hover:text-[#EC3B3B] py-4 border-b border-gray-600/20 hover:bg-gray-800/20 rounded-lg px-3 transition-all duration-200 text-base font-semibold">
                               {t(`menu_items.${item.label}`)}
                             </AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-y-0 pt-2">
+                            <AccordionContent className="flex flex-col gap-y-0 pt-3 px-3">
                               {item.children.map((child, childIndex) => {
                                 const IconComponent = child.icon;
                                 // Map child labels to translation keys based on parent
@@ -403,15 +429,16 @@ const Navbar = () => {
                                   <div key={child.id}>
                                     <Link
                                       href={child.href}
-                                      className="flex items-center gap-x-3 hover:underline py-2.5 px-2 rounded-md hover:bg-gray-700/30 transition-colors duration-200"
+                                      className="flex items-center gap-x-3 hover:text-[#EC3B3B] py-3 px-3 rounded-lg hover:bg-gray-800/30 transition-all duration-200 group"
+                                      onClick={handleNavigation}
                                     >
-                                      {IconComponent && <IconComponent size={18} />}
-                                      <span className="text-sm">
+                                      {IconComponent && <IconComponent size={20} />}
+                                      <span className="text-sm font-medium">
                                         {t(`menu_items.${translationKey}`)}
                                       </span>
                                     </Link>
                                     {childIndex < (item.children?.length || 0) - 1 && (
-                                      <div className="h-px bg-gray-600/20 mx-2"></div>
+                                      <div className="h-px bg-gray-600/20 mx-3"></div>
                                     )}
                                   </div>
                                 );
@@ -429,10 +456,13 @@ const Navbar = () => {
 
               {/* Logout Button - Only show for authenticated users */}
               {isAuthenticated && (
-                <div className="px-4 py-4 border-t border-gray-600/30 mt-auto">
+                <div className="px-6 py-6 border-t border-gray-600/20 mt-auto bg-gradient-to-r from-gray-800/10 to-transparent">
                   <button
-                    onClick={() => signOut({ callbackUrl: '/' })}
-                    className="w-full bg-transparent border border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 text-center"
+                    onClick={() => {
+                      signOut({ callbackUrl: '/' });
+                      handleNavigation();
+                    }}
+                    className="w-full bg-transparent border-2 border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-500 font-semibold py-3 px-4 rounded-xl transition-all duration-200 text-center hover:shadow-lg transform hover:scale-[1.02]"
                   >
                     Logout
                   </button>

@@ -42,17 +42,17 @@ export default function PartnerSwiper() {
   }, []);
 
   return (
-    <div className="py-12 relative overflow-hidden">
+    <div className="py-2 sm:py-12 relative overflow-hidden">
       <div className="absolute inset-0 flex">
-        <div className="w-1/4 h-full bg-gradient-to-r dark:from-[#07153b] dark:via-[#07153b]/80 to-transparent z-10 pointer-events-none" />
+        <div className="w-1/6 sm:w-1/4 h-full bg-gradient-to-r dark:from-[#07153b] dark:via-[#07153b]/80 to-transparent z-10 pointer-events-none" />
         <div className="flex-1" />
-        <div className="w-1/4 h-full bg-gradient-to-l dark:from-[#07153b] dark:via-[#07153b]/80 to-transparent z-10 pointer-events-none" />
+        <div className="w-1/6 sm:w-1/4 h-full bg-gradient-to-l dark:from-[#07153b] dark:via-[#07153b]/80 to-transparent z-10 pointer-events-none" />
       </div>
 
       <Swiper
         modules={[Autoplay]}
-        spaceBetween={48}
-        slidesPerView={6}
+        spaceBetween={24}
+        slidesPerView={1}
         loop
         centeredSlides
         allowTouchMove={false}
@@ -63,25 +63,32 @@ export default function PartnerSwiper() {
         }}
         onSwiper={swiper => (swiperRef.current = swiper)}
         breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 6 },
+          320: { slidesPerView: 1, spaceBetween: 80 },
+          480: { slidesPerView: 2, spaceBetween: 48 },
+          640: { slidesPerView: 2, spaceBetween: 56 },
+          768: { slidesPerView: 3, spaceBetween: 60 },
+          1024: { slidesPerView: 6, spaceBetween: 64 },
         }}
         className="partner-swiper"
+        style={
+          {
+            '--swiper-navigation-size': '24px',
+          } as React.CSSProperties
+        }
       >
         {logos.map((logo, index) => (
           <SwiperSlide key={index}>
-            <div className="relative h-24 w-full flex items-center justify-center">
+            <div className="relative h-32 sm:h-24 w-full flex items-center justify-center px-1 sm:px-2">
               {logo.type === 'image' ? (
                 <Image
                   src={logo.src}
                   alt="Partner logo"
                   width={160}
                   height={64}
-                  className="object-contain max-h-[64px] w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                  className="object-contain max-h-[64px] sm:max-h-[64px] min-w-[100px] sm:min-w-[120px] w-auto grayscale hover:grayscale-0 transition-all duration-300"
                 />
               ) : (
-                <logo.Component className="h-16 w-auto grayscale brightness-150 hover:grayscale-0 transition-all duration-300" />
+                <logo.Component className="h-16 sm:h-16 min-w-[100px] sm:min-w-[120px] w-auto grayscale brightness-150 hover:grayscale-0 transition-all duration-300" />
               )}
             </div>
           </SwiperSlide>

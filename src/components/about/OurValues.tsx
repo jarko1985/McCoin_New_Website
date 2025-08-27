@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { JSX } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { useTranslations } from 'next-intl';
 const values = [
   { name: 'Security' },
   { name: 'Innovation' },
@@ -104,26 +105,28 @@ const getValueIcon = (valueName: string, isFlipped = false) => {
     )
   );
 };
-const getValueDescription = (valueName: string) => {
+const getValueDescription = (valueName: string, t: any) => {
   switch (valueName) {
     case 'Security':
-      return 'Enterprise-grade protection for all transactions and user data';
+      return t('values.security.description');
     case 'Innovation':
-      return 'Pioneering new approaches in decentralized finance';
+      return t('values.innovation.description');
     case 'Transparency':
-      return 'Open and clear operations with verifiable on-chain data';
+      return t('values.transparency.description');
     case 'Community':
-      return 'Collaborative ecosystem that empowers all participants';
+      return t('values.community.description');
     default:
       return 'Core principle that drives our platform forward';
   }
 };
 const OurValues = () => {
+  const t = useTranslations('aboutPage');
+
   return (
     <section className="py-16 px-4 md:px-0 bg-[#DAE6EA] dark:bg-[#07153B]/80">
       <div className="mx-auto xl:max-w-[70%]">
         <h2 className="text-3xl text-[#07153B] dark:text-white font-bold text-center mb-16">
-          Our Core <span className="text-[#EC3B3B]">Values</span>
+          {t('values.title')} <span className="text-[#EC3B3B]">{t('values.title_highlight')}</span>
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((value, index) => (
@@ -151,12 +154,12 @@ const OurValues = () => {
                     </div>
                   </div>
                   <CardTitle className="text-[#07153B]dark:text-white text-center text-xl">
-                    {value.name}
+                    {t(`values.${value.name.toLowerCase()}.name`)}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center px-6 pb-6">
                   <p className="text-[#07153B] dark:text-[#DAE6EA]/80">
-                    {getValueDescription(value.name)}
+                    {getValueDescription(value.name, t)}
                   </p>
                 </CardContent>
               </Card>

@@ -1,155 +1,168 @@
 {
   "HomePage": {
     "HeroMcCoin": {
-      "main_title": "Invest in",
+      "main_title": "A-Grade Trade with",
       "main_title_highlight": "McCoin",
-      "main_title_suffix": "Way to Trade",
-      "subtitle": "The global crypto currency exchange",
-      "email_placeholder": "Enter your email",
-      "email_required": "Email is required",
-      "email_invalid": "Please enter a valid email address",
-      "join_now": "Join Now",
-      "submitting": "Submitting…",
+      "main_title_suffix": "Smart trading starts here",
+      "subtitle": "Born in Dubai. Built for the world. A crypto exchange for all.",
+      "email_placeholder": "Enter your email and unlock your A-Grade trade.",
+      "email_required": "Please enter your email to proceed.",
+      "email_invalid": "Please enter a valid email to continue.",
+      "join_now": "Start Now!",
+      "submitting": "Securing your entry…",
       "modal": {
         "logged_in_not_verified": {
-          "title": "Identity Verification Required",
-          "message": "You are already logged in. Please verify your identity to start trading with McCoin.",
-          "cancel": "Cancel",
-          "verify_identity": "Verify Your Identity"
+          "title": "Verify Your Identity to Continue",
+          "message": "You’re logged in to McCoin. Just one more step — verify your identity to start smart trading.",
+          "cancel": "Not Now",
+          "verify_identity": "Verify Identity & Continue with Confidence"
         },
         "not_logged_in": {
-          "title": "Create Your Account",
-          "message": "Register an Account with McCoin to Enjoy seamless trading opportunity",
-          "cancel": "Cancel",
-          "register_now": "Register Now",
-          "login": "Login"
+          "title": "Create Your McCoin Account ",
+          "message": "Create your account and unlock A-Grade trading with McCoin.",
+          "cancel": "Not Now",
+          "register_now": "Start Your A-Grade Trade",
+          "login": "Login to McCoin"
         },
         "logged_in_verified": {
-          "title": "Welcome Back!",
-          "message": "You are already logged in and KYC verified. Please choose where to go next:",
-          "cancel": "Cancel",
-          "my_wallet": "My Wallet",
-          "trade_now": "Trade Now"
+          "title": "Welcome Back to McCoin!",
+          "message": "All set! You’re logged in and KYC verified — start trading or check your wallet.",
+          "cancel": "Not Now",
+          "my_wallet": "Go to My Wallet",
+          "trade_now": "Begin Your A-Grade Trade"
         }
       }
     },
-    "Dashboard": {
-      "price_change_24h": "24H Price Change",
-      "price_up": "Price up",
-      "price_down": "Price down",
-      "total_market_cap": "Total Market Cap (USD)",
-      "total_value": "Total Value",
-      "global_market_value": "Global cryptocurrency market value",
-      "market_statistics": "Market Statistics",
-      "total_coins": "Total Coins",
-      "gaining": "Gaining",
-      "declining": "Declining"
+    "StackCards": {
+      "title": "Market Overview",
+      "subtitle": "Real-time cryptocurrency market data and statistics",
+      "error_loading": "Error Loading Data",
+      "retry": "Retry",
+      "loading": "Loading market data...",
+      "cards": {
+        "price_change": {
+          "title": "24h Price Change",
+          "subtitle_template": "{priceUp} coins up | {priceDown} coins down"
+        },
+        "market_cap": {
+          "title": "Total Market Cap (USD)",
+          "subtitle": "Global cryptocurrency market capitalization"
+        },
+        "total_value": {
+          "title": "Total Value",
+          "subtitle": "Global cryptocurrency market value"
+        },
+        "market_statistics": {
+          "title": "Market Insights",
+          "subtitle_template": "Gaining: {gaining} | Declining: {declining}"
+        }
+      }
     },
     "PricesTable": {
       "title": "VA Offered",
-      "search_placeholder": "Search any column...",
+      "search_placeholder": "Search by coin or symbol...",
       "columns": {
-        "name": "Name",
-        "price": "Price",
-        "percent_1h": "1h %",
-        "percent_24h": "24h %",
-        "percent_7d": "7d %",
+        "name": "Coin / Token",
+        "price": "Price (USD)",
+        "percent_1h": "Change (1h)",
+        "percent_24h": "Change (24h)",
+        "percent_7d": "Change (7d)",
         "market_cap": "Market Cap",
-        "volume_24h": "Volume(24h)",
+        "volume_24h": "24h Volume",
         "circulating_supply": "Circulating Supply",
-        "last_7_days": "Last 7 Days"
+        "last_7_days": "7d Trends"
       },
       "pagination": {
-        "prev": "Prev",
+        "prev": "Previous",
         "next": "Next",
         "page_info": "Page {currentPage} of {totalPages}"
       }
     },
     "WhyMccoin": {
-      "title": "Why Choose McCoin",
-      "subtitle": "McCoin combines advanced features, zero-fee trading, and bank-grade security—all in one place.",
+      "title": "Why Choose McCoin?",
+      "subtitle": "A-Grade trading powered by trust, clarity, and innovation.",
       "features": {
         "zero_fee": {
           "title1": "Zero Fee",
           "title2": "Spot Trading",
-          "paragraph": "Trade freely without worrying about hidden costs. Enjoy true zero-fee spot trading on all major pairs."
+          "paragraph": "Enjoy commission-free trading with McCoin. Maximize your gains; no hidden costs, no extra charges"
         },
         "ultimate_option": {
           "title1": "The Ultimate",
-          "title2": "Option Wizard",
-          "paragraph": "Master the markets with advanced options trading tools designed for precision and flexibility."
+          "title2": "All-in-One Platform",
+          "paragraph": "From spot and futures to DeFi and education; McCoin delivers every trading option you need, all in one place."
         },
         "safety": {
-          "title1": "Safety",
-          "title2": "Comes Standard",
-          "paragraph": "From multi-layer encryption to cold storage, McCoin keeps your assets protected—always."
+          "title1": "Safety First",
+          "title2": "Institutional-Grade Security",
+          "paragraph": "our assets are safeguarded with HexTrust custody, Chainalysis monitoring, and Sumsub KYC — enterprise-level protection at every step."
         },
         "global_access": {
-          "title1": "Global",
-          "title2": "Market Access",
-          "paragraph": "Trade on a platform that connects you to crypto markets around the world, anytime, anywhere."
+          "title1": "Global Access",
+          "title2": "Trade Without Borders",
+          "paragraph": "Born in Dubai, built for the world. McCoin connects you to global markets with seamless cross-border trading and worldwide reach."
         },
         "full_stack": {
-          "title1": "Full-Stack",
-          "title2": "Infrastructure",
-          "paragraph": "Built with a robust backend and blazing-fast performance to support every trading move you make."
+          "title1": "Full-Stack Trading",
+          "title2": "One Platform for Every Solution",
+          "paragraph": "From liquidity and analytics to education and consulting, McCoin is more than an exchange; it’s a complete trading ecosystem, built on a robust backend with blazing-fast performance to support every move you make."
         }
       }
     },
     "Steps": {
-      "title": "Steps to Start Trading",
-      "subtitle": "To start trading with McCoin, all you need to do is to follow these simple steps",
+      "title": "Start Trading in 3 Simple Steps",
+      "subtitle": "Getting started with McCoin is fast, easy, and secure.",
       "steps": {
         "create_account": {
-          "title": "Create Account",
-          "subtitle": "Create and verify your account in minutes."
+          "title": "1. Create Your Account",
+          "subtitle": "Sign up with your email and verify your identity in a minute."
         },
         "fund_account": {
-          "title": "Fund Your Account",
-          "subtitle": "Use Bitcoin, Ethereum, or USDC to fund your account."
+          "title": "2. Fund Your McCoin Wallet",
+          "subtitle": "Deposit crypto or fiat securely and get ready to trade."
         },
         "start_trading": {
-          "title": "Start Trading",
-          "subtitle": "Use all our advanced strategy tools to get the most of your trades."
+          "title": "3. Begin Your A-Grade Trade",
+          "subtitle": "Access global markets and start trading smarter with McCoin."
         }
       }
     },
     "CryptoNewsUAE": {
-      "title": "Local News",
+      "title": "Crypto News UAE",
       "refresh_button": "Refresh news",
       "last_updated": "Last updated: {time}",
-      "error_fetch": "Failed to fetch news",
-      "try_again": "Try Again"
+      "error_fetch": "News couldn’t load this time.  Refresh to stay McCoinnected.",
+      "try_again": "Reload to Stay McCoinnected"
     },
     "Testimonials": {
-      "title": "What {brand} Users Say",
+      "title": "What Our Traders Say",
       "testimonials": {
         "cameron": {
           "name": "Cameron Lehner",
-          "designation": "Global Research Strategist",
-          "quote": "McCoin's trading platform is remarkably intuitive. I was impressed with how seamless the onboarding experience was."
+          "designation": "Professional Trader",
+          "quote": "McCoin gives me the confidence to trade big volumes without worrying about security. It feels like an exchange built for professionals."
         },
         "sara": {
           "name": "Sara Mitchell",
-          "designation": "Marketing Director",
-          "quote": "The customer service at McCoin is unmatched. They responded instantly and were incredibly helpful in guiding us through the platform."
+          "designation": "Beginner Investor",
+          "quote": "I started crypto with McCoin and the experience has been seamless. The platform is simple, yet powerful enough to grow with me."
         },
         "liam": {
           "name": "Liam Scott",
-          "designation": "Product Manager",
-          "quote": "We use McCoin daily for trading. The real-time data and transparent interface have made decision-making faster and more confident."
+          "designation": "Fintech Entrepreneur",
+          "quote": "As a business owner, I value compliance and reliability. McCoin combines both with a user-first approach. Truly A-Grade."
         },
         "emily": {
           "name": "Emily Stone",
-          "designation": "UX Lead",
-          "quote": "McCoin is clearly built with the user in mind. The platform is smooth, secure, and incredibly easy to navigate even for beginners."
+          "designation": "Blockchain Enthusiast",
+          "quote": "McCoin keeps me McCoinnected with real-time insights and smart tools. It’s more than an exchange.It’s a knowledge hub."
         }
       }
     },
     "PodcastBanner": {
-      "title": "🎙️ Tune Into {brand} Talks",
-      "description": "Discover expert insights, crypto trends, and market news in our exclusive podcast series.",
-      "button": "Visit Podcast Page"
+      "title": "🎙️ McCoin Podcasts: Trade Smarter, Think Bigger",
+      "description": "Stay McCoinnected with expert talks, market insights, and stories shaping the future of crypto.",
+      "button": "Listen Now"
     },
     "TradeNow": {
       "title": "Explore the Crypto World with {brand}",
@@ -157,6 +170,146 @@
     },
     "title": "Mccoin Virtual Assets Market",
     "famous_crypto": "Famous Cryptocurrencies"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "Revolutionizing",
+      "title_highlight": "Crypto Trading",
+      "subtitle": "Secure, fast, and transparent trading for the future of finance",
+      "cta_button": "Meet The McCoin Team"
+    },
+    "mission": {
+      "title": "Our",
+      "title_highlight": "Mission",
+      "description1": "At McCoin®, our vision is to deliver exceptional crypto trading services that surpass client expectations through innovation, security, and transparency. We aim to build long-term trust and empower financial growth in the digital economy.",
+      "description2": "Through precision, cutting-edge technology, and a customer-first mindset, we strive to lead in every market opportunity. Our commitment to integrity and performance fuels lasting partnerships and a reputation for reliability.",
+      "points": {
+        "point1": "Empowering Financial Freedom Through Crypto",
+        "point2": "Innovating Secure and Transparent Trading Solutions",
+        "point3": "Customer-Centric in Every Transaction",
+        "point4": "Building a Decentralized Future Together"
+      }
+    },
+    "vision": {
+      "title": "Our",
+      "title_highlight": "Vision",
+      "description1": "At McCoin®, our vision is to become a global leader in crypto trading by redefining financial freedom through innovation, trust, and user empowerment. We envision a future where secure and accessible digital assets trading drives economic opportunity for all.",
+      "description2": "By leveraging advanced technologies, market intelligence, and a people-first approach, we aim to reshape the financial landscape. Our vision is rooted in transparency, excellence, and a commitment to building a decentralized financial ecosystem.",
+      "points": {
+        "point1": "Leading the Future of Digital Finance",
+        "point2": "Unlocking Global Access to Crypto Markets",
+        "point3": "Putting Trust and Innovation at the Core",
+        "point4": "Empowering a Borderless Financial World"
+      }
+    },
+    "values": {
+      "title": "Our Core",
+      "title_highlight": "Values",
+      "security": {
+        "name": "Security",
+        "description": "Enterprise-grade protection for all transactions and user data"
+      },
+      "innovation": {
+        "name": "Innovation",
+        "description": "Pioneering new approaches in decentralized finance"
+      },
+      "transparency": {
+        "name": "Transparency",
+        "description": "Open and clear operations with verifiable on-chain data"
+      },
+      "community": {
+        "name": "Community",
+        "description": "Collaborative ecosystem that empowers all participants"
+      }
+    },
+    "history": {
+      "title": "Our",
+      "title_highlight": "History",
+      "navigation": {
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "timeline": {
+        "event1": {
+          "date": "Jan 2015",
+          "title": "Company Founded",
+          "description": "Our journey began in a small office with just three team members and a big dream to revolutionize the industry."
+        },
+        "event2": {
+          "date": "May 2016",
+          "title": "First Major Client",
+          "description": "We landed our first Fortune 500 client, marking our entry into the big leagues of service providers."
+        },
+        "event3": {
+          "date": "Sep 2017",
+          "title": "Product Launch",
+          "description": "Introduced our flagship product that would go on to win several industry awards in the following years."
+        },
+        "event4": {
+          "date": "Feb 2019",
+          "title": "International Expansion",
+          "description": "Opened our first overseas office in London, beginning our global presence."
+        },
+        "event5": {
+          "date": "Nov 2020",
+          "title": "Team Milestone",
+          "description": "Grew to over 100 employees worldwide, with diverse talent across three continents."
+        },
+        "event6": {
+          "date": "Jun 2022",
+          "title": "Series B Funding",
+          "description": "Secured $25M in funding to accelerate our R&D and customer acquisition efforts."
+        },
+        "event7": {
+          "date": "Present",
+          "title": "Current Achievements",
+          "description": "Serving over 500 clients globally with a team of 150+ professionals across 5 countries."
+        }
+      }
+    },
+    "team": {
+      "title": "Meet Our",
+      "title_highlight": "Team",
+      "hover_text": "Hover to flip",
+      "members": {
+        "kasra": {
+          "name": "Kasra Taghavi",
+          "role": "Co-Founder | Director",
+          "bio": "Blockchain pioneer with 10+ years in crypto markets"
+        },
+        "kiyan": {
+          "name": "Kiyan Taghavi",
+          "role": "Co-Founder | CEO",
+          "bio": "Former lead engineer at major crypto exchange"
+        },
+        "sunil": {
+          "name": "Sunil Nair",
+          "role": "CISO",
+          "bio": "Chief Information Security Officer with 15+ years in cybersecurity"
+        },
+        "vahid": {
+          "name": "Vahid Sobati",
+          "role": "Operations Manager",
+          "bio": "Operations Manager with 10+ years in crypto markets"
+        },
+        "mohamed": {
+          "name": "Mohamed Elsayed",
+          "role": "CIO",
+          "bio": "Chief Information Officer with 10+ years in Blockchain"
+        }
+      }
+    },
+    "about": {
+      "title": "About Us",
+      "content": {
+        "paragraph1": "McCoin Virtual Assets LLC is more than just a fintech company; we are a transformative force in the UAE's rapidly evolving crypto landscape. With our roots firmly grounded in the region, we are proud to be a pioneer, setting the standard for innovation, transparency, and excellence in the digital assets industry. Our mission goes beyond providing financial services it's about reshaping the future of finance, fostering inclusivity, and empowering individuals and businesses alike.",
+        "paragraph2": "At McCoin, we believe that cryptocurrency and blockchain technology hold the potential to create a more equitable financial ecosystem. With this in mind, we are committed to driving change through a responsible, forward-thinking approach that embraces both technology and human-centric values. As we grow, we remain deeply dedicated to the principles that define us: **transparency, security, honesty, and friendliness**. These values are the pillars upon which we've built trust with our clients, partners, and the broader community.",
+        "paragraph3": "We are not only focused on building a successful fintech platform but also on educating the public, local authorities, and regulators about the immense potential and benefits of cryptocurrency. By advocating for crypto awareness and providing comprehensive knowledge, we aim to bridge the gap between traditional finance and the new digital economy. Our goal is to create an environment where crypto is accessible, understood, and trusted by all.",
+        "paragraph4": "As we continue to expand our footprint across the MENA region, we are setting new benchmarks for success. McCoin Virtual Assets LLC is leading the charge in establishing a secure, transparent, and innovative crypto trading platform that prioritizes user experience and satisfaction. We strive to build a diverse community of crypto enthusiasts, from novices to experts, who can engage with our platform with confidence.",
+        "paragraph5": "By partnering with us, you are joining a movement to revolutionize finance in the Middle East and North Africa. Together, we can pave the way for a more inclusive, future-focused financial system that embraces digital currencies as a tool for empowerment and economic growth. The future of finance is here, and McCoin Virtual Assets LLC is at the forefront, ready to take the industry to new heights.",
+        "paragraph6": "Join us as we lead the charge in transforming the crypto industry, and together, let's shape a brighter, more connected financial future for everyone."
+      }
+    }
   },
   "Contact": {
     "full_name": "Full Name",
@@ -310,21 +463,21 @@
     "menu": "Menu",
     "verified": "Verified",
     "not_verified": "Not Verified",
-    "about": "About",
+    "about": "About McCoin",
     "markets": "Markets",
     "learn": "Learn",
-    "insider": "Insider",
-    "how_to": "How to",
+    "insider": "Insider Hub",
+    "how_to": "How-To Guides",
     "support": "Support",
     "menu_items": {
       "home": "Home",
       "assets": "Assets",
-      "spot": "Spot",
-      "markets": "Markets",
-      "insider": "insider",
-      "how_to": "How to",
+      "spot": "Spot Trading",
+      "markets": "Market Explorer",
+      "insider": "Insider Hub",
+      "how_to": "How-To",
       "markets_children": {
-        "overview": "Overview",
+        "overview": "Market Overview",
         "explorer": "Explorer"
       },
       "insider_children": {
@@ -334,7 +487,7 @@
       },
       "how_to_children": {
         "create_account": "Create an Account",
-        "verify_identity": "Verify Your Identity (KYC)",
+        "verify_identity": "Verify Your Identity",
         "deposit_funds": "Deposit Funds",
         "trade_cryptocurrency": "Trade Cryptocurrency",
         "withdraw_funds": "Withdraw Funds"
@@ -342,27 +495,27 @@
     }
   },
   "Footer": {
-    "copyright": "© 2025 - McCoin.com. All rights reserved.",
+    "copyright": "© 2025 McCoin. All rights reserved.",
     "sections": {
       "about": "About",
       "learn": "Learn",
-      "how_to": "How to",
+      "how_to": "How-To Guides",
       "support": "Support",
       "resources": "Resources"
     },
     "sub_links": {
       "about_mccoin": "About McCoin",
       "articles": "Articles",
-      "market_sentiment": "Market-Sentiment",
+      "market_sentiment": "Market Sentiment",
       "crypto101": "Crypto101",
-      "create_account": "Create-an-Account",
-      "verify_account": "Verify-your-Account(KYC)",
-      "deposit_funds": "Deposit-Funds",
-      "withdraw_funds": "Withdraw-Funds",
-      "trade_cryptocurrency": "Trade-Cryptocurrency",
-      "faq": "Frequently-asked-questions(FAQ)",
-      "contact_us": "Contact-us",
-      "help_topics": "Help-Topics",
+      "create_account": "Create Your Account",
+      "verify_account": "Verify  Account(KYC)",
+      "deposit_funds": "Deposit Funds",
+      "withdraw_funds": "Withdraw Funds",
+      "trade_cryptocurrency": "Trade Cryptocurrency",
+      "faq": "FAQ",
+      "contact_us": "Contact Us",
+      "help_topics": "Help Topics",
       "privacy_policy": "Privacy Policy",
       "terms_conditions": "Terms & Conditions",
       "disclosure": "Disclosure",
@@ -372,7 +525,7 @@
   },
   "NotFound": {
     "title": "Page not found",
-    "description": "Sorry, we couldn't find the page you're looking for.",
+    "description": "Lost in crypto space?  This page doesn’t exist. Let’s take you back home.",
     "cta": "Go back home",
     "imageAlt": "Page not found"
   },

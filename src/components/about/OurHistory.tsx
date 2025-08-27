@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 type TimelineEvent = {
   date: string; // Format like "Jan 2015" or "15 May 2018"
@@ -10,59 +11,56 @@ type TimelineEvent = {
   image?: string; // URL or path to image
 };
 
-const OUR_HISTORY: TimelineEvent[] = [
+const getHistoryData = (t: any): TimelineEvent[] => [
   {
-    date: 'Jan 2015',
-    title: 'Company Founded',
-    description:
-      'Our journey began in a small office with just three team members and a big dream to revolutionize the industry.',
+    date: t('history.timeline.event1.date'),
+    title: t('history.timeline.event1.title'),
+    description: t('history.timeline.event1.description'),
     image: '/images/bitcoin.jpg',
   },
   {
-    date: 'May 2016',
-    title: 'First Major Client',
-    description:
-      'We landed our first Fortune 500 client, marking our entry into the big leagues of service providers.',
+    date: t('history.timeline.event2.date'),
+    title: t('history.timeline.event2.title'),
+    description: t('history.timeline.event2.description'),
     image: '/images/bitcoin2.jpg',
   },
   {
-    date: 'Sep 2017',
-    title: 'Product Launch',
-    description:
-      'Introduced our flagship product that would go on to win several industry awards in the following years.',
+    date: t('history.timeline.event3.date'),
+    title: t('history.timeline.event3.title'),
+    description: t('history.timeline.event3.description'),
     image: '/images/bitcoin3.jpg',
   },
   {
-    date: 'Feb 2019',
-    title: 'International Expansion',
-    description: 'Opened our first overseas office in London, beginning our global presence.',
+    date: t('history.timeline.event4.date'),
+    title: t('history.timeline.event4.title'),
+    description: t('history.timeline.event4.description'),
     image: '/images/bitcoin4.jpg',
   },
   {
-    date: 'Nov 2020',
-    title: 'Team Milestone',
-    description:
-      'Grew to over 100 employees worldwide, with diverse talent across three continents.',
+    date: t('history.timeline.event5.date'),
+    title: t('history.timeline.event5.title'),
+    description: t('history.timeline.event5.description'),
     image: '/images/bitcoin5.jpg',
   },
   {
-    date: 'Jun 2022',
-    title: 'Series B Funding',
-    description: 'Secured $25M in funding to accelerate our R&D and customer acquisition efforts.',
+    date: t('history.timeline.event6.date'),
+    title: t('history.timeline.event6.title'),
+    description: t('history.timeline.event6.description'),
     image: '/images/bitcoin6.jpg',
   },
   {
-    date: 'Present',
-    title: 'Current Achievements',
-    description:
-      'Serving over 500 clients globally with a team of 150+ professionals across 5 countries.',
+    date: t('history.timeline.event7.date'),
+    title: t('history.timeline.event7.title'),
+    description: t('history.timeline.event7.description'),
     image: '/images/bitcoin7.jpg',
   },
 ];
 
 export function OurHistory() {
+  const t = useTranslations('aboutPage');
   const [activeIndex, setActiveIndex] = useState(0);
   const timelineRef = useRef<HTMLDivElement>(null);
+  const OUR_HISTORY = getHistoryData(t);
 
   // Auto-scroll the timeline container when activeIndex changes
   useEffect(() => {
@@ -89,7 +87,8 @@ export function OurHistory() {
     <section className="py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#07153B] dark:text-[#FFF] mb-12 text-center">
-          Our <span className="text-[#EC3B3B]">History</span>
+          {t('history.title')}{' '}
+          <span className="text-[#EC3B3B]">{t('history.title_highlight')}</span>
         </h2>
 
         {/* Timeline Navigation */}
@@ -198,7 +197,7 @@ export function OurHistory() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Previous
+                {t('history.navigation.previous')}
               </motion.button>
               <motion.button
                 className="px-6 py-2 rounded-full bg-[#EC3B3B] text-white disabled:opacity-50 cursor-pointer"
@@ -207,7 +206,7 @@ export function OurHistory() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Next
+                {t('history.navigation.next')}
               </motion.button>
             </div>
           </div>

@@ -1,13 +1,22 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
 
 const MissionAndVision = () => {
+  const t = useTranslations('aboutPage');
+  const locale = useLocale();
+  const isArabic = locale === 'ar';
+
   return (
     <section className="py-16 px-4 xl:px-0">
       <div className="xl:max-w-[70%] mx-auto">
         {/* Mission Section */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 mb-24">
+        <div
+          className={`flex flex-col items-center gap-12 mb-24 ${
+            isArabic ? 'lg:flex-row' : 'lg:flex-row-reverse'
+          }`}
+        >
           {/* Image Container - Left */}
           <motion.div
             className="relative w-full lg:w-1/2 h-96 lg:h-[500px]"
@@ -53,24 +62,25 @@ const MissionAndVision = () => {
             viewport={{ once: true, margin: '-100px' }}
           >
             <h2 className="text-4xl font-bold dark:text-white text-[#07153B] mb-6">
-              Our <span className="text-[#EC3B3B]">Mission</span>
+              {t('mission.title')}{' '}
+              <span className="text-[#EC3B3B]">{t('mission.title_highlight')}</span>
             </h2>
 
             <p className="text-lg text-[#07153B] dark:text-gray-200 mb-6">
-              At McCoin®, our vision is to deliver exceptional crypto trading services that surpass
-              client expectations through innovation, security, and transparency. We aim to build
-              long-term trust and empower financial growth in the digital economy.
+              {t('mission.description1')}
             </p>
 
             <p className="text-lg text-[#07153B] dark:text-gray-200 mb-8">
-              Through precision, cutting-edge technology, and a customer-first mindset, we strive to
-              lead in every market opportunity. Our commitment to integrity and performance fuels
-              lasting partnerships and a reputation for reliability.
+              {t('mission.description2')}
             </p>
 
             <div className="space-y-4">
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -79,12 +89,14 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  mpowering Financial Freedom Through Crypto
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('mission.points.point1')}</p>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -93,12 +105,14 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Innovating Secure and Transparent Trading Solutions
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('mission.points.point2')}</p>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -107,12 +121,14 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Customer-Centric in Every Transaction
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('mission.points.point3')}</p>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -121,16 +137,18 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Building a Decentralized Future Together
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('mission.points.point4')}</p>
               </div>
             </div>
           </motion.div>
         </div>
 
         {/* Vision Section */}
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
+        <div
+          className={`flex flex-col lg:flex-row items-center gap-12 ${
+            isArabic ? 'lg:flex-row-reverse' : ''
+          }`}
+        >
           {/* Image Container - Right */}
           <motion.div
             className="relative w-full lg:w-1/2 h-96 lg:h-[500px]"
@@ -178,25 +196,25 @@ const MissionAndVision = () => {
             viewport={{ once: true, margin: '-100px' }}
           >
             <h2 className="text-4xl font-bold text-[#07153B] dark:text-[#FFF] mb-6">
-              Our <span className="text-[#EC3B3B]">Vision</span>
+              {t('vision.title')}{' '}
+              <span className="text-[#EC3B3B]">{t('vision.title_highlight')}</span>
             </h2>
 
             <p className="text-lg text-[#07153B] dark:text-gray-200 mb-6">
-              At McCoin®, our vision is to become a global leader in crypto trading by redefining
-              financial freedom through innovation, trust, and user empowerment. We envision a
-              future where secure and accessible digital assets trading drives economic opportunity
-              for all.
+              {t('vision.description1')}
             </p>
 
             <p className="text-lg text-[#07153B] dark:text-gray-200 mb-8">
-              By leveraging advanced technologies, market intelligence, and a people-first approach,
-              we aim to reshape the financial landscape. Our vision is rooted in transparency,
-              excellence, and a commitment to building a decentralized financial ecosystem.
+              {t('vision.description2')}
             </p>
 
             <div className="space-y-4">
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -205,12 +223,14 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Leading the Future of Digital Finance
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('vision.points.point1')}</p>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -219,12 +239,14 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Unlocking Global Access to Crypto Markets
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('vision.points.point2')}</p>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -233,12 +255,14 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Putting Trust and Innovation at the Core
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('vision.points.point3')}</p>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1 mr-3 text-[#EC3B3B]">
+                <div
+                  className={`flex-shrink-0 ${
+                    isArabic ? 'mt-0 ml-3' : 'mt-1 mr-3'
+                  }   text-[#EC3B3B]`}
+                >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
@@ -247,9 +271,7 @@ const MissionAndVision = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-[#07153B] dark:text-gray-300">
-                  Empowering a Borderless Financial World
-                </p>
+                <p className="text-[#07153B] dark:text-gray-300">{t('vision.points.point4')}</p>
               </div>
             </div>
           </motion.div>

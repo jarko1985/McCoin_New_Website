@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 const FloatingCryptoSymbols = () => {
   const [symbols, setSymbols] = useState<
@@ -65,6 +66,8 @@ const FloatingCryptoSymbols = () => {
   );
 };
 const AboutHero = () => {
+  const t = useTranslations('aboutPage.hero');
+
   return (
     <div className="text-[#07153B] dark:text-[#DAE6EA] min-h-[40vh] relative">
       <section className="relative py-20 px-4 overflow-hidden z-10">
@@ -76,11 +79,9 @@ const AboutHero = () => {
             animate={{ opacity: 1, y: 1 }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            Revolutionizing <span className="text-[#EC3B3B]">Crypto Trading</span>
+            {t('title')} <span className="text-[#EC3B3B]">{t('title_highlight')}</span>
           </motion.h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
-            Secure, fast, and transparent trading for the future of finance
-          </p>
+          <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">{t('subtitle')}</p>
           <Button
             asChild
             className="bg-[#EC3B3B] dark:hover:bg-[#DAE6EA] dark:hover:text-[#EC3B3B] 
@@ -88,7 +89,7 @@ const AboutHero = () => {
             duration-300 text-white px-8 py-6 text-lg hover:scale-90"
           >
             <a href="#team" className="flex items-center gap-2">
-              Meet The McCoin Team
+              {t('cta_button')}
             </a>
           </Button>
         </div>

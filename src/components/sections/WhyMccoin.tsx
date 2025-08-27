@@ -9,7 +9,7 @@ const WhyMccoin = () => {
   const isArabic = locale === 'ar';
 
   return (
-    <section className="container mx-auto xl:w-[70%] pt-24 pb-12 px-4 sm:px-6">
+    <section className="container mx-auto xl:w-[70%] pt-4 md:pt-12 pb-12 px-4 sm:px-6">
       <h1 className="text-center dark:text-[#DAE6EA] text-[#07153b]  font-[600] text-3xl sm:text-4xl xl:text-[2.225rem]">
         {t('title')}
       </h1>
@@ -18,9 +18,7 @@ const WhyMccoin = () => {
       </p>
 
       <div
-        className={`flex ${
-          isArabic ? 'flex-row-reverse' : 'flex-row'
-        } justify-between items-center gap-8 mb-8`}
+        className={`grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8 ${isArabic ? 'direction-rtl' : ''}`}
       >
         {[
           { id: 1, imgSRC: WhyMcCoinData[0].imgSRC, featureKey: 'zero_fee' },
@@ -29,16 +27,16 @@ const WhyMccoin = () => {
           <div
             key={card.id}
             className="
-              dark:bg-gradient-to-r from-[#050E27] to-[#07153b] 
-              bg-[#bcc5ca] dark:border-none border-[#07153b]
-              rounded-lg p-8 flex-1 max-w-md xl:max-w-lg 
-              flex flex-col items-center text-center
-              transition-all duration-300 ease-in-out
-              hover:shadow-lg hover:shadow-[#07153b]/50
-              hover:-translate-y-2 hover:scale-[1.02]
-              border hover:border-[#2a3e6d]
-              group cursor-pointer
-            "
+        dark:bg-gradient-to-r from-[#050E27] to-[#07153b] 
+        bg-[#bcc5ca] dark:border-none border-[#07153b]
+        rounded-lg p-8 flex-1 
+        flex flex-col items-center text-center
+        transition-all duration-300 ease-in-out
+        hover:shadow-lg hover:shadow-[#07153b]/50
+        hover:-translate-y-2 hover:scale-[1.02]
+        border hover:border-[#2a3e6d]
+        group cursor-pointer
+      "
           >
             <div className="mb-6 transition-transform duration-300 group-hover:scale-110">
               <Image
@@ -55,7 +53,7 @@ const WhyMccoin = () => {
                 {t(`features.${card.featureKey}.title2`)}
               </span>
             </h1>
-            <p className="dark:text-[#8A939B] text-[#07153b]  mt-4 text-[1rem] dark:group-hover:text-[#a0b3c8] group-hover:text-[#07153b] transition-colors duration-300">
+            <p className="dark:text-[#8A939B] text-[#07153b] mt-4 text-[1rem] dark:group-hover:text-[#a0b3c8] group-hover:text-[#07153b] transition-colors duration-300">
               {t(`features.${card.featureKey}.paragraph`)}
             </p>
           </div>

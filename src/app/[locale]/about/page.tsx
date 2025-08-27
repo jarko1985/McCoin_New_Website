@@ -1,9 +1,21 @@
-import AboutPage from '@/pages/AboutPage'
+import AboutHero from '@/components/about/AboutHero';
+import MissionAndVision from '@/components/about/MissionAndVision';
+import { OurHistory } from '@/components/about/OurHistory';
+import OurTeam from '@/components/about/OurTeam';
+import OurValues from '@/components/about/OurValues';
+import About from '@/components/sections/About';
 
 const page = () => {
   return (
-    <AboutPage/>
-  )
-}
+    <>
+      <AboutHero />
+      <MissionAndVision />
+      <OurValues />
+      <OurHistory />
+      <OurTeam />
+      <About />
+    </>
+  );
+};
 
-export default page
+export default page;

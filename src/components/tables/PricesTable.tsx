@@ -75,11 +75,11 @@ export default function PricesTable() {
   );
 
   return (
-    <div className="xl:w-[70%] mx-auto py-12 px-4 xl:px-0">
+    <div className="xl:w-[70%] mx-auto py-6 md:py-12 px-4 xl:px-0">
       <h2 className="text-lg lg:text-3xl font-bold dark:text-[#DAE6EA] text-[#07153b] text-center ">
         {t('title')}
       </h2>
-      <div className="flex justify-start items-center">
+      <div className="flex justify-center items-center pt-8 pb-4">
         <Input
           placeholder={t('search_placeholder')}
           value={search}
@@ -87,7 +87,7 @@ export default function PricesTable() {
             setSearch(e.target.value);
             setCurrentPage(1);
           }}
-          className="mb-4 dark:border-[#DAE6EA] border-[#07153b] dark:text-[#DAE6EA] text-[#07153b] font-medium dark:placeholder:text-[#DAE6EA] placeholder:text-[#07153b] w-[200px]"
+          className="mb-4 dark:border-[#DAE6EA] border-[#07153b] dark:text-[#DAE6EA] text-[#07153b] font-medium dark:placeholder:text-[#DAE6EA] placeholder:text-[#07153b] w-full"
         />
       </div>
       <Card className="overflow-x-auto rounded-2xl shadow-xl dark:bg-[#07153b] bg-[#DAE6EA] px-4 dark:border-none border border-[#07153b]">

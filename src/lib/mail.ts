@@ -78,7 +78,7 @@ export async function sendVerificationEmail(email: string, token: string) {
 
   // Assets must be absolute URLs for email clients
   const logoUrl = `${baseUrl}/images/mccoin_logo_light.png`;
-  const envelopeUrl = `${baseUrl}/images/email_icon.png`; // <- add this asset or change path
+  const envelopeUrl = `${baseUrl}/images/email_icon.svg`; // <- add this asset or change path
 
   const newsUrl = `${baseUrl}/top-news`;
   const aboutUrl = `${baseUrl}/about`;
@@ -350,7 +350,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
             <!-- User icon -->
             <tr>
               <td bgcolor="#DAE6EA" align="center" style="padding:28px 24px 0;">
-                <img src="${baseUrl}/images/user.png" width="96" alt="User Icon" style="display:block;height:auto;">
+                <img src="${baseUrl}/images/user.svg" width="96" alt="User Icon" style="display:block;height:auto;">
                 <!-- If you only have SVG, some clients will show it, Outlook desktop won't:
                 <img src="${baseUrl}/images/user.svg" width="96" alt="User Icon" style="display:block;height:auto;">
                 -->

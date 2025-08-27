@@ -20,28 +20,30 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
       >
         {/* Face 1: 24H Price Change */}
         <div
-          className="absolute w-80 h-80 bg-gradient-to-br from-[#050E27] to-[#07153b] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
+          className="absolute w-80 h-80 dark:bg-gradient-to-br from-[#050E27] to-[#07153b] bg-[#DAE6EA] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
           style={{
             transform: 'rotateY(0deg) translateZ(160px)',
             transformStyle: 'preserve-3d',
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('price_change_24h')}</h3>
+          <h3 className="text-xl dark:text-[#DAE6EA] text-[#07153B] mb-6 font-semibold">
+            {t('price_change_24h')}
+          </h3>
           <div className="flex items-center gap-8 mb-6">
             <div className="flex items-center gap-2">
               <div className="text-green-400 flex items-center gap-1 text-lg font-semibold">
                 <ArrowUp className="w-4 h-4" />
                 {data.up}
               </div>
-              <p className="text-xs text-[#DAE6EA]">{t('price_up')}</p>
+              <p className="text-xs dark:text-[#DAE6EA] text-[#07153B]">{t('price_up')}</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="text-red-400 flex items-center gap-1 text-lg font-semibold">
                 <ArrowDown className="w-4 h-4" />
                 {data.down}
               </div>
-              <p className="text-xs text-[#DAE6EA]">{t('price_down')}</p>
+              <p className="text-xs dark:text-[#DAE6EA] text-[#07153B]">{t('price_down')}</p>
             </div>
           </div>
           <div className="relative w-20 h-20">
@@ -65,7 +67,12 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
                   a 15.9155 15.9155 0 0 1 0 31.831
                   a 15.9155 15.9155 0 0 1 0 -31.831"
               />
-              <text x="18" y="20.35" className="fill-[#DAE6EA] text-[6px]" textAnchor="middle">
+              <text
+                x="18"
+                y="20.35"
+                className="dark:fill-[#DAE6EA] fill-[#07153B] text-[6px]"
+                textAnchor="middle"
+              >
                 {percentage}%
               </text>
             </svg>
@@ -74,15 +81,17 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
 
         {/* Face 2: Total Market Cap */}
         <div
-          className="absolute w-80 h-80 bg-gradient-to-br from-[#050E27] to-[#07153b] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
+          className="absolute w-80 h-80 dark:bg-gradient-to-br from-[#050E27] to-[#07153b] bg-[#DAE6EA] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
           style={{
             transform: 'rotateY(90deg) translateZ(160px)',
             transformStyle: 'preserve-3d',
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('total_market_cap')}</h3>
-          <div className="text-4xl text-[#FFF] font-bold mb-4">
+          <h3 className="text-xl dark:text-[#DAE6EA] text-[#07153B] mb-6 font-semibold">
+            {t('total_market_cap')}
+          </h3>
+          <div className="text-4xl dark:text-[#FFF] text-[#07153B] font-bold mb-4">
             {(data.totalMarketCap / 1e9).toFixed(2)} B
           </div>
           <div className="text-red-400 flex items-center text-lg">
@@ -92,44 +101,54 @@ const RotatingCube = ({ data, percentage }: { data: any; percentage: number }) =
 
         {/* Face 3: Total Value */}
         <div
-          className="absolute w-80 h-80 bg-gradient-to-br from-[#050E27] to-[#07153b] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
+          className="absolute w-80 h-80 dark:bg-gradient-to-br from-[#050E27] to-[#07153b] bg-[#DAE6EA] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
           style={{
             transform: 'rotateY(180deg) translateZ(160px)',
             transformStyle: 'preserve-3d',
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('total_value')}</h3>
-          <div className="text-2xl font-bold text-[#FFF] text-center">
+          <h3 className="text-xl dark:text-[#DAE6EA] text-[#07153B] mb-6 font-semibold">
+            {t('total_value')}
+          </h3>
+          <div className="text-2xl font-bold dark:text-[#FFF] text-[#07153B] text-center">
             {Number(data.totalValue).toLocaleString()}
           </div>
-          <div className="text-[#DAE6EA]/70 text-sm mt-4 text-center">
+          <div className="dark:text-[#DAE6EA]/70 text-[#07153B]/70 text-sm mt-4 text-center">
             {t('global_market_value')}
           </div>
         </div>
 
         {/* Face 4: Market Statistics */}
         <div
-          className="absolute w-80 h-80 bg-gradient-to-br from-[#050E27] to-[#07153b] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
+          className="absolute w-80 h-80 dark:bg-gradient-to-br from-[#050E27] to-[#07153b] bg-[#DAE6EA] rounded-xl border border-[#1a2f4d] shadow-2xl flex flex-col justify-center items-center p-6"
           style={{
             transform: 'rotateY(270deg) translateZ(160px)',
             transformStyle: 'preserve-3d',
             backfaceVisibility: 'hidden',
           }}
         >
-          <h3 className="text-xl text-[#DAE6EA] mb-6 font-semibold">{t('market_statistics')}</h3>
+          <h3 className="text-xl dark:text-[#DAE6EA] text-[#07153B] mb-6 font-semibold">
+            {t('market_statistics')}
+          </h3>
           <div className="space-y-4 text-center">
             <div>
-              <div className="text-2xl text-[#FFF] font-bold">{data.up + data.down}</div>
-              <div className="text-sm text-[#DAE6EA]/70">{t('total_coins')}</div>
+              <div className="text-2xl dark:text-[#FFF] text-[#07153B] font-bold">
+                {data.up + data.down}
+              </div>
+              <div className="text-sm dark:text-[#DAE6EA]/70 text-[#07153B]/70">
+                {t('total_coins')}
+              </div>
             </div>
             <div>
               <div className="text-2xl text-green-400 font-bold">{data.up}</div>
-              <div className="text-sm text-[#DAE6EA]/70">{t('gaining')}</div>
+              <div className="text-sm dark:text-[#DAE6EA]/70 text-[#07153B]/70">{t('gaining')}</div>
             </div>
             <div>
               <div className="text-2xl text-red-400 font-bold">{data.down}</div>
-              <div className="text-sm text-[#DAE6EA]/70">{t('declining')}</div>
+              <div className="text-sm dark:text-[#DAE6EA]/70 text-[#07153B]/70">
+                {t('declining')}
+              </div>
             </div>
           </div>
         </div>
@@ -151,7 +170,7 @@ export default function Dashboard() {
     return (
       <div className="text-white">
         <div className="flex justify-center items-center h-[400px]">
-          <div className="w-80 h-80 bg-[#050E27] rounded-xl shadow-2xl flex items-center justify-center">
+          <div className="w-80 h-80 dark:bg-[#050E27] rounded-xl shadow-2xl flex items-center justify-center">
             <div className="text-center">
               <Skeleton className="h-8 w-48 mb-4 bg-[#1c2f5c]" />
               <Skeleton className="h-6 w-32 mb-2 bg-[#1c2f5c]" />

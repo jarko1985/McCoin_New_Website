@@ -3,24 +3,15 @@
 
 import Image from 'next/image';
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Dashboard from '../homepage/Dashboard';
 import { getVerificationStatus } from '@/lib/verification';
 import { X, User, Shield, Wallet, TrendingUp } from 'lucide-react';
-
-type IconSpec = {
-  id: string;
-  x: number; // percent inside right panel
-  y: number; // percent inside right panel
-  size: number; // px
-  delay?: number;
-  hue?: number; // for glow color only
-  src: string; // /images/icons/xxx.png
-  alt: string;
-};
+import StackCards from '../custom/StackCards';
+import TrustpilotBadge from '../custom/TrustPilot';
 
 // Modal Types
 type ModalType = 'logged-in-not-verified' | 'not-logged-in' | 'logged-in-verified' | null;
@@ -41,15 +32,8 @@ export default function HeroMcCoin() {
 
     return { isValid: true };
   };
-  // parallax
+  // ref
   const ref = useRef<HTMLDivElement>(null);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const smx = useSpring(mx, { stiffness: 60, damping: 12 });
-  const smy = useSpring(my, { stiffness: 60, damping: 12 });
-  const rotateX = useTransform(smy, [-200, 200], [6, -6]);
-  const rotateY = useTransform(smx, [-200, 200], [-6, 6]);
-  const shineX = useTransform(smx, [-200, 200], ['0%', '100%']);
 
   // Session and state management
   const { data: session, status } = useSession();
@@ -83,136 +67,6 @@ export default function HeroMcCoin() {
         handleVerificationChange as EventListener,
       );
     };
-  }, []);
-
-  const onMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      const rect = ref.current?.getBoundingClientRect();
-      if (!rect) return;
-      mx.set(e.clientX - (rect.left + rect.width / 2));
-      my.set(e.clientY - (rect.top + rect.height / 2));
-    },
-    [mx, my],
-  );
-
-  const onMouseLeave = useCallback(() => {
-    mx.set(0);
-    my.set(0);
-  }, [mx, my]);
-
-  // All icons visible and within bounds
-  const icons: IconSpec[] = useMemo(() => {
-    const centerX = 50; // Center of the image (50% from left)
-    const centerY = 50; // Center of the image (50% from top)
-    const radius = 55; // Distance from center to icons
-    const totalIcons = 10; // Number of icons
-
-    // Helper function to round to 2 decimal places for consistency
-    const roundToTwo = (num: number) => Math.round(num * 100) / 100;
-
-    return [
-      // Calculate positions in a perfect circle around the image
-      {
-        id: 'btc',
-        x: roundToTwo(centerX + radius * Math.cos((0 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((0 * 2 * Math.PI) / totalIcons)),
-        size: 110,
-        delay: 0.0,
-        hue: 4,
-        src: '/images/btc.png',
-        alt: 'Bitcoin',
-      },
-      {
-        id: 'eth',
-        x: roundToTwo(centerX + radius * Math.cos((1 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((1 * 2 * Math.PI) / totalIcons) - 5), // Moved up by 5%
-        size: 110,
-        delay: 0.1,
-        hue: 200,
-        src: '/images/ether.png',
-        alt: 'Ethereum',
-      },
-      {
-        id: 'sol',
-        x: roundToTwo(centerX + radius * Math.cos((2 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((2 * 2 * Math.PI) / totalIcons) - 5),
-        size: 130,
-        delay: 0.2,
-        hue: 210,
-        src: '/images/solana.png',
-        alt: 'Solana',
-      },
-      {
-        id: 'usdt',
-        x: roundToTwo(centerX + radius * Math.cos((3 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((3 * 2 * Math.PI) / totalIcons) - 5), // Moved up by 5%
-        size: 110,
-        delay: 0.25,
-        hue: 165,
-        src: '/images/usdt.png',
-        alt: 'Tether',
-      },
-      {
-        id: 'bnb',
-        x: roundToTwo(centerX + radius * Math.cos((4 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((4 * 2 * Math.PI) / totalIcons)),
-        size: 110,
-        delay: 0.3,
-        hue: 48,
-        src: '/images/bnb.png',
-        alt: 'BNB',
-      },
-      {
-        id: 'xrp',
-        x: roundToTwo(centerX + radius * Math.cos((5 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((5 * 2 * Math.PI) / totalIcons)),
-        size: 110,
-        delay: 0.35,
-        hue: 205,
-        src: '/images/xrp.png',
-        alt: 'XRP',
-      },
-      {
-        id: 'ada',
-        x: roundToTwo(centerX + radius * Math.cos((6 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((6 * 2 * Math.PI) / totalIcons)),
-        size: 110,
-        delay: 0.4,
-        hue: 210,
-        src: '/images/ada.png',
-        alt: 'Cardano',
-      },
-      {
-        id: 'doge',
-        x: roundToTwo(centerX + radius * Math.cos((7 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((7 * 2 * Math.PI) / totalIcons)),
-        size: 110,
-        delay: 0.45,
-        hue: 42,
-        src: '/images/dodge.png',
-        alt: 'Dogecoin',
-      },
-      {
-        id: 'dot',
-        x: roundToTwo(centerX + radius * Math.cos((8 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((8 * 2 * Math.PI) / totalIcons)),
-        size: 110,
-        delay: 0.5,
-        hue: 330,
-        src: '/images/lite.png',
-        alt: 'Polkadot',
-      },
-      {
-        id: 'avax',
-        x: roundToTwo(centerX + radius * Math.cos((9 * 2 * Math.PI) / totalIcons)),
-        y: roundToTwo(centerY + radius * Math.sin((9 * 2 * Math.PI) / totalIcons)),
-        size: 100,
-        delay: 0.55,
-        hue: 356,
-        src: '/images/avalanche.png',
-        alt: 'avalanche',
-      },
-    ];
   }, []);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -416,7 +270,7 @@ export default function HeroMcCoin() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-gradient-to-br from-[#07153B] via-[#0A1F3D] to-[#07153B] min-h-screen"
+      className="relative overflow-hidden bg-[#DAE6EA] dark:bg-gradient-to-br from-[#07153B] via-[#0A1F3D] to-[#07153B] min-h-screen"
       suppressHydrationWarning
     >
       {/* soft accents */}
@@ -435,25 +289,24 @@ export default function HeroMcCoin() {
         }}
       />
 
-      <motion.div
-        style={{ rotateX, rotateY }}
-        className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-6 px-4 py-12 sm:px-6 sm:py-16 md:gap-8 lg:gap-12 xl:grid-cols-2 xl:gap-16 xl:py-24"
-      >
+      <div className="relative mx-auto grid xl:w-[80%] gap-6 px-4 py-8 sm:px-6 sm:py-2 md:gap-8 lg:gap-12 xl:gap-16">
         {/* Left */}
-        <div className="flex flex-col order-1">
-          <div className="relative z-10 text-center xl:text-left">
+        <div className="flex flex-col xl:flex-row items-center">
+          <div className="flex flex-col xl:mt-[6rem] relative z-10 flex-1">
             <h1
-              className={`text-3xl font-extrabold  text-white sm:text-4xl md:text-5xl lg:text-6xl ${
+              className={`text-2xl xl:max-w-xl font-extrabold text-center  dark:text-white text-[#07153B] sm:text-3xl xl:text-4xl ${
                 isArabic ? 'xl:text-right tracking-wide leading-20' : 'xl:text-left tracking-wide'
               } `}
             >
               {t('main_title')} <span className="text-[#EC3B3B]">{t('main_title_highlight')}</span>{' '}
-              {t('main_title_suffix')}
             </h1>
+            <p className="text-base leading-relaxed text-center xl:text-left  dark:text-[rgba(218,230,234,0.85)] text-[#07153B] sm:text-lg md:text-xl">
+              {t('main_title_suffix')}
+            </p>
             <p
               className={`${
                 isArabic ? 'xl:text-right' : 'xl:text-left'
-              } mt-4 text-base leading-relaxed text-[rgba(218,230,234,0.85)] sm:text-lg md:text-xl`}
+              } mt-4 text-center text-base leading-relaxed xl:max-w-xl  dark:text-[rgba(218,230,234,0.85)] text-[#07153B] sm:text-lg md:text-lg`}
             >
               {t('subtitle')}
             </p>
@@ -473,7 +326,7 @@ export default function HeroMcCoin() {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder={t('email_placeholder')}
-                  className={`w-full rounded-2xl bg-[#0B1A40] px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-[15px] text-white outline-none ring-1 transition-all duration-200 placeholder:text-white/50 focus:ring-2 focus:ring-[rgba(236,59,59,.75)] ${
+                  className={`w-full rounded-2xl dark:bg-[#0B1A40] bg-[#DAE6EA] border placeholder:text-[0.875rem] border-slate-500 dark:border-white/10  px-4 py-3 sm:px-3 sm:py-4 text-sm sm:text-[15px] dark:text-white text-[#07153B] outline-none ring-1 transition-all duration-200 dark:placeholder:text-white/50 placeholder:text-[#07153B]/50 focus:ring-2 focus:ring-[rgba(236,59,59,.75)] ${
                     emailError ? 'ring-[#EC3B3B]' : 'ring-white/10'
                   }`}
                   aria-label="Email address"
@@ -502,84 +355,20 @@ export default function HeroMcCoin() {
                 </span>
               </button>
             </form>
+            <TrustpilotBadge />
           </div>
-          <div className="mt-8 xl:mt-12">
-            <Dashboard />
-          </div>
-        </div>
-
-        {/* Right */}
-        <div className="relative overflow-visible order-2">
-          {/* device frame + your image */}
-          <div className="relative mx-auto w-full max-w-lg lg:max-w-xl">
-            <div className="relative rounded-[20px] sm:rounded-[28px] border border-white/10 bg-[#0B1A40] p-2 shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
-              <div className="overflow-hidden rounded-xl sm:rounded-2xl ring-1 ring-white/10">
-                <Image
-                  src="/images/hero_bg1.webp"
-                  alt="McCoin trading platform preview"
-                  width={1120}
-                  height={700}
-                  priority
-                  className="h-auto w-full object-cover"
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-0 rounded-[20px] sm:rounded-[28px] ring-1 ring-white/10" />
-            </div>
-          </div>
-
-          {/* Floating, draggable PNG icons */}
-          <div className="pointer-events-none absolute inset-0 overflow-visible -mt-4 sm:-mt-8">
-            {icons.map(c => (
-              <motion.div
-                key={c.id}
-                className="absolute hidden sm:block"
-                style={{
-                  left: `${c.x}%`,
-                  top: `${c.y}%`,
-                  width: c.size,
-                  height: c.size,
-                  zIndex: 5,
-                }}
-                initial={{ y: 20, opacity: 0, scale: 0.9, rotate: -4 }}
-                animate={{ y: 0, opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 2, delay: c.delay, ease: 'easeOut' }}
-              >
-                <motion.div
-                  className="pointer-events-auto relative"
-                  whileHover={{ scale: 1.08, rotate: 3 }}
-                  whileTap={{ scale: 0.94 }}
-                  drag
-                  dragMomentum={false}
-                  dragElastic={0.12}
-                  dragConstraints={{ left: -24, right: 24, top: -24, bottom: 24 }}
-                  animate={{
-                    rotate: [0, 1, 0, -1, 0],
-                    scale: [1, 1.02, 1, 1.01, 1],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    delay: (c.delay || 0) * 2,
-                    ease: 'easeInOut',
-                  }}
-                >
-                  {/* Glow behind the image */}
-                  <Image
-                    src={c.src}
-                    alt={c.alt}
-                    width={c.size}
-                    height={c.size}
-                    className="relative h-auto w-auto select-none"
-                    draggable={false}
-                    priority={c.id === 'btc'}
-                  />
-                </motion.div>
-              </motion.div>
-            ))}
+          <div className="relative z-10 2xl:w-[756px] 2xl:h-[526px] mx-auto mt-8 xl:mx-0 lg:w-[600px]  md:w-[500px] md:h-[300px] sm:w-[400px] sm:h-[200px] w-[300px] h-[200px] ">
+            <Image
+              src="/images/hero_bg_2.png"
+              alt="McCoin Video"
+              fill
+              className="w-full h-full object-contain absolute z-0 top-0"
+              priority
+            />
           </div>
         </div>
-      </motion.div>
-
+      </div>
+      <StackCards />
       {/* Modal */}
       <Modal type={showModal} />
     </section>
