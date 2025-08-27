@@ -23,20 +23,6 @@ const montserrat = Montserrat({
   preload: true,
 });
 
-const carterOne = localFont({
-  src: '../../../public/fonts/CarterOne-Regular.ttf',
-  variable: '--font-carter-one',
-  display: 'swap',
-  preload: true,
-});
-
-const atma = localFont({
-  src: '../../../public/fonts/Atma-Regular.ttf',
-  variable: '--font-atma',
-  display: 'swap',
-  preload: true,
-});
-
 export const metadata: Metadata = defaultMetadata;
 
 export default async function LocaleLayout({

@@ -77,11 +77,11 @@ export const defaultMetadata: Metadata = {
     siteName: 'McCoin',
     images: [
       {
-        url: '/og-image.svg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'McCoin - Global Cryptocurrency Exchange Platform',
-        type: 'image/svg+xml',
+        type: 'image/png',
       },
     ],
     type: 'website',
@@ -93,7 +93,7 @@ export const defaultMetadata: Metadata = {
     title: 'McCoin - Everything Crypto | Global Cryptocurrency Exchange',
     description:
       'Join McCoin, the global cryptocurrency exchange platform. Trade Bitcoin, Ethereum, and 100+ cryptocurrencies with zero fees, advanced trading tools, and bank-grade security.',
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
     creator: '@mccoin',
     site: '@mccoin',
   },
