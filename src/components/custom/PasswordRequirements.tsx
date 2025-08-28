@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface PasswordRequirement {
   id: string;
@@ -21,34 +22,44 @@ const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
   isVisible,
   onValidationChange,
 }) => {
-  const [requirements, setRequirements] = useState<PasswordRequirement[]>([
-    {
-      id: 'length',
-      text: 'At least 8 characters',
-      regex: /.{8,}/,
-      met: false,
-    },
-    {
-      id: 'uppercase',
-      text: 'At least 1 uppercase letter',
-      regex: /[A-Z]/,
-      met: false,
-    },
-    {
-      id: 'number',
-      text: 'At least 1 number',
-      regex: /[0-9]/,
-      met: false,
-    },
-    {
-      id: 'special',
-      text: 'At least 1 special character',
-      regex: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-      met: false,
-    },
-  ]);
+  const t = useTranslations('signUp.passwordRequirements');
+
+  const [requirements, setRequirements] = useState<PasswordRequirement[]>([]);
+
+  // Initialize requirements with translations
+  useEffect(() => {
+    const initialRequirements = [
+      {
+        id: 'length',
+        text: t('length'),
+        regex: /.{8,}/,
+        met: false,
+      },
+      {
+        id: 'uppercase',
+        text: t('uppercase'),
+        regex: /[A-Z]/,
+        met: false,
+      },
+      {
+        id: 'number',
+        text: t('number'),
+        regex: /[0-9]/,
+        met: false,
+      },
+      {
+        id: 'special',
+        text: t('special'),
+        regex: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        met: false,
+      },
+    ];
+    setRequirements(initialRequirements);
+  }, [t]);
 
   useEffect(() => {
+    if (requirements.length === 0) return;
+
     const updatedRequirements = requirements.map(req => ({
       ...req,
       met: req.regex.test(password),
@@ -59,7 +70,7 @@ const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
     // Check if all requirements are met
     const allMet = updatedRequirements.every(req => req.met);
     onValidationChange?.(allMet);
-  }, [password, onValidationChange]);
+  }, [password, onValidationChange, requirements.length]);
 
   const containerVariants = {
     hidden: {
@@ -199,7 +210,7 @@ const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
                     ease: 'easeInOut',
                   }}
                 />
-                Password Requirements
+                {t('title')}
               </motion.h4>
 
               <div className="space-y-2">
@@ -318,7 +329,7 @@ const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
                     >
                       ✨
                     </motion.div>
-                    Password meets all requirements!
+                    {t('allMet')}
                     <motion.div
                       animate={{
                         rotate: [360, 0],
@@ -335,8 +346,10 @@ const PasswordRequirements: React.FC<PasswordRequirementsProps> = ({
                   </motion.div>
                 ) : (
                   <span className="text-slate-400">
-                    {requirements.filter(r => r.met).length} of {requirements.length} requirements
-                    met
+                    {t('progress', {
+                      met: requirements.filter(r => r.met).length,
+                      total: requirements.length,
+                    })}
                   </span>
                 )}
               </motion.div>

@@ -21,25 +21,24 @@ import { useLocale } from 'next-intl';
 import ReCAPTCHA from 'react-google-recaptcha';
 import PasswordRequirements from '@/components/custom/PasswordRequirements';
 
-const signUpSchema = z
-  .object({
-    name: z.string().min(2, 'Name must be at least 2 characters'),
-    email: z.string().email('Invalid email address'),
-    password: z
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .regex(/[A-Z]/, 'Password must contain at least 1 uppercase letter')
-      .regex(/[0-9]/, 'Password must contain at least 1 number')
-      .regex(
-        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
-        'Password must contain at least 1 special character',
-      ),
-    confirmPassword: z.string(),
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'Passwords must match',
-    path: ['confirmPassword'],
-  });
+// Create schema function that accepts translations
+const createSignUpSchema = (t: any) =>
+  z
+    .object({
+      name: z.string().min(2, t('validations.name_min')),
+      email: z.string().email(t('validations.email_invalid')),
+      password: z
+        .string()
+        .min(8, t('validations.password_min'))
+        .regex(/[A-Z]/, t('validations.password_uppercase'))
+        .regex(/[0-9]/, t('validations.password_number'))
+        .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, t('validations.password_special')),
+      confirmPassword: z.string(),
+    })
+    .refine(data => data.password === data.confirmPassword, {
+      message: t('validations.passwords_match'),
+      path: ['confirmPassword'],
+    });
 
 export default function SignUpPage() {
   const t = useTranslations('signUp');
@@ -72,7 +71,7 @@ export default function SignUpPage() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm({ resolver: zodResolver(signUpSchema) });
+  } = useForm({ resolver: zodResolver(createSignUpSchema(t)) });
 
   // useEffect for session redirect
   useEffect(() => {
@@ -141,7 +140,7 @@ export default function SignUpPage() {
   const onSignUp = async (data: any) => {
     // Check if password meets all requirements
     if (!isPasswordValid) {
-      toast.error('Please ensure your password meets all requirements');
+      toast.error(t('validations.password_requirements_not_met'));
       return;
     }
 
@@ -253,16 +252,34 @@ export default function SignUpPage() {
 
         {/* Headings */}
         <div className="space-y-2">
-          <h1 className="text-4xl text-white tracking-wider leading-8 md:leading-7 text-center md:text-left">
+          <h1
+            className={`text-4xl  text-white tracking-wider leading-8 md:leading-7 text-center ${
+              isArabic ? 'md:text-right inline-block md:leading-10' : 'md:text-left'
+            }`}
+          >
             {t('headline1')}
           </h1>
-          <h1 className="text-4xl text-white leading-8 md:leading-7 text-center md:text-left">
+          <h1
+            className={`text-4xl text-white leading-8 md:leading-7 text-center ${
+              isArabic ? 'md:text-right inline-block md:leading-10' : 'md:text-left'
+            }`}
+          >
             {t('headline2')}
           </h1>
-          <h1 className="text-4xl text-white leading-8 md:leading-7 text-center md:text-left">
+          <h1
+            className={`text-4xl text-white leading-8 md:leading-7 text-center ${
+              isArabic ? 'md:text-right inline-block md:leading-10' : 'md:text-left'
+            }`}
+          >
             {t('headline3')}
           </h1>
-          <p className="text-sm text-slate-400 mt-6 text-center md:text-left">{t('tagline')}</p>
+          <p
+            className={`text-sm text-slate-400 mt-6 text-center ${
+              isArabic ? 'md:text-right' : 'md:text-left'
+            }`}
+          >
+            {t('tagline')}
+          </p>
         </div>
         <RotatingIcons />
       </motion.div>

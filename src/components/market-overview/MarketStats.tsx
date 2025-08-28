@@ -25,7 +25,7 @@ type MarketCapPoint = {
 
 const MarketStats = () => {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
-  const t = useTranslations('marketOverview.marketStats');
+  const t = useTranslations('MarketOverview.marketStats');
   const [chartData, setChartData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [latestCap, setLatestCap] = useState<number | null>(null);

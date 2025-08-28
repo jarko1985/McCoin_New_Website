@@ -1,18 +1,15 @@
+import { useTranslations } from 'next-intl';
+
 const Disclaimer = () => {
+  const t = useTranslations('MarketOverview.disclaimer');
+
   return (
     <section className="pt-12">
       <h2 className="text-[#050E27] dark:text-white text-lg lg:text-2xl font-semibold mb-4">
-        Disclaimer
+        {t('title')}
       </h2>
-      <p className="text-[#050E27] dark:text-gray-400 lg:text-base text-sm">
-        The information provided on this page is for general informational purposes only and should
-        not be construed as financial, investment, or trading advice.
-      </p>
-      <p className=" text-[#050E27] dark:text-gray-400 lg:text-base text-sm">
-        Users are encouraged to conduct their own research and consult a licensed financial advisor
-        before making any investment decisions. Cryptocurrency trading involves substantial risk and
-        may not be suitable for all investors.
-      </p>
+      <p className="text-[#050E27] dark:text-gray-400 lg:text-base text-sm">{t('content1')}</p>
+      <p className=" text-[#050E27] dark:text-gray-400 lg:text-base text-sm">{t('content2')}</p>
     </section>
   );
 };

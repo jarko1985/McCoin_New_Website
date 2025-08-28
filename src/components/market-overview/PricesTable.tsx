@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface Coin {
   id: string;
@@ -38,7 +39,9 @@ interface WishlistCoin {
 
 export default function PricesTable() {
   const session = useSession();
-  const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const locale = useLocale();
+  const isArabic = locale === 'ar';
+  const t = useTranslations('MarketOverview.pricesTable');
   const [coins, setCoins] = useState<Coin[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -104,9 +107,9 @@ export default function PricesTable() {
       }
     });
     if (isInWishlist) {
-      toast.error(`${coin.name} removed from wishlist`);
+      toast.error(`${coin.name} ${t('removedFromWishlist')}`);
     } else {
-      toast.success(`${coin.name} added to wishlist!`);
+      toast.success(`${coin.name} ${t('addedToWishlist')}`);
     }
   };
 
@@ -143,7 +146,7 @@ export default function PricesTable() {
       <div className={`${session ? 'lg:flex-[3]' : 'w-full'}`}>
         <div className="flex justify-start items-center">
           <Input
-            placeholder="Search any column..."
+            placeholder={t('searchAnyColumn')}
             value={search}
             onChange={e => {
               setSearch(e.target.value);
@@ -157,15 +160,15 @@ export default function PricesTable() {
             <thead>
               <tr className="text-left">
                 {[
-                  { key: 'name', label: 'Name' },
-                  { key: 'price', label: 'Price' },
-                  { key: 'percent_change_1h', label: '1h %' },
-                  { key: 'percent_change_24h', label: '24h %' },
-                  { key: 'percent_change_7d', label: '7d %' },
-                  // { key: "market_cap", label: "Market Cap" },
-                  // { key: "volume_24h", label: "Volume(24h)" },
-                  // { key: "circulating_supply", label: "Circulating Supply" },
-                  { key: 'sparkline_7d', label: 'Last 7 Days' },
+                  { key: 'name', label: t('columns.name') },
+                  { key: 'price', label: t('columns.price') },
+                  { key: 'percent_change_1h', label: t('columns.change1h') },
+                  { key: 'percent_change_24h', label: t('columns.change24h') },
+                  { key: 'percent_change_7d', label: t('columns.change7d') },
+                  // { key: "market_cap", label: t('columns.marketCap') },
+                  // { key: "volume_24h", label: t('columns.volume24h') },
+                  // { key: "circulating_supply", label: t('columns.circulatingSupply') },
+                  { key: 'sparkline_7d', label: t('columns.last7Days') },
                 ].map(({ key, label }) => (
                   <th
                     key={key}
@@ -187,7 +190,7 @@ export default function PricesTable() {
                     </div>
                   </th>
                 ))}
-                {session ? <th className="py-4 px-2 select-none">Wishlist</th> : ''}
+                {session ? <th className="py-4 px-2 select-none">{t('wishlist')}</th> : ''}
               </tr>
             </thead>
             <tbody>
@@ -283,24 +286,40 @@ export default function PricesTable() {
             onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
             className="flex items-center gap-2 disabled:opacity-40 cursor-pointer"
           >
-            <ChevronLeft className="w-4 h-4" />
-            Prev
+            {isArabic ? (
+              <>
+                <ChevronRight className="w-4 h-4" />
+                {t('pagination.prev')}
+              </>
+            ) : (
+              <>
+                <ChevronLeft className="w-4 h-4" />
+                {t('pagination.prev')}
+              </>
+            )}
           </button>
-          <span className="text-sm">
-            Page {currentPage} of {totalPages}
-          </span>
+          <span className="text-sm">{t('pagination.pageOf', { currentPage, totalPages })}</span>
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
             className="flex items-center gap-2 disabled:opacity-40 cursor-pointer"
           >
-            Next
-            <ChevronRight className="w-4 h-4" />
+            {isArabic ? (
+              <>
+                <ChevronLeft className="w-4 h-4" />
+                {t('pagination.next')}
+              </>
+            ) : (
+              <>
+                {t('pagination.next')}
+                <ChevronRight className="w-4 h-4" />
+              </>
+            )}
           </button>
         </div>
       </div>
       <div className={`${session ? 'lg:flex-[1.5]' : ''}`}>
-        {session ? <CoinsWishlistTable wishlist={wishlist} loading={loading} /> : ''}
+        {session ? <CoinsWishlistTable wishlist={wishlist} loading={loading} t={t} /> : ''}
       </div>
     </section>
   );
@@ -330,19 +349,27 @@ function Sparkline({ prices, positive }: { prices: number[]; positive: boolean }
   );
 }
 
-function CoinsWishlistTable({ wishlist, loading }: { wishlist: WishlistCoin[]; loading: boolean }) {
+function CoinsWishlistTable({
+  wishlist,
+  loading,
+  t,
+}: {
+  wishlist: WishlistCoin[];
+  loading: boolean;
+  t: any;
+}) {
   // Filter out invalid entries
   const validWishlist = wishlist.filter(coin => coin && typeof coin.name === 'string');
   return (
     <div id="coin_wishlist_container" className="mt-13">
       <Card className="overflow-x-auto rounded-2xl shadow-xl bg-[#050E27] px-4 border-none border">
-        <h1 className="text-center text-[#FFF] font-semibold italic">Coins Wishlist</h1>
+        <h1 className="text-center text-[#FFF] font-semibold italic">{t('coinsWishlist')}</h1>
         <table className="min-w-full table-auto text-sm text-[#DAE6EA] ">
           <thead>
             <tr className="text-left">
-              <th className="py-4 px-2 select-none">Name</th>
-              <th className="py-4 px-2 select-none">Price</th>
-              <th className="py-4 px-2 select-none text-center">24H%</th>
+              <th className="py-4 px-2 select-none">{t('columns.name')}</th>
+              <th className="py-4 px-2 select-none">{t('columns.price')}</th>
+              <th className="py-4 px-2 select-none text-center">{t('columns.change24h')}</th>
             </tr>
           </thead>
           <tbody>
@@ -363,7 +390,7 @@ function CoinsWishlistTable({ wishlist, loading }: { wishlist: WishlistCoin[]; l
             ) : validWishlist.length === 0 ? (
               <tr>
                 <td colSpan={3} className="text-center py-6 text-[#DAE6EA]/60">
-                  No coins in wishlist.
+                  {t('noCoinsInWishlist')}
                 </td>
               </tr>
             ) : (

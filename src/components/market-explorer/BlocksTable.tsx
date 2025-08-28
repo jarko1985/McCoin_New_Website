@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface Block {
   id: string;
@@ -27,6 +28,7 @@ const formatTime = (ts: number) => new Date(ts * 1000).toLocaleTimeString();
 const toMB = (size: number) => (size / 1_000_000).toFixed(2);
 
 export default function BlocksTable() {
+  const t = useTranslations('MarketExplorer.blocksTable');
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -59,7 +61,7 @@ export default function BlocksTable() {
           <Input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Search by ID, height or tx count"
+            placeholder={t('searchPlaceholder')}
             className="w-full max-w-md border dark:border-white/10 border-[#07153b] text-[#07153b] dark:text-white bg-transparent focus:border-[#EC3B3B] focus:ring-1"
           />
         </div>
@@ -68,13 +70,13 @@ export default function BlocksTable() {
           <table className="min-w-full text-sm text-left">
             <thead className="dark:bg-[#EC3B3B] bg-[#07153b] text-white">
               <tr>
-                <th className="p-3">ID</th>
-                <th className="p-3">Height</th>
-                <th className="p-3">#Transactions</th>
-                <th className="p-3">Nonce</th>
-                <th className="p-3">Bits</th>
-                <th className="p-3">Median Time</th>
-                <th className="p-3">Size</th>
+                <th className="p-3">{t('columns.id')}</th>
+                <th className="p-3">{t('columns.height')}</th>
+                <th className="p-3">{t('columns.transactions')}</th>
+                <th className="p-3">{t('columns.nonce')}</th>
+                <th className="p-3">{t('columns.bits')}</th>
+                <th className="p-3">{t('columns.medianTime')}</th>
+                <th className="p-3">{t('columns.size')}</th>
               </tr>
             </thead>
             <tbody>
@@ -118,15 +120,17 @@ export default function BlocksTable() {
             className="px-4 py-2  bg-[#07153b] dark:bg-[#EC3B3B] text-[#FFF] rounded hover:bg-[#c32e2e] transition"
             onClick={() => setPage(p => Math.max(p - 1, 1))}
           >
-            Previous
+            {t('pagination.previous')}
           </button>
-          <span>Page {page}</span>
+          <span>
+            {t('pagination.page')} {page}
+          </span>
           <button
             className="px-4 py-2 bg-[#07153b] dark:bg-[#EC3B3B] text-[#FFF] rounded hover:bg-[#c32e2e] transition"
             disabled={page * perPage >= filtered.length}
             onClick={() => setPage(p => p + 1)}
           >
-            Next
+            {t('pagination.next')}
           </button>
         </div>
       </div>

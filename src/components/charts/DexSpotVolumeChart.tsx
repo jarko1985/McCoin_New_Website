@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -30,6 +31,7 @@ export default function DexSpotVolumeMarketShare() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('MarketOverview.charts');
   const [data, setData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [loading, setLoading] = useState(true);
@@ -96,7 +98,7 @@ export default function DexSpotVolumeMarketShare() {
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold flex items-center gap-2">
-          DEX Spot Volume (Market Share)
+          {t('dexSpotVolume')}
           {loading && <Loader2 className="animate-spin h-4 w-4 text-[#050E27] dark:text-white" />}
         </h3>
         <div className="flex gap-2">

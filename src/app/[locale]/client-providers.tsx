@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
         {children}
         <Toaster
           position="top-right"

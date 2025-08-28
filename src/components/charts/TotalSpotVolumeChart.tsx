@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -19,6 +20,7 @@ export default function TotalSpotVolumeChart() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('MarketOverview.charts');
   const [data, setData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [latestVolume, setLatestVolume] = useState<number | null>(null);
@@ -53,7 +55,7 @@ export default function TotalSpotVolumeChart() {
     <Card className="bg-[#DAE6EA] dark:bg-[#050E27] dark:text-[#DAE6EA] text-[#050E27] p-4 w-full my-4 dark:border-none border dark:border-transparent border-slate-400">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-lg font-semibold">Total Crypto Spot Volume</h3>
+          <h3 className="text-lg font-semibold">{t('totalCryptoSpotVolume')}</h3>
           <AnimatePresence mode="wait">
             {latestVolume !== null && (
               <motion.div

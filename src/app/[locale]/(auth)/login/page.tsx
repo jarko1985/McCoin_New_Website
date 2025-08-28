@@ -20,10 +20,12 @@ import { FaArrowRight } from 'react-icons/fa';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useSearchParams } from 'next/navigation';
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1, 'Password is required'),
-});
+// Create schema function that accepts translations
+const createFormSchema = (t: any) =>
+  z.object({
+    email: z.string().email(t('validations.email_invalid')),
+    password: z.string().min(1, t('validations.password_required')),
+  });
 
 export default function LoginPage() {
   const t = useTranslations('signIn');
@@ -42,7 +44,7 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm({ resolver: zodResolver(formSchema) });
+  } = useForm({ resolver: zodResolver(createFormSchema(t)) });
 
   // Check for NextAuth error parameters and pre-fill email
   useEffect(() => {
@@ -51,16 +53,16 @@ export default function LoginPage() {
       console.log('NextAuth error detected:', error);
       switch (error) {
         case 'Configuration':
-          toast.error('Authentication service error. Please try again or contact support.');
+          toast.error(t('errors.auth_service_error'));
           break;
         case 'AccessDenied':
-          toast.error('Access denied. Please check your credentials.');
+          toast.error(t('errors.access_denied'));
           break;
         case 'Verification':
-          toast.error('Please verify your email before signing in.');
+          toast.error(t('errors.verification_required'));
           break;
         default:
-          toast.error('An authentication error occurred. Please try again.');
+          toast.error(t('errors.auth_error_generic'));
       }
     }
 
@@ -126,37 +128,31 @@ export default function LoginPage() {
             const statusData = await statusResponse.json();
 
             if (statusData.error === 'email_not_verified') {
-              toast.error(
-                t('email_not_verified') ||
-                  'Please verify your email before signing in. Check your inbox for the verification link.',
-              );
+              toast.error(t('email_not_verified'));
 
               setTimeout(() => {
-                toast.success(
-                  t('resend_verification_hint') ||
-                    "Didn't receive the email? Check your spam folder or contact support.",
-                );
+                toast.success(t('resend_verification_hint'));
               }, 3000);
             } else {
-              toast.error(t('invalid_credentials') || 'Invalid email or password');
+              toast.error(t('invalid_credentials'));
             }
           } catch (statusError) {
-            toast.error(t('invalid_credentials') || 'Invalid email or password');
+            toast.error(t('invalid_credentials'));
           }
         } else {
-          toast.error('Authentication service error. Please try again.');
+          toast.error(t('errors.auth_service_error_generic'));
         }
       } else if (result?.ok) {
         // Success
-        toast.success(t('login_success') || 'Login successful!');
+        toast.success(t('login_success'));
         const locale = isArabic ? 'ar' : 'en';
         router.push(`/${locale}`);
       } else {
-        toast.error(t('login_failed') || 'Login failed');
+        toast.error(t('login_failed'));
       }
     } catch (err: any) {
       console.error('Login error:', err);
-      toast.error(err.message || t('login_failed') || 'Login failed');
+      toast.error(err.message || t('login_failed'));
     } finally {
       setLoading(false);
     }

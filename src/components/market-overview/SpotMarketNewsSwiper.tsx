@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import {
   Card,
   CardHeader,
@@ -30,13 +31,15 @@ type Article = {
   url: string;
 };
 
-const categories = [
-  { id: 'bitcoin', name: 'Bitcoin News', query: 'bitcoin' },
-  { id: 'crypto', name: 'Crypto News', query: 'cryptocurrency' },
-  { id: 'trading', name: 'Spot Trading', query: 'spot+trading' },
-];
-
 export default function SpotMarketNewsSwiper() {
+  const t = useTranslations('MarketOverview.news');
+
+  const categories = [
+    { id: 'bitcoin', name: t('categories.bitcoin'), query: 'bitcoin' },
+    { id: 'crypto', name: t('categories.crypto'), query: 'cryptocurrency' },
+    { id: 'trading', name: t('categories.trading'), query: 'spot+trading' },
+  ];
+
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,7 +84,7 @@ export default function SpotMarketNewsSwiper() {
           transition={{ duration: 0.5 }}
           className="text-3xl font-bold text-[#050E27] dark:text-[#DAE6EA] mb-8 text-center"
         >
-          Market News
+          {t('title')}
         </motion.h2>
 
         {/* Category Filter */}
@@ -180,7 +183,7 @@ export default function SpotMarketNewsSwiper() {
                             variant="outline"
                             className="w-full bg-transparent text-[#EC3B3B] border-[#EC3B3B] hover:bg-[#050E27] hover:text-[#FFF] cursor-pointer"
                           >
-                            Read More
+                            {t('readMore')}
                           </Button>
                         </a>
                       </CardFooter>
@@ -199,7 +202,7 @@ export default function SpotMarketNewsSwiper() {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <p className="text-[#DAE6EA] text-lg">No news articles found for this category.</p>
+            <p className="text-[#DAE6EA] text-lg">{t('noNews')}</p>
           </motion.div>
         )}
       </div>

@@ -48,7 +48,7 @@ export default async function LocaleLayout({
 
   const serverLocation = await getLocation(locale);
   return (
-    <html lang={locale} dir={direction} suppressHydrationWarning>
+    <html lang={locale} dir={direction} suppressHydrationWarning className="dark">
       <body className={`${montserrat.variable}  antialiased dark:bg-[#07153b] bg-[#DAE6EA]`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <LocationProvider serverLocation={serverLocation}>

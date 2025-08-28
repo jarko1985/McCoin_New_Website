@@ -14,9 +14,11 @@ import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
-const formSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-});
+// Create schema function that accepts translations
+const createFormSchema = (t: any) =>
+  z.object({
+    email: z.string().email(t('validations.email_invalid')),
+  });
 
 export default function ForgotPasswordPage() {
   const t = useTranslations('forgotPassword');
@@ -31,7 +33,7 @@ export default function ForgotPasswordPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(formSchema) });
+  } = useForm({ resolver: zodResolver(createFormSchema(t)) });
 
   // Countdown timer effect
   useEffect(() => {
@@ -67,13 +69,13 @@ export default function ForgotPasswordPage() {
 
       if (response.ok) {
         startCountdown();
-        toast.success(t('emailSent') || 'Password reset email sent successfully!');
+        toast.success(t('emailSent'));
       } else {
-        toast.error(result.message || t('emailNotFound') || 'Email address not found');
+        toast.error(result.message || t('emailNotFound'));
       }
     } catch (err: any) {
       console.error('Forgot password error:', err);
-      toast.error(err.message || t('errorSending') || 'Failed to send reset email');
+      toast.error(err.message || t('errorSending'));
     } finally {
       setLoading(false);
     }
@@ -95,13 +97,13 @@ export default function ForgotPasswordPage() {
         setEmailSent(true);
         setSentEmail(data.email);
         startCountdown();
-        toast.success(t('emailSent') || 'Password reset email sent successfully!');
+        toast.success(t('emailSent'));
       } else {
-        toast.error(result.message || t('emailNotFound') || 'Email address not found');
+        toast.error(result.message || t('emailNotFound'));
       }
     } catch (err: any) {
       console.error('Forgot password error:', err);
-      toast.error(err.message || t('errorSending') || 'Failed to send reset email');
+      toast.error(err.message || t('errorSending'));
     } finally {
       setLoading(false);
     }
@@ -126,19 +128,13 @@ export default function ForgotPasswordPage() {
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
 
-            <h1 className="text-2xl font-bold text-white">
-              {t('emailSentTitle') || 'Check Your Email'}
-            </h1>
+            <h1 className="text-2xl font-bold text-white">{t('emailSentTitle')}</h1>
 
-            <p className="text-[#8CA3D5] text-sm">
-              {t('emailSentMessage') || 'We have sent a password reset link to'}
-            </p>
+            <p className="text-[#8CA3D5] text-sm">{t('emailSentMessage')}</p>
 
             <p className="text-[#EC3B3B] font-medium text-sm break-all">{sentEmail}</p>
 
-            <p className="text-[#8CA3D5] text-xs">
-              {t('checkSpam') || "Didn't receive the email? Check your spam folder or try again."}
-            </p>
+            <p className="text-[#8CA3D5] text-xs">{t('checkSpam')}</p>
           </div>
 
           <div className="space-y-4">
@@ -150,10 +146,10 @@ export default function ForgotPasswordPage() {
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
               {!canResend
-                ? `${t('resendIn') || 'Resend in'} ${resendCountdown}s`
+                ? `${t('resendIn')} ${resendCountdown}s`
                 : loading
-                ? t('sending') || 'Sending...'
-                : t('sendAnother') || 'Send Another Email'}
+                ? t('sending')
+                : t('sendAnother')}
             </Button>
 
             {canResend && (
@@ -167,13 +163,13 @@ export default function ForgotPasswordPage() {
                 variant="outline"
                 className="w-full border-slate-600 text-slate-400 hover:bg-slate-600 hover:text-white"
               >
-                {t('tryDifferentEmail') || 'Try Different Email'}
+                {t('tryDifferentEmail')}
               </Button>
             )}
 
             <Link href={`/${isArabic ? 'ar' : 'en'}/login`} className="block w-full">
               <Button className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200">
-                {t('backToLogin') || 'Back to Login'}
+                {t('backToLogin')}
               </Button>
             </Link>
           </div>
@@ -205,7 +201,7 @@ export default function ForgotPasswordPage() {
             }}
           >
             <FaArrowRight className="ml-1 w-4 h-4" />
-            {t('backToLogin') || 'Back to Login'}
+            {t('backToLogin')}
           </Link>
         ) : (
           <Link
@@ -216,7 +212,7 @@ export default function ForgotPasswordPage() {
             }}
           >
             <FaArrowLeft className="mr-1 w-4 h-4" />
-            {t('backToLogin') || 'Back to Login'}
+            {t('backToLogin')}
           </Link>
         )}
 
@@ -225,19 +221,17 @@ export default function ForgotPasswordPage() {
             <Mail className="w-8 h-8 text-[#EC3B3B]" />
           </div>
 
-          <h1 className="text-2xl font-bold text-white">{t('title') || 'Forgot Password?'}</h1>
+          <h1 className="text-2xl font-bold text-white">{t('title')}</h1>
 
-          <p className="text-[#8CA3D5] text-sm">
-            {t('subtitle') || 'No worries, we will send you reset instructions.'}
-          </p>
+          <p className="text-[#8CA3D5] text-sm">{t('subtitle')}</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="flex flex-col gap-2">
-            <label className="text-white font-medium">{t('emailLabel') || 'Email Address'}</label>
+            <label className="text-white font-medium">{t('emailLabel')}</label>
             <Input
               type="email"
-              placeholder={t('emailPlaceholder') || 'Enter your email address'}
+              placeholder={t('emailPlaceholder')}
               {...register('email')}
               className="bg-[#050E27] border-slate-600 text-white placeholder:text-[#8CA3D5]"
             />
@@ -250,7 +244,7 @@ export default function ForgotPasswordPage() {
             disabled={loading}
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-            {loading ? t('sending') || 'Sending...' : t('sendButton') || 'Send Reset Email'}
+            {loading ? t('sending') : t('sendButton')}
           </Button>
 
           <div className="text-center">
@@ -258,8 +252,8 @@ export default function ForgotPasswordPage() {
               href={`/${isArabic ? 'ar' : 'en'}/login`}
               className="text-[#8CA3D5] text-sm hover:text-white transition-colors"
             >
-              {t('rememberPassword') || 'Remember your password?'}{' '}
-              <span className="text-[#EC3B3B] underline">{t('signIn') || 'Sign in'}</span>
+              {t('rememberPassword')}{' '}
+              <span className="text-[#EC3B3B] underline">{t('signIn')}</span>
             </Link>
           </div>
         </form>

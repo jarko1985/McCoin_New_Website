@@ -13,7 +13,7 @@ import {
 } from '@/../utils/coingecko';
 
 const MarketAnalysis = () => {
-  const t = useTranslations('marketOverview');
+  const t = useTranslations('MarketOverview');
   const [isLoading, setIsLoading] = useState(true);
   const [coins, setCoins] = useState<CoinData[]>([]);
   const [error, setError] = useState<string | null>(null);

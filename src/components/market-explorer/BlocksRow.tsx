@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface Block {
   id: string;
@@ -23,6 +24,7 @@ function getFillPercent(height: number, maxHeight: number): number {
 }
 
 export default function BlocksRow() {
+  const t = useTranslations('MarketExplorer.blocksRow');
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastHeight, setLastHeight] = useState<number | null>(null);
@@ -52,7 +54,7 @@ export default function BlocksRow() {
 
   return (
     <div className="mx-auto xl:max-w-[70%] bg-[#DAE6EA] dark:bg-[#07153b] text-[#07153b] dark:text-[#DAE6EA] px-4 xl:px-0 py-12">
-      <h1 className="text-3xl font-bold mb-8 text-center">Latest Bitcoin Blocks</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">{t('title')}</h1>
       <div className="w-full overflow-x-auto pb-4 custom-scroll">
         <div className="inline-flex gap-8 px-2 py-2 items-end">
           {blocks.length === 0 &&
@@ -98,7 +100,7 @@ export default function BlocksRow() {
                         <div className="flex justify-between items-start">
                           <div>
                             <p className="text-xs text-[#07153b] dark:text-[#DAE6EA]/80 mb-1">
-                              Fee Rate
+                              {t('feeRate')}
                             </p>
                             <p className="text-sm font-mono text-[#07153b] dark:text-[#DAE6EA]">
                               {feeRate} sat/vB
@@ -106,7 +108,7 @@ export default function BlocksRow() {
                           </div>
                           <div className="text-right">
                             <p className="text-xs text-[#07153b] dark:text-[#DAE6EA]/80 mb-1">
-                              Transactions
+                              {t('transactions')}
                             </p>
                             <p className="text-sm font-mono text-[#07153b] dark:text-[#DAE6EA]">
                               {block.tx_count}
@@ -116,7 +118,7 @@ export default function BlocksRow() {
 
                         <div className="text-center">
                           <p className="text-xs text-[#07153b] dark:text-[#DAE6EA]/80 mb-1">
-                            Block Reward
+                            {t('blockReward')}
                           </p>
                           <p className="text-xl font-bold text-[#07153b] dark:text-white font-mono">
                             {blockSize} BTC
@@ -126,10 +128,10 @@ export default function BlocksRow() {
                         <div className="flex justify-between items-end">
                           <div>
                             <p className="text-xs text-[#07153b] dark:text-[#DAE6EA]/80 mb-1">
-                              Mined
+                              {t('mined')}
                             </p>
                             <p className="text-xs font-mono text-[#07153b] dark:text-[#DAE6EA]">
-                              {timeAgo} min ago
+                              {timeAgo} {t('minAgo')}
                             </p>
                           </div>
                           <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
@@ -152,7 +154,7 @@ export default function BlocksRow() {
                       <div className="absolute w-full h-6 bg-[#0f1f3d] border-t-2 border-[#3a4d7a] top-0 transform rotate-x-90 origin-top backface-hidden transform-style-preserve-3d">
                         <div className="h-full w-full flex items-center justify-center">
                           <p className="text-[8px] text-[#DAE6EA]/70 uppercase tracking-wider rotate-90 whitespace-nowrap">
-                            Bitcoin Block
+                            {t('bitcoinBlock')}
                           </p>
                         </div>
                       </div>
@@ -198,10 +200,10 @@ export default function BlocksRow() {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
-              Loading...
+              {t('loading')}
             </span>
           ) : (
-            'Load More Blocks'
+            t('loadMoreBlocks')
           )}
         </button>
       </div>

@@ -6,6 +6,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 const timeOptions = [
   { label: '24h', value: '1', interval: 'hourly' },
@@ -30,6 +31,7 @@ export default function MarketCapChart() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('MarketOverview.charts');
   const [chartData, setChartData] = useState<any[]>([]);
   const [selectedRange, setSelectedRange] = useState(timeOptions[3]);
   const [latestCap, setLatestCap] = useState<number | null>(null);
@@ -151,7 +153,7 @@ export default function MarketCapChart() {
       <div className="bg-[#DAE6EA] dark:bg-[#050E27] p-3 rounded-xl shadow-xl w-full dark:border-none border dark:border-transparent border-slate-400">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-[#050E27] dark:text-[#DAE6EA] text-lg font-semibold">
-            Crypto Market Cap Chart
+            {t('cryptoMarketCapChart')}
           </h2>
           <div className="flex gap-2">
             {timeOptions.map(opt => (

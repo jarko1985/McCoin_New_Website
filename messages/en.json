@@ -58,6 +58,7 @@
         }
       }
     },
+
     "PricesTable": {
       "title": "VA Offered",
       "search_placeholder": "Search by coin or symbol...",
@@ -170,6 +171,149 @@
     },
     "title": "Mccoin Virtual Assets Market",
     "famous_crypto": "Famous Cryptocurrencies"
+  },
+  "MarketOverview": {
+    "hero": {
+      "title": "Spot Market Overview",
+      "description1": "Welcome to McCoin's Spot Market Overview — your one-stop dashboard for analyzing real-time crypto market data. Track the global crypto market cap, historical trends, trading volume, and market dominance across centralized (CEX) and decentralized exchanges (DEX). Dive into comparative volume share, monitor yearly highs/lows, and follow top news stories impacting market sentiment.",
+      "description2": "Whether you're an active trader, analyst, or just crypto-curious, this page offers powerful insight to support smarter decision-making."
+    },
+    "marketStats": {
+      "cryptoMarketCapTitle": "Crypto Market Cap",
+      "marketCapHistoricalTitle": "Market Cap Historical",
+      "marketCapYearlyTitle": "Market Cap Yearly",
+      "bitcoinDominanceTitle": "Bitcoin Dominance",
+      "yesterday": "Yesterday",
+      "lastWeek": "Last Week",
+      "lastMonth": "Last Month",
+      "yearlyHigh": "Yearly High",
+      "yearlyLow": "Yearly Low",
+      "others": "Others",
+      "coin": "Coin",
+      "marketCap": "Market Cap",
+      "volume24h": "Volume (24h)",
+      "change24h": "24h Change"
+    },
+    "topMovers": {
+      "coin": "Coin",
+      "price": "Price",
+      "change24h": "24h Change"
+    },
+    "marketAnalysisTitle": "Market Analysis",
+    "topGainers": "Top Gainers",
+    "topLosers": "Top Losers",
+    "valueLeaders": "Value Leaders",
+    "marketCap": "Market Cap",
+    "marketVolume": "Market Volume",
+    "fetchError": "Failed to fetch market data",
+    "loading": "Loading...",
+    "pricesTable": {
+      "title": "Cryptocurrency Prices",
+      "search": "Search cryptocurrencies...",
+      "searchAnyColumn": "Search any column...",
+      "addToWishlist": "Add to Wishlist",
+      "removeFromWishlist": "Remove from Wishlist",
+      "wishlist": "Wishlist",
+      "coinsWishlist": "Coins Wishlist",
+      "noCoinsInWishlist": "No coins in wishlist.",
+      "addedToWishlist": "added to wishlist!",
+      "removedFromWishlist": "removed from wishlist",
+      "columns": {
+        "name": "Name",
+        "price": "Price",
+        "change1h": "1h %",
+        "change24h": "24h %",
+        "change7d": "7d %",
+        "last7Days": "Last 7 Days",
+        "marketCap": "Market Cap",
+        "volume24h": "Volume (24h)",
+        "circulatingSupply": "Circulating Supply",
+        "last7Days": "Last 7 Days"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "prev": "Prev",
+        "next": "Next",
+        "pageInfo": "Page {current} of {total}",
+        "pageOf": "Page {currentPage} of {totalPages}"
+      }
+    },
+    "news": {
+      "title": "Latest Market News",
+      "categories": {
+        "bitcoin": "Bitcoin News",
+        "crypto": "Crypto News",
+        "trading": "Spot Trading"
+      },
+      "readMore": "Read More",
+      "noNews": "No news available at the moment",
+      "loadingNews": "Loading news..."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "content1": "The information provided on this page is for general informational purposes only and should not be construed as financial, investment, or trading advice.",
+      "content2": "Users are encouraged to conduct their own research and consult a licensed financial advisor before making any investment decisions. Cryptocurrency trading involves substantial risk and may not be suitable for all investors."
+    },
+    "charts": {
+      "cryptoMarketCapChart": "Crypto Market Cap Chart",
+      "totalCryptoSpotVolume": "Total Crypto Spot Volume",
+      "cexSpotVolume": "CEX Spot Volume (Market Share)",
+      "dexSpotVolume": "DEX Spot Volume (Market Share)"
+    }
+  },
+  "MarketExplorer": {
+    "blocksRow": {
+      "title": "Latest Bitcoin Blocks",
+      "feeRate": "Fee Rate",
+      "transactions": "Transactions",
+      "blockReward": "Block Reward",
+      "mined": "Mined",
+      "minAgo": "min ago",
+      "bitcoinBlock": "Bitcoin Block",
+      "loadMoreBlocks": "Load More Blocks",
+      "loading": "Loading..."
+    },
+    "blocksTable": {
+      "searchPlaceholder": "Search by ID, height or tx count",
+      "columns": {
+        "id": "ID",
+        "height": "Height",
+        "transactions": "#Transactions",
+        "nonce": "Nonce",
+        "bits": "Bits",
+        "medianTime": "Median Time",
+        "size": "Size"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page"
+      }
+    },
+    "blockDetails": {
+      "backToExplorer": "Market Explorer",
+      "blockTitle": "Block #",
+      "transactionsTitle": "Transactions",
+      "transactionColumns": {
+        "txId": "Tx ID",
+        "vout": "Vout",
+        "size": "Size",
+        "weight": "Weight",
+        "status": "Status",
+        "fee": "Fee"
+      },
+      "transactionStatus": {
+        "confirmed": "Confirmed",
+        "pending": "Pending"
+      },
+      "pagination": {
+        "first": "First",
+        "previous": "Previous",
+        "next": "Next",
+        "last": "Last",
+        "pageInfo": "Page {current} of {total}"
+      }
+    }
   },
   "aboutPage": {
     "hero": {
@@ -348,7 +492,18 @@
     "login_failed": "Login failed. Please try again.",
     "invalid_credentials": "Invalid email or password. Please check your credentials and try again.",
     "email_not_verified": "Please verify your email before signing in. Check your inbox for the verification link.",
-    "resend_verification_hint": "Didn't receive the email? Check your spam folder or contact support."
+    "resend_verification_hint": "Didn't receive the email? Check your spam folder or contact support.",
+    "validations": {
+      "email_invalid": "Invalid email address",
+      "password_required": "Password is required"
+    },
+    "errors": {
+      "auth_service_error": "Authentication service error. Please try again or contact support.",
+      "access_denied": "Access denied. Please check your credentials.",
+      "verification_required": "Please verify your email before signing in.",
+      "auth_error_generic": "An authentication error occurred. Please try again.",
+      "auth_service_error_generic": "Authentication service error. Please try again."
+    }
   },
   "navbar": {
     "verify-your-account": "Verify Your Account",
@@ -398,7 +553,26 @@
     "already_verified_question": "Already verified your email?",
     "go_to_login": "Go to Login",
     "resend_success": "Verification email sent successfully",
-    "resend_error": "Failed to send verification email"
+    "resend_error": "Failed to send verification email",
+    "validations": {
+      "name_min": "Name must be at least 2 characters",
+      "email_invalid": "Invalid email address",
+      "password_min": "Password must be at least 8 characters",
+      "password_uppercase": "Password must contain at least 1 uppercase letter",
+      "password_number": "Password must contain at least 1 number",
+      "password_special": "Password must contain at least 1 special character",
+      "passwords_match": "Passwords must match",
+      "password_requirements_not_met": "Please ensure your password meets all requirements"
+    },
+    "passwordRequirements": {
+      "title": "Password Requirements",
+      "length": "At least 8 characters",
+      "uppercase": "At least 1 uppercase letter",
+      "number": "At least 1 number",
+      "special": "At least 1 special character",
+      "allMet": "Password meets all requirements!",
+      "progress": "{met} of {total} requirements met"
+    }
   },
   "verifyEmail": {
     "invalid_link": "Invalid verification link",
@@ -437,7 +611,10 @@
     "checkSpam": "Didn't receive the email? Check your spam folder or try again.",
     "sendAnother": "Send Another Email",
     "resendIn": "Resend in",
-    "tryDifferentEmail": "Try Different Email"
+    "tryDifferentEmail": "Try Different Email",
+    "validations": {
+      "email_invalid": "Please enter a valid email address"
+    }
   },
   "resetPassword": {
     "title": "Set New Password",
@@ -528,37 +705,6 @@
     "description": "Lost in crypto space?  This page doesn’t exist. Let’s take you back home.",
     "cta": "Go back home",
     "imageAlt": "Page not found"
-  },
-  "marketOverview": {
-    "loading": "Loading market data...",
-    "topGainers": "Top Gainers",
-    "topLosers": "Top Losers",
-    "valueLeaders": "Volume Leaders",
-    "marketAnalysisTitle": "Market Analysis",
-    "marketCap": "Market Cap",
-    "marketVolume": "Market Volume",
-    "fetchError": "Failed to fetch market data",
-    "marketStats": {
-      "coin": "Coin",
-      "marketCap": "Market Cap",
-      "volume24h": "24h Volume",
-      "change24h": "24h Change",
-      "cryptoMarketCapTitle": "Crypto Market Cap",
-      "marketCapHistoricalTitle": "Market Cap Historical Values",
-      "yesterday": "Yesterday",
-      "lastWeek": "Last Week",
-      "lastMonth": "Last Month",
-      "marketCapYearlyTitle": "Market Cap Yearly Performance",
-      "yearlyHigh": "Yearly High",
-      "yearlyLow": "Yearly Low",
-      "bitcoinDominanceTitle": "Bitcoin Dominance",
-      "others": "Others"
-    },
-    "topMovers": {
-      "coin": "Coin",
-      "price": "Price",
-      "change24h": "24h Change"
-    }
   },
   "spot": {
     "header": {
@@ -728,6 +874,37 @@
       "error_insufficient_btc": "Insufficient BTC balance. Available: {amount} BTC",
       "success_buy_order": "Buy order placed: {amount} BTC at {price} USDT",
       "success_sell_order": "Sell order placed: {amount} BTC at {price} USDT"
+    }
+  },
+  "marketOverview": {
+    "loading": "Loading market data...",
+    "topGainers": "Top Gainers",
+    "topLosers": "Top Losers",
+    "valueLeaders": "Value Leaders",
+    "marketAnalysisTitle": "Market Analysis",
+    "marketCap": "Market Cap",
+    "marketVolume": "Market Volume",
+    "fetchError": "Failed to fetch market data",
+    "marketStats": {
+      "coin": "Coin",
+      "marketCap": "Market Cap",
+      "volume24h": "Volume (24h)",
+      "change24h": "24h Change",
+      "cryptoMarketCapTitle": "Crypto Market Cap",
+      "marketCapHistoricalTitle": "Market Cap Historical",
+      "yesterday": "Yesterday",
+      "lastWeek": "Last Week",
+      "lastMonth": "Last Month",
+      "marketCapYearlyTitle": "Market Cap Yearly",
+      "yearlyHigh": "Yearly High",
+      "yearlyLow": "Yearly Low",
+      "bitcoinDominanceTitle": "Bitcoin Dominance",
+      "others": "Others"
+    },
+    "topMovers": {
+      "coin": "Coin",
+      "price": "Price",
+      "change24h": "24h Change"
     }
   },
   "dashboard": {

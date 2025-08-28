@@ -1,11 +1,13 @@
-  
-import MarketExplorerPage from '@/pages/MarketExplorerPage'
-import React from 'react'
+import BlocksRow from '@/components/market-explorer/BlocksRow';
+import BlocksTable from '@/components/market-explorer/BlocksTable';
 
 const page = () => {
   return (
-    <MarketExplorerPage/>
-  )
-}
+    <div>
+      <BlocksRow />
+      <BlocksTable />
+    </div>
+  );
+};
 
-export default page
+export default page;
