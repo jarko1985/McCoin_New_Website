@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import Image from 'next/image';
+import { Play } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
 
 interface PodcastEpisode {
   uuid: string;
@@ -29,12 +29,10 @@ export default function RecentEpisodes({ episodes }: RecentEpisodesProps) {
   return (
     <section className="xl:max-w-[70%] mx-auto bg-[#07153b] px-4 py-12">
       <div className="container mx-auto">
-        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">
-          Recent Episodes
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">Recent Episodes</h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 gap-x-8">
-          {episodes.map((episode) => (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 gap-x-8 max-w-full">
+          {episodes.map(episode => (
             <EpisodeItem key={episode.uuid} episode={episode} />
           ))}
         </div>
@@ -52,31 +50,27 @@ function EpisodeItem({ episode }: { episode: PodcastEpisode }) {
   };
 
   return (
-    <div className="flex gap-4 bg-[#0b1d4b] p-4 rounded-lg shadow-lg hover:bg-[#102050] transition-colors duration-300">
+    <div className="flex gap-4 bg-[#0b1d4b] p-4 rounded-lg shadow-lg hover:bg-[#102050] transition-colors duration-300 overflow-hidden">
       <div className="relative w-28 h-28 flex-shrink-0 rounded overflow-hidden">
         <Image
-          src={
-            imgError || !episode.imageUrl
-              ? "/images/fallback-image.jpeg"
-              : episode.imageUrl
-          }
-          alt={episode.name || "Podcast episode"}
+          src={imgError || !episode.imageUrl ? '/images/fallback-image.jpeg' : episode.imageUrl}
+          alt={episode.name || 'Podcast episode'}
           fill
           onError={() => setImgError(true)}
           className="object-cover"
         />
       </div>
 
-      <div className="flex flex-col justify-between text-white w-full">
-        <div>
-          <p className="text-sm text-[#EC3B3B] font-semibold mb-1">
+      <div className="flex flex-col justify-between text-white w-full min-w-0">
+        <div className="min-w-0">
+          <p className="text-sm text-[#EC3B3B] font-semibold mb-1 truncate">
             {episode.podcastSeries?.name}
           </p>
-          <h3 className="text-lg font-bold leading-snug mb-1">
+          <h3 className="text-lg font-bold leading-snug mb-1 line-clamp-2 break-words">
             {episode.name}
           </h3>
-          <p className="text-sm text-white/70 line-clamp-2">
-            {episode.description.replace(/\n/g, " ")}
+          <p className="text-sm text-white/70 line-clamp-2 break-words">
+            {episode.description.replace(/\n/g, ' ')}
           </p>
         </div>
 

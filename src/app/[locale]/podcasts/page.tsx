@@ -1,13 +1,11 @@
-import PodcastPage from "@/pages/PodcastPage"
-import { Podcast } from "lucide-react"
-
+import PodcastPage from '@/pages/PodcastPage';
 
 const page = () => {
   return (
     <div>
-        <PodcastPage/>
+      <PodcastPage />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

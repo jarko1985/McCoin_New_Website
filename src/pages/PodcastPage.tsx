@@ -57,21 +57,19 @@ const PodcastPage = () => {
 
   if (!allPodcast) {
     return (
-      <div className='h-screen'>
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center">
+      <div className="h-screen">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center">
           <AnimatedLogo />
-          <p className="text-white font-semibold text-lg animate-pulse mt-4">
-            Loading....
-          </p>
+          <p className="text-white font-semibold text-lg animate-pulse mt-4">Loading....</p>
         </div>
-        </div>
+      </div>
     );
   }
 
   return (
     <div className="relative">
       <PodcastHero featuredEpisodes={allPodcast.featuredEpisodes} />
-      <FeaturedSeries series={allPodcast.featuredSeries} />
+      <FeaturedSeries series={allPodcast.featuredSeries.slice(0, 4)} />
       <RecentEpisodes episodes={allPodcast.recentEpisodes} />
       <AllSeries series={allPodcast.allSeries} />
     </div>

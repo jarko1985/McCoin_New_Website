@@ -144,7 +144,7 @@ export function TopNewsHero() {
             </Link>
 
             {/* Swiper-based news list */}
-            <div className="absolute right-0 bottom-0 md:right-8 md:bottom-auto md:top-1/2 md:transform md:-translate-y-1/2 w-full md:w-[25%] px-4 md:px-0 py-3 md:py-0">
+            <div className="lg:block hidden absolute right-0 bottom-0 md:right-8 md:bottom-auto md:top-1/2 md:transform md:-translate-y-1/2 w-full md:w-[25%] px-4 md:px-0 py-3 md:py-0">
               <Swiper
                 modules={[FreeMode, Autoplay]}
                 direction={isMobile ? 'horizontal' : 'vertical'}
