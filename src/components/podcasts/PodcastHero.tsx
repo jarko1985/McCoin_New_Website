@@ -8,7 +8,7 @@ import { Play, Plus } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
-import PodcastPlayerModal from './PodcastPlayer';
+import PodcastMusicPlayer from './PodcastMusicPlayer';
 
 interface PodcastEpisode {
   uuid: string;
@@ -144,10 +144,11 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
           </Swiper>
         </div>
       </div>
-      <PodcastPlayerModal
+      <PodcastMusicPlayer
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         episode={selectedEpisode}
+        allEpisodes={featuredEpisodes}
       />
     </div>
   );

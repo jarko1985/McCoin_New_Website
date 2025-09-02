@@ -44,6 +44,7 @@ const OurTeam = () => {
       <h2 className="text-3xl text-[#07153B] dark:text-white  font-bold text-center mb-16">
         {t('team.title')} <span className="text-[#EC3B3B]">{t('team.title_highlight')}</span>
       </h2>
+      <p className="text-center text-[#07153B] dark:text-white mb-16">{t('team.subtitle')}</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {team.map((member, index) => (
           <motion.div

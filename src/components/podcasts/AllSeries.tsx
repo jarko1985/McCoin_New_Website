@@ -22,12 +22,10 @@ export default function AllSeries({ series }: AllSeriesProps) {
   return (
     <section className="xl:max-w-[70%] mx-auto bg-[#07153b] px-4 py-12">
       <div className="container mx-auto">
-        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">
-          All Series
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">All Series</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {series.map((item) => (
+          {series.map(item => (
             <SeriesCard key={item.uuid} series={item} />
           ))}
         </div>
@@ -43,11 +41,7 @@ function SeriesCard({ series }: { series: PodcastSeries }) {
     <div className="bg-[#0b1d4b] hover:bg-[#102050] rounded-lg shadow-md overflow-hidden transition-colors duration-300">
       <div className="relative w-full h-48">
         <Image
-          src={
-            imgError || !series.imageUrl
-              ? '/images/fallback-image.jpeg'
-              : series.imageUrl
-          }
+          src={imgError || !series.imageUrl ? '/images/fallback-image.jpeg' : series.imageUrl}
           alt={series.name}
           fill
           onError={() => setImgError(true)}

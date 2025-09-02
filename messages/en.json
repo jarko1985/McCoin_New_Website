@@ -317,33 +317,34 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "Revolutionizing",
-      "title_highlight": "Crypto Trading",
-      "subtitle": "Secure, fast, and transparent trading for the future of finance",
-      "cta_button": "Meet The McCoin Team"
+      "title": "Redefining",
+      "title_highlight": "A-Grade Crypto Trading",
+      "subtitle": "Empowering traders worldwide with learning, innovation, agility, and trust.",
+      "cta_button": "Discover Our LUNAR Mission & Team"
     },
     "mission": {
       "title": "Our",
       "title_highlight": "Mission",
-      "description1": "At McCoin®, our vision is to deliver exceptional crypto trading services that surpass client expectations through innovation, security, and transparency. We aim to build long-term trust and empower financial growth in the digital economy.",
-      "description2": "Through precision, cutting-edge technology, and a customer-first mindset, we strive to lead in every market opportunity. Our commitment to integrity and performance fuels lasting partnerships and a reputation for reliability.",
+      "description1": "At McCoin, our mission is to make crypto trading secure, useful, and accessible; blending everyday life with cutting-edge finance.",
+      "description2": "We stand for continuous learning, neotric innovation, agility in a fast-changing world, and reliability as the foundation of trust.",
       "points": {
-        "point1": "Empowering Financial Freedom Through Crypto",
-        "point2": "Innovating Secure and Transparent Trading Solutions",
-        "point3": "Customer-Centric in Every Transaction",
-        "point4": "Building a Decentralized Future Together"
+        "point1": "Learning through empowerment and continuous education.",
+        "point2": "Usefulness in everyday life, business collaboration, and seamless transactions.",
+        "point3": "Neotric innovation that leads and defines financial trends.",
+        "point4": "Agility to adapt and scale; reliability as our trusted foundation.",
+        "point5": "Reliability that safeguards your journey; from compliance to confidence."
       }
     },
     "vision": {
       "title": "Our",
       "title_highlight": "Vision",
-      "description1": "At McCoin®, our vision is to become a global leader in crypto trading by redefining financial freedom through innovation, trust, and user empowerment. We envision a future where secure and accessible digital assets trading drives economic opportunity for all.",
-      "description2": "By leveraging advanced technologies, market intelligence, and a people-first approach, we aim to reshape the financial landscape. Our vision is rooted in transparency, excellence, and a commitment to building a decentralized financial ecosystem.",
+      "description1": "Our vision is to redefine crypto trading as a trusted, inclusive, and innovation-driven gateway for the world.",
+      "description2": " From Dubai to the globe, McCoin connects traders with secure technology, transparency, and the agility to adapt to tomorrow.",
       "points": {
-        "point1": "Leading the Future of Digital Finance",
-        "point2": "Unlocking Global Access to Crypto Markets",
-        "point3": "Putting Trust and Innovation at the Core",
-        "point4": "Empowering a Borderless Financial World"
+        "point1": "Global Inclusion: a crypto exchange built for everyone, everywhere.",
+        "point2": "Innovation Leadership: driving neotric solutions that shape the future of finance.",
+        "point3": "Agility & Growth: scaling with market needs while empowering users.",
+        "point4": "Reliability as Foundation: secure, regulated, and trusted at every step."
       }
     },
     "values": {
@@ -351,24 +352,24 @@
       "title_highlight": "Values",
       "security": {
         "name": "Security",
-        "description": "Enterprise-grade protection for all transactions and user data"
+        "description": "Institutional-grade protection with HexTrust custody, Chainalysis monitoring, and Sumsub KYC; ensuring every trade is safe and compliant."
       },
       "innovation": {
         "name": "Innovation",
-        "description": "Pioneering new approaches in decentralized finance"
+        "description": "Neotric ideas and cutting-edge solutions that keep McCoin ahead of financial trends, from smart trading tools to blockchain consulting."
       },
       "transparency": {
         "name": "Transparency",
-        "description": "Open and clear operations with verifiable on-chain data"
+        "description": "Clarity in every process; from compliance to communication; empowering users with knowledge and confidence."
       },
       "community": {
         "name": "Community",
-        "description": "Collaborative ecosystem that empowers all participants"
+        "description": "McCoin is more than an exchange; it’s a community. A place where traders learn, grow, and succeed together, staying McCoinnected through shared knowledge and trust."
       }
     },
     "history": {
       "title": "Our",
-      "title_highlight": "History",
+      "title_highlight": "Journey",
       "navigation": {
         "previous": "Previous",
         "next": "Next"
@@ -376,82 +377,83 @@
       "timeline": {
         "event1": {
           "date": "Jan 2015",
-          "title": "Company Founded",
-          "description": "Our journey began in a small office with just three team members and a big dream to revolutionize the industry."
+          "title": "Lift-Off",
+          "description": "In Dubai, McCoin ignited its engines; launching a mission to redefine crypto trading."
         },
         "event2": {
           "date": "May 2016",
-          "title": "First Major Client",
-          "description": "We landed our first Fortune 500 client, marking our entry into the big leagues of service providers."
+          "title": "Securing Orbit",
+          "description": "With HexTrust, Chainalysis, and Sumsub as shields, McCoin entered stable orbit; fortified with institutional-grade security and compliance."
         },
         "event3": {
           "date": "Sep 2017",
-          "title": "Product Launch",
-          "description": "Introduced our flagship product that would go on to win several industry awards in the following years."
+          "title": "Expanding Horizons",
+          "description": "Beyond Dubai, McCoin charted new orbits across MENA, connecting traders seamlessly across borders."
         },
         "event4": {
           "date": "Feb 2019",
-          "title": "International Expansion",
-          "description": "Opened our first overseas office in London, beginning our global presence."
+          "title": "International Space Mission",
+          "description": "McCoin opened its first overseas base in London; the launchpad for a truly global orbit."
         },
         "event5": {
           "date": "Nov 2020",
-          "title": "Team Milestone",
-          "description": "Grew to over 100 employees worldwide, with diverse talent across three continents."
+          "title": "Crew Expansion",
+          "description": "Our mission team grew to 100+ specialists across three continents; a diverse crew ready for the cosmic journey ahead."
         },
         "event6": {
           "date": "Jun 2022",
-          "title": "Series B Funding",
-          "description": "Secured $25M in funding to accelerate our R&D and customer acquisition efforts."
+          "title": "New Fuel for the Mission",
+          "description": "With $25M in Series B funding secured, McCoin boosted its R&D engines and accelerated the thrust toward global adoption."
         },
         "event7": {
           "date": "Present",
-          "title": "Current Achievements",
-          "description": "Serving over 500 clients globally with a team of 150+ professionals across 5 countries."
+          "title": "Expedition in Motion",
+          "description": "Today, McCoin serves 500+ clients across 5 countries, powered by a 150+ strong crew;  navigating the financial galaxy with A-Grade precision."
         }
       }
     },
     "team": {
-      "title": "Meet Our",
-      "title_highlight": "Team",
+      "title": "The Crew Behind",
+      "title_highlight": "McCoin",
+      "subtitle": "Meet the visionaries, builders, and navigators powering McCoin’s A-Grade mission.",
       "hover_text": "Hover to flip",
       "members": {
         "kasra": {
           "name": "Kasra Taghavi",
-          "role": "Co-Founder | Director",
-          "bio": "Blockchain pioneer with 10+ years in crypto markets"
+          "role": "Co-Founder& Director | Captain & Commander.",
+          "bio": "Kasra is the captain of the mission, charting McCoin’s course through uncharted financial galaxies. With 10+ years in fintech, he steers the ship toward global horizons with clarity and courage."
         },
         "kiyan": {
           "name": "Kiyan Taghavi",
-          "role": "Co-Founder | CEO",
-          "bio": "Former lead engineer at major crypto exchange"
+          "role": "Co-Founder & CEO | The Visionary Pilot",
+          "bio": "Kiyan is the architect of McCoin’s engine room; building the secure, scalable systems that keep our spacecraft stable and fast, no matter how turbulent the markets get."
         },
         "sunil": {
           "name": "Sunil Nair",
-          "role": "CISO",
-          "bio": "Chief Information Security Officer with 15+ years in cybersecurity"
+          "role": "Chief Compliance Officer | Guardian of Integrity",
+          "bio": "Sunil is the shield of the mission, ensuring compliance and integrity across every orbit. With deep knowledge of regulations, he keeps McCoin’s trajectory lawful and trustworthy."
         },
         "vahid": {
           "name": "Vahid Sobati",
-          "role": "Operations Manager",
-          "bio": "Operations Manager with 10+ years in crypto markets"
+          "role": "Operations Manager | Mission Control",
+          "bio": "Vahid manages the control deck, synchronizing systems and operations so every launch, docking, and maneuver of McCoin runs with precision and reliability."
         },
         "mohamed": {
           "name": "Mohamed Elsayed",
-          "role": "CIO",
-          "bio": "Chief Information Officer with 10+ years in Blockchain"
+          "role": "CIO | Navigator of intelligence",
+          "bio": "With 10+ years in blockchain, he maps data constellations, aligning information systems for secure, real-time decision-making."
         }
       }
     },
     "about": {
       "title": "About Us",
       "content": {
-        "paragraph1": "McCoin Virtual Assets LLC is more than just a fintech company; we are a transformative force in the UAE's rapidly evolving crypto landscape. With our roots firmly grounded in the region, we are proud to be a pioneer, setting the standard for innovation, transparency, and excellence in the digital assets industry. Our mission goes beyond providing financial services it's about reshaping the future of finance, fostering inclusivity, and empowering individuals and businesses alike.",
-        "paragraph2": "At McCoin, we believe that cryptocurrency and blockchain technology hold the potential to create a more equitable financial ecosystem. With this in mind, we are committed to driving change through a responsible, forward-thinking approach that embraces both technology and human-centric values. As we grow, we remain deeply dedicated to the principles that define us: **transparency, security, honesty, and friendliness**. These values are the pillars upon which we've built trust with our clients, partners, and the broader community.",
-        "paragraph3": "We are not only focused on building a successful fintech platform but also on educating the public, local authorities, and regulators about the immense potential and benefits of cryptocurrency. By advocating for crypto awareness and providing comprehensive knowledge, we aim to bridge the gap between traditional finance and the new digital economy. Our goal is to create an environment where crypto is accessible, understood, and trusted by all.",
-        "paragraph4": "As we continue to expand our footprint across the MENA region, we are setting new benchmarks for success. McCoin Virtual Assets LLC is leading the charge in establishing a secure, transparent, and innovative crypto trading platform that prioritizes user experience and satisfaction. We strive to build a diverse community of crypto enthusiasts, from novices to experts, who can engage with our platform with confidence.",
-        "paragraph5": "By partnering with us, you are joining a movement to revolutionize finance in the Middle East and North Africa. Together, we can pave the way for a more inclusive, future-focused financial system that embraces digital currencies as a tool for empowerment and economic growth. The future of finance is here, and McCoin Virtual Assets LLC is at the forefront, ready to take the industry to new heights.",
-        "paragraph6": "Join us as we lead the charge in transforming the crypto industry, and together, let's shape a brighter, more connected financial future for everyone."
+        "paragraph1": "McCoin Virtual Assets LLC is more than a fintech company; we are the crew of a mission, charting new horizons in the UAE’s fast-evolving crypto universe. Born in Dubai and built for the world, McCoin is pioneering standards of innovation, transparency, and reliability in digital assets.",
+        "paragraph2": "Our mission goes beyond financial services. We are reshaping the very orbit of finance; creating inclusion, empowering both individuals and businesses, and opening a gateway to a fairer ecosystem. We believe crypto and blockchain are not just technologies, but engines of equity, trust, and transformation.",
+        "paragraph3": "Guided by our LUNAR values — Learning, Usefulness, Neotric innovation, Agility, and Reliability — we chart our path with confidence. These are not just principles, but the gravity that anchors McCoin’s journey, keeping our mission steady as we explore new horizons.",
+        "paragraph4": "Education and awareness fuel our journey. Through dialogue with the public, regulators, and institutions, McCoin bridges traditional finance and the digital economy, making crypto accessible, understood, and trusted.",
+        "paragraph5": "As we expand across the MENA region, we set new benchmarks for security, innovation, and user experience. McCoin is more than an exchange; it is a diverse community of explorers, from beginners to experts, all trading with confidence on a platform designed for them.",
+        "paragraph6": "By joining McCoin, you join a movement; a mission to revolutionize finance in the Middle East and North Africa. Together, we can pave the way for a future where digital currencies empower growth, unlock potential, and connect people across borders."
       }
     }
   },
