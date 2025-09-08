@@ -41,7 +41,7 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin }) => {
       <div className="flex flex-row justify-between px-2 py-1">
         <strong className="dark:text-white/70 text-[#07153B] text-xs">Price change:</strong>
         <p className="dark:text-white/80 text-[#07153B] text-xs font-medium">
-          {coin.price_change.toFixed(4)}
+          {coin.price_change?.toFixed(4)}
         </p>
       </div>
       <div className="flex flex-row justify-between px-2 py-1">
@@ -52,7 +52,7 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin }) => {
           } drop-shadow-sm`}
         >
           {isPositive_percent ? '+' : ''}
-          {coin.percent_change.toFixed(3)}%
+          {coin.percent_change?.toFixed(3)}%
         </p>
       </div>
     </div>

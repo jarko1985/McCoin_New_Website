@@ -34,6 +34,9 @@ const createSignUpSchema = (t: any) =>
         .regex(/[0-9]/, t('validations.password_number'))
         .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, t('validations.password_special')),
       confirmPassword: z.string(),
+      acceptTerms: z.boolean().refine(val => val === true, {
+        message: t('validations.terms_required'),
+      }),
     })
     .refine(data => data.password === data.confirmPassword, {
       message: t('validations.passwords_match'),
@@ -62,12 +65,13 @@ export default function SignUpPage() {
   const [countdown, setCountdown] = useState(60); // 1 minute countdown
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [isResending, setIsResending] = useState(false);
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
   const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
 
   const {
     register,
-    handleSubmit,
+    handleSubmit, 
     formState: { errors },
     setValue,
     watch,
@@ -267,7 +271,7 @@ export default function SignUpPage() {
             {t('headline2')}
           </h1>
           <h1
-            className={`text-4xl text-white leading-8 md:leading-7 text-center ${
+            className={`text-4xl text-[#EC3B3B] leading-8 md:leading-7 text-center ${
               isArabic ? 'md:text-right inline-block md:leading-10' : 'md:text-left'
             }`}
           >
@@ -475,8 +479,74 @@ export default function SignUpPage() {
             {recaptchaError && <span className="text-red-500 text-xs">{recaptchaError}</span>}
           </div> */}
 
+            {/* Terms and Conditions Checkbox */}
+            <div className="flex flex-col gap-2">
+              <div className="flex items-start gap-3">
+                <div className="relative flex items-center">
+                  <input
+                    type="checkbox"
+                    id="acceptTerms"
+                    {...register('acceptTerms')}
+                    className="sr-only"
+                    onChange={(e) => {
+                      setIsTermsAccepted(e.target.checked);
+                      setValue('acceptTerms', e.target.checked);
+                    }}
+                  />
+                  <label
+                    htmlFor="acceptTerms"
+                    className="flex items-center cursor-pointer"
+                  >
+                    <div className={`w-5 h-5 border-2 rounded-sm flex items-center justify-center transition-all duration-200 hover:border-white ${
+                      isTermsAccepted 
+                        ? 'bg-[#EC3B3B] border-[#EC3B3B]' 
+                        : 'bg-transparent border-[#8CA3D5]'
+                    }`}>
+                      <svg
+                        className={`w-3 h-3 text-white transition-opacity duration-200 ${
+                          isTermsAccepted ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </label>
+                </div>
+                <div className="flex-1 text-sm text-[#DAE6EA] leading-relaxed">
+                  <span>{t('terms.accept')}</span>{' '}
+                  <Link
+                    href={`/${isArabic ? 'ar' : 'en'}/terms-and-conditions`}
+                    className="text-[#EC3B3B] hover:text-red-400 underline transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('terms.terms_link')}
+                  </Link>{' '}
+                  <span>{t('terms.and')}</span>{' '}
+                  <Link
+                    href={`/${isArabic ? 'ar' : 'en'}/privacy-policy`}
+                    className="text-[#EC3B3B] hover:text-red-400 underline transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('terms.privacy_link')}
+                  </Link>
+                  . {t('terms.disclaimer')}
+                </div>
+              </div>
+              {errors.acceptTerms && (
+                <p className="text-red-400 text-sm ml-8">{errors.acceptTerms.message}</p>
+              )}
+            </div>
+
             <Button
-              className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 p-6"
+              className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 p-6 cursor-pointer"
               type="submit"
               disabled={loading}
             >
@@ -496,6 +566,7 @@ export default function SignUpPage() {
                 {t('login') || 'Sign in'}
               </Link>
             </p>
+
           </form>
         </motion.div>
       )}

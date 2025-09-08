@@ -205,7 +205,7 @@ export default function LoginPage() {
           <h1 className="text-3xl font-bold text-white">
             {t('title4_1')} McC<span className="text-[#EC3B3B]">o</span>in
           </h1>
-          <h1 className="text-3xl font-bold text-white">{t('title6')}</h1>
+          {/* <h1 className="text-3xl font-bold text-white">{t('title6')}</h1> */}
           <p className="text-sm text-[#8CA3D5]">{t('title5')}</p>
         </div>
 
@@ -277,21 +277,19 @@ export default function LoginPage() {
         <div>
           <Image src="/images/login_pic.svg" alt="logo" width={40} height={40} />
           <h2 className="text-2xl mt-2">
-            {t('title1')} <span className="text-[#EC3B3B]">{t('title2')}</span> {t('title3')}
+            {t('title1')} <span className="text-[#EC3B3B]">{t('title2')}</span>
           </h2>
-
-          <p className="text-[#DAE6EA] mt-2 text-sm">{t('subtitle')}</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="flex flex-col gap-2">
-            <label>{t('email')}</label>
+            <label>{t('email_label')}</label>
             <Input type="email" placeholder={t('email')} {...register('email')} />
             {errors.email && <p className="text-red-400 text-sm">{errors.email.message}</p>}
           </div>
 
           <div className="flex flex-col gap-2">
-            <label>{t('password')}</label>
+            <label>{t('password_label')}</label>
             <div className="relative">
               <Input
                 type={showPassword ? 'text' : 'password'}
@@ -311,21 +309,22 @@ export default function LoginPage() {
           </div>
 
           <div
-            className={`flex ${isArabic ? 'justify-start' : 'justify-end'}`}
+            className={`flex gap-x-1 ${isArabic ? 'justify-start' : 'justify-start'}`}
             style={{
               direction: isArabic ? 'rtl' : 'ltr',
             }}
           >
+            <p>{t('forgotPassword1_1')}</p>
+            <p>{t('forgotPassword1_2')}</p>
             <Link
               href={`/${isArabic ? 'ar' : 'en'}/forgot-password`}
               className="text-[#EC3B3B] text-sm underline"
             >
-              {t('forgotPassword')}
+               {t('forgotPassword1_3')}
             </Link>
           </div>
-
           <Button
-            className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200"
+            className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 cursor-pointer"
             type="submit"
             disabled={loading}
           >
@@ -333,7 +332,7 @@ export default function LoginPage() {
           </Button>
 
           <p className="text-center text-sm text-[#DAE6EA]">
-            {t('noAccount')}
+            {/* {t('noAccount')} */}
             <Link href={`/${isArabic ? 'ar' : 'en'}/signup`} className="text-[#EC3B3B] underline">
               {t('registerNow')}
             </Link>

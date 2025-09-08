@@ -174,9 +174,10 @@
   },
   "MarketOverview": {
     "hero": {
-      "title": "Spot Market Overview",
-      "description1": "Welcome to McCoin's Spot Market Overview — your one-stop dashboard for analyzing real-time crypto market data. Track the global crypto market cap, historical trends, trading volume, and market dominance across centralized (CEX) and decentralized exchanges (DEX). Dive into comparative volume share, monitor yearly highs/lows, and follow top news stories impacting market sentiment.",
-      "description2": "Whether you're an active trader, analyst, or just crypto-curious, this page offers powerful insight to support smarter decision-making."
+      "title": "Spot Market Overview:",
+      "subtitle": "Navigate the Crypto Cosmos",
+      "description1": "Track the pulse of global markets with clarity, insight, and reliability. From total market cap and trading volumes to dominance trends and volume share across CEX and DEX; McCoin equips you to confidently chart your path in the crypto universe.",
+      "description2": "Whether you're a seasoned trader, an analyst, or simply crypto-curious, get empowered with insights that align with our values of Learning, Innovation, Agility, Usefulness, and Reliability."
     },
     "marketStats": {
       "cryptoMarketCapTitle": "Crypto Market Cap",
@@ -227,8 +228,7 @@
         "last7Days": "Last 7 Days",
         "marketCap": "Market Cap",
         "volume24h": "Volume (24h)",
-        "circulatingSupply": "Circulating Supply",
-        "last7Days": "Last 7 Days"
+        "circulatingSupply": "Circulating Supply"
       },
       "pagination": {
         "previous": "Previous",
@@ -251,8 +251,8 @@
     },
     "disclaimer": {
       "title": "Disclaimer",
-      "content1": "The information provided on this page is for general informational purposes only and should not be construed as financial, investment, or trading advice.",
-      "content2": "Users are encouraged to conduct their own research and consult a licensed financial advisor before making any investment decisions. Cryptocurrency trading involves substantial risk and may not be suitable for all investors."
+      "content1": "The content on this page is provided for informational purposes only and does not constitute financial, investment, or trading advice. Markets are dynamic and cryptocurrency trading carries significant risk, which may not be suitable for all investors.",
+      "content2": "At McCoin, we encourage continuous learning and responsible decision-making. Please conduct your own research and consult a licensed financial advisor before making any investment choices. "
     },
     "charts": {
       "cryptoMarketCapChart": "Crypto Market Cap Chart",
@@ -477,19 +477,21 @@
   },
   "signIn": {
     "back": "Back",
-    "title4_1": "Welcome to",
+    "title4_1": "Back on Board with",
     "title6": "Virtual Assets",
-    "title5": "Your trusted crypto exchange platform",
-    "title1": "Sign",
-    "title2": "In",
-    "title3": "to your account",
-    "subtitle": "Enter your credentials to access your account",
-    "email": "Email",
-    "password": "Password",
-    "forgotPassword": "Forgot Password?",
-    "button": "Sign In",
-    "noAccount": "Don't have an account? ",
-    "registerNow": "Register now",
+    "title5": "Continue your A-Grade trade journey. ",
+    "title1": "Sign in & fasten your seatbelt to start your crypto journey to the moon and ",
+    "title2": "beyond.",
+    "email_label": "Email Address",
+    "password_label": "Password",
+    "email": "Enter your email address",
+    "password": "Enter your password",
+    "forgotPassword1_1": "Forgot Password?",
+    "forgotPassword1_2": "Reset it",
+    "forgotPassword1_3": "here",
+    "button": "Login to McCoin",
+    "noAccount": "",
+    "registerNow": "Create your McCoin account and start trading smarter.",
     "login_success": "Login successful!",
     "login_failed": "Login failed. Please try again.",
     "invalid_credentials": "Invalid email or password. Please check your credentials and try again.",
@@ -520,19 +522,19 @@
   },
   "signUp": {
     "back": "Back",
-    "headline1": "Join the Future",
-    "headline2": "of Digital",
-    "headline3": "Assets",
-    "tagline": "Create your account and start trading crypto with confidence",
+    "headline1": "Join the A-Grade",
+    "headline2": "journey to the moon",
+    "headline3": "and beyond.",
+    "tagline": "Secure, fast, and built for every trader.",
     "title1": "Create Your",
     "title2": "Account",
     "title3": "Today",
     "subtitle": "Join thousands of traders on our secure platform",
     "name": "Full Name",
-    "email": "Email Address",
-    "password": "Password",
-    "repeatPassword": "Confirm Password",
-    "button": "Create Account",
+    "email": "Enter your email and unlock your A-Grade trade.",
+    "password": "Set a strong password to secure your journey.",
+    "repeatPassword": "Re-enter your password to confirm.",
+    "button": "Start Your A-Grade Trade",
     "signingUp": "Creating Account...",
     "haveAccount": "Already have an account?",
     "login": "Sign in",
@@ -564,7 +566,15 @@
       "password_number": "Password must contain at least 1 number",
       "password_special": "Password must contain at least 1 special character",
       "passwords_match": "Passwords must match",
-      "password_requirements_not_met": "Please ensure your password meets all requirements"
+      "password_requirements_not_met": "Please ensure your password meets all requirements",
+      "terms_required": "You must accept the Terms & Conditions to continue"
+    },
+    "terms": {
+      "accept": "I accept McCoin's",
+      "terms_link": "Terms & Conditions",
+      "and": "and",
+      "privacy_link": "Privacy Policy",
+      "disclaimer": "Crypto trading involves risk; please trade responsibly."
     },
     "passwordRequirements": {
       "title": "Password Requirements",
