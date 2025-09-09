@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations,useLocale } from 'next-intl';
 
 interface Block {
   id: string;
@@ -24,6 +24,8 @@ function getFillPercent(height: number, maxHeight: number): number {
 }
 
 export default function BlocksRow() {
+  const locale = useLocale();
+  const isArabic = locale === 'ar';
   const t = useTranslations('MarketExplorer.blocksRow');
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [loading, setLoading] = useState(true);
@@ -54,7 +56,20 @@ export default function BlocksRow() {
 
   return (
     <div className="mx-auto xl:max-w-[70%] bg-[#DAE6EA] dark:bg-[#07153b] text-[#07153b] dark:text-[#DAE6EA] px-4 xl:px-0 py-12">
-      <h1 className="text-3xl font-bold mb-8 text-center">{t('title')}</h1>
+      <h1 className="text-3xl tracking-[2px] font-bold text-center lg:text-left relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[#EC3B3B]">{t('title')}</h1>
+      <figcaption
+        className={`${
+          isArabic ? 'lg:text-right' : 'lg:text-left'
+        } text-[#07153b] dark:text-white lg:text-[1rem] lg:ml-4 italic text-[0.875rem] font-semibold tracking-wider text-center mb-8`}
+      >
+      &quot;{t('subtitle')}&quot;
+      </figcaption>
+      <p className='tracking-[2px]'>
+        {t('description1')}
+      </p>
+      <p className='mb-8 tracking-[2px]'>
+        {t('description2')}
+      </p>
       <div className="w-full overflow-x-auto pb-4 custom-scroll">
         <div className="inline-flex gap-8 px-2 py-2 items-end">
           {blocks.length === 0 &&

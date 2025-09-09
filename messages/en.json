@@ -263,7 +263,10 @@
   },
   "MarketExplorer": {
     "blocksRow": {
-      "title": "Latest Bitcoin Blocks",
+      "title": "Market Explorer",
+      "subtitle": "Discover the Depths of Crypto",
+      "description1": "Go beyond the surface. With McCoin’s Market Explorer, analyze individual coins and tokens in detail, compare performance across timeframes, and unlock deeper insights that empower smarter trading.",
+      "description2": "Filter, sort, and navigate the crypto universe with agility. Whether you’re learning as a beginner or optimizing strategies as a pro, Market Explorer equips you with the tools to trade with confidence.",
       "feeRate": "Fee Rate",
       "transactions": "Transactions",
       "blockReward": "Block Reward",
@@ -289,6 +292,11 @@
         "next": "Next",
         "page": "Page"
       }
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "content1": "The content on this page is provided for informational purposes only and does not constitute financial, investment, or trading advice. Markets are dynamic and cryptocurrency trading carries significant risk, which may not be suitable for all investors.",
+      "content2": "At McCoin, we encourage continuous learning and responsible decision-making. Please conduct your own research and consult a licensed financial advisor before making any investment choices. "
     },
     "blockDetails": {
       "backToExplorer": "Market Explorer",
@@ -606,15 +614,15 @@
     "resend_error": "Failed to send verification email"
   },
   "forgotPassword": {
-    "title": "Forgot Password?",
-    "subtitle": "No worries, we will send you reset instructions.",
+    "title": "Forgot Your Password?",
+    "subtitle": "No worries. Simply, enter your email and we’ll send you a secure link to reset it.",
     "emailLabel": "Email Address",
-    "emailPlaceholder": "Enter your email address",
-    "sendButton": "Send Reset Email",
+    "emailPlaceholder": "Enter your registered email address",
+    "sendButton": "Reset My Access",
     "sending": "Sending...",
     "backToLogin": "Back to Login",
-    "rememberPassword": "Remember your password?",
-    "signIn": "Sign in",
+    "rememberPassword": "Remembered it?",
+    "signIn": "Login to McCoin",
     "emailSent": "Password reset email sent successfully!",
     "emailNotFound": "Email address not found",
     "errorSending": "Failed to send reset email",
