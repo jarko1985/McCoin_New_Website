@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface PodcastSeries {
   uuid: string;
@@ -17,12 +18,14 @@ interface AllSeriesProps {
 }
 
 export default function AllSeries({ series }: AllSeriesProps) {
+  const t = useTranslations('Podcast.allSeries');
+  
   if (!series?.length) return null;
 
   return (
     <section className="xl:max-w-[70%] mx-auto bg-[#07153b] px-4 py-12">
       <div className="container mx-auto">
-        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">All Series</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[#EC3B3B]">{t('title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {series.map(item => (

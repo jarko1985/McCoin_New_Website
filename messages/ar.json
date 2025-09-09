@@ -1047,5 +1047,96 @@
       "careers": "الوظائف",
       "others": "أخرى"
     }
+  },
+  "TopNews": {
+    "hero": {
+      "hotUpdates": "التحديثات الساخنة",
+      "hotUpdate": "تحديث ساخن",
+      "noNewsFound": "لم يتم العثور على مقالات إخبارية"
+    },
+    "slider": {
+      "comments": "تعليقات",
+      "noAdditionalNews": "لم يتم العثور على مقالات إخبارية إضافية"
+    },
+    "fintechNews": {
+      "title": "أخبار التكنولوجيا المالية"
+    },
+    "businessNews": {
+      "title": "أخبار الأعمال"
+    },
+    "recentPosts": {
+      "title": "المنشورات الشائعة",
+      "noArticlesAvailable": "لا توجد مقالات متاحة."
+    },
+    "dontMiss": {
+      "title": "لا تفوت",
+      "noArticlesAvailable": "لا توجد مقالات متاحة.",
+      "dontMiss": "لا تفوت",
+      "untitledArticle": "مقال بدون عنوان",
+      "unknownDate": "تاريخ غير معروف"
+    }
+  },
+  "NewsRoom": {
+    "hero": {
+      "title": "غرفة",
+      "titleSuffix": "الأخبار",
+      "subtitle": "ابق على اطلاع بأحدث الإعلانات والبيانات الصحفية وأخبار ماكوين."
+    },
+    "eventList": {
+      "searchPlaceholder": "البحث في الأحداث...",
+      "moreDetails": "تفاصيل أكثر",
+      "registerNow": "سجل الآن",
+      "pastEvent": "حدث سابق"
+    },
+    "dummyEvents": {
+      "event1": {
+        "title": "معرض البلوك تشين، لندن",
+        "venue": "لندن",
+        "price": "مجاني",
+        "description": "معرض متخصص في تقنية البلوك تشين يجمع بين الخبراء والمطورين لاستكشاف أحدث التطورات في عالم العملات المشفرة والتقنيات المالية الحديثة."
+      },
+      "event2": {
+        "title": "قمة الابتكار التقني",
+        "venue": "سان فرانسيسكو",
+        "price": "مجاني",
+        "description": "استكشف أحدث الابتكارات التقنية مع قادة الصناعة. تجمع هذه القمة ألمع العقول في التكنولوجيا لمناقشة الاتجاهات الناشئة والاتجاهات المستقبلية."
+      },
+      "event3": {
+        "title": "مؤتمر التسويق الرقمي",
+        "venue": "نيويورك",
+        "price": "بالدعوة فقط",
+        "description": "تعلم استراتيجيات التسويق الرقمي المتطورة من أفضل الخبراء في المجال. مثالي للمسوقين الذين يتطلعون إلى البقاء في المقدمة."
+      }
+    },
+    "detailPage": {
+      "eventLocation": "موقع الحدث",
+      "defaultTitle": "حدث",
+      "defaultDescription": "تفاصيل الحدث"
+    }
+  },
+  "Podcast": {
+    "page": {
+      "loading": "جاري التحميل...."
+    },
+    "hero": {
+      "podcast": "بودكاست",
+      "followers": "متابع",
+      "subscribers": "مشترك",
+      "playEpisode": "تشغيل الحلقة",
+      "subscribe": "اشتراك",
+      "loading": "جاري التحميل...",
+      "error": "خطأ:",
+      "noFeaturedEpisodes": "لم يتم العثور على حلقات مميزة"
+    },
+    "featuredSeries": {
+      "title": "السلاسل المميزة"
+    },
+    "recentEpisodes": {
+      "title": "الحلقات الأخيرة",
+      "play": "تشغيل"
+    },
+    "allSeries": {
+      "title": "جميع السلاسل"
+    }
   }
 }

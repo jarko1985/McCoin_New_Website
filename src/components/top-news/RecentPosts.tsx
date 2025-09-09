@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 interface Article {
   article_id: string;
@@ -21,6 +22,7 @@ export default function RecentPosts() {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations('TopNews.recentPosts');
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -43,7 +45,7 @@ export default function RecentPosts() {
   }
 
   if (!articles.length) {
-    return <div className="text-[#DAE6EA] p-4">No articles available.</div>;
+    return <div className="text-[#DAE6EA] p-4">{t('noArticlesAvailable')}</div>;
   }
 
   const mainArticle = articles[0];
@@ -61,9 +63,8 @@ export default function RecentPosts() {
   return (
     <section className="mx-auto py-12 xl:max-w-[70%] px-4 xl:px-0">
       <div className="flex items-center">
-        <h2 className="text-3xl font-bold text-white mb-8 pl-6 relative">
-          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-sm"></span>
-          Popular Posts
+        <h2 className="text-3xl font-bold text-white mb-8 pl-6 relative before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[#EC3B3B]">
+          {t('title')}
         </h2>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

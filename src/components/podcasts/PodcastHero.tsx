@@ -9,6 +9,7 @@ import { Button } from '../ui/button';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import PodcastMusicPlayer from './PodcastMusicPlayer';
+import { useTranslations } from 'next-intl';
 
 interface PodcastEpisode {
   uuid: string;
@@ -35,6 +36,7 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const t = useTranslations('Podcast.hero');
 
   const [selectedEpisode, setSelectedEpisode] = useState<PodcastEpisode | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,19 +52,19 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
   }, [featuredEpisodes]);
 
   if (isLoading) {
-    return <div className="h-[50vh] flex items-center justify-center bg-gray-200">Loading...</div>;
+    return <div className="h-[50vh] flex items-center justify-center bg-gray-200">{t('loading')}</div>;
   }
 
   if (error) {
     return (
-      <div className="h-[50vh] flex items-center justify-center bg-gray-200">Error: {error}</div>
+      <div className="h-[50vh] flex items-center justify-center bg-gray-200">{t('error')} {error}</div>
     );
   }
 
   if (!featuredEpisodes.length) {
     return (
       <div className="h-[50vh] flex items-center justify-center bg-gray-200">
-        No featured episodes found
+        {t('noFeaturedEpisodes')}
       </div>
     );
   }
@@ -106,7 +108,7 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
                   <div className="w-full md:w-2/3 text-center md:text-left">
                     <div className="mb-4">
                       <span className="inline-block px-3 py-1 text-sm font-semibold text-white bg-[#EC3B3B] rounded-full">
-                        PODCAST
+                        {t('podcast')}
                       </span>
                     </div>
                     <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
@@ -116,9 +118,9 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
                       {podcast.description?.substring(0, 120)}...
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-6">
-                      <span className="text-[#DAE6EA]">{podcast.followers} followers</span>
+                      <span className="text-[#DAE6EA]">{podcast.followers} {t('followers')}</span>
                       <span className="hidden sm:block text-[#DAE6EA]">•</span>
-                      <span className="text-[#DAE6EA]">{podcast.subscribers} subscribers</span>
+                      <span className="text-[#DAE6EA]">{podcast.subscribers} {t('subscribers')}</span>
                     </div>
                     <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
                       <Button
@@ -128,13 +130,13 @@ export default function PodcastHero({ featuredEpisodes }: PodcastHeroProps) {
                         }}
                         className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white px-6 py-4 rounded-full cursor-pointer"
                       >
-                        <Play className="mr-2 h-4 w-4" /> PLAY EPISODE
+                        <Play className="mr-2 h-4 w-4" /> {t('playEpisode')}
                       </Button>
                       <Button
                         variant="outline"
                         className="text-white hover:text-white hover:bg-[#07153b] px-6 py-4 rounded-full cursor-pointer"
                       >
-                        <Plus className="mr-2 h-4 w-4" /> SUBSCRIBE
+                        <Plus className="mr-2 h-4 w-4" /> {t('subscribe')}
                       </Button>
                     </div>
                   </div>

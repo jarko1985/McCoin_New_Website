@@ -91,7 +91,7 @@
         "ultimate_option": {
           "title1": "The Ultimate",
           "title2": "All-in-One Platform",
-          "paragraph": "From spot and futures to DeFi and education; McCoin delivers every trading option you need, all in one place."
+          "paragraph": "From Spot Trading to DeFi and education; McCoin delivers every trading option you need, all in one place."
         },
         "safety": {
           "title1": "Safety First",
@@ -166,7 +166,7 @@
       "button": "Listen Now"
     },
     "TradeNow": {
-      "title": "Explore the Crypto World with {brand}",
+      "title": "Explore the Crypto Space with {brand}",
       "button": "Trade now"
     },
     "title": "Mccoin Virtual Assets Market",
@@ -1074,6 +1074,97 @@
         "title": "Nothing here",
         "desc": "No deposit records found matching your filters"
       }
+    }
+  },
+  "TopNews": {
+    "hero": {
+      "hotUpdates": "Hot Updates",
+      "hotUpdate": "Hot Update",
+      "noNewsFound": "No news articles found"
+    },
+    "slider": {
+      "comments": "comments",
+      "noAdditionalNews": "No additional news articles found"
+    },
+    "fintechNews": {
+      "title": "Fintech News"
+    },
+    "businessNews": {
+      "title": "Business News"
+    },
+    "recentPosts": {
+      "title": "Popular Posts",
+      "noArticlesAvailable": "No articles available."
+    },
+    "dontMiss": {
+      "title": "Don't Miss",
+      "noArticlesAvailable": "No articles available.",
+      "dontMiss": "Don't Miss",
+      "untitledArticle": "Untitled Article",
+      "unknownDate": "Unknown date"
+    }
+  },
+  "NewsRoom": {
+    "hero": {
+      "title": "News",
+      "titleSuffix": "room",
+      "subtitle": "Stay updated with our latest announcements, press releases, and McCoin news."
+    },
+    "eventList": {
+      "searchPlaceholder": "Search events...",
+      "moreDetails": "More Details",
+      "registerNow": "Register Now",
+      "pastEvent": "Past Event"
+    },
+    "dummyEvents": {
+      "event1": {
+        "title": "Blockchain Expo, London",
+        "venue": "LONDON",
+        "price": "Free",
+        "description": "Join the leading innovators and thought leaders in the blockchain space at the Blockchain Expo in London. This free event brings together experts, startups, and large enterprises to explore the latest advancements in blockchain technology. Attend insightful sessions covering a variety of topics such as decentralized finance (DeFi), blockchain for enterprise solutions, NFTs, and the future of Web3. Whether you're a developer, business owner, or enthusiast, this expo provides the perfect platform to network, discover cutting-edge solutions, and engage with top industry professionals."
+      },
+      "event2": {
+        "title": "Tech Innovation Summit",
+        "venue": "SAN FRANCISCO",
+        "price": "Free",
+        "description": "Explore the latest in technology innovation with industry leaders. This summit brings together the brightest minds in tech to discuss emerging trends and future directions."
+      },
+      "event3": {
+        "title": "Digital Marketing Conference",
+        "venue": "NEW YORK",
+        "price": "By Invite",
+        "description": "Learn cutting-edge digital marketing strategies from top experts in the field. Perfect for marketers looking to stay ahead of the curve."
+      }
+    },
+    "detailPage": {
+      "eventLocation": "Event Location",
+      "defaultTitle": "Event",
+      "defaultDescription": "Event details"
+    }
+  },
+  "Podcast": {
+    "page": {
+      "loading": "Loading...."
+    },
+    "hero": {
+      "podcast": "PODCAST",
+      "followers": "followers",
+      "subscribers": "subscribers",
+      "playEpisode": "PLAY EPISODE",
+      "subscribe": "SUBSCRIBE",
+      "loading": "Loading...",
+      "error": "Error:",
+      "noFeaturedEpisodes": "No featured episodes found"
+    },
+    "featuredSeries": {
+      "title": "Featured Series"
+    },
+    "recentEpisodes": {
+      "title": "Recent Episodes",
+      "play": "Play"
+    },
+    "allSeries": {
+      "title": "All Series"
     }
   }
 }

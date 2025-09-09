@@ -4,8 +4,8 @@ import { useParams } from "next/navigation";
 import { ArrowRight, Calendar, MapPin, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { dummyEvents } from "../../../utils/data";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 
 function formatDateRange(startDate:any, endDate:any) {
@@ -16,6 +16,43 @@ function formatDateRange(startDate:any, endDate:any) {
 export default function EventList() {
   const [searchQuery, setSearchQuery] = useState("");
   const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const t = useTranslations('NewsRoom.eventList');
+  const tEvents = useTranslations('NewsRoom.dummyEvents');
+
+  // Create translated dummyEvents
+  const dummyEvents = [
+    {
+      id: 1,
+      title: tEvents('event1.title'),
+      startDate: new Date(2018, 3, 12), // April 12, 2018
+      endDate: new Date(2018, 4, 10), // May 10, 2018
+      venue: tEvents('event1.venue'),
+      price: tEvents('event1.price'),
+      description: tEvents('event1.description'),
+      imageUrl: '/images/event1.jpg',
+    },
+    {
+      id: 2,
+      title: tEvents('event2.title'),
+      startDate: new Date(2024, 5, 5), // June 5, 2024
+      endDate: new Date(2024, 5, 7), // June 7, 2024
+      venue: tEvents('event2.venue'),
+      price: tEvents('event2.price'),
+      description: tEvents('event2.description'),
+      imageUrl: '/images/event2.jpg',
+    },
+    {
+      id: 3,
+      title: tEvents('event3.title'),
+      startDate: new Date(2024, 6, 15), // July 15, 2024
+      endDate: new Date(2024, 6, 17), // July 17, 2024
+      venue: tEvents('event3.venue'),
+      price: tEvents('event3.price'),
+      description: tEvents('event3.description'),
+      imageUrl: '/images/event3.jpg',
+    },
+  ];
+
   const filteredEvents = dummyEvents.filter((event) =>
     event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     event.venue.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -28,7 +65,7 @@ export default function EventList() {
         <Search className="absolute left-3 top-2 h-5 w-5 text-white" />
         <Input
           type="text"
-          placeholder="Search events..."
+          placeholder={t('searchPlaceholder')}
           className="pl-10 border border-[#DAE6EA] text-white placeholder:text-white/60"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -61,18 +98,18 @@ export default function EventList() {
                 <div className="flex items-center mb-4">
                   <span className="text-lg font-semibold text-[#EC3B3B]">{event.price}</span>
                   {event.endDate < new Date() && (
-                    <span className="ml-4 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">Past Event</span>
+                    <span className="ml-4 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">{t('pastEvent')}</span>
                   )}
                 </div>
                 <p className="text-gray-600 mb-6 line-clamp-3">{event.description}</p>
                 <div className="flex gap-3">
                   <Link href={`/${locale}/news-room/${event.id}`} className="flex gap-2 group transition-all duration-500 text-[#07153B] border border-[#07153B] hover:bg-[#07153B] px-3 py-2 hover:text-white">
-                    More Details
+                    {t('moreDetails')}
                     <ArrowRight className="group-hover:translate-x-1.5 duration-500 transition-all"/>
                   </Link>
                   {event.endDate >= new Date() && (
                     <Button className="bg-[#07153B] hover:bg-[#0a1f4d]">
-                      Register Now
+                      {t('registerNow')}
                     </Button>
                   )}
                 </div>

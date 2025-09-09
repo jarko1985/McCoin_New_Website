@@ -10,6 +10,7 @@ import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface Article {
   id: string;
@@ -30,6 +31,7 @@ export function TopNewsHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('TopNews.hero');
 
   useEffect(() => {
     // Check if window is available (client-side)
@@ -114,7 +116,7 @@ export function TopNewsHero() {
               href={`/${locale}/top-news/${articles[activeIndex]?.id || ''}?source=gnews`}
               className="max-w-2xl bg-[#07153b]/70 md:bg-transparent p-4 md:p-0 rounded-lg md:rounded-none cursor-pointer hover:bg-[#07153b]/80 md:hover:bg-transparent transition-colors"
             >
-              <Badge className="mb-2 md:mb-4 bg-[#ffb400] hover:bg-[#ffb400]/90">Hot Updates</Badge>
+              <Badge className="mb-2 md:mb-4 bg-[#ffb400] hover:bg-[#ffb400]/90">{t('hotUpdates')}</Badge>
               <motion.h1
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -177,7 +179,7 @@ export function TopNewsHero() {
                         onClick={() => setActiveIndex(index)}
                       >
                         <Badge className="mb-1 bg-[#ffb400] hover:bg-[#ffb400]/90 text-xs">
-                          Hot Update
+                          {t('hotUpdate')}
                         </Badge>
                         <h3 className="font-medium text-sm line-clamp-2">{article.title}</h3>
                         <p className="text-xs text-[#DAE6EA] mt-1">
@@ -193,7 +195,7 @@ export function TopNewsHero() {
         </>
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-[#07153b] text-white">
-          No news articles found
+          {t('noNewsFound')}
         </div>
       )}
     </div>

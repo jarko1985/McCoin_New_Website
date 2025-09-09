@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useParams } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslations } from 'next-intl';
 
 interface Article {
   id?: string;
@@ -22,6 +23,7 @@ export default function DontMiss() {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations('TopNews.dontMiss');
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -47,26 +49,25 @@ export default function DontMiss() {
   }
 
   if (!articles.length) {
-    return <div className="text-[#DAE6EA] p-4">No articles available.</div>;
+    return <div className="text-[#DAE6EA] p-4">{t('noArticlesAvailable')}</div>;
   }
 
   const topArticles = articles.slice(0, 2);
   const gridArticles = articles.slice(2);
 
   const formatDate = (date?: string) => {
-    if (!date) return 'Unknown date';
+    if (!date) return t('unknownDate');
     const d = new Date(date);
     return isNaN(d.getTime())
-      ? 'Unknown date'
+      ? t('unknownDate')
       : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   return (
     <section className="mx-auto py-12 xl:max-w-[70%] px-4 xl:px-0">
       <div className="flex items-center">
-        <h2 className="text-3xl font-bold text-white mb-8 pl-6 relative">
-          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-sm"></span>
-          Don’t Miss
+        <h2 className="text-3xl font-bold text-white mb-8 pl-6 relative before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[#EC3B3B]">
+          {t('title')}
         </h2>
       </div>
 
@@ -97,10 +98,10 @@ export default function DontMiss() {
               </div>
               <div className="p-4">
                 <Badge className="bg-[#EC3B3B] text-white mb-2">
-                  {article.source?.name || "Don't Miss"}
+                  {article.source?.name || t('dontMiss')}
                 </Badge>
                 <h3 className="text-[#DAE6EA] font-bold text-lg mb-2 line-clamp-2">
-                  {article.title || 'Untitled Article'}
+                  {article.title || t('untitledArticle')}
                 </h3>
                 <div className="text-xs text-[#DAE6EA] mb-2 flex items-center gap-2">
                   <span>{formatDate(article.publishedAt)}</span>
@@ -139,7 +140,7 @@ export default function DontMiss() {
               </div>
               <div className="flex-1">
                 <h4 className="text-white font-semibold text-sm leading-snug group-hover:text-[#EC3B3B] transition-colors line-clamp-2">
-                  {article.title || 'Untitled Article'}
+                  {article.title || t('untitledArticle')}
                 </h4>
                 <div className="text-xs text-[#DAE6EA] mt-1">{formatDate(article.publishedAt)}</div>
               </div>

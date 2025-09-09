@@ -1,9 +1,13 @@
-import NewsRoomPage from "@/pages/NewsRoomPage";
+import EventList from "@/components/news-room/EventList";
+import NewsRoomHero from "@/components/news-room/NewsRoomHero";
 
 
 const page = () => {
   return (
-  <NewsRoomPage/>
+    <>
+    <NewsRoomHero/>
+    <EventList/>
+    </>
   )
 }
 

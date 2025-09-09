@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '../ui/skeleton';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 interface Article {
   title: string;
@@ -26,6 +27,7 @@ export function TopNewsSlider() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const t = useTranslations('TopNews.slider');
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -124,7 +126,7 @@ export function TopNewsSlider() {
                       <div className="flex items-center mt-3 text-xs text-[#DAE6EA]/80">
                         <span>{formatDate(article.publishedAt)}</span>
                         <span className="mx-2 w-1 h-1 rounded-full bg-[#DAE6EA]/50"></span>
-                        <span>42 comments</span>
+                        <span>42 {t('comments')}</span>
                       </div>
                       <Badge
                         variant="outline"
@@ -141,7 +143,7 @@ export function TopNewsSlider() {
         </Swiper>
       ) : (
         <div className="text-center py-8 text-[#DAE6EA] bg-[#07153b]/50 rounded-lg">
-          No additional news articles found
+          {t('noAdditionalNews')}
         </div>
       )}
     </div>

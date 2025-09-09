@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { Newspaper } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 export default function NewsRoomHero() {
+  const t = useTranslations('NewsRoom.hero');
 //   const newsParticles = [
 //     { icon: "✍️", size: 24, x: 10, y: 20, delay: 0.1, duration: 15 },
 //     { icon: "📰", size: 32, x: 85, y: 30, delay: 0.3, duration: 18 },
@@ -87,13 +89,12 @@ export default function NewsRoomHero() {
           </motion.div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
            
-              News
+              {t('title')}
            
-            <span>room</span>
+            <span>{t('titleSuffix')}</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-300 mb-8">
-            Stay updated with our latest announcements, press releases, and
-            McCoin news.
+            {t('subtitle')}
           </p>
         </motion.div>
       </div>

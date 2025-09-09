@@ -5,6 +5,7 @@ import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import PodcastMusicPlayer from './PodcastMusicPlayer';
+import { useTranslations } from 'next-intl';
 
 interface PodcastEpisode {
   uuid: string;
@@ -27,6 +28,7 @@ interface RecentEpisodesProps {
 export default function RecentEpisodes({ episodes }: RecentEpisodesProps) {
   const [selectedEpisode, setSelectedEpisode] = useState<PodcastEpisode | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const t = useTranslations('Podcast.recentEpisodes');
 
   if (!episodes?.length) return null;
 
@@ -39,7 +41,7 @@ export default function RecentEpisodes({ episodes }: RecentEpisodesProps) {
     <>
       <section className="xl:max-w-[70%] mx-auto bg-[#07153b] px-4 py-12">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6">Recent Episodes</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-[#EC3B3B]">{t('title')}</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 gap-x-8 max-w-full">
             {episodes.map(episode => (
@@ -65,6 +67,7 @@ export default function RecentEpisodes({ episodes }: RecentEpisodesProps) {
 
 function EpisodeItem({ episode, onPlay }: { episode: PodcastEpisode; onPlay: () => void }) {
   const [imgError, setImgError] = useState(false);
+  const t = useTranslations('Podcast.recentEpisodes');
 
   return (
     <div className="flex gap-4 bg-[#0b1d4b] p-4 rounded-lg shadow-lg hover:bg-[#102050] transition-colors duration-300 overflow-hidden">
@@ -93,7 +96,7 @@ function EpisodeItem({ episode, onPlay }: { episode: PodcastEpisode; onPlay: () 
 
         <div className="mt-3">
           <Button className="bg-[#EC3B3B] hover:bg-[#d12f2f] text-white" size="sm" onClick={onPlay}>
-            <Play className="mr-2 h-4 w-4" /> Play
+            <Play className="mr-2 h-4 w-4" /> {t('play')}
           </Button>
         </div>
       </div>
