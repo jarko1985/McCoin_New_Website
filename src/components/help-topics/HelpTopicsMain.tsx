@@ -1,74 +1,72 @@
 'use client';
-import { useState, useEffect, JSX } from 'react';
+import { useState, useEffect, useMemo, JSX } from 'react';
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Search, Zap, Database, LayoutTemplate, BookOpen, User, BrainCircuit } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-// Sample data for crypto help topics
-const helpTopics = [
+// Helper function to get help topics with translations
+const getHelpTopics = (t: any) => [
   {
     id: 1,
-    title: 'Trading Platform',
-    description: 'Learn how to navigate our trading platform and execute trades efficiently.',
+    title: t('topics.trading_platform.title'),
+    description: t('topics.trading_platform.description'),
     icon: <Zap className="w-8 h-8" />,
-    tags: ['trading', 'platform', 'errors'],
+    tags: [t('topics.trading_platform.tag1'), t('topics.trading_platform.tag2'), t('topics.trading_platform.tag3')],
   },
   {
     id: 2,
-    title: 'Wallet Management',
-    description: 'Secure your assets with proper wallet setup and management techniques.',
+    title: t('topics.wallet_management.title'),
+    description: t('topics.wallet_management.description'),
     icon: <Database className="w-8 h-8" />,
-    tags: ['wallet', 'security', 'transfer'],
+    tags: [t('topics.wallet_management.tag1'), t('topics.wallet_management.tag2'), t('topics.wallet_management.tag3')],
   },
   {
     id: 3,
-    title: 'API Integration',
-    description: 'Connect your applications with our powerful trading API.',
+    title: t('topics.api_integration.title'),
+    description: t('topics.api_integration.description'),
     icon: <LayoutTemplate className="w-8 h-8" />,
-    tags: ['api', 'integration', 'developers'],
+    tags: [t('topics.api_integration.tag1'), t('topics.api_integration.tag2'), t('topics.api_integration.tag3')],
   },
   {
     id: 4,
-    title: 'Account Security',
-    description: 'Protect your account with 2FA and other security measures.',
+    title: t('topics.account_security.title'),
+    description: t('topics.account_security.description'),
     icon: <User className="w-8 h-8" />,
-    tags: ['security', 'authentication', '2fa'],
+    tags: [t('topics.account_security.tag1'), t('topics.account_security.tag2'), t('topics.account_security.tag3')],
   },
   {
     id: 5,
-    title: 'Market Analysis',
-    description: 'Master technical analysis and trading strategies.',
+    title: t('topics.market_analysis.title'),
+    description: t('topics.market_analysis.description'),
     icon: <BrainCircuit className="w-8 h-8" />,
-    tags: ['analysis', 'trading', 'charts'],
+    tags: [t('topics.market_analysis.tag1'), t('topics.market_analysis.tag2'), t('topics.market_analysis.tag3')],
   },
   {
     id: 6,
-    title: 'Getting Started',
-    description: "New to crypto? Start your journey with our beginner's guide.",
+    title: t('topics.getting_started.title'),
+    description: t('topics.getting_started.description'),
     icon: <BookOpen className="w-8 h-8" />,
-    tags: ['beginner', 'guide', 'basics'],
+    tags: [t('topics.getting_started.tag1'), t('topics.getting_started.tag2'), t('topics.getting_started.tag3')],
   },
-];
-
-const popularSearches = [
-  'Trading platform errors',
-  'Wallet transfer issues',
-  'API authentication',
-  '2FA setup',
-  'Chart indicators',
 ];
 
 const HelpTopics = () => {
   const router = useRouter();
   const params = useParams();
+  const t = useTranslations('HelpTopics');
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredTopics, setFilteredTopics] = useState(helpTopics);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-
-  useEffect(() => {
-    const results = helpTopics.filter(
+  
+  // Memoize the help topics to prevent recreation on every render
+  const helpTopics = useMemo(() => getHelpTopics(t), [t]);
+  const popularSearches = useMemo(() => t.raw('popular_searches_list') as string[], [t]);
+  
+  // Memoize filtered topics to prevent unnecessary recalculations
+  const filteredTopics = useMemo(() => {
+    return helpTopics.filter(
       (topic: {
         id: number;
         title: string;
@@ -93,9 +91,7 @@ const HelpTopics = () => {
         return matchesSearch && matchesActiveFilter;
       },
     );
-
-    setFilteredTopics(results);
-  }, [searchTerm, activeFilter]);
+  }, [helpTopics, searchTerm, activeFilter]);
 
   const handlePopularSearchClick = (search: string) => {
     const mainKeyword = search.split(' ')[0].toLowerCase();
@@ -141,7 +137,7 @@ const HelpTopics = () => {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-[#07153B] dark:bg-gradient-to-r from-[#DAE6EA] to-[#FFFFFF]"
           >
-            Welcome to the Help Center
+            {t('title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -149,7 +145,7 @@ const HelpTopics = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="text-xl md:text-2xl mb-8"
           >
-            How can we help you?
+            {t('subtitle')}
           </motion.p>
 
           {/* Search Input */}
@@ -162,7 +158,7 @@ const HelpTopics = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[#07153B] dark:text-[#DAE6EA]/70" />
             <Input
               type="text"
-              placeholder="Search..."
+              placeholder={t('search_placeholder')}
               value={searchTerm}
               onChange={handleInputChange}
               className="pl-10 pr-4 py-6 rounded-xl bg-[#DAE6EA] dark:bg-[#07153B]/70 border border-[#07153B] dark:border-[#DAE6EA]/20 focus:border-[#DAE6EA]/50 text-[#07153B] dark:text-[#DAE6EA] placeholder-[#DAE6EA]/50"
@@ -176,7 +172,7 @@ const HelpTopics = () => {
             transition={{ delay: 0.8, duration: 0.5 }}
             className="mt-6"
           >
-            <p className="text-sm text-[#07153B] dark:text-[#DAE6EA]/70 mb-3">Popular searches:</p>
+            <p className="text-sm text-[#07153B] dark:text-[#DAE6EA]/70 mb-3">{t('popular_searches')}</p>
             <div className="flex flex-wrap justify-center gap-2">
               {popularSearches.map((search, index) => (
                 <motion.button
@@ -200,7 +196,7 @@ const HelpTopics = () => {
                   onClick={clearFilters}
                   className="px-4 py-2 rounded-full text-sm bg-[#DAE6EA]/5 hover:bg-[#DAE6EA]/10 border border-[#DAE6EA]/20"
                 >
-                  Clear filters
+                  {t('clear_filters')}
                 </motion.button>
               )}
             </div>
@@ -214,7 +210,7 @@ const HelpTopics = () => {
           transition={{ delay: 1, duration: 0.5 }}
           className="mt-12"
         >
-          <h2 className="text-2xl font-semibold mb-6">Help Topics</h2>
+          <h2 className="text-2xl font-semibold mb-6">{t('help_topics')}</h2>
 
           <AnimatePresence>
             {filteredTopics.length > 0 ? (
@@ -242,7 +238,7 @@ const HelpTopics = () => {
                       whileHover={{ x: 5 }}
                       className="text-[#EC3B3B] font-medium flex items-center gap-1 self-start cursor-pointer"
                     >
-                      Read more
+                      {t('read_more')}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -266,12 +262,12 @@ const HelpTopics = () => {
                 animate={{ opacity: 1 }}
                 className="text-center py-12"
               >
-                <p className="text-xl">No results found for your search.</p>
+                <p className="text-xl">{t('no_results')}</p>
                 <button
                   onClick={clearFilters}
                   className="mt-4 px-6 py-2 rounded-lg bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 transition-colors"
                 >
-                  Clear search
+                  {t('clear_search')}
                 </button>
               </motion.div>
             )}

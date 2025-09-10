@@ -6,33 +6,36 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Play, MessageSquare, Calendar } from 'lucide-react';
 import VideoModal from '@/components/custom/VideoModal';
+import { useTranslations } from 'next-intl';
 
 export default function VideoPosts() {
+  const t = useTranslations('Crypto101.videoPosts');
+  
   const videos = [
     {
       id: 1,
-      title: 'Bitcoin Fundamentals',
-      description: 'Understanding the pioneer cryptocurrency',
+      title: t('videos.bitcoinFundamentals.title'),
+      description: t('videos.bitcoinFundamentals.description'),
       duration: '12:45',
-      category: 'Beginner',
+      category: t('categories.beginner'),
       thumbnail: '/images/video_cover1.avif',
       videoUrl: 'https://www.youtube.com/watch?v=SXqfFTmYmT0',
     },
     {
       id: 2,
-      title: 'Smart Contracts Explained',
-      description: "How they're revolutionizing agreements",
+      title: t('videos.smartContracts.title'),
+      description: t('videos.smartContracts.description'),
       duration: '18:30',
-      category: 'Intermediate',
+      category: t('categories.intermediate'),
       thumbnail: '/images/video_cover2.avif',
       videoUrl: 'https://www.youtube.com/watch?v=ZE2HxTmxfrI',
     },
     {
       id: 3,
-      title: 'DeFi Deep Dive',
-      description: 'Decentralized finance ecosystem',
+      title: t('videos.defiDeepDive.title'),
+      description: t('videos.defiDeepDive.description'),
       duration: '22:15',
-      category: 'Advanced',
+      category: t('categories.advanced'),
       thumbnail: '/images/video_cover3.avif',
       videoUrl: 'https://www.youtube.com/watch?v=Fa3ABQLlNAE',
     },
@@ -40,11 +43,11 @@ export default function VideoPosts() {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'Beginner':
+      case t('categories.beginner'):
         return '#EC3B3B';
-      case 'Intermediate':
+      case t('categories.intermediate'):
         return '#DAE6EA';
-      case 'Advanced':
+      case t('categories.advanced'):
         return '#FFFFFF';
       default:
         return '#DAE6EA';
@@ -64,7 +67,7 @@ export default function VideoPosts() {
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#07153B' }}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8 text-[#DAE6EA]">Featured Videos</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-[#DAE6EA]">{t('title')}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {videos.map((video, index) => (
@@ -154,7 +157,7 @@ export default function VideoPosts() {
                               <Calendar className="w-4 h-4" /> {meta[index].date}
                             </span>
                             <span className="inline-flex items-center gap-1">
-                              <MessageSquare className="w-4 h-4" /> {meta[index].comments} comments
+                              <MessageSquare className="w-4 h-4" /> {meta[index].comments} {t('comments')}
                             </span>
                           </div>
                         )}

@@ -611,7 +611,7 @@ export const FooterLinks: FooterLink[] = [
       {
         id: 61,
         label: 'faq',
-        href: 'faq',
+        href: 'faqs',
         iconName: 'FileText',
       },
       { id: 62, label: 'contact_us', href: 'contact', iconName: 'Mail' },

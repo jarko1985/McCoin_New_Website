@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, notFound, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -97,6 +98,7 @@ function extractKeyPoints(content: string, count: number = 3): string[] {
 export default function ArticleDetail() {
   const router = useRouter();
   const { id, locale }: { id?: string; locale?: string } = useParams() as any;
+  const t = useTranslations('ArticleDetail');
   const [article, setArticle] = useState<NewsItem | null>(null);
   const [relatedArticles, setRelatedArticles] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -156,7 +158,7 @@ export default function ArticleDetail() {
             onClick={() => router.push('/' + locale + '/articles')}
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to articles
+            {t('backToArticles')}
           </Button>
         </nav>
 
@@ -200,7 +202,7 @@ export default function ArticleDetail() {
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-[#DAE6EA]/80">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
-              <span>{article.author?.name || 'Unknown Author'}</span>
+              <span>{article.author?.name || t('unknownAuthor')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
@@ -232,7 +234,7 @@ export default function ArticleDetail() {
               transition={{ delay: 0.8 }}
               className="mt-12 bg-[#0A1E4D]/40 p-6 rounded-xl border border-[#0A1E4D]"
             >
-              <h3 className="text-2xl font-bold mb-4 text-[#EC3B3B]">Key Takeaways</h3>
+              <h3 className="text-2xl font-bold mb-4 text-[#EC3B3B]">{t('keyTakeaways')}</h3>
               <ul className="space-y-3 list-disc pl-6 marker:text-[#EC3B3B]">
                 {keyPoints.map((point, i) => (
                   <li key={i} className="text-[#DAE6EA]/90">
@@ -252,7 +254,7 @@ export default function ArticleDetail() {
             onClick={() => setIsBookmarked(!isBookmarked)}
           >
             <Bookmark className="w-4 h-4" />
-            {isBookmarked ? 'Bookmarked' : 'Bookmark'}
+            {isBookmarked ? t('bookmarked') : t('bookmark')}
           </Button>
           <Button
             variant="outline"
@@ -265,59 +267,57 @@ export default function ArticleDetail() {
                 })
                 .catch(() => {
                   navigator.clipboard.writeText(window.location.href);
-                  alert('Link copied to clipboard!');
+                  alert(t('linkCopied'));
                 })
             }
           >
             <Share2 className="w-4 h-4" />
-            Share
+            {t('share')}
           </Button>
         </div>
 
         {/* Related Articles */}
         {relatedArticles.length > 0 && (
           <section className="mb-20">
-            <h3 className="text-2xl font-bold mb-8">More to read</h3>
+            <h3 className="text-2xl font-bold mb-8">{t('moreToRead')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {relatedArticles.map(relatedArticle => (
-                <Link key={relatedArticle.id} href="href={`/articles/${relatedArticle.id}`}">
-                  <motion.div
-                    key={relatedArticle.id}
-                    whileHover={{ y: -4 }}
-                    className="bg-[#0A1E4D]/50 rounded-xl overflow-hidden border border-[#0A1E4D] hover:border-[#EC3B3B]/30 transition-all"
-                  >
-                    {relatedArticle.previewImage && (
-                      <div className="relative aspect-video w-full">
-                        {' '}
-                        {/* Changed from fixed h-48 to aspect-video */}
-                        <Image
-                          src={relatedArticle.previewImage}
-                          alt={relatedArticle.title}
-                          fill
-                          className="object-contain"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </div>
-                    )}
-                    <div className="p-6">
-                      {relatedArticle.tags?.[0] && (
-                        <span className="text-xs font-medium text-[#EC3B3B] mb-2 inline-block">
-                          {relatedArticle.tags[0].toUpperCase()}
-                        </span>
-                      )}
-                      <h4 className="text-xl font-bold mb-3 line-clamp-2">
-                        {relatedArticle.title}
-                      </h4>
-                      <Button
-                        asChild
-                        variant="link"
-                        className="text-[#EC3B3B] hover:no-underline p-0 h-auto cursor-pointer"
-                      >
-                        <Link href={`/articles/${relatedArticle.id}`}>Read More</Link>
-                      </Button>
+                <motion.div
+                  key={relatedArticle.id}
+                  whileHover={{ y: -4 }}
+                  className="bg-[#0A1E4D]/50 rounded-xl overflow-hidden border border-[#0A1E4D] hover:border-[#EC3B3B]/30 transition-all"
+                >
+                  {relatedArticle.previewImage && (
+                    <div className="relative aspect-video w-full">
+                      {' '}
+                      {/* Changed from fixed h-48 to aspect-video */}
+                      <Image
+                        src={relatedArticle.previewImage}
+                        alt={relatedArticle.title}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
                     </div>
-                  </motion.div>
-                </Link>
+                  )}
+                  <div className="p-6">
+                    {relatedArticle.tags?.[0] && (
+                      <span className="text-xs font-medium text-[#EC3B3B] mb-2 inline-block">
+                        {relatedArticle.tags[0].toUpperCase()}
+                      </span>
+                    )}
+                    <h4 className="text-xl font-bold mb-3 line-clamp-2">
+                      {relatedArticle.title}
+                    </h4>
+                    <Button
+                      asChild
+                      variant="link"
+                      className="text-[#EC3B3B] hover:no-underline p-0 h-auto cursor-pointer"
+                    >
+                      <Link href={`/${locale}/articles/${relatedArticle.id}`}>{t('readMore')}</Link>
+                    </Button>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </section>

@@ -74,7 +74,7 @@ const ContactForm = () => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('An error occurred while submitting the form.');
+      toast.error(t('form_error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -196,7 +196,7 @@ const ContactForm = () => {
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Sending...' : t('send_message')}
+            {isSubmitting ? t('sending') : t('send_message')}
           </Button>
         </div>
       </form>

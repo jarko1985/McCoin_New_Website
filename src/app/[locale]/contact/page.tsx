@@ -1,16 +1,18 @@
 import ContactForm from '@/components/forms/ContactForm';
 import PATTERN from '@/../public/images/pattern-2.svg';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 
-const ContactPage = () => {
+const ContactPage = async () => {
+  const t = await getTranslations('Contact');
+  
   return (
     <section className="container mx-auto xl:w-[70%] py-12">
       <h1 className="text-[#07153B] dark:text-[#DAE6EA] lg:text-4xl text-xl text-center pb-4">
-        Contact Us
+        {t('title')}
       </h1>
       <p className="text-[#07153B] dark:text-[#DAE6EA] text-center lg:text-xl text-lg pb-12">
-        Please fill in the below information, Our Customer service team will contact you at the
-        earliest
+        {t('subtitle')}
       </p>
       <ContactForm />
       <div className="w-full pt-12">

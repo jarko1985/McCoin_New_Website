@@ -1,10 +1,7 @@
-import HelpTopicsPage from "@/pages/HelpTopicsPage"
-
+import HelpTopicsMain from '@/components/help-topics/HelpTopicsMain';
 
 const page = () => {
-  return (
-    <HelpTopicsPage/>
-  )
+  return <HelpTopicsMain />;
 }
 
 export default page

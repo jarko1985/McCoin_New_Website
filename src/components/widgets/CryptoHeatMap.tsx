@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useRef, memo } from 'react';
+import { useTranslations } from 'next-intl';
 
 function TradingViewWidget() {
   const container = useRef<HTMLDivElement>(null);
+  const t = useTranslations('MarketSentiment.cryptoHeatMap');
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -50,7 +52,7 @@ function TradingViewWidget() {
     >
       <h2 className="text-xl font-bold text-white mb-8 pl-6 relative">
         <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-sm"></span>
-       Crypto Heat Map
+       {t('title')}
       </h2>
       <div className="tradingview-widget-container__widget"></div>
     </div>

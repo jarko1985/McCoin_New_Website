@@ -3,9 +3,11 @@ import { RiArticleFill } from 'react-icons/ri';
 import { NewsItem } from '@/types/Messari';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 export default function NewsHero({ news }: { news: NewsItem[] }) {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const topNews = news.slice(0, 3);
+  const t = useTranslations('Articles.hero');
 
   return (
     <div className="relative w-full">
@@ -15,7 +17,7 @@ export default function NewsHero({ news }: { news: NewsItem[] }) {
         <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
           <h1 className="text-4xl text-white flex items-center font-semibold">
             <RiArticleFill color="gold" className="mr-2" />
-            Articles
+            {t('title')}
           </h1>
         </div>
       </div>

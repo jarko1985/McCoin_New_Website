@@ -465,24 +465,6 @@
       }
     }
   },
-  "Contact": {
-    "full_name": "Full Name",
-    "email": "Email",
-    "phone": "Phone",
-    "subject": "Subject",
-    "message": "Message",
-    "enter_your_full_name": "Enter your full name",
-    "enter_your_email": "Enter your email",
-    "enter_your_phone_number": "Enter your phone number",
-    "enter_the_subject": "Enter the subject",
-    "enter_your_message": "Enter your message",
-    "send_message": "Send Message",
-    "name_error": "must be at least 2 characters.",
-    "email_error": "Invalid email address.",
-    "phone_error": "must be at least 10 characters.",
-    "subject_error": "must be at least 5 characters.",
-    "message_error": "must be at least 10 characters."
-  },
   "signIn": {
     "back": "Back",
     "title4_1": "Back on Board with",
@@ -1078,43 +1060,43 @@
   },
   "TopNews": {
     "hero": {
-      "hotUpdates": "Hot Updates",
-      "hotUpdate": "Hot Update",
-      "noNewsFound": "No news articles found"
+      "hotUpdates": "Latest Hot Updates",
+      "hotUpdate": "Breaking Update",
+      "noNewsFound": "No news found; Check back soon for fresh updates."
     },
     "slider": {
-      "comments": "comments",
-      "noAdditionalNews": "No additional news articles found"
+      "comments": "Comments",
+      "noAdditionalNews": "No more stories at the moment."
     },
     "fintechNews": {
-      "title": "Fintech News"
+      "title": "Fintech Updates"
     },
     "businessNews": {
-      "title": "Business News"
+      "title": "Business & Markets"
     },
     "recentPosts": {
-      "title": "Popular Posts",
-      "noArticlesAvailable": "No articles available."
+      "title": "Trending Now",
+      "noArticlesAvailable": "No posts available right now."
     },
     "dontMiss": {
-      "title": "Don't Miss",
-      "noArticlesAvailable": "No articles available.",
-      "dontMiss": "Don't Miss",
-      "untitledArticle": "Untitled Article",
-      "unknownDate": "Unknown date"
+      "title": "Don’t Miss Out",
+      "noArticlesAvailable": "No highlights available yet.",
+      "dontMiss": "Editor’s Pick; Don’t Miss",
+      "untitledArticle": "Untitled Story",
+      "unknownDate": "Date not available"
     }
   },
   "NewsRoom": {
     "hero": {
-      "title": "News",
-      "titleSuffix": "room",
-      "subtitle": "Stay updated with our latest announcements, press releases, and McCoin news."
+      "title": "Newsroom",
+      "titleSuffix": "Your Gateway to Announcements & Insights",
+      "subtitle": "Stay McCoinnected with our latest announcements, press releases, and stories shaping the crypto industry."
     },
     "eventList": {
-      "searchPlaceholder": "Search events...",
-      "moreDetails": "More Details",
-      "registerNow": "Register Now",
-      "pastEvent": "Past Event"
+      "searchPlaceholder": "Search events & announcements…",
+      "moreDetails": "View Details",
+      "registerNow": "Register to Join",
+      "pastEvent": "Previous Event"
     },
     "dummyEvents": {
       "event1": {
@@ -1137,34 +1119,828 @@
       }
     },
     "detailPage": {
-      "eventLocation": "Event Location",
-      "defaultTitle": "Event",
-      "defaultDescription": "Event details"
+      "eventLocation": "Location",
+      "defaultTitle": "Event Overview",
+      "defaultDescription": "Explore event details and highlights."
     }
   },
   "Podcast": {
     "page": {
-      "loading": "Loading...."
+      "loading": "Loading episodes…"
     },
     "hero": {
-      "podcast": "PODCAST",
-      "followers": "followers",
-      "subscribers": "subscribers",
-      "playEpisode": "PLAY EPISODE",
-      "subscribe": "SUBSCRIBE",
-      "loading": "Loading...",
-      "error": "Error:",
-      "noFeaturedEpisodes": "No featured episodes found"
+      "podcast": "Podcasts",
+      "followers": "Followers",
+      "subscribers": "Subscribers",
+      "playEpisode": "Play Episode",
+      "subscribe": "Subscribe Now",
+      "loading": "Loading content…",
+      "error": "Error loading episode.",
+      "noFeaturedEpisodes": "No featured episodes available right now."
     },
     "featuredSeries": {
-      "title": "Featured Series"
+      "title": "Featured Podcasts"
     },
     "recentEpisodes": {
-      "title": "Recent Episodes",
-      "play": "Play"
+      "title": "Latest Episodes",
+      "play": "Play Now"
     },
     "allSeries": {
-      "title": "All Series"
+      "title": "All Podcasts"
+    },
+    "musicPlayer": {
+      "mccoinExclusives": "McCoin Exclusive Series",
+      "aboutThisEpisode": "About This Episode"
+    }
+  },
+  "Articles": {
+    "page": {
+      "loading": "Loading articles...",
+      "error": {
+        "title": "Something went wrong!",
+        "tryAgain": "Try again"
+      }
+    },
+    "hero": {
+      "title": "Articles"
+    },
+    "defiNews": {
+      "title": "DeFi & Blockchain"
+    },
+    "bitcoinNews": {
+      "title": "Bitcoin and other cryptos",
+      "viewMore": "View More",
+      "by": "by",
+      "tags": "Tags:"
+    },
+    "marketTradingNews": {
+      "title": "Market & Trading",
+      "viewMore": "View More",
+      "by": "by",
+      "tags": "Tags:"
+    },
+    "allArticles": {
+      "title": "All Articles",
+      "viewMore": "View More",
+      "by": "by",
+      "tags": "Tags:"
+    }
+  },
+  "MarketSentiment": {
+    "page": {
+      "title": "Market Sentiment Overview",
+      "description": "Get a pulse on the global crypto market in real time. McCoin's Market Sentiment dashboard aggregates live data from trusted sources to help you gauge whether the market leans bullish or bearish.",
+      "disclaimer": {
+        "title": "Disclaimer",
+        "content": [
+          "The information displayed on this page is provided for general informational purposes only and does not constitute investment advice, financial advice, or trading recommendations.",
+          "Market sentiment indicators are derived from external data sources and automated analysis, which may not always reflect real-time accuracy or completeness",
+          "Please do your own research and consult a licensed financial advisor before making any investment decisions. Trading cryptocurrencies involves high risk and may result in significant financial loss."
+        ]
+      }
+    },
+    "fearAndGreed": {
+      "title": "Crypto Fear & Greed Index",
+      "loading": "Loading...",
+      "error": "Failed to load data:",
+      "retry": "Retry",
+      "sentimentLabels": {
+        "extremeFear": "Extreme Fear",
+        "fear": "Fear",
+        "neutral": "Neutral",
+        "greed": "Greed",
+        "extremeGreed": "Extreme Greed"
+      },
+      "yesterday": "Yesterday",
+      "lastWeek": "Last Week",
+      "howDoYouFeel": "How do you feel about BTC today?",
+      "bearish": "Bearish",
+      "bullish": "Bullish",
+      "whatIsIndex": "What's Crypto Fear & Greed Index?",
+      "indexDescription": "The index ranges from 0 (Extreme Fear) to 100 (Extreme Greed), reflecting crypto market sentiment. A low value signals over-selling, while a high value warns of a potential market correction. Binance Square combines trading data and unique user behavior insights for a precise overview.",
+      "trendingTopics": "Trending Topics"
+    },
+    "cryptoHeatMap": {
+      "title": "Crypto Heat Map"
+    },
+    "marketOverview": {
+      "btcStories": "BTCUSD Top Stories",
+      "cryptoMarketOverview": "Crypto Market Overview",
+      "loading": "Loading market overview...",
+      "retry": "Retry"
+    }
+  },
+  "Crypto101": {
+    "page": {
+      "jumpToTopic": "Jump To Topic",
+      "searchTopics": "Search Topics",
+      "searchPlaceholder": "Search topics...",
+      "altText": "BitCoin Image"
+    },
+    "popularPosts": {
+      "title": "Popular Posts"
+    },
+    "videoPosts": {
+      "title": "Featured Videos",
+      "categories": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "comments": "comments",
+      "videos": {
+        "bitcoinFundamentals": {
+          "title": "Bitcoin Fundamentals",
+          "description": "Understanding the pioneer cryptocurrency"
+        },
+        "smartContracts": {
+          "title": "Smart Contracts Explained",
+          "description": "How they're revolutionizing agreements"
+        },
+        "defiDeepDive": {
+          "title": "DeFi Deep Dive",
+          "description": "Decentralized finance ecosystem"
+        }
+      }
+    },
+    "topics": {
+      "bitcoin": {
+        "title": "What is Bitcoin",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Bitcoin is the first successful decentralized digital currency, launched in 2009 by the mysterious 'Satoshi Nakamoto'. It enables peer-to-peer money transfers without banks, using a public digital ledger called the blockchain—verified by miners through cryptographic puzzles."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "Transactions are batched into blocks and chained immutably. Miners use powerful hardware to solve complex math problems, securing the network and earning newly minted bitcoins. A hard cap of 21 million coins ensures scarcity, reinforcing its value."
+          },
+          "usesAndValue": {
+            "heading": "Uses & Value",
+            "paragraph1": "Bitcoin serves multiple roles—as a medium of exchange, store of value, and speculative investment. Its provable scarcity likens it to 'digital gold,' becoming an inflation hedge and drawing both mainstream and institutional investors. It can be used for payments, trading, remittances, and even programmatic finance (via Lightning Network)."
+          },
+          "volatilityAndRisk": {
+            "heading": "Volatility & Risk",
+            "paragraph1": "Bitcoin's price is known for sharp swings—driven by supply and demand, macroeconomics, investor sentiment, and news cycles. It is often labeled high-risk due to volatility, regulatory uncertainty, security exploits (e.g., exchange hacks), and potential environmental issues tied to mining energy use."
+          },
+          "regulationAndLegality": {
+            "heading": "Regulation & Legality",
+            "paragraph1": "Worldwide, governments are still figuring out Bitcoin's legal status. Some nations embrace it (e.g., El Salvador), while others have banned or restricted it. Regulatory frameworks vary and impact everything from taxation to custody and reporting."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Decentralized, censorship-resistant",
+            "prosItem2": "Scarcity enforces value",
+            "prosItem3": "Transparent & programmable",
+            "prosItem4": "Global, anytime access",
+            "consTitle": "Cons",
+            "consItem1": "High price volatility",
+            "consItem2": "Energy-intensive mining",
+            "consItem3": "Regulatory uncertainty",
+            "consItem4": "Risk of theft or loss"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "Bitcoin remains the most famous and widely used cryptocurrency. It revolutionized digital money and inspired a massive ecosystem, but it comes with significant trade-offs in risk, scalability, and policy acceptance."
+          }
+        }
+      },
+      "blockchain": {
+        "title": "What is Blockchain",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Blockchain is a decentralized, distributed ledger technology that records transactions across multiple computers in a tamper-proof way. It underpins cryptocurrencies like Bitcoin but has broader applications in finance, supply chain, and digital identity."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "Data is stored in blocks linked via cryptography, forming an immutable chain. Consensus mechanisms (e.g., Proof of Work, Proof of Stake) validate transactions without a central authority, ensuring security and transparency."
+          },
+          "usesAndValue": {
+            "heading": "Uses & Value",
+            "paragraph1": "Beyond cryptocurrencies, blockchain enables smart contracts, supply chain tracking, voting systems, and decentralized data storage. Its trustless nature reduces fraud and middlemen in transactions."
+          },
+          "challenges": {
+            "heading": "Challenges",
+            "paragraph1": "Scalability issues (slow transaction speeds), high energy consumption (for PoW chains), regulatory uncertainty, and interoperability between different blockchains remain key hurdles."
+          },
+          "regulationAndAdoption": {
+            "heading": "Regulation & Adoption",
+            "paragraph1": "Governments and enterprises are exploring blockchain for efficiency gains, but regulations vary widely—some encourage innovation, while others impose strict compliance rules."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Decentralized & secure",
+            "prosItem2": "Immutable records",
+            "prosItem3": "Transparent transactions",
+            "prosItem4": "Reduces intermediaries",
+            "consTitle": "Cons",
+            "consItem1": "Scalability limitations",
+            "consItem2": "Energy-intensive (PoW)",
+            "consItem3": "Regulatory gray areas",
+            "consItem4": "Complex for mainstream adoption"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "Blockchain is a transformative technology with vast potential beyond crypto, but it faces technical and regulatory challenges before mass adoption."
+          }
+        }
+      },
+      "smart-contract": {
+        "title": "What is a Smart Contract",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Smart contracts are self-executing agreements written in code, deployed on blockchains like Ethereum. They automatically enforce terms when predefined conditions are met, removing the need for intermediaries."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "Developers write contract logic in programming languages (e.g., Solidity), which runs on a blockchain. Once deployed, the contract cannot be altered, and it executes autonomously (e.g., releasing funds after a deadline)."
+          },
+          "usesAndValue": {
+            "heading": "Uses & Value",
+            "paragraph1": "Smart contracts power DeFi (loans, trading), NFTs, DAOs, insurance payouts, and supply chain automation. They enable trustless, transparent, and efficient transactions."
+          },
+          "risksAndLimitations": {
+            "heading": "Risks & Limitations",
+            "paragraph1": "Code vulnerabilities can lead to exploits (e.g., reentrancy attacks). Immutability means bugs are hard to fix, and poorly written contracts can lock funds permanently."
+          },
+          "regulationAndLegality": {
+            "heading": "Regulation & Legality",
+            "paragraph1": "Legal recognition varies—some jurisdictions treat them as binding, while others lack frameworks. Regulatory clarity is still evolving."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Trustless automation",
+            "prosItem2": "Reduces costs & delays",
+            "prosItem3": "Tamper-proof execution",
+            "prosItem4": "Enables complex DeFi/NFTs",
+            "consTitle": "Cons",
+            "consItem1": "Irreversible if flawed",
+            "consItem2": "Coding expertise required",
+            "consItem3": "Scalability issues",
+            "consItem4": "Unclear legal status"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "Smart contracts revolutionize agreements but require rigorous auditing and clearer regulations to achieve mainstream use."
+          }
+        }
+      },
+      "wallet": {
+        "title": "What is a Crypto Wallet",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "A crypto wallet stores private keys to access and manage cryptocurrencies on a blockchain. It doesn't hold coins but secures the keys needed to sign transactions."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "Wallets generate key pairs (public/private). Public keys act as addresses to receive funds; private keys authorize spending. Types include hot wallets (online) and cold wallets (offline, e.g., hardware)."
+          },
+          "typesAndUses": {
+            "heading": "Types & Uses",
+            "paragraph1": "Software wallets (MetaMask, Trust Wallet) are convenient for daily use. Hardware wallets (Ledger, Trezor) offer maximum security. Custodial wallets (exchanges) manage keys for users but introduce counterparty risk."
+          },
+          "securityRisks": {
+            "heading": "Security Risks",
+            "paragraph1": "Lost private keys mean lost funds forever. Phishing, malware, and exchange hacks are common threats. Self-custody wallets shift responsibility to users."
+          },
+          "regulationAndRecovery": {
+            "heading": "Regulation & Recovery",
+            "paragraph1": "Some jurisdictions mandate KYC for custodial wallets. Recovery options (seed phrases) are critical—no centralized entity can restore access."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Full control over assets",
+            "prosItem2": "Supports multiple cryptos",
+            "prosItem3": "Enables DeFi/NFT access",
+            "prosItem4": "No bank dependency",
+            "consTitle": "Cons",
+            "consItem1": "Irreversible mistakes",
+            "consItem2": "Target for hackers",
+            "consItem3": "Technical learning curve",
+            "consItem4": "No customer support"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "Crypto wallets are essential for blockchain interaction but demand careful security practices to avoid loss or theft."
+          }
+        }
+      },
+      "defi": {
+        "title": "What is DeFi",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Decentralized Finance (DeFi) is a blockchain-based financial system that eliminates intermediaries like banks. It uses smart contracts to enable lending, borrowing, trading, and earning interest."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "DeFi apps (DApps) run on blockchains (mostly Ethereum). Users interact via wallets, supplying liquidity or collateral to earn yields or take loans without credit checks."
+          },
+          "keyComponents": {
+            "heading": "Key Components",
+            "paragraph1": "Includes protocols like AMMs (Uniswap), lending platforms (Aave), stablecoins (DAI), and yield aggregators. DAOs govern many projects democratically."
+          },
+          "risksAndChallenges": {
+            "heading": "Risks & Challenges",
+            "paragraph1": "Smart contract bugs, impermanent loss (in liquidity pools), regulatory crackdowns, and Ponzi-like schemes ('rug pulls') pose significant risks."
+          },
+          "regulationAndAdoption": {
+            "heading": "Regulation & Adoption",
+            "paragraph1": "DeFi operates in a regulatory gray zone. Governments are scrutinizing it for compliance with anti-money laundering (AML) and investor protection laws."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Permissionless access",
+            "prosItem2": "High yield opportunities",
+            "prosItem3": "Transparent operations",
+            "prosItem4": "Global inclusivity",
+            "consTitle": "Cons",
+            "consItem1": "High volatility & risk",
+            "consItem2": "No consumer protections",
+            "consItem3": "Complex for beginners",
+            "consItem4": "Regulatory uncertainty"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "DeFi disrupts traditional finance but remains experimental, requiring caution and due diligence from users."
+          }
+        }
+      },
+      "nft": {
+        "title": "What is an NFT",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Non-Fungible Tokens (NFTs) are unique digital assets verified by blockchain, representing ownership of art, collectibles, virtual real estate, or even identity credentials."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "NFTs are minted on blockchains (e.g., Ethereum, Solana) using smart contracts. Each has a distinct ID and metadata, making it irreplaceable and provably scarce."
+          },
+          "usesAndValue": {
+            "heading": "Uses & Value",
+            "paragraph1": "Beyond digital art (e.g., CryptoPunks), NFTs enable gaming items, music royalties, event tickets, and tokenized real-world assets. They empower creators with resale royalties."
+          },
+          "risksAndLimitations": {
+            "heading": "Risks & Criticism",
+            "paragraph1": "Speculative bubbles, copyright infringement, environmental concerns (PoW blockchains), and scams (fake collections) are major issues. Many NFTs lose value over time."
+          },
+          "regulationAndLegality": {
+            "heading": "Regulation & Legality",
+            "paragraph1": "Copyright laws struggle to adapt. Tax authorities treat NFTs as taxable assets. Some platforms enforce creator royalties, while others abandon them."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Proves digital ownership",
+            "prosItem2": "New revenue for creators",
+            "prosItem3": "Interoperable utility",
+            "prosItem4": "Collectible value",
+            "consTitle": "Cons",
+            "consItem1": "Highly speculative",
+            "consItem2": "Environmental impact",
+            "consItem3": "Copyright disputes",
+            "consItem4": "Market saturation"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "NFTs redefine digital ownership but face sustainability and legitimacy challenges beyond hype cycles."
+          }
+        }
+      },
+      "exchange": {
+        "title": "What is a Crypto Exchange",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Crypto exchanges are platforms where users buy, sell, and trade cryptocurrencies. They can be centralized (CEXs like Binance) or decentralized (DEXs like Uniswap)."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "CEXs act as intermediaries, holding user funds and matching orders. DEXs use smart contracts for peer-to-peer trading without custody. Both offer spot, futures, and margin trading."
+          },
+          "typesAndUses": {
+            "heading": "Types & Features",
+            "paragraph1": "CEXs provide liquidity, fiat onboarding, and customer support but require KYC. DEXs prioritize privacy and control but lack reversibility for errors."
+          },
+          "securityRisks": {
+            "heading": "Risks & Security",
+            "paragraph1": "CEXs are targets for hacks (e.g., Mt. Gox). Users risk losing funds if the exchange collapses (e.g., FTX). DEXs face smart contract risks and slippage."
+          },
+          "regulationAndRecovery": {
+            "heading": "Regulation & Compliance",
+            "paragraph1": "CEXs must comply with local laws (AML/CFT). Regulatory crackdowns can limit services. DEXs face pressure to censor or adopt KYC measures."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "High liquidity (CEXs)",
+            "prosItem2": "User-friendly interfaces",
+            "prosItem3": "Fiat integration",
+            "prosItem4": "Advanced trading tools",
+            "consTitle": "Cons",
+            "consItem1": "Custodial risks (CEXs)",
+            "consItem2": "KYC requirements",
+            "consItem3": "DEX complexity",
+            "consItem4": "Regulatory instability"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "Exchanges are gateways to crypto markets but require careful selection based on security, fees, and regulatory compliance."
+          }
+        }
+      },
+      "mining": {
+        "title": "What is Crypto Mining",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Mining is the process of validating transactions and securing Proof-of-Work (PoW) blockchains like Bitcoin. Miners compete to solve cryptographic puzzles, earning rewards in new coins."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "Miners bundle transactions into blocks, using ASICs or GPUs to find a valid hash. The first to succeed adds the block to the chain and receives block rewards + fees."
+          },
+          "usesAndValue": {
+            "heading": "Economics & Incentives",
+            "paragraph1": "Profitability depends on hardware efficiency, electricity costs, and coin prices. Halvings (e.g., Bitcoin's 4-year reward cuts) reduce inflation over time."
+          },
+          "challenges": {
+            "heading": "Challenges & Criticism",
+            "paragraph1": "High energy consumption leads to environmental concerns. Centralization risks arise as industrial miners dominate. ASICs make home mining unviable for many coins."
+          },
+          "regulationAndAdoption": {
+            "heading": "Alternatives (PoS, etc.)",
+            "paragraph1": "Proof-of-Stake (PoS) chains (e.g., Ethereum 2.0) replace mining with staking, reducing energy use. Other models include Proof-of-Space or hybrid systems."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Secures decentralized networks",
+            "prosItem2": "Incentivizes participation",
+            "prosItem3": "Decentralized issuance",
+            "prosItem4": "Open to anyone (initially)",
+            "consTitle": "Cons",
+            "consItem1": "Energy-intensive",
+            "consItem2": "Hardware/energy costs",
+            "consItem3": "Centralization trends",
+            "consItem4": "Environmental backlash"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "Mining is vital for PoW blockchains but faces sustainability and scalability challenges, driving shifts toward greener consensus models."
+          }
+        }
+      },
+      "crypto-intro": {
+        "title": "What is Cryptocurrency?"
+      },
+      "bitcoin-explained": {
+        "title": "Bitcoin Explained"
+      },
+      "blockchain-basics": {
+        "title": "Understanding Blockchain"
+      },
+      "smart-contracts": {
+        "title": "What are Smart Contracts?"
+      },
+      "crypto-wallets": {
+        "title": "Crypto Wallets: A Beginner's Guide"
+      },
+      "defi-intro": {
+        "title": "What is DeFi (Decentralized Finance)?"
+      },
+      "crypto-mining": {
+        "title": "Crypto Mining Demystified"
+      },
+      "crypto-safety": {
+        "title": "How to Stay Safe in Crypto"
+      }
+    }
+  },
+  "ArticleDetail": {
+    "backToArticles": "Back to articles",
+    "unknownAuthor": "Unknown Author",
+    "keyTakeaways": "Key Takeaways",
+    "bookmarked": "Bookmarked",
+    "bookmark": "Bookmark",
+    "share": "Share",
+    "linkCopied": "Link copied to clipboard!",
+    "moreToRead": "More to read",
+    "readMore": "Read More"
+  },
+  "Faqs": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Got questions? We've got answers. Explore our FAQ section to learn more about how our crypto brokerage works, including trading, account management, funding options, security protocols, and more.",
+    "faqs": {
+      "faq-1": {
+        "question": "What is MCcoin and what services does it offer?",
+        "answer": "MCcoin is a cryptocurrency exchange platform that allows users to buy, sell, and trade various digital assets. We offer spot trading, futures trading, and staking services with competitive fees and advanced trading tools."
+      },
+      "faq-2": {
+        "question": "How do I create an account on MCcoin?",
+        "answer": "You can create an account by visiting our website or mobile app, clicking 'Sign Up', and providing your email address and creating a secure password. You'll need to complete identity verification (KYC) to access all features."
+      },
+      "faq-3": {
+        "question": "What cryptocurrencies can I trade on MCcoin?",
+        "answer": "MCcoin supports major cryptocurrencies like Bitcoin (BTC), Ethereum (ETH), and many altcoins. The full list of supported coins is available in our Markets section, with new assets added regularly."
+      },
+      "faq-4": {
+        "question": "Is MCcoin regulated and licensed?",
+        "answer": "Yes, MCcoin operates under strict regulatory compliance. We are registered with relevant financial authorities and adhere to all required anti-money laundering (AML) and know-your-customer (KYC) regulations."
+      },
+      "faq-5": {
+        "question": "What security measures does MCcoin have to protect my funds?",
+        "answer": "We use industry-leading security including two-factor authentication (2FA), cold storage for 98% of user funds, encrypted data transmission, and regular security audits to ensure platform safety."
+      },
+      "faq-6": {
+        "question": "What are the trading fees on MCcoin?",
+        "answer": "MCcoin charges a 0.1% fee for spot trading, with discounts available for high-volume traders and those holding our native MCcoin token. Withdrawal fees vary by cryptocurrency."
+      },
+      "faq-7": {
+        "question": "How do I deposit/withdraw funds from my MCcoin account?",
+        "answer": "You can deposit via bank transfer, credit/debit card, or cryptocurrency transfers. Withdrawals can be made to your bank account or external crypto wallets, subject to security verification."
+      },
+      "faq-8": {
+        "question": "Does MCcoin offer customer support? How can I contact them?",
+        "answer": "Yes, our 24/7 customer support team can be reached via live chat, email at support@mccoin.com, or through our ticketing system. Average response time is under 30 minutes."
+      },
+      "faq-9": {
+        "question": "What trading tools and features does MCcoin provide?",
+        "answer": "We provide advanced charting tools, limit/stop orders, margin trading up to 10x, API access for algorithmic trading, and real-time market data to inform your trading decisions."
+      },
+      "faq-10": {
+        "question": "Does MCcoin have a mobile app for trading?",
+        "answer": "Yes, MCcoin offers both iOS and Android mobile apps with full trading functionality. You can download them from the App Store or Google Play Store."
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact Us",
+    "subtitle": "Please fill in the below information, Our Customer service team will contact you at the earliest",
+    "full_name": "Full Name",
+    "enter_your_full_name": "Enter your full name",
+    "email": "Email",
+    "enter_your_email": "Enter your email",
+    "phone": "Phone",
+    "enter_your_phone_number": "Enter your phone number",
+    "subject": "Subject",
+    "enter_the_subject": "Enter the subject",
+    "message": "Message",
+    "enter_your_message": "Enter your message",
+    "send_message": "Send Message",
+    "sending": "Sending...",
+    "name_error": "Name must be at least 2 characters",
+    "email_error": "Please enter a valid email address",
+    "phone_error": "Phone number must be at least 10 characters",
+    "subject_error": "Subject must be at least 5 characters",
+    "message_error": "Message must be at least 10 characters",
+    "form_error": "An error occurred while submitting the form.",
+    "success_title": "Thank You for Reaching Out!",
+    "success_message": "We've received your message and our team will get back to you as soon as possible. You can expect a reply within 24–48 hours.",
+    "success_faq_text": "In the meantime, feel free to explore our",
+    "success_faq_link": "FAQ",
+    "success_faq_continue": "or continue browsing our website.",
+    "success_important": "Your inquiry is important to us, and we're committed to assisting you promptly.",
+    "close": "Close",
+    "back_to_home": "Back to Home"
+  },
+  "HelpTopics": {
+    "title": "Welcome to the Help Center",
+    "subtitle": "How can we help you?",
+    "search_placeholder": "Search...",
+    "popular_searches": "Popular searches:",
+    "clear_filters": "Clear filters",
+    "help_topics": "Help Topics",
+    "read_more": "Read more",
+    "no_results": "No results found for your search.",
+    "clear_search": "Clear search",
+    "topics": {
+      "trading_platform": {
+        "title": "Trading Platform",
+        "description": "Learn how to navigate our trading platform and execute trades efficiently.",
+        "tag1": "trading",
+        "tag2": "platform",
+        "tag3": "errors"
+      },
+      "wallet_management": {
+        "title": "Wallet Management",
+        "description": "Secure your assets with proper wallet setup and management techniques.",
+        "tag1": "wallet",
+        "tag2": "security",
+        "tag3": "transfer"
+      },
+      "api_integration": {
+        "title": "API Integration",
+        "description": "Connect your applications with our powerful trading API.",
+        "tag1": "api",
+        "tag2": "integration",
+        "tag3": "developers"
+      },
+      "account_security": {
+        "title": "Account Security",
+        "description": "Protect your account with 2FA and other security measures.",
+        "tag1": "security",
+        "tag2": "authentication",
+        "tag3": "2fa"
+      },
+      "market_analysis": {
+        "title": "Market Analysis",
+        "description": "Master technical analysis and trading strategies.",
+        "tag1": "analysis",
+        "tag2": "trading",
+        "tag3": "charts"
+      },
+      "getting_started": {
+        "title": "Getting Started",
+        "description": "New to crypto? Start your journey with our beginner's guide.",
+        "tag1": "beginner",
+        "tag2": "guide",
+        "tag3": "basics"
+      }
+    },
+    "popular_searches_list": [
+      "Trading platform errors",
+      "Wallet transfer issues",
+      "API authentication",
+      "2FA setup",
+      "Chart indicators"
+    ]
+  },
+  "HelpTopicDetail": {
+    "back_to_help_center": "Back to Help Center",
+    "topic_not_found": "Topic Not Found",
+    "topic_not_found_description": "The help topic you're looking for doesn't exist or has been moved.",
+    "browse_all_topics": "Browse All Topics",
+    "frequently_asked_questions": "Frequently Asked Questions",
+    "related_topics": "Related Topics",
+    "need_more_help": "Need More Help?",
+    "support_description": "Our support team is available 24/7 to assist you with any questions or issues.",
+    "contact_support": "Contact Support",
+    "download_guide": "Download Guide",
+    "download_guide_description": "Get the complete guide to {topic} as a PDF for offline reference.",
+    "download_pdf": "Download PDF",
+    "faq": {
+      "faq1": {
+        "question": "How do I get started with this feature?",
+        "answer": "Getting started is simple. Follow our step-by-step guide above or contact our support team for personalized assistance."
+      },
+      "faq2": {
+        "question": "What are the common issues users face?",
+        "answer": "Most issues can be resolved by checking our troubleshooting guide. Common solutions include clearing cache, updating your app, or verifying your connection."
+      },
+      "faq3": {
+        "question": "Where can I find more advanced documentation?",
+        "answer": "Advanced users can access our developer documentation portal which includes API references, SDKs, and technical white papers."
+      }
+    },
+    "topics": {
+      "trading_platform": {
+        "title": "Trading Platform",
+        "description": "Learn how to navigate our trading platform and execute trades efficiently.",
+        "long_description": "Our trading platform is designed for both beginners and experienced traders, offering a seamless experience with advanced charting tools, real-time market data, and lightning-fast execution.",
+        "key_features": "Key Features",
+        "key_features_list": [
+          "Real-time price charts with technical indicators",
+          "One-click trading for instant execution",
+          "Advanced order types (limit, stop-loss, take-profit)",
+          "Portfolio tracking and performance analytics"
+        ],
+        "getting_started": "Getting Started",
+        "getting_started_description": "To begin trading:",
+        "getting_started_steps": [
+          "Connect your wallet or exchange account",
+          "Fund your account with your preferred cryptocurrency",
+          "Explore the interface using our interactive tutorial",
+          "Place your first trade with our risk-free demo mode"
+        ],
+        "advanced_users": "For advanced users, we offer API access and algorithmic trading tools that integrate directly with our platform.",
+        "tag1": "trading",
+        "tag2": "platform",
+        "tag3": "errors"
+      },
+      "wallet_management": {
+        "title": "Wallet Management",
+        "description": "Secure your assets with proper wallet setup and management techniques.",
+        "long_description": "Proper wallet management is crucial for securing your digital assets. Our platform supports multiple wallet types and provides enterprise-grade security features.",
+        "wallet_types": "Wallet Types",
+        "wallet_types_list": [
+          "Hot Wallets: For frequent trading with instant access",
+          "Cold Wallets: For long-term storage with enhanced security",
+          "Multi-Sig Wallets: Require multiple approvals for transactions"
+        ],
+        "security_best_practices": "Security Best Practices",
+        "security_steps": [
+          "Always enable two-factor authentication (2FA)",
+          "Use hardware wallets for large holdings",
+          "Regularly backup your wallet seed phrases",
+          "Verify wallet addresses before transactions"
+        ],
+        "wallet_integration": "Our wallet integration allows you to manage multiple wallets from a single interface while maintaining complete control over your private keys.",
+        "tag1": "wallet",
+        "tag2": "security",
+        "tag3": "transfer"
+      },
+      "api_integration": {
+        "title": "API Integration",
+        "description": "Connect your applications with our powerful trading API.",
+        "long_description": "Our REST and WebSocket APIs provide programmatic access to all platform features, enabling developers to build custom trading solutions and integrations.",
+        "api_features": "API Features",
+        "api_features_list": [
+          "Real-time market data streaming",
+          "Order management and execution",
+          "Historical data access",
+          "Webhook support for event notifications"
+        ],
+        "getting_started_api": "Getting Started with the API",
+        "api_steps": [
+          "Generate API keys from your account settings",
+          "Review our comprehensive API documentation",
+          "Test with our sandbox environment",
+          "Implement rate limiting and error handling"
+        ],
+        "sdk_support": "We provide SDKs in multiple languages (Python, JavaScript, Go) to accelerate your development process. For high-frequency trading, consider our FIX API with ultra-low latency connections.",
+        "tag1": "api",
+        "tag2": "integration",
+        "tag3": "developers"
+      },
+      "account_security": {
+        "title": "Account Security",
+        "description": "Protect your account with 2FA and other security measures.",
+        "long_description": "Account security is our top priority. We employ bank-level security measures and provide tools to help you protect your account from unauthorized access.",
+        "security_features": "Security Features",
+        "security_features_list": [
+          "Two-factor authentication (2FA) via SMS or authenticator apps",
+          "Biometric login (Face ID, Touch ID)",
+          "Device management and login notifications",
+          "Withdrawal whitelisting and time locks"
+        ],
+        "enhancing_security": "Enhancing Your Security",
+        "security_enhancement_steps": [
+          "Enable all available security features",
+          "Use a unique, strong password",
+          "Be cautious of phishing attempts",
+          "Regularly review account activity"
+        ],
+        "institutional_accounts": "For institutional accounts, we offer advanced security options including IP restrictions, multi-user access controls, and compliance reporting tools.",
+        "tag1": "security",
+        "tag2": "authentication",
+        "tag3": "2fa"
+      },
+      "market_analysis": {
+        "title": "Market Analysis",
+        "description": "Master technical analysis and trading strategies.",
+        "long_description": "Our advanced market analysis tools give you the edge in cryptocurrency trading with professional-grade charting, indicators, and research tools.",
+        "analysis_tools": "Analysis Tools",
+        "analysis_tools_list": [
+          "100+ technical indicators and drawing tools",
+          "Customizable chart layouts and timeframes",
+          "Market sentiment indicators",
+          "On-chain analytics integration"
+        ],
+        "trading_strategies": "Trading Strategies",
+        "trading_strategy_steps": [
+          "Learn basic candlestick patterns",
+          "Understand support and resistance levels",
+          "Implement risk management techniques",
+          "Backtest strategies with historical data"
+        ],
+        "educational_resources": "Our platform includes educational resources and trading signals to help both novice and experienced traders make informed decisions in volatile markets.",
+        "tag1": "analysis",
+        "tag2": "trading",
+        "tag3": "charts"
+      },
+      "getting_started": {
+        "title": "Getting Started",
+        "description": "New to crypto? Start your journey with our beginner's guide.",
+        "long_description": "Welcome to the world of cryptocurrency! This comprehensive guide will help you navigate your first steps in digital asset investing.",
+        "crypto_basics": "Crypto Basics",
+        "crypto_basics_list": [
+          "Understanding blockchain technology",
+          "How cryptocurrencies are created and transferred",
+          "The difference between coins and tokens",
+          "Introduction to decentralized finance (DeFi)"
+        ],
+        "first_steps": "First Steps",
+        "first_steps_list": [
+          "Set up your account and verify your identity",
+          "Start with small investments to learn",
+          "Explore different asset classes",
+          "Learn about risk management"
+        ],
+        "demo_account": "We recommend beginning with our free demo account to practice trading without risk. Our educational resources include video tutorials, webinars, and a knowledge base to support your learning journey.",
+        "tag1": "beginner",
+        "tag2": "guide",
+        "tag3": "basics"
+      }
     }
   }
 }

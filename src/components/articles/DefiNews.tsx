@@ -3,8 +3,10 @@ import { NewsItem } from '@/types/Messari';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('Articles.defiNews');
   // Filter blockchain news and take first 11 items (2 featured + 9 regular)
   const blockchainNews = marketNews
     .filter(
@@ -22,7 +24,7 @@ export default function DefiNews({ marketNews }: { marketNews: NewsItem[] }) {
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-[#07153b] dark:text-white mb-8 pl-6 relative">
         <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#07153b] dark:bg-white rounded-sm"></span>
-        DeFi & Blockchain
+        {t('title')}
       </h2>
 
       {/* Two Featured Cards */}

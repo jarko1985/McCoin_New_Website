@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Check, Home, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 interface SuccessModalProps {
   isOpen: boolean;
@@ -56,6 +57,7 @@ const AnimatedTick = () => {
 export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
   const pathname = usePathname();
   const locale = pathname?.split('/')[1] ?? 'en';
+  const t = useTranslations('Contact');
 
   return (
     <AnimatePresence>
@@ -71,7 +73,7 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
               <DialogHeader className="text-center">
                 <DialogTitle className="text-2xl font-bold text-white flex items-center justify-center gap-2">
                   <AnimatedTick />
-                  <span className="text-xl">Thank You for Reaching Out!</span>
+                  <span className="text-xl">{t('success_title')}</span>
                 </DialogTitle>
               </DialogHeader>
 
@@ -82,23 +84,22 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <p className="text-[#DAE6EA] text-center leading-relaxed">
-                  We've received your message and our team will get back to you as soon as possible.
-                  You can expect a reply within 24–48 hours.
+                  {t('success_message')}
                 </p>
 
                 <div className="bg-white/10 rounded-lg p-4 border border-white/20">
                   <p className="text-[#DAE6EA] text-sm leading-relaxed">
-                    In the meantime, feel free to explore our{' '}
+                    {t('success_faq_text')}{' '}
                     <Link
                       href={`/${locale}/faqs`}
                       className="text-[#EC3B3B] hover:text-[#FF6B6B] underline transition-colors"
                     >
-                      FAQ
+                      {t('success_faq_link')}
                     </Link>{' '}
-                    or continue browsing our website.
+                    {t('success_faq_continue')}
                   </p>
                   <p className="text-[#DAE6EA] text-sm mt-2">
-                    Your inquiry is important to us, and we're committed to assisting you promptly.
+                    {t('success_important')}
                   </p>
                 </div>
               </motion.div>
@@ -115,7 +116,7 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
                   className="flex-1 bg-transparent border-[#EC3B3B] text-[#EC3B3B] hover:bg-[#EC3B3B] hover:text-white transition-all duration-300"
                 >
                   <X className="w-4 h-4 mr-2" />
-                  Close
+                  {t('close')}
                 </Button>
                 <Button
                   asChild
@@ -123,7 +124,7 @@ export function SuccessModal({ isOpen, onClose }: SuccessModalProps) {
                 >
                   <Link href={`/${locale}`}>
                     <Home className="w-4 h-4 mr-2" />
-                    Back to Home
+                    {t('back_to_home')}
                   </Link>
                 </Button>
               </motion.div>

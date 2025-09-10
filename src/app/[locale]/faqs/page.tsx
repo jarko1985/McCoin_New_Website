@@ -3,11 +3,13 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import { Faqs } from '../../../../utils/data';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import FAQImage from '@/../public/images/faq_icon.webp';
 import Image from 'next/image';
 
 const FaqsPage = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const t = useTranslations('Faqs');
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -24,7 +26,7 @@ const FaqsPage = () => {
         <Image src={FAQImage} alt="FAQ Icon" width={100} height={100} className="mb-4" />
 
         <h1 className="text-[#07153B] dark:text-[#DAE6EA] text-center text-2xl lg:text-4xl font-bold pb-4 bg-gradient-to-r from-[#DAE6EA] to-[#FFF] bg-clip-text">
-          Frequently Asked Questions
+          {t('title')}
         </h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -32,9 +34,7 @@ const FaqsPage = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-center text-[#07153B] dark:text-[#DAE6EA]/80 text-sm lg:text-base max-w-2xl"
         >
-          Got questions? We've got answers. Explore our FAQ section to learn more about how our
-          crypto brokerage works, including trading, account management, funding options, security
-          protocols, and more.
+          {t('subtitle')}
         </motion.p>
       </motion.div>
 
@@ -55,7 +55,7 @@ const FaqsPage = () => {
                 onClick={() => toggleAccordion(index)}
                 className="flex justify-between items-center w-full font-semibold text-lg text-[#07153B] dark:text-[#DAE6EA] px-6 py-4 transition-colors duration-300 bg-[#DAE6EA] dark:bg-[#07153B]/70 dark:hover:bg-[#07153B] cursor-pointer"
               >
-                <span className="text-left">{faq.question}</span>
+                <span className="text-left">{t(`faqs.${faq.id}.question`)}</span>
                 <motion.span
                   animate={{ rotate: activeIndex === index ? 0 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -75,7 +75,7 @@ const FaqsPage = () => {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-4 pt-4 text-[#07153B] dark:text-[#DAE6EA]/90 bg-[#DAE6EA] dark:bg-[#07153B]/40 border-t border-t-[#07153B] dark:border-[#FFF]/20">
-                      {faq.answer}
+                      {t(`faqs.${faq.id}.answer`)}
                     </div>
                   </motion.div>
                 )}

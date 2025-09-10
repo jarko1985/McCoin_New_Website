@@ -6,6 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const GaugeChart = dynamic(() => import('react-gauge-chart'), {
   ssr: false,
@@ -14,6 +15,7 @@ const GaugeChart = dynamic(() => import('react-gauge-chart'), {
 
 export default function FearAndGreedChart() {
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
+  const t = useTranslations('MarketSentiment.fearAndGreed');
   const [index, setIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -74,11 +76,11 @@ export default function FearAndGreedChart() {
   }
 
   const getSentimentLabel = (value: number) => {
-    if (value < 20) return 'Extreme Fear';
-    if (value < 40) return 'Fear';
-    if (value < 60) return 'Neutral';
-    if (value < 80) return 'Greed';
-    return 'Extreme Greed';
+    if (value < 20) return t('sentimentLabels.extremeFear');
+    if (value < 40) return t('sentimentLabels.fear');
+    if (value < 60) return t('sentimentLabels.neutral');
+    if (value < 80) return t('sentimentLabels.greed');
+    return t('sentimentLabels.extremeGreed');
   };
 
   if (loading) {
@@ -124,13 +126,13 @@ export default function FearAndGreedChart() {
   if (error) {
     return (
       <div className="bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 text-white w-[60%] mx-auto p-6 rounded-xl shadow-lg space-y-6 text-center">
-        <h2 className="text-2xl font-bold">Crypto Fear & Greed Index</h2>
-        <div className="py-10 text-red-400">Failed to load data: {error}</div>
+        <h2 className="text-2xl font-bold">{t('title')}</h2>
+        <div className="py-10 text-red-400">{t('error')} {error}</div>
         <button
           onClick={() => window.location.reload()}
           className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
         >
-          Retry
+          {t('retry')}
         </button>
       </div>
     );
@@ -139,7 +141,7 @@ export default function FearAndGreedChart() {
   return (
     <section className="flex gap-4 flex-col md:flex-row mb-12">
       <div className="bg-[#DAE6EA] dark:bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 flex-[0.6] text-[#07153b] dark:text-white border border-slate-400 mx-auto p-4 rounded-xl shadow-xl space-y-6">
-        <h2 className="text-2xl font-bold">Crypto Fear & Greed Index</h2>
+        <h2 className="text-2xl font-bold">{t('title')}</h2>
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="w-full md:w-1/2">
             <GaugeChart
@@ -174,18 +176,18 @@ export default function FearAndGreedChart() {
                     : 'text-green-400'
                 }`}
               >
-                {index ? getSentimentLabel(index) : 'Loading...'}
+                {index ? getSentimentLabel(index) : t('loading')}
               </div>
             </div>
             <div className="flex flex-col gap-2 text-sm text-gray-400">
               <div>
-                <span className="text-[#07153b] dark:text-white font-medium">Yesterday</span>: Greed{' '}
+                <span className="text-[#07153b] dark:text-white font-medium">{t('yesterday')}</span>: {t('sentimentLabels.greed')}{' '}
                 <span className="float-right text-[#07153b] dark:text-white font-semibold pl-1">
                   61
                 </span>
               </div>
               <div>
-                <span className="text-[#07153b] dark:text-white font-medium">Last Week</span>: Fear{' '}
+                <span className="text-[#07153b] dark:text-white font-medium">{t('lastWeek')}</span>: {t('sentimentLabels.fear')}{' '}
                 <span className="float-right text-[#07153b] dark:text-white font-semibold pl-1">
                   39
                 </span>
@@ -195,31 +197,28 @@ export default function FearAndGreedChart() {
         </div>
 
         <div className="text-sm text-[#07153b] dark:text-gray-400 mt-4">
-          <p className="mb-2">How do you feel about BTC today?</p>
+          <p className="mb-2">{t('howDoYouFeel')}</p>
           <div className="flex flex-col md:flex-row gap-2">
             <button className="flex-1 bg-red-500 hover:bg-red-600 transition text-[#07153b] dark:text-white font-semibold py-2 rounded">
-              Bearish
+              {t('bearish')}
             </button>
             <button className="flex-1 bg-green-500 hover:bg-green-600 transition text-[#07153b] dark:text-white font-semibold py-2 rounded">
-              Bullish
+              {t('bullish')}
             </button>
           </div>
         </div>
 
         <div className="text-sm text-[#07153b] dark:text-gray-300 border-t border-gray-700 pt-4">
-          <h3 className="font-semibold mb-1">What's Crypto Fear & Greed Index?</h3>
+          <h3 className="font-semibold mb-1">{t('whatIsIndex')}</h3>
           <p>
-            The index ranges from 0 (Extreme Fear) to 100 (Extreme Greed), reflecting crypto market
-            sentiment. A low value signals over-selling, while a high value warns of a potential
-            market correction. Binance Square combines trading data and unique user behavior
-            insights for a precise overview.
+            {t('indexDescription')}
           </p>
         </div>
       </div>
       <div className="flex-[0.4] bg-[#DAE6EA] dark:bg-gradient-to-br from-[#07153b] via-[#0c1e4d] to-[#07153b]/80 backdrop-blur-md bg-opacity-60 text-[#07153b] dark:text-white border border-slate-400 p-6 rounded-xl shadow-xl">
         <h2 className="text-xl font-bold text-[#07153b] dark:text-white mb-8 pl-6 relative">
           <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#07153b] dark:bg-white rounded-sm"></span>
-          Trending Topics
+          {t('trendingTopics')}
         </h2>
         <div className="flex flex-col justify-between">
           {sideArticles.map((article, index) => (

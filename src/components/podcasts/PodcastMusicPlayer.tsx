@@ -16,6 +16,7 @@ import {
 } from 'react-icons/fa6';
 import { FaMinus, FaTimes, FaWindowRestore } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -50,6 +51,7 @@ export default function PodcastMusicPlayer({
 }: PodcastMusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
+  const t = useTranslations('Podcast.musicPlayer');
 
   // Convert single episode to tracks format, or use allEpisodes
   const tracks = useMemo(() => {
@@ -320,7 +322,7 @@ export default function PodcastMusicPlayer({
             {/* McCoin Exclusives Ribbon */}
             <div className="absolute top-0 left-0 z-30 w-32 h-32 overflow-hidden">
               <div className="bg-gradient-to-r from-[#EC3B3B] to-[#d63031] text-white text-xs font-bold py-2 px-1 transform translate-y-[25px] shadow-lg whitespace-nowrap">
-                McCoin Exclusives
+                {t('mccoinExclusives')}
               </div>
             </div>
 
@@ -466,7 +468,7 @@ export default function PodcastMusicPlayer({
               {tracks[current]?.description && (
                 <div className="w-full max-w-[74rem] mt-2 mb-24 px-4">
                   <div className="bg-[rgba(5,9,51,0.3)] backdrop-blur-md border border-white/20 rounded-xl p-4">
-                    <h3 className="text-lg font-semibold text-white mb-2">About this episode</h3>
+                    <h3 className="text-lg font-semibold text-white mb-2">{t('aboutThisEpisode')}</h3>
                     <p className="text-sm text-white/80 leading-relaxed">
                       {tracks[current].description}
                     </p>

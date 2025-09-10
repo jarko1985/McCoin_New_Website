@@ -7,11 +7,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Card, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { popularCryptoPosts } from '../../../utils/data';
+import { useTranslations } from 'next-intl';
 
 export default function PopularPosts() {
   const [isClient, setIsClient] = useState(false);
   const params = useParams();
   const locale = params?.locale || 'en';
+  const t = useTranslations('Crypto101.popularPosts');
 
   useEffect(() => {
     setIsClient(true);
@@ -22,7 +24,7 @@ export default function PopularPosts() {
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-white mb-8 pl-6 relative">
           <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-sm"></span>
-          Popular Posts
+          {t('title')}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

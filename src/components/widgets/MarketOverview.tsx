@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 export default function TradingViewMarketOverview() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
+  const t = useTranslations('MarketSentiment.marketOverview');
   const [BtcArticles, setBtcArticles] = useState<any[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -122,7 +124,7 @@ export default function TradingViewMarketOverview() {
       <div className="flex-[0.5]">
         <h2 className="text-xl font-bold text-[#07153b] dark:text-white mb-8 pl-6 relative">
           <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#07153b] dark:bg-white rounded-sm"></span>
-          BTCUSD Top Stories
+          {t('btcStories')}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {BtcArticles.map(article => (
@@ -166,7 +168,7 @@ export default function TradingViewMarketOverview() {
       <div className="flex-[0.5]">
         <h2 className="text-xl font-bold text-[#07153b] dark:text-white mb-8 pl-6 relative">
           <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#07153b] dark:bg-white rounded-sm"></span>
-          Crypto Market Overview
+          {t('cryptoMarketOverview')}
         </h2>
         <div className="tradingview-widget-container w-full relative">
           <div
@@ -185,7 +187,7 @@ export default function TradingViewMarketOverview() {
                 <div className="absolute inset-0 flex items-center justify-center bg-[#07153b] rounded-xl">
                   <div className="flex flex-col items-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-                    <p className="text-gray-300">Loading market overview...</p>
+                    <p className="text-gray-300">{t('loading')}</p>
                   </div>
                 </div>
               )}
@@ -202,7 +204,7 @@ export default function TradingViewMarketOverview() {
                       }}
                       className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                     >
-                      Retry
+                      {t('retry')}
                     </button>
                   </div>
                 </div>

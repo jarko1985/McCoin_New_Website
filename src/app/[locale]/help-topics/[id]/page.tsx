@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -15,185 +15,152 @@ import {
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
-const helpTopics = [
+// Helper function to get help topics with translations
+const getHelpTopics = (t: any) => [
   {
     id: 1,
-    title: 'Trading Platform',
-    description: 'Learn how to navigate our trading platform and execute trades efficiently.',
+    title: t('topics.trading_platform.title'),
+    description: t('topics.trading_platform.description'),
     longDescription: `
-      <p>Our trading platform is designed for both beginners and experienced traders, offering a seamless experience with advanced charting tools, real-time market data, and lightning-fast execution.</p>
+      <p>${t('topics.trading_platform.long_description')}</p>
       
-      <h3>Key Features</h3>
+      <h3>${t('topics.trading_platform.key_features')}</h3>
       <ul>
-        <li>Real-time price charts with technical indicators</li>
-        <li>One-click trading for instant execution</li>
-        <li>Advanced order types (limit, stop-loss, take-profit)</li>
-        <li>Portfolio tracking and performance analytics</li>
+        ${t.raw('topics.trading_platform.key_features_list').map((item: string) => `<li>${item}</li>`).join('')}
       </ul>
       
-      <h3>Getting Started</h3>
-      <p>To begin trading:</p>
+      <h3>${t('topics.trading_platform.getting_started')}</h3>
+      <p>${t('topics.trading_platform.getting_started_description')}</p>
       <ol>
-        <li>Connect your wallet or exchange account</li>
-        <li>Fund your account with your preferred cryptocurrency</li>
-        <li>Explore the interface using our interactive tutorial</li>
-        <li>Place your first trade with our risk-free demo mode</li>
+        ${t.raw('topics.trading_platform.getting_started_steps').map((item: string) => `<li>${item}</li>`).join('')}
       </ol>
       
-      <p>For advanced users, we offer API access and algorithmic trading tools that integrate directly with our platform.</p>
+      <p>${t('topics.trading_platform.advanced_users')}</p>
     `,
     icon: <Zap className="w-8 h-8" />,
-    tags: ['trading', 'platform', 'errors'],
+    tags: [t('topics.trading_platform.tag1'), t('topics.trading_platform.tag2'), t('topics.trading_platform.tag3')],
     imageUrl: '/images/trading_platform.jpg',
     relatedTopics: [2, 5, 6],
   },
   {
     id: 2,
-    title: 'Wallet Management',
-    description: 'Secure your assets with proper wallet setup and management techniques.',
+    title: t('topics.wallet_management.title'),
+    description: t('topics.wallet_management.description'),
     longDescription: `
-      <p>Proper wallet management is crucial for securing your digital assets. Our platform supports multiple wallet types and provides enterprise-grade security features.</p>
+      <p>${t('topics.wallet_management.long_description')}</p>
       
-      <h3>Wallet Types</h3>
+      <h3>${t('topics.wallet_management.wallet_types')}</h3>
       <ul>
-        <li><strong>Hot Wallets:</strong> For frequent trading with instant access</li>
-        <li><strong>Cold Wallets:</strong> For long-term storage with enhanced security</li>
-        <li><strong>Multi-Sig Wallets:</strong> Require multiple approvals for transactions</li>
+        ${t.raw('topics.wallet_management.wallet_types_list').map((item: string) => `<li><strong>${item.split(':')[0]}:</strong> ${item.split(':')[1]}</li>`).join('')}
       </ul>
       
-      <h3>Security Best Practices</h3>
+      <h3>${t('topics.wallet_management.security_best_practices')}</h3>
       <ol>
-        <li>Always enable two-factor authentication (2FA)</li>
-        <li>Use hardware wallets for large holdings</li>
-        <li>Regularly backup your wallet seed phrases</li>
-        <li>Verify wallet addresses before transactions</li>
+        ${t.raw('topics.wallet_management.security_steps').map((item: string) => `<li>${item}</li>`).join('')}
       </ol>
       
-      <p>Our wallet integration allows you to manage multiple wallets from a single interface while maintaining complete control over your private keys.</p>
+      <p>${t('topics.wallet_management.wallet_integration')}</p>
     `,
     icon: <Database className="w-8 h-8" />,
-    tags: ['wallet', 'security', 'transfer'],
+    tags: [t('topics.wallet_management.tag1'), t('topics.wallet_management.tag2'), t('topics.wallet_management.tag3')],
     imageUrl: '/images/wallet_management.jpg',
     relatedTopics: [1, 4, 6],
   },
   {
     id: 3,
-    title: 'API Integration',
-    description: 'Connect your applications with our powerful trading API.',
+    title: t('topics.api_integration.title'),
+    description: t('topics.api_integration.description'),
     longDescription: `
-      <p>Our REST and WebSocket APIs provide programmatic access to all platform features, enabling developers to build custom trading solutions and integrations.</p>
+      <p>${t('topics.api_integration.long_description')}</p>
       
-      <h3>API Features</h3>
+      <h3>${t('topics.api_integration.api_features')}</h3>
       <ul>
-        <li>Real-time market data streaming</li>
-        <li>Order management and execution</li>
-        <li>Historical data access</li>
-        <li>Webhook support for event notifications</li>
+        ${t.raw('topics.api_integration.api_features_list').map((item: string) => `<li>${item}</li>`).join('')}
       </ul>
       
-      <h3>Getting Started with the API</h3>
+      <h3>${t('topics.api_integration.getting_started_api')}</h3>
       <ol>
-        <li>Generate API keys from your account settings</li>
-        <li>Review our comprehensive API documentation</li>
-        <li>Test with our sandbox environment</li>
-        <li>Implement rate limiting and error handling</li>
+        ${t.raw('topics.api_integration.api_steps').map((item: string) => `<li>${item}</li>`).join('')}
       </ol>
       
-      <p>We provide SDKs in multiple languages (Python, JavaScript, Go) to accelerate your development process. For high-frequency trading, consider our FIX API with ultra-low latency connections.</p>
+      <p>${t('topics.api_integration.sdk_support')}</p>
     `,
     icon: <LayoutTemplate className="w-8 h-8" />,
-    tags: ['api', 'integration', 'developers'],
+    tags: [t('topics.api_integration.tag1'), t('topics.api_integration.tag2'), t('topics.api_integration.tag3')],
     imageUrl: '/images/api_integration.jpg',
     relatedTopics: [1, 5],
   },
   {
     id: 4,
-    title: 'Account Security',
-    description: 'Protect your account with 2FA and other security measures.',
+    title: t('topics.account_security.title'),
+    description: t('topics.account_security.description'),
     longDescription: `
-      <p>Account security is our top priority. We employ bank-level security measures and provide tools to help you protect your account from unauthorized access.</p>
+      <p>${t('topics.account_security.long_description')}</p>
       
-      <h3>Security Features</h3>
+      <h3>${t('topics.account_security.security_features')}</h3>
       <ul>
-        <li>Two-factor authentication (2FA) via SMS or authenticator apps</li>
-        <li>Biometric login (Face ID, Touch ID)</li>
-        <li>Device management and login notifications</li>
-        <li>Withdrawal whitelisting and time locks</li>
+        ${t.raw('topics.account_security.security_features_list').map((item: string) => `<li>${item}</li>`).join('')}
       </ul>
       
-      <h3>Enhancing Your Security</h3>
+      <h3>${t('topics.account_security.enhancing_security')}</h3>
       <ol>
-        <li>Enable all available security features</li>
-        <li>Use a unique, strong password</li>
-        <li>Be cautious of phishing attempts</li>
-        <li>Regularly review account activity</li>
+        ${t.raw('topics.account_security.security_enhancement_steps').map((item: string) => `<li>${item}</li>`).join('')}
       </ol>
       
-      <p>For institutional accounts, we offer advanced security options including IP restrictions, multi-user access controls, and compliance reporting tools.</p>
+      <p>${t('topics.account_security.institutional_accounts')}</p>
     `,
     icon: <User className="w-8 h-8" />,
-    tags: ['security', 'authentication', '2fa'],
+    tags: [t('topics.account_security.tag1'), t('topics.account_security.tag2'), t('topics.account_security.tag3')],
     imageUrl: '/images/account_security.jpg',
     relatedTopics: [2, 5],
   },
   {
     id: 5,
-    title: 'Market Analysis',
-    description: 'Master technical analysis and trading strategies.',
+    title: t('topics.market_analysis.title'),
+    description: t('topics.market_analysis.description'),
     longDescription: `
-      <p>Our advanced market analysis tools give you the edge in cryptocurrency trading with professional-grade charting, indicators, and research tools.</p>
+      <p>${t('topics.market_analysis.long_description')}</p>
       
-      <h3>Analysis Tools</h3>
+      <h3>${t('topics.market_analysis.analysis_tools')}</h3>
       <ul>
-        <li>100+ technical indicators and drawing tools</li>
-        <li>Customizable chart layouts and timeframes</li>
-        <li>Market sentiment indicators</li>
-        <li>On-chain analytics integration</li>
+        ${t.raw('topics.market_analysis.analysis_tools_list').map((item: string) => `<li>${item}</li>`).join('')}
       </ul>
       
-      <h3>Trading Strategies</h3>
+      <h3>${t('topics.market_analysis.trading_strategies')}</h3>
       <ol>
-        <li>Learn basic candlestick patterns</li>
-        <li>Understand support and resistance levels</li>
-        <li>Implement risk management techniques</li>
-        <li>Backtest strategies with historical data</li>
+        ${t.raw('topics.market_analysis.trading_strategy_steps').map((item: string) => `<li>${item}</li>`).join('')}
       </ol>
       
-      <p>Our platform includes educational resources and trading signals to help both novice and experienced traders make informed decisions in volatile markets.</p>
+      <p>${t('topics.market_analysis.educational_resources')}</p>
     `,
     icon: <BrainCircuit className="w-8 h-8" />,
-    tags: ['analysis', 'trading', 'charts'],
+    tags: [t('topics.market_analysis.tag1'), t('topics.market_analysis.tag2'), t('topics.market_analysis.tag3')],
     imageUrl: '/images/market_analysis.jpg',
     relatedTopics: [1, 3, 6],
   },
   {
     id: 6,
-    title: 'Getting Started',
-    description: "New to crypto? Start your journey with our beginner's guide.",
+    title: t('topics.getting_started.title'),
+    description: t('topics.getting_started.description'),
     longDescription: `
-      <p>Welcome to the world of cryptocurrency! This comprehensive guide will help you navigate your first steps in digital asset investing.</p>
+      <p>${t('topics.getting_started.long_description')}</p>
       
-      <h3>Crypto Basics</h3>
+      <h3>${t('topics.getting_started.crypto_basics')}</h3>
       <ul>
-        <li>Understanding blockchain technology</li>
-        <li>How cryptocurrencies are created and transferred</li>
-        <li>The difference between coins and tokens</li>
-        <li>Introduction to decentralized finance (DeFi)</li>
+        ${t.raw('topics.getting_started.crypto_basics_list').map((item: string) => `<li>${item}</li>`).join('')}
       </ul>
       
-      <h3>First Steps</h3>
+      <h3>${t('topics.getting_started.first_steps')}</h3>
       <ol>
-        <li>Set up your account and verify your identity</li>
-        <li>Start with small investments to learn</li>
-        <li>Explore different asset classes</li>
-        <li>Learn about risk management</li>
+        ${t.raw('topics.getting_started.first_steps_list').map((item: string) => `<li>${item}</li>`).join('')}
       </ol>
       
-      <p>We recommend beginning with our free demo account to practice trading without risk. Our educational resources include video tutorials, webinars, and a knowledge base to support your learning journey.</p>
+      <p>${t('topics.getting_started.demo_account')}</p>
     `,
     icon: <BookOpen className="w-8 h-8" />,
-    tags: ['beginner', 'guide', 'basics'],
+    tags: [t('topics.getting_started.tag1'), t('topics.getting_started.tag2'), t('topics.getting_started.tag3')],
     imageUrl: '/images/getting_started.jpg',
     relatedTopics: [1, 2, 5],
   },
@@ -202,10 +169,14 @@ const helpTopics = [
 const HelpTopicDetailsPage = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('HelpTopicDetail');
   const id = pathname?.split('/').pop() ?? '';
   const [topic, setTopic] = useState<any>(null);
   const [relatedTopics, setRelatedTopics] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Memoize help topics to prevent recreation on every render
+  const helpTopics = useMemo(() => getHelpTopics(t), [t]);
 
   useEffect(() => {
     // Simulate loading
@@ -222,7 +193,7 @@ const HelpTopicDetailsPage = () => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [id]);
+  }, [id, helpTopics]);
 
   if (isLoading) {
     return (
@@ -241,13 +212,13 @@ const HelpTopicDetailsPage = () => {
       <div className="min-h-screen bg-gradient-to-b from-[#DAE6EA] to-white dark:from-[#07153B] dark:to-[#0A1E4D] flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-[#07153B] dark:text-[#DAE6EA] mb-4">
-            Topic Not Found
+            {t('topic_not_found')}
           </h1>
           <p className="text-xl text-[#07153B]/80 dark:text-[#DAE6EA]/80 mb-8">
-            The help topic you're looking for doesn't exist or has been moved.
+            {t('topic_not_found_description')}
           </p>
           <Button asChild className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white">
-            <a href="/help-topics">Browse All Topics</a>
+            <a href="/help-topics">{t('browse_all_topics')}</a>
           </Button>
         </div>
       </div>
@@ -288,7 +259,7 @@ const HelpTopicDetailsPage = () => {
             >
               <a href="/help-topics" className="flex items-center gap-2">
                 <ChevronLeft className="w-5 h-5" />
-                Back to Help Center
+                {t('back_to_help_center')}
               </a>
             </Button>
           </motion.div>
@@ -348,7 +319,7 @@ const HelpTopicDetailsPage = () => {
               className="mt-16"
             >
               <h2 className="text-2xl font-semibold text-[#07153B] dark:text-[#DAE6EA] mb-6">
-                Frequently Asked Questions
+                {t('frequently_asked_questions')}
               </h2>
 
               <div className="space-y-4">
@@ -361,17 +332,14 @@ const HelpTopicDetailsPage = () => {
                     <Card className="border-none bg-[#DAE6EA]/10 dark:bg-[#07153B]/20">
                       <CardContent className="p-6">
                         <h3 className="font-medium text-lg text-[#07153B] dark:text-[#DAE6EA] mb-2">
-                          {item === 1 && 'How do I get started with this feature?'}
-                          {item === 2 && 'What are the common issues users face?'}
-                          {item === 3 && 'Where can I find more advanced documentation?'}
+                          {item === 1 && t('faq.faq1.question')}
+                          {item === 2 && t('faq.faq2.question')}
+                          {item === 3 && t('faq.faq3.question')}
                         </h3>
                         <p className="text-[#07153B]/80 dark:text-[#DAE6EA]/80">
-                          {item === 1 &&
-                            'Getting started is simple. Follow our step-by-step guide above or contact our support team for personalized assistance.'}
-                          {item === 2 &&
-                            'Most issues can be resolved by checking our troubleshooting guide. Common solutions include clearing cache, updating your app, or verifying your connection.'}
-                          {item === 3 &&
-                            'Advanced users can access our developer documentation portal which includes API references, SDKs, and technical white papers.'}
+                          {item === 1 && t('faq.faq1.answer')}
+                          {item === 2 && t('faq.faq2.answer')}
+                          {item === 3 && t('faq.faq3.answer')}
                         </p>
                       </CardContent>
                     </Card>
@@ -393,7 +361,7 @@ const HelpTopicDetailsPage = () => {
               {relatedTopics.length > 0 && (
                 <div className="bg-[#DAE6EA]/10 dark:bg-[#07153B]/20 border border-[#DAE6EA]/20 dark:border-[#07153B]/50 rounded-xl p-6">
                   <h3 className="text-xl font-semibold text-[#07153B] dark:text-[#DAE6EA] mb-4">
-                    Related Topics
+                    {t('related_topics')}
                   </h3>
                   <div className="space-y-3">
                     {relatedTopics.map(related => (
@@ -422,32 +390,32 @@ const HelpTopicDetailsPage = () => {
               {/* Contact Support */}
               <div className="bg-gradient-to-br from-[#EC3B3B]/10 to-[#07153B]/10 dark:from-[#EC3B3B]/10 dark:to-[#0A1E4D]/20 border border-[#DAE6EA]/20 dark:border-[#07153B]/50 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-[#07153B] dark:text-[#DAE6EA] mb-4">
-                  Need More Help?
+                  {t('need_more_help')}
                 </h3>
                 <p className="text-[#07153B]/80 dark:text-[#DAE6EA]/80 mb-6">
-                  Our support team is available 24/7 to assist you with any questions or issues.
+                  {t('support_description')}
                 </p>
                 <Button
                   onClick={() => router.push('/contact')}
                   className="w-full bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 cursor-pointer hover:text-white"
                 >
-                  Contact Support
+                  {t('contact_support')}
                 </Button>
               </div>
 
               {/* Download Guide */}
               <div className="bg-[#DAE6EA]/10 dark:bg-[#07153B]/20 border border-[#DAE6EA]/20 dark:border-[#07153B]/50 rounded-xl p-6">
                 <h3 className="text-xl font-semibold text-[#07153B] dark:text-[#DAE6EA] mb-4">
-                  Download Guide
+                  {t('download_guide')}
                 </h3>
                 <p className="text-[#07153B]/80 dark:text-[#DAE6EA]/80 mb-6">
-                  Get the complete guide to {topic.title} as a PDF for offline reference.
+                  {t('download_guide_description', { topic: topic.title })}
                 </p>
                 <Button
                   variant="outline"
                   className="w-full border-[#EC3B3B] text-[#EC3B3B] hover:bg-[#EC3B3B]/10"
                 >
-                  Download PDF
+                  {t('download_pdf')}
                 </Button>
               </div>
             </motion.div>
