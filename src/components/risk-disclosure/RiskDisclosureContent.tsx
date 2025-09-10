@@ -1,19 +1,96 @@
 "use client"
-import React, { useState } from 'react'
-import { riskDisclosureData } from '../../../utils/data';
+import React, { useState, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import DownloadPDF from '../shared/DownloadPDF';
+import { useTranslations } from 'next-intl';
+
+// Helper function to get risk disclosure data with translations
+const getRiskDisclosureData = (t: any) => [
+  {
+    id: 1,
+    title: t('sections.section1.title'),
+    description: t('sections.section1.description')
+  },
+  {
+    id: 2,
+    title: t('sections.section2.title'),
+    description: t('sections.section2.description')
+  },
+  {
+    id: 3,
+    title: t('sections.section3.title'),
+    description: t('sections.section3.description')
+  },
+  {
+    id: 4,
+    title: t('sections.section4.title'),
+    description: t('sections.section4.description')
+  },
+  {
+    id: 5,
+    title: t('sections.section5.title'),
+    description: t('sections.section5.description')
+  },
+  {
+    id: 6,
+    title: t('sections.section6.title'),
+    description: t('sections.section6.description')
+  },
+  {
+    id: 7,
+    title: t('sections.section7.title'),
+    description: t('sections.section7.description')
+  },
+  {
+    id: 8,
+    title: t('sections.section8.title'),
+    description: t('sections.section8.description')
+  },
+  {
+    id: 9,
+    title: t('sections.section9.title'),
+    description: t('sections.section9.description')
+  },
+  {
+    id: 10,
+    title: t('sections.section10.title'),
+    description: t('sections.section10.description')
+  },
+  {
+    id: 11,
+    title: t('sections.section11.title'),
+    description: t('sections.section11.description')
+  },
+  {
+    id: 12,
+    title: t('sections.section12.title'),
+    description: t('sections.section12.description')
+  },
+  {
+    id: 13,
+    title: t('sections.section13.title'),
+    description: t('sections.section13.description')
+  },
+  {
+    id: 14,
+    title: t('sections.section14.title'),
+    description: t('sections.section14.description')
+  }
+];
 
 const RiskDisclosureContent = () => {
-     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const t = useTranslations('RiskDisclosure');
+  const riskDisclosureData = useMemo(() => getRiskDisclosureData(t), [t]);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
     
-      const toggleAccordion = (index: number) => {
-        setActiveIndex(activeIndex === index ? null : index);
-      };
+  const toggleAccordion = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+  
   return (
     <section className='container mx-auto py-12'>
-       <div className='flex items-end justify-end mb-6'><DownloadPDF fileName='risk_disclosure_statement.pdf' buttonText='Download PDF'/></div>
+       <div className='flex items-end justify-end mb-6'><DownloadPDF fileName='risk_disclosure_statement.pdf' buttonText={t('downloadPdf')}/></div>
            <div className="w-full space-y-4">
         {riskDisclosureData.map((faq, index) => (
           <motion.div
@@ -49,7 +126,7 @@ const RiskDisclosureContent = () => {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-4 pt-4 text-[#DAE6EA]/90 bg-[#07153B]/40 border-t border-[#FFF]/20">
-                    <div dangerouslySetInnerHTML={{ __html: faq.description }} />
+                    <div className="whitespace-pre-line">{faq.description}</div>
                     </div>
                   </motion.div>
                 )}

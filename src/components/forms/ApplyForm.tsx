@@ -16,28 +16,30 @@ import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import { useTranslations } from 'next-intl';
 
-const applySchema = z.object({
-  fullName: z.string().min(2, "Full Name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(7, "Invalid phone number"),
-  visaStatus: z.string().min(1, "Visa status is required"),
-  salaryExpectations: z.string().min(1, "Salary expectations are required"),
-  availability: z.string().min(1, "Availability is required"),
+const getApplySchema = (t: any) => z.object({
+  fullName: z.string().min(2, t('validation.fullNameRequired')),
+  email: z.string().email(t('validation.invalidEmail')),
+  phone: z.string().min(7, t('validation.invalidPhone')),
+  visaStatus: z.string().min(1, t('validation.visaStatusRequired')),
+  salaryExpectations: z.string().min(1, t('validation.salaryExpectationsRequired')),
+  availability: z.string().min(1, t('validation.availabilityRequired')),
   resume: z
     .any()
-    .refine((file) => file?.[0], "Resume is required")
-    .refine((file) => file?.[0]?.type === "application/pdf", "Only PDF allowed")
-    .refine((file) => file?.[0]?.size <= 5 * 1024 * 1024, "Max 5MB allowed"),
+    .refine((file) => file?.[0], t('validation.resumeRequired'))
+    .refine((file) => file?.[0]?.type === "application/pdf", t('validation.onlyPdfAllowed'))
+    .refine((file) => file?.[0]?.size <= 5 * 1024 * 1024, t('validation.maxFileSize')),
 });
 
-type FormValues = z.infer<typeof applySchema>;
+type FormValues = z.infer<ReturnType<typeof getApplySchema>>;
 
 const ApplyForm = () => {
   const locale = (useParams() as { locale?: string })?.locale ?? "en";
+  const t = useTranslations('Careers.ApplyForm');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<FormValues>({
-    resolver: zodResolver(applySchema),
+    resolver: zodResolver(getApplySchema(t)),
     defaultValues: {
       fullName: "",
       email: "",
@@ -67,13 +69,13 @@ const ApplyForm = () => {
       });
 
       if (response.ok) {
-        toast.success("Application submitted successfully!");
+        toast.success(t('messages.success'));
         form.reset();
       } else {
-        toast.error("Failed to submit application.");
+        toast.error(t('messages.failed'));
       }
     } catch (err) {
-      toast.error("Submission error.");
+      toast.error(t('messages.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -91,10 +93,10 @@ const ApplyForm = () => {
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel>{t('fields.fullName')}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter full name"
+                    placeholder={t('placeholders.fullName')}
                     {...field}
                     className="placeholder:text-[#DAE6EA]"
                   />
@@ -108,10 +110,10 @@ const ApplyForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel>{t('fields.email')}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter email"
+                    placeholder={t('placeholders.email')}
                     {...field}
                     className="placeholder:text-[#DAE6EA]"
                   />
@@ -128,10 +130,10 @@ const ApplyForm = () => {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel>{t('fields.phone')}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter phone number"
+                    placeholder={t('placeholders.phone')}
                     {...field}
                     className="placeholder:text-[#DAE6EA]"
                   />
@@ -145,10 +147,10 @@ const ApplyForm = () => {
             name="visaStatus"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Visa Status</FormLabel>
+                <FormLabel>{t('fields.visaStatus')}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="e.g. Visit, Employment"
+                    placeholder={t('placeholders.visaStatus')}
                     {...field}
                     className="placeholder:text-[#DAE6EA]"
                   />
@@ -165,10 +167,10 @@ const ApplyForm = () => {
             name="salaryExpectations"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Salary Expectations</FormLabel>
+                <FormLabel>{t('fields.salaryExpectations')}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="e.g. 10,000 AED"
+                    placeholder={t('placeholders.salaryExpectations')}
                     {...field}
                     className="placeholder:text-[#DAE6EA]"
                   />
@@ -182,7 +184,7 @@ const ApplyForm = () => {
             name="availability"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Availability</FormLabel>
+                <FormLabel>{t('fields.availability')}</FormLabel>
                 <FormControl>
                   <div className="relative">
                     <Input
@@ -203,7 +205,7 @@ const ApplyForm = () => {
           name="resume"
           render={({ field: { onChange, ref } }) => (
             <FormItem>
-              <FormLabel>Attach Resume (PDF, max 5MB)</FormLabel>
+              <FormLabel>{t('fields.resume')}</FormLabel>
               <FormControl>
                 <input
                   type="file"
@@ -222,10 +224,10 @@ const ApplyForm = () => {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
+              {t('buttons.submitting')}
             </>
           ) : (
-            "Submit Application"
+            t('buttons.submit')
           )}
         </Button>
       </form>

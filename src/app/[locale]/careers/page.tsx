@@ -1,8 +1,14 @@
-import CareersPage from '@/pages/CareersPage'
+import CareersHero from '@/components/careers/CareersHero'
+import Jobs from '@/components/careers/Jobs'
+import Perks from '@/components/careers/Perks'
 
 const page = () => {
   return (
-    <CareersPage/>
+    <>
+      <CareersHero/>
+      <Perks/>
+      <Jobs/>
+    </>
   )
 }
 

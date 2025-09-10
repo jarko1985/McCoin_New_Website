@@ -19,7 +19,7 @@ interface Article {
   creator?: string[];
   source_name?: string;
   source_icon?: string;
-  keywords: string[];
+  keywords?: string[] | null;
 }
 
 export default function FintechNews() {
@@ -99,7 +99,7 @@ export default function FintechNews() {
                     {article.source_name || 'Unknown Source'}
                   </span>
                   <div className="flex items-center gap-2">
-                    {article.keywords.slice(0, 2).map((keyword, idx) => (
+                    {article.keywords?.slice(0, 2).map((keyword, idx) => (
                       <Badge key={idx} className="bg-red-500 text-white">
                         {keyword}
                       </Badge>

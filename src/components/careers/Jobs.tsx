@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect, JSX, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,7 +10,7 @@ import {
   Megaphone,
   Headset,
 } from "lucide-react";
-import { availableJobs, popularSearches } from "../../../utils/data";
+import { useTranslations } from 'next-intl';
 
 const iconComponents = {
   Code,
@@ -21,12 +21,16 @@ const iconComponents = {
 };
 
 const Jobs = () => {
+  const t = useTranslations('Careers.Jobs');
+  const availableJobs = useMemo(() => t.raw('available_jobs'), [t]);
+  const popularSearches = useMemo(() => t.raw('popular_searches'), [t]);
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredJobs, setFilteredJobs] = useState(availableJobs);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   useEffect(() => {
-    const results = availableJobs.filter((job) => {
+    const results = availableJobs.filter((job: any) => {
       // First filter by search term
       const matchesSearch =
         searchTerm === "" || // Show all if search is empty
@@ -94,7 +98,7 @@ const Jobs = () => {
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "#07153B" }}
           >
-            Available Jobs
+            {t('title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -102,7 +106,7 @@ const Jobs = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="text-xl md:text-2xl mb-8 text-[#07153B]/80"
           >
-            Search our list of available jobs
+            {t('subtitle')}
           </motion.p>
 
           {/* Search Input */}
@@ -115,7 +119,7 @@ const Jobs = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[#07153B]/70" />
             <Input
               type="text"
-              placeholder="Search jobs..."
+              placeholder={t('search_placeholder')}
               value={searchTerm}
               onChange={handleInputChange}
               className="pl-10 pr-4 py-6 rounded-xl bg-white border border-[#07153B]/20 focus:border-[#EC3B3B] text-[#07153B] placeholder-[#07153B]/50"
@@ -129,9 +133,9 @@ const Jobs = () => {
             transition={{ delay: 0.8, duration: 0.5 }}
             className="mt-6"
           >
-            <p className="text-sm text-[#07153B]/70 mb-3">Popular searches:</p>
+            <p className="text-sm text-[#07153B]/70 mb-3">{t('popular_searches_label')}</p>
             <div className="flex flex-wrap justify-center gap-2">
-              {popularSearches.map((search, index) => (
+              {popularSearches.map((search: string, index: number) => (
                 <motion.button
                   key={index}
                   whileHover={{ scale: 1.05 }}
@@ -153,7 +157,7 @@ const Jobs = () => {
                   onClick={clearFilters}
                   className="px-4 py-2 rounded-full text-sm bg-white hover:bg-[#07153B]/10 border border-[#07153B]/20"
                 >
-                  Clear filters
+{t('clear_filters')}
                 </motion.button>
               )}
             </div>
@@ -165,17 +169,17 @@ const Jobs = () => {
           transition={{ delay: 1, duration: 0.5 }}
           className="mt-12"
         >
-          <h2 className="text-2xl font-semibold mb-6">Current Openings</h2>
+          <h2 className="text-2xl font-semibold mb-6">{t('current_openings')}</h2>
 
           <AnimatePresence>
             {filteredJobs.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredJobs.map((job) => (
-                  <JobCard key={job.id} job={job} />
+                {filteredJobs.map((job: any) => (
+                  <JobCard key={job.id} job={job} t={t} />
                 ))}
               </div>
             ) : (
-              <NoJobsFound clearFilters={clearFilters} />
+              <NoJobsFound clearFilters={clearFilters} t={t} />
             )}
           </AnimatePresence>
         </motion.div>
@@ -186,9 +190,9 @@ const Jobs = () => {
 
 export default Jobs;
 
-const JobCard = ({ job }: { job: (typeof availableJobs)[0] }) => {
+const JobCard = ({ job, t }: { job: any; t: any }) => {
   const IconComponent =
-    iconComponents[job.iconName as keyof typeof iconComponents];
+    iconComponents[job.iconName as keyof typeof iconComponents] || Code;
 
   return (
     <motion.div
@@ -207,9 +211,9 @@ const JobCard = ({ job }: { job: (typeof availableJobs)[0] }) => {
       <p className="text-[#07153B]/80 mb-4">{job.description}</p>
 
       <div className="mb-6">
-        <h4 className="font-medium text-[#07153B] mb-2">Key Skills:</h4>
+        <h4 className="font-medium text-[#07153B] mb-2">{t('key_skills')}</h4>
         <div className="flex flex-wrap gap-2">
-          {job.skills.map((skill, index) => (
+          {job.skills.map((skill: string, index: number) => (
             <span
               key={index}
               className="px-3 py-1 text-xs rounded-full bg-[#DAE6EA] text-[#07153B]"
@@ -225,7 +229,7 @@ const JobCard = ({ job }: { job: (typeof availableJobs)[0] }) => {
         href={`/careers/${job.id}`}
         className="text-[#EC3B3B] font-medium flex items-center gap-1 self-start mt-auto"
       >
-        Apply now
+{t('apply_now')}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -244,18 +248,18 @@ const JobCard = ({ job }: { job: (typeof availableJobs)[0] }) => {
   );
 };
 
-const NoJobsFound = ({ clearFilters }: { clearFilters: () => void }) => (
+const NoJobsFound = ({ clearFilters, t }: { clearFilters: () => void; t: any }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     className="text-center py-12"
   >
-    <p className="text-xl">No jobs match your search criteria.</p>
+    <p className="text-xl">{t('no_jobs_found')}</p>
     <button
       onClick={clearFilters}
       className="mt-4 px-6 py-2 rounded-lg bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white transition-colors"
     >
-      Clear search
+      {t('clear_search')}
     </button>
   </motion.div>
 );

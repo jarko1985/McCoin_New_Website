@@ -7,6 +7,6 @@ export interface NewsItem {
       name: string;
     };
     published_at: string;
-    tags: string[];
+    tags?: string[];
     previewImage:string
   }

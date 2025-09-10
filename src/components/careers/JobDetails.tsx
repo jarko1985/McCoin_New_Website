@@ -5,8 +5,11 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import ShareBanner from "../custom/ShareBanner";
 import ApplyForm from "../forms/ApplyForm";
+import { useTranslations } from 'next-intl';
 
 const JobDetails = ({ job }: { job: any }) => {
+  const t = useTranslations('Careers.JobDetails');
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -19,7 +22,7 @@ const JobDetails = ({ job }: { job: any }) => {
         className="flex items-center text-[#EC3B3B] mb-6 hover:underline"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to all jobs
+{t('back_to_jobs')}
       </Link>
 
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -53,9 +56,9 @@ const JobDetails = ({ job }: { job: any }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                <h2 className="text-2xl font-bold text-[#07153B] mb-4">Job Description</h2>
+                <h2 className="text-2xl font-bold text-[#07153B] mb-4">{t('job_description')}</h2>
                 <div className="prose text-[#07153B]/90">
-                  <p>We're looking for a talented {job.title} to join our growing team. In this role, you'll be responsible for:</p>
+                  <p>{t('description_intro', { title: job.title })}</p>
                   <ul className="space-y-2 mt-4">
                     {job.skills.map((skill: string, index: number) => (
                       <li key={index} className="flex items-start">
@@ -64,7 +67,7 @@ const JobDetails = ({ job }: { job: any }) => {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-6">Our ideal candidate has experience with these technologies and a passion for continuous learning.</p>
+                  <p className="mt-6">{t('description_outro')}</p>
                 </div>
               </motion.div>
 
@@ -74,24 +77,14 @@ const JobDetails = ({ job }: { job: any }) => {
                 transition={{ delay: 0.8 }}
                 className="mt-8"
               >
-                <h2 className="text-2xl font-bold text-[#07153B] mb-4">Requirements</h2>
+                <h2 className="text-2xl font-bold text-[#07153B] mb-4">{t('requirements')}</h2>
                 <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EC3B3B] mt-2 mr-2"></span>
-                    Bachelor's degree in a related field or equivalent experience
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EC3B3B] mt-2 mr-2"></span>
-                    3+ years of professional experience in a similar role
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EC3B3B] mt-2 mr-2"></span>
-                    Strong problem-solving skills and attention to detail
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#EC3B3B] mt-2 mr-2"></span>
-                    Excellent communication and teamwork abilities
-                  </li>
+                  {t.raw('requirements_list').map((requirement: string, index: number) => (
+                    <li key={index} className="flex text-[#07153B] items-start">
+                      <span className="inline-block  w-1.5 h-1.5 rounded-full bg-[#EC3B3B] mt-2 mr-2"></span>
+                      {requirement}
+                    </li>
+                  ))}
                 </ul>
               </motion.div>
             </div>
@@ -104,19 +97,19 @@ const JobDetails = ({ job }: { job: any }) => {
                 transition={{ delay: 1 }}
                 className="bg-[#DAE6EA]/30 p-6 rounded-lg border border-[#07153B]/10"
               >
-                <h3 className="text-lg font-bold text-[#07153B] mb-4">Job Details</h3>
+                <h3 className="text-lg font-bold text-[#07153B] mb-4">{t('job_details')}</h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="text-sm font-medium text-[#07153B]/70">Department</h4>
+                    <h4 className="text-sm font-medium text-[#07153B]/70">{t('department')}</h4>
                     <p className="text-[#07153B]">{job.tags[0]}</p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-[#07153B]/70">Location</h4>
-                    <p className="text-[#07153B]">Remote / Office (Flexible)</p>
+                    <h4 className="text-sm font-medium text-[#07153B]/70">{t('location')}</h4>
+                    <p className="text-[#07153B]">{t('location_value')}</p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-[#07153B]/70">Employment Type</h4>
-                    <p className="text-[#07153B]">Full-time</p>
+                    <h4 className="text-sm font-medium text-[#07153B]/70">{t('employment_type')}</h4>
+                    <p className="text-[#07153B]">{t('employment_type_value')}</p>
                   </div>
                 </div>
               </motion.div>
@@ -127,7 +120,7 @@ const JobDetails = ({ job }: { job: any }) => {
                 transition={{ delay: 1.2 }}
                 className="mt-6"
               >
-                <h3 className="text-lg font-bold text-[#07153B] mb-4">Share this job</h3>
+                <h3 className="text-lg font-bold text-[#07153B] mb-4">{t('share_job')}</h3>
                 <ShareBanner/>
               </motion.div>
             </div>
@@ -140,7 +133,7 @@ const JobDetails = ({ job }: { job: any }) => {
             transition={{ delay: 1.4 }}
             className="mt-16 pt-8 border-t border-[#07153B]/10"
           >
-            <h2 className="text-2xl font-bold text-[#07153B] mb-6">Apply for this position</h2>
+            <h2 className="text-2xl font-bold text-[#07153B] mb-6">{t('apply_position')}</h2>
             <div className="bg-[#DAE6EA]/30 p-8 rounded-lg border border-dashed border-[#07153B]/30 text-center">
               <ApplyForm/>
             </div>

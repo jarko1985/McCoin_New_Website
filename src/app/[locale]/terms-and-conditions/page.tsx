@@ -1,9 +1,14 @@
-import TermsAndConditionsPage from '@/pages/TermsAndConditionsPage'
-import React from 'react'
+import LegalHeader from '@/components/shared/LegalHeader'
+import TermsContent from '@/components/terms-and-conditions/TermsContent';
+import { getTranslations } from 'next-intl/server'
 
-const page = () => {
+const page = async () => {
+  const t = await getTranslations('TermsAndConditions.header')
   return (
-    <TermsAndConditionsPage/>
+    <>
+    <LegalHeader title1={t('title1')} title2={t('title2')} description={t('lastUpdated')}/>
+    <TermsContent/>
+    </>
   )
 }
 

@@ -1155,20 +1155,20 @@
   },
   "Articles": {
     "page": {
-      "loading": "Loading articles...",
+      "loading": "Fetching the latest insights…",
       "error": {
-        "title": "Something went wrong!",
-        "tryAgain": "Try again"
+        "title": "Oops! Something went off-chain.",
+        "tryAgain": "Reload & Retry"
       }
     },
     "hero": {
-      "title": "Articles"
+      "title": "McCoin Articles & Insights"
     },
     "defiNews": {
-      "title": "DeFi & Blockchain"
+      "title": "DeFi & Blockchain Insights"
     },
     "bitcoinNews": {
-      "title": "Bitcoin and other cryptos",
+      "title": "Bitcoin & Beyond",
       "viewMore": "View More",
       "by": "by",
       "tags": "Tags:"
@@ -1189,13 +1189,11 @@
   "MarketSentiment": {
     "page": {
       "title": "Market Sentiment Overview",
-      "description": "Get a pulse on the global crypto market in real time. McCoin's Market Sentiment dashboard aggregates live data from trusted sources to help you gauge whether the market leans bullish or bearish.",
+      "description": "Take the pulse of the crypto market in real time. McCoin’s Market Sentiment Dashboard aggregates trusted data to help you see if the market leans bullish or bearish — clear insights for smarter trading.",
       "disclaimer": {
         "title": "Disclaimer",
         "content": [
-          "The information displayed on this page is provided for general informational purposes only and does not constitute investment advice, financial advice, or trading recommendations.",
-          "Market sentiment indicators are derived from external data sources and automated analysis, which may not always reflect real-time accuracy or completeness",
-          "Please do your own research and consult a licensed financial advisor before making any investment decisions. Trading cryptocurrencies involves high risk and may result in significant financial loss."
+          "The data shown here is for informational purposes only and should not be considered financial advice. Indicators are based on external sources and automated analysis, which may not always reflect complete accuracy. Please do your own research and consult a licensed financial advisor before trading. Cryptocurrency trading carries significant risk."
         ]
       }
     },
@@ -1217,7 +1215,7 @@
       "bearish": "Bearish",
       "bullish": "Bullish",
       "whatIsIndex": "What's Crypto Fear & Greed Index?",
-      "indexDescription": "The index ranges from 0 (Extreme Fear) to 100 (Extreme Greed), reflecting crypto market sentiment. A low value signals over-selling, while a high value warns of a potential market correction. Binance Square combines trading data and unique user behavior insights for a precise overview.",
+      "indexDescription": "The index ranges from 0 (Extreme Fear) to 100 (Extreme Greed), capturing shifts in crypto market sentiment. Low values suggest heavy selling pressure; high values may signal overbought conditions. Data blends trading activity with behavioral insights for a clearer picture of market psychology.",
       "trendingTopics": "Trending Topics"
     },
     "cryptoHeatMap": {
@@ -1233,33 +1231,33 @@
   "Crypto101": {
     "page": {
       "jumpToTopic": "Jump To Topic",
-      "searchTopics": "Search Topics",
-      "searchPlaceholder": "Search topics...",
-      "altText": "BitCoin Image"
+      "searchTopics": "Search Learning Topics",
+      "searchPlaceholder": "Search by keyword...",
+      "altText": "Bitcoin Illustration"
     },
     "popularPosts": {
-      "title": "Popular Posts"
+      "title": "Popular Reads"
     },
     "videoPosts": {
-      "title": "Featured Videos",
+      "title": "Featured Learning Videos",
       "categories": {
         "beginner": "Beginner",
         "intermediate": "Intermediate",
         "advanced": "Advanced"
       },
-      "comments": "comments",
+      "comments": "Comments",
       "videos": {
         "bitcoinFundamentals": {
           "title": "Bitcoin Fundamentals",
-          "description": "Understanding the pioneer cryptocurrency"
+          "description": "Learn the basics of the pioneer cryptocurrency."
         },
         "smartContracts": {
           "title": "Smart Contracts Explained",
-          "description": "How they're revolutionizing agreements"
+          "description": "How self-executing code is changing agreements."
         },
         "defiDeepDive": {
           "title": "DeFi Deep Dive",
-          "description": "Decentralized finance ecosystem"
+          "description": "Inside the decentralized finance ecosystem"
         }
       }
     },
@@ -1269,40 +1267,40 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Bitcoin is the first successful decentralized digital currency, launched in 2009 by the mysterious 'Satoshi Nakamoto'. It enables peer-to-peer money transfers without banks, using a public digital ledger called the blockchain—verified by miners through cryptographic puzzles."
+            "paragraph1": "Bitcoin, launched in 2009 by Satoshi Nakamoto, is the first decentralized digital currency. It enables peer-to-peer transfers without banks, powered by blockchain and cryptographic mining."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "Transactions are batched into blocks and chained immutably. Miners use powerful hardware to solve complex math problems, securing the network and earning newly minted bitcoins. A hard cap of 21 million coins ensures scarcity, reinforcing its value."
+            "paragraph1": "Transactions are grouped into blocks, chained immutably, and secured by miners solving cryptographic puzzles. Scarcity is ensured with a 21 million coin cap."
           },
           "usesAndValue": {
             "heading": "Uses & Value",
-            "paragraph1": "Bitcoin serves multiple roles—as a medium of exchange, store of value, and speculative investment. Its provable scarcity likens it to 'digital gold,' becoming an inflation hedge and drawing both mainstream and institutional investors. It can be used for payments, trading, remittances, and even programmatic finance (via Lightning Network)."
+            "paragraph1": "Bitcoin is a medium of exchange, store of value, and speculative asset. Known as “digital gold,” it’s used for payments, remittances, trading, and as an inflation hedge."
           },
           "volatilityAndRisk": {
             "heading": "Volatility & Risk",
-            "paragraph1": "Bitcoin's price is known for sharp swings—driven by supply and demand, macroeconomics, investor sentiment, and news cycles. It is often labeled high-risk due to volatility, regulatory uncertainty, security exploits (e.g., exchange hacks), and potential environmental issues tied to mining energy use."
+            "paragraph1": "Its price swings sharply due to supply/demand, macroeconomics, sentiment, and news. Risks include volatility, regulation, security exploits, and mining’s environmental cost."
           },
           "regulationAndLegality": {
             "heading": "Regulation & Legality",
-            "paragraph1": "Worldwide, governments are still figuring out Bitcoin's legal status. Some nations embrace it (e.g., El Salvador), while others have banned or restricted it. Regulatory frameworks vary and impact everything from taxation to custody and reporting."
+            "paragraph1": "Legal treatment varies globally. Some nations embrace Bitcoin; others restrict or ban it. Frameworks impact taxation, custody, and reporting."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
             "prosItem1": "Decentralized, censorship-resistant",
-            "prosItem2": "Scarcity enforces value",
+            "prosItem2": "Scarce & valuable",
             "prosItem3": "Transparent & programmable",
-            "prosItem4": "Global, anytime access",
+            "prosItem4": "Global, 24/7 access",
             "consTitle": "Cons",
-            "consItem1": "High price volatility",
+            "consItem1": "High volatility",
             "consItem2": "Energy-intensive mining",
             "consItem3": "Regulatory uncertainty",
-            "consItem4": "Risk of theft or loss"
+            "consItem4": "Theft & loss risk"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "Bitcoin remains the most famous and widely used cryptocurrency. It revolutionized digital money and inspired a massive ecosystem, but it comes with significant trade-offs in risk, scalability, and policy acceptance."
+            "paragraph1": "Bitcoin revolutionized digital money, inspiring an entire ecosystem. It’s powerful but comes with risks and trade-offs in scalability and policy acceptance."
           }
         }
       },
@@ -1311,36 +1309,36 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Blockchain is a decentralized, distributed ledger technology that records transactions across multiple computers in a tamper-proof way. It underpins cryptocurrencies like Bitcoin but has broader applications in finance, supply chain, and digital identity."
+            "paragraph1": "A decentralized ledger that records tamper-proof transactions across many computers. It underpins crypto and has wider applications in finance, supply chain, and identity."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "Data is stored in blocks linked via cryptography, forming an immutable chain. Consensus mechanisms (e.g., Proof of Work, Proof of Stake) validate transactions without a central authority, ensuring security and transparency."
+            "paragraph1": "Blocks are linked cryptographically, validated by consensus (PoW, PoS) without central authority"
           },
           "usesAndValue": {
             "heading": "Uses & Value",
-            "paragraph1": "Beyond cryptocurrencies, blockchain enables smart contracts, supply chain tracking, voting systems, and decentralized data storage. Its trustless nature reduces fraud and middlemen in transactions."
+            "paragraph1": "Beyond crypto: smart contracts, supply chains, voting, decentralized storage…"
           },
           "challenges": {
             "heading": "Challenges",
-            "paragraph1": "Scalability issues (slow transaction speeds), high energy consumption (for PoW chains), regulatory uncertainty, and interoperability between different blockchains remain key hurdles."
+            "paragraph1": "Scalability, energy use, regulatory gray zones, interoperability"
           },
           "regulationAndAdoption": {
             "heading": "Regulation & Adoption",
-            "paragraph1": "Governments and enterprises are exploring blockchain for efficiency gains, but regulations vary widely—some encourage innovation, while others impose strict compliance rules."
+            "paragraph1": "Governments and enterprises test blockchain for efficiency, but legal frameworks vary."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
             "prosItem1": "Decentralized & secure",
-            "prosItem2": "Immutable records",
-            "prosItem3": "Transparent transactions",
-            "prosItem4": "Reduces intermediaries",
+            "prosItem2": "Immutable",
+            "prosItem3": "Transparent",
+            "prosItem4": "Cuts out middlemen",
             "consTitle": "Cons",
-            "consItem1": "Scalability limitations",
+            "consItem1": "Scalability limits",
             "consItem2": "Energy-intensive (PoW)",
-            "consItem3": "Regulatory gray areas",
-            "consItem4": "Complex for mainstream adoption"
+            "consItem3": "Regulatory uncertainty",
+            "consItem4": "Complex adoption"
           },
           "bottomLine": {
             "heading": "Bottom Line",
@@ -1353,23 +1351,23 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Smart contracts are self-executing agreements written in code, deployed on blockchains like Ethereum. They automatically enforce terms when predefined conditions are met, removing the need for intermediaries."
+            "paragraph1": "Smart contracts are self-executing digital agreements coded and deployed on blockchains like Ethereum. Once conditions are met, they run automatically — eliminating middlemen and reducing friction in transactions."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "Developers write contract logic in programming languages (e.g., Solidity), which runs on a blockchain. Once deployed, the contract cannot be altered, and it executes autonomously (e.g., releasing funds after a deadline)."
+            "paragraph1": "Developers program the logic (e.g., in Solidity). Once deployed, the code is immutable and executes autonomously — such as releasing funds after a deadline or verifying ownership of an NFT."
           },
           "usesAndValue": {
             "heading": "Uses & Value",
-            "paragraph1": "Smart contracts power DeFi (loans, trading), NFTs, DAOs, insurance payouts, and supply chain automation. They enable trustless, transparent, and efficient transactions."
+            "paragraph1": "Smart contracts drive decentralized finance (DeFi), enable NFTs and DAOs, automate insurance payouts, and streamline supply chains. They create trustless, transparent, and efficient systems across industries."
           },
           "risksAndLimitations": {
             "heading": "Risks & Limitations",
-            "paragraph1": "Code vulnerabilities can lead to exploits (e.g., reentrancy attacks). Immutability means bugs are hard to fix, and poorly written contracts can lock funds permanently."
+            "paragraph1": "Bugs in the code can lead to exploits like reentrancy attacks. Immutability means errors are permanent. Poorly written contracts risk locking funds or exposing vulnerabilities. Scalability also remains a challenge."
           },
           "regulationAndLegality": {
             "heading": "Regulation & Legality",
-            "paragraph1": "Legal recognition varies—some jurisdictions treat them as binding, while others lack frameworks. Regulatory clarity is still evolving."
+            "paragraph1": "Legal recognition differs by jurisdiction. Some treat smart contracts as binding agreements, while others lack clear frameworks. Regulation continues to evolve globally."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
@@ -1377,16 +1375,16 @@
             "prosItem1": "Trustless automation",
             "prosItem2": "Reduces costs & delays",
             "prosItem3": "Tamper-proof execution",
-            "prosItem4": "Enables complex DeFi/NFTs",
+            "prosItem4": "Enables complex DeFi/NFT ecosystems",
             "consTitle": "Cons",
             "consItem1": "Irreversible if flawed",
-            "consItem2": "Coding expertise required",
+            "consItem2": "Requires coding expertise",
             "consItem3": "Scalability issues",
-            "consItem4": "Unclear legal status"
+            "consItem4": "Unclear or inconsistent legal status"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "Smart contracts revolutionize agreements but require rigorous auditing and clearer regulations to achieve mainstream use."
+            "paragraph1": "Smart contracts are revolutionizing agreements, but widespread adoption depends on stronger auditing standards, developer diligence, and clearer regulation. They hold immense promise as the backbone of decentralized economies."
           }
         }
       },
@@ -1395,40 +1393,40 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "A crypto wallet stores private keys to access and manage cryptocurrencies on a blockchain. It doesn't hold coins but secures the keys needed to sign transactions."
+            "paragraph1": "A crypto wallet stores the private keys that allow you to access and manage your digital assets. It doesn’t hold the coins themselves, but secures the cryptographic keys needed to sign and confirm transactions on the blockchain."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "Wallets generate key pairs (public/private). Public keys act as addresses to receive funds; private keys authorize spending. Types include hot wallets (online) and cold wallets (offline, e.g., hardware)."
+            "paragraph1": "Wallets generate two keys: a public key (your receiving address) and a private key (your digital signature). Public keys let you receive funds, while private keys authorize spending. Wallets can be hot (online) for convenience or cold (offline hardware) for maximum security."
           },
           "typesAndUses": {
             "heading": "Types & Uses",
-            "paragraph1": "Software wallets (MetaMask, Trust Wallet) are convenient for daily use. Hardware wallets (Ledger, Trezor) offer maximum security. Custodial wallets (exchanges) manage keys for users but introduce counterparty risk."
+            "paragraph1": "1.Software wallets (like MetaMask, Trust Wallet) are user-friendly for daily transactions.2.Hardware wallets (Ledger, Trezor) offer top-tier security for long-term holding.3. Custodial wallets (on exchanges) manage keys on your behalf but introduce counterparty risk."
           },
           "securityRisks": {
             "heading": "Security Risks",
-            "paragraph1": "Lost private keys mean lost funds forever. Phishing, malware, and exchange hacks are common threats. Self-custody wallets shift responsibility to users."
+            "paragraph1": "Losing your private keys means losing your funds forever. Threats include phishing, malware, and exchange hacks. With self-custody wallets, full responsibility rests with the user."
           },
           "regulationAndRecovery": {
             "heading": "Regulation & Recovery",
-            "paragraph1": "Some jurisdictions mandate KYC for custodial wallets. Recovery options (seed phrases) are critical—no centralized entity can restore access."
+            "paragraph1": "Some regions require custodial wallets to comply with KYC regulations. Recovery methods like seed phrases are essential; Without them, lost access cannot be restored by any central authority."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
             "prosItem1": "Full control over assets",
-            "prosItem2": "Supports multiple cryptos",
-            "prosItem3": "Enables DeFi/NFT access",
-            "prosItem4": "No bank dependency",
+            "prosItem2": "Supports multiple cryptocurrencies",
+            "prosItem3": "Enables access to DeFi & NFTs",
+            "prosItem4": "No reliance on banks",
             "consTitle": "Cons",
-            "consItem1": "Irreversible mistakes",
-            "consItem2": "Target for hackers",
-            "consItem3": "Technical learning curve",
-            "consItem4": "No customer support"
+            "consItem1": "Irreversible mistakes, especially if keys are lost",
+            "consItem2": "Attractive target for hackers",
+            "consItem3": "Technical learning curve for beginners",
+            "consItem4": "No built-in customer support"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "Crypto wallets are essential for blockchain interaction but demand careful security practices to avoid loss or theft."
+            "paragraph1": "Crypto wallets are essential tools for blockchain interaction, giving users control and independence. But they also demand careful security practices and responsibility; your keys, your coins."
           }
         }
       },
@@ -1437,40 +1435,40 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Decentralized Finance (DeFi) is a blockchain-based financial system that eliminates intermediaries like banks. It uses smart contracts to enable lending, borrowing, trading, and earning interest."
+            "paragraph1": "Decentralized Finance (DeFi) is a blockchain-powered financial system that removes intermediaries like banks. Through smart contracts, it enables lending, borrowing, trading, and earning interest — all without traditional gatekeepers."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "DeFi apps (DApps) run on blockchains (mostly Ethereum). Users interact via wallets, supplying liquidity or collateral to earn yields or take loans without credit checks."
+            "paragraph1": "DeFi apps (DApps) run on blockchains such as Ethereum. Users interact through wallets, providing liquidity or collateral to earn yields, trade assets, or secure loans — no credit checks required."
           },
           "keyComponents": {
             "heading": "Key Components",
-            "paragraph1": "Includes protocols like AMMs (Uniswap), lending platforms (Aave), stablecoins (DAI), and yield aggregators. DAOs govern many projects democratically."
+            "paragraph1": "DeFi is built on protocols like automated market makers (AMMs) such as Uniswap, lending platforms like Aave, stablecoins such as DAI, and yield aggregators. Many are governed by decentralized autonomous organizations (DAOs)."
           },
           "risksAndChallenges": {
             "heading": "Risks & Challenges",
-            "paragraph1": "Smart contract bugs, impermanent loss (in liquidity pools), regulatory crackdowns, and Ponzi-like schemes ('rug pulls') pose significant risks."
+            "paragraph1": "DeFi carries notable risks: smart contract bugs, impermanent loss in liquidity pools, scams like “rug pulls,” and regulatory crackdowns. These challenges require careful risk management and due diligence."
           },
           "regulationAndAdoption": {
             "heading": "Regulation & Adoption",
-            "paragraph1": "DeFi operates in a regulatory gray zone. Governments are scrutinizing it for compliance with anti-money laundering (AML) and investor protection laws."
+            "paragraph1": "DeFi currently exists in a regulatory gray zone. Governments are scrutinizing platforms for compliance with anti-money laundering (AML) standards and investor protection laws, shaping the path to wider adoption."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
-            "prosItem1": "Permissionless access",
+            "prosItem1": "Open and permissionless access",
             "prosItem2": "High yield opportunities",
             "prosItem3": "Transparent operations",
             "prosItem4": "Global inclusivity",
             "consTitle": "Cons",
             "consItem1": "High volatility & risk",
-            "consItem2": "No consumer protections",
-            "consItem3": "Complex for beginners",
-            "consItem4": "Regulatory uncertainty"
+            "consItem2": "No formal consumer protections",
+            "consItem3": "Complex and intimidating for beginners",
+            "consItem4": "Unclear and evolving regulation"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "DeFi disrupts traditional finance but remains experimental, requiring caution and due diligence from users."
+            "paragraph1": "DeFi is reshaping traditional finance by offering open and programmable alternatives. But it remains experimental, requiring users to balance opportunity with caution."
           }
         }
       },
@@ -1479,40 +1477,40 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Non-Fungible Tokens (NFTs) are unique digital assets verified by blockchain, representing ownership of art, collectibles, virtual real estate, or even identity credentials."
+            "paragraph1": "Non-Fungible Tokens (NFTs) are unique digital assets recorded on a blockchain. They prove ownership of art, collectibles, music, gaming items, or even identity credentials, making each token distinct and irreplaceable."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "NFTs are minted on blockchains (e.g., Ethereum, Solana) using smart contracts. Each has a distinct ID and metadata, making it irreplaceable and provably scarce."
+            "paragraph1": "NFTs are minted on blockchains like Ethereum or Solana through smart contracts. Each token carries a unique ID and metadata, which certify authenticity and scarcity. Unlike cryptocurrencies, NFTs are not interchangeable — each represents a one-of-a-kind asset."
           },
           "usesAndValue": {
             "heading": "Uses & Value",
-            "paragraph1": "Beyond digital art (e.g., CryptoPunks), NFTs enable gaming items, music royalties, event tickets, and tokenized real-world assets. They empower creators with resale royalties."
+            "paragraph1": "Beyond digital art, NFTs are used for gaming assets, event tickets, music royalties, and tokenized real-world property. They empower creators with resale royalties and give collectors a way to own provably scarce items."
           },
           "risksAndLimitations": {
             "heading": "Risks & Criticism",
-            "paragraph1": "Speculative bubbles, copyright infringement, environmental concerns (PoW blockchains), and scams (fake collections) are major issues. Many NFTs lose value over time."
+            "paragraph1": "NFTs face issues like speculative bubbles, copyright infringement, scams (fake collections), and environmental concerns linked to Proof-of-Work chains. Many NFTs also lose value quickly outside hype cycles."
           },
           "regulationAndLegality": {
             "heading": "Regulation & Legality",
-            "paragraph1": "Copyright laws struggle to adapt. Tax authorities treat NFTs as taxable assets. Some platforms enforce creator royalties, while others abandon them."
+            "paragraph1": "Legal clarity around NFTs is still emerging. Copyright protection and taxation vary across jurisdictions. Some platforms enforce royalties for creators, while others have phased them out."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
-            "prosItem1": "Proves digital ownership",
-            "prosItem2": "New revenue for creators",
-            "prosItem3": "Interoperable utility",
-            "prosItem4": "Collectible value",
+            "prosItem1": "Verifiable proof of digital ownership",
+            "prosItem2": "New revenue streams for creators",
+            "prosItem3": "Interoperability across platforms",
+            "prosItem4": "Collectible and cultural value",
             "consTitle": "Cons",
-            "consItem1": "Highly speculative",
-            "consItem2": "Environmental impact",
-            "consItem3": "Copyright disputes",
-            "consItem4": "Market saturation"
+            "consItem1": "Highly speculative and volatile market",
+            "consItem2": "Environmental footprint",
+            "consItem3": "Copyright and intellectual property disputes",
+            "consItem4": "Oversupply and market saturation"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "NFTs redefine digital ownership but face sustainability and legitimacy challenges beyond hype cycles."
+            "paragraph1": "NFTs redefine digital ownership and open new opportunities for creators and communities. Yet, their long-term value depends on overcoming sustainability, legal, and market challenges."
           }
         }
       },
@@ -1521,40 +1519,40 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Crypto exchanges are platforms where users buy, sell, and trade cryptocurrencies. They can be centralized (CEXs like Binance) or decentralized (DEXs like Uniswap)."
+            "paragraph1": "Crypto exchanges are platforms where users buy, sell, and trade cryptocurrencies. They come in two forms: centralized exchanges (CEXs) like Binance, and decentralized exchanges (DEXs) like Uniswap."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "CEXs act as intermediaries, holding user funds and matching orders. DEXs use smart contracts for peer-to-peer trading without custody. Both offer spot, futures, and margin trading."
+            "paragraph1": "CEXs act as intermediaries, holding user funds and matching orders through their infrastructure. In contrast, DEXs rely on smart contracts to enable peer-to-peer trading without custodianship. Both offer trading options such as spot, futures, and margin."
           },
           "typesAndUses": {
             "heading": "Types & Features",
-            "paragraph1": "CEXs provide liquidity, fiat onboarding, and customer support but require KYC. DEXs prioritize privacy and control but lack reversibility for errors."
+            "paragraph1": "CEXs provide liquidity, fiat onboarding, user-friendly interfaces, and customer support, but require KYC verification. DEXs prioritize privacy, self-custody, and open access, though they lack centralized safeguards and reversibility for mistakes."
           },
           "securityRisks": {
             "heading": "Risks & Security",
-            "paragraph1": "CEXs are targets for hacks (e.g., Mt. Gox). Users risk losing funds if the exchange collapses (e.g., FTX). DEXs face smart contract risks and slippage."
+            "paragraph1": "Centralized exchanges are prime targets for hacks (e.g., Mt. Gox, FTX). Users risk losing funds if an exchange collapses. DEXs face smart contract vulnerabilities, liquidity issues, and risks like slippage."
           },
           "regulationAndRecovery": {
             "heading": "Regulation & Compliance",
-            "paragraph1": "CEXs must comply with local laws (AML/CFT). Regulatory crackdowns can limit services. DEXs face pressure to censor or adopt KYC measures."
+            "paragraph1": "CEXs must comply with local regulations, including anti-money laundering (AML) and counter-terrorism financing (CFT) laws. DEXs are under growing scrutiny as governments push for accountability and potential KYC integration."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
             "prosItem1": "High liquidity (CEXs)",
-            "prosItem2": "User-friendly interfaces",
-            "prosItem3": "Fiat integration",
+            "prosItem2": "Easy-to-use interfaces",
+            "prosItem3": "Fiat currency integration",
             "prosItem4": "Advanced trading tools",
             "consTitle": "Cons",
-            "consItem1": "Custodial risks (CEXs)",
-            "consItem2": "KYC requirements",
-            "consItem3": "DEX complexity",
-            "consItem4": "Regulatory instability"
+            "consItem1": "Custodial risks on CEXs",
+            "consItem2": "KYC requirements may limit access",
+            "consItem3": "Complexity of DEX interfaces",
+            "consItem4": "Regulatory uncertainty"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "Exchanges are gateways to crypto markets but require careful selection based on security, fees, and regulatory compliance."
+            "paragraph1": "Exchanges are the entry point to the crypto economy, but selecting the right one requires balancing convenience, security, fees, and regulatory safeguards."
           }
         }
       },
@@ -1563,40 +1561,40 @@
         "sections": {
           "overview": {
             "heading": "Overview",
-            "paragraph1": "Mining is the process of validating transactions and securing Proof-of-Work (PoW) blockchains like Bitcoin. Miners compete to solve cryptographic puzzles, earning rewards in new coins."
+            "paragraph1": "Crypto mining is the process of validating transactions and securing Proof-of-Work (PoW) blockchains like Bitcoin. Miners compete to solve cryptographic puzzles, and the winner earns newly minted coins plus transaction fees."
           },
           "howItWorks": {
             "heading": "How It Works",
-            "paragraph1": "Miners bundle transactions into blocks, using ASICs or GPUs to find a valid hash. The first to succeed adds the block to the chain and receives block rewards + fees."
+            "paragraph1": "Miners bundle pending transactions into blocks. Using specialized hardware such as ASICs or GPUs, they attempt to find a valid hash. The first to solve it adds the block to the blockchain and receives the block reward alongside transaction fees."
           },
           "usesAndValue": {
             "heading": "Economics & Incentives",
-            "paragraph1": "Profitability depends on hardware efficiency, electricity costs, and coin prices. Halvings (e.g., Bitcoin's 4-year reward cuts) reduce inflation over time."
+            "paragraph1": "Profitability depends on hardware efficiency, electricity costs, and coin prices. Bitcoin halving events — which cut block rewards roughly every four years — reduce inflation and shape miner incentives over time."
           },
           "challenges": {
             "heading": "Challenges & Criticism",
-            "paragraph1": "High energy consumption leads to environmental concerns. Centralization risks arise as industrial miners dominate. ASICs make home mining unviable for many coins."
+            "paragraph1": "Mining is highly energy-intensive, raising environmental concerns. Centralization risks also emerge as large-scale industrial mining outpaces individual miners. The high cost of equipment and power makes home mining difficult for most people."
           },
           "regulationAndAdoption": {
             "heading": "Alternatives (PoS, etc.)",
-            "paragraph1": "Proof-of-Stake (PoS) chains (e.g., Ethereum 2.0) replace mining with staking, reducing energy use. Other models include Proof-of-Space or hybrid systems."
+            "paragraph1": "To address sustainability issues, newer blockchains adopt Proof-of-Stake (PoS), where validators secure networks by staking tokens instead of consuming energy. Other models like Proof-of-Space or hybrid systems also explore greener consensus mechanisms."
           },
           "prosAndCons": {
             "heading": "Pros & Cons",
             "prosTitle": "Pros",
             "prosItem1": "Secures decentralized networks",
-            "prosItem2": "Incentivizes participation",
-            "prosItem3": "Decentralized issuance",
-            "prosItem4": "Open to anyone (initially)",
+            "prosItem2": "Incentivizes participation through rewards",
+            "prosItem3": "Enables decentralized coin issuance",
+            "prosItem4": "Initially open to anyone with hardware",
             "consTitle": "Cons",
-            "consItem1": "Energy-intensive",
-            "consItem2": "Hardware/energy costs",
-            "consItem3": "Centralization trends",
-            "consItem4": "Environmental backlash"
+            "consItem1": "Energy-intensive and environmentally costly",
+            "consItem2": "High hardware and electricity expenses",
+            "consItem3": "Increasing mining centralization",
+            "consItem4": "Public and regulatory backlash"
           },
           "bottomLine": {
             "heading": "Bottom Line",
-            "paragraph1": "Mining is vital for PoW blockchains but faces sustainability and scalability challenges, driving shifts toward greener consensus models."
+            "paragraph1": "Mining remains vital for Proof-of-Work blockchains like Bitcoin, but its future faces sustainability and scalability challenges. Greener alternatives such as Proof-of-Stake are reshaping how networks are secured."
           }
         }
       },
@@ -1622,7 +1620,44 @@
         "title": "Crypto Mining Demystified"
       },
       "crypto-safety": {
-        "title": "How to Stay Safe in Crypto"
+        "title": "How to Stay Safe in Crypto",
+        "sections": {
+          "overview": {
+            "heading": "Overview",
+            "paragraph1": "Crypto offers freedom and opportunity; but also unique risks. Staying safe requires understanding threats, using the right tools, and practicing good security habits."
+          },
+          "howItWorks": {
+            "heading": "How It Works",
+            "paragraph1": "Miners bundle pending transactions into blocks. Using specialized hardware such as ASICs or GPUs, they attempt to find a valid hash. The first to solve it adds the block to the blockchain and receives the block reward alongside transaction fees."
+          },
+          "usesAndValue": {
+            "heading": "Economics & Incentives",
+            "paragraph1": "Profitability depends on hardware efficiency, electricity costs, and coin prices. Bitcoin halving events — which cut block rewards roughly every four years — reduce inflation and shape miner incentives over time."
+          },
+          "challenges": {
+            "heading": "Challenges & Criticism",
+            "paragraph1": "Mining is highly energy-intensive, raising environmental concerns. Centralization risks also emerge as large-scale industrial mining outpaces individual miners. The high cost of equipment and power makes home mining difficult for most people."
+          },
+          "regulationAndAdoption": {
+            "heading": "Alternatives (PoS, etc.)",
+            "paragraph1": "To address sustainability issues, newer blockchains adopt Proof-of-Stake (PoS), where validators secure networks by staking tokens instead of consuming energy. Other models like Proof-of-Space or hybrid systems also explore greener consensus mechanisms."
+          },
+          "prosAndCons": {
+            "heading": "Pros & Cons",
+            "prosTitle": "Pros",
+            "prosItem1": "Full control over your assets",
+            "prosItem2": "No reliance on third parties",
+            "prosItem3": "Privacy and independence",
+            "consTitle": "Cons",
+            "consItem1": "Total responsibility lies with you",
+            "consItem2": "Irrecoverable if keys are lost",
+            "consItem3": "Steeper learning curve for beginners"
+          },
+          "bottomLine": {
+            "heading": "Bottom Line",
+            "paragraph1": "In crypto, safety equals sovereignty. With the right precautions, you can enjoy the benefits of decentralization while minimizing risks. Always remember: your keys, your coins."
+          }
+        }
       }
     }
   },
@@ -1940,6 +1975,562 @@
         "tag1": "beginner",
         "tag2": "guide",
         "tag3": "basics"
+      }
+    }
+  },
+  "PrivacyPolicy": {
+    "header": {
+      "title1": "MCCOIN",
+      "title2": "PRIVACY NOTICE",
+      "lastUpdated": "Last updated: 08 September 2025"
+    },
+    "introduction": {
+      "title": "Introduction:",
+      "content": "At McCoin Virtual Assets LLC (\"McCoin\", \"we\", \"our\", or \"us\"), we are committed to respecting your privacy and safeguarding the personal data you provide when using our services. This Privacy Policy outlines how we collect, store, process, and protect your personal information in compliance with the latest Financial Action Task Force (FATF) recommendations, the UAE Data Protection Law (2021), and the Virtual Assets Regulatory Authority (VARA) regulations. We are dedicated to maintaining transparency regarding how we handle your personal information and ensuring that we adhere to global standards for privacy, security, and legal compliance. By using our services, you consent to the practices described in this Privacy Policy. If you disagree with any part of this policy, we recommend that you refrain from using our services."
+    },
+    "downloadPdf": "Download PDF",
+    "sections": {
+      "section1": {
+        "title": "Information We Collect",
+        "description": "We collect the following types of personal information to provide our services, comply with regulatory obligations, and improve your user experience:",
+        "subsections": {
+          "personalIdentification": {
+            "title": "Personal Identification Information",
+            "bullets": {
+              "fullName": "Full Name: First and last name",
+              "dateOfBirth": "Date of Birth: To ensure you meet age-related requirements",
+              "nationality": "Nationality: For KYC (Know Your Customer) and regulatory compliance",
+              "contactInfo": "Contact Information: Email address, phone number, physical address"
+            }
+          },
+          "financialInfo": {
+            "title": "Financial Information",
+            "bullets": {
+              "bankDetails": "Bank Details: Including bank account numbers and payment methods",
+              "paymentInfo": "Payment Information: Credit card details, payment history, and virtual asset wallet addresses",
+              "transactionHistory": "Transaction History: Details of virtual asset purchases, sales, transfers, and exchanges"
+            }
+          },
+          "identityVerification": {
+            "title": "Identity Verification Information (for KYC/AML compliance)",
+            "bullets": {
+              "governmentIds": "Government-Issued IDs: Passport, national ID card, or driving license",
+              "proofOfAddress": "Proof of Address: Utility bills, bank statements, or official documents",
+              "biometricData": "Biometric Data: If required for identity verification (e.g., facial recognition, fingerprints)"
+            }
+          },
+          "deviceUsage": {
+            "title": "Device and Usage Data",
+            "bullets": {
+              "ipAddress": "IP Address: To detect and prevent fraud, and to improve security",
+              "browserDevice": "Browser and Device Information: Including device type, operating system, and web browser",
+              "cookiesTracking": "Cookies and Tracking Data: For analytics, user experience improvement, and personalization"
+            }
+          }
+        }
+      },
+      "section2": {
+        "title": "How We Use Your Information",
+        "description": "We use the collected personal data for the following purposes:",
+        "subsections": {
+          "provideServices": {
+            "title": "A. To Provide Our Services",
+            "bullets": {
+              "facilitateAccess": "Facilitate your access to and use of our platform",
+              "processTransactions": "Process transactions involving virtual assets and related activities (purchases, transfers, exchanges)",
+              "accountManagement": "Provide account management and customer support"
+            }
+          },
+          "legalCompliance": {
+            "title": "B. To Comply with Legal and Regulatory Requirements",
+            "bullets": {
+              "kyc": "Know Your Customer (KYC): Collect and verify your identity to prevent fraud and comply with AML (Anti-Money Laundering) and CTF (Counter-Terrorism Financing) obligations as per FATF and VARA regulations.",
+              "amlCtf": "AML & CTF Compliance: Monitor transactions for signs of suspicious activity and report any unusual or potentially illicit activities to the appropriate regulatory bodies, as required by UAE law and FATF guidelines.",
+              "transactionMonitoring": "Transaction Monitoring: Conduct ongoing surveillance of your financial activity to detect and prevent money laundering or terrorist financing.",
+              "regulatoryReporting": "Regulatory Reporting: Share your data with regulatory authorities if required by law or under legal processes such as subpoenas or court orders."
+            }
+          },
+          "improveSecurity": {
+            "title": "C. To Improve Security",
+            "bullets": {
+              "enhanceSecurity": "Enhance the security of your account by identifying and mitigating potential threats or breaches",
+              "useEncryption": "Use encryption to protect sensitive personal and financial data",
+              "fraudDetection": "Implement fraud detection systems"
+            }
+          },
+          "communicate": {
+            "title": "D. To Communicate with You",
+            "bullets": {
+              "essentialNotifications": "Send you essential notifications (e.g., transaction confirmations, account activity, system updates)",
+              "serviceUpdates": "Provide updates about our services, promotions, or news, only if you have opted in for marketing communications"
+            }
+          }
+        },
+        "summary": "All data usage complies with UAE Data Protection Law (2021) and FATF recommendations."
+      },
+      "section3": {
+        "title": "Data Retention Policy",
+        "description": "We retain your personal data for as long as necessary to fulfill the purposes outlined in this Privacy Policy and to comply with regulatory requirements:",
+        "subsections": {
+          "identityVerification": {
+            "title": "Identity Verification Data",
+            "bullets": {
+              "kycDocuments": "KYC documents and verification data will be retained for a minimum of five (5) years after the termination of our relationship with you, in compliance with FATF's recommendation on record-keeping for AML/CTF purposes."
+            }
+          },
+          "transactionRecords": {
+            "title": "Transaction Records",
+            "bullets": {
+              "transactionData": "We retain data related to virtual asset transactions, including wallet addresses, transaction amounts, and dates, for a minimum of five (5) years as required by UAE law and VARA regulations."
+            }
+          },
+          "accountInfo": {
+            "title": "Account Information",
+            "bullets": {
+              "accountData": "Account data may be retained until you request deletion or termination of your account, subject to legal retention requirements."
+            }
+          }
+        }
+      },
+      "section4": {
+        "title": "Sharing and Disclosure of Your Information",
+        "description": "We may share your personal data in the following scenarios:",
+        "subsections": {
+          "serviceProviders": {
+            "title": "A. Service Providers",
+            "bullets": {
+              "thirdPartyProviders": "We may engage third-party service providers to support our business operations, such as payment processors, customer service platforms, fraud prevention tools, and identity verification services. These service providers may have access to your personal information, but only to the extent necessary to perform their tasks on our behalf."
+            }
+          },
+          "regulatoryAuthorities": {
+            "title": "B. Regulatory Authorities and Law Enforcement",
+            "bullets": {
+              "disclosureToAuthorities": "We may disclose your information to UAE regulatory bodies, including VARA, the UAE Central Bank, or other governmental agencies, if required by law or to comply with legal obligations such as AML/CTF regulations. This may also include disclosures to law enforcement agencies if requested under applicable legal processes."
+            }
+          },
+          "businessTransactions": {
+            "title": "C. Business Transactions",
+            "bullets": {
+              "mergerAcquisition": "In the event of a merger, acquisition, or sale of assets, your personal information may be transferred as part of the transaction. We will ensure that any acquiring entity adheres to this Privacy Policy."
+            }
+          },
+          "legalCompliance": {
+            "title": "D. Other Legal Compliance",
+            "bullets": {
+              "legalRights": "We may disclose your personal data in cases where it is necessary to protect our legal rights, defend against legal claims, or fulfill our obligations under applicable laws or regulations."
+            }
+          }
+        }
+      },
+      "section5": {
+        "title": "Security of Your Data",
+        "description": "We implement robust security measures to protect your personal data:",
+        "subsections": {
+          "securityMeasures": {
+            "bullets": {
+              "encryption": "Encryption: Sensitive data such as financial and identity information is encrypted both during transmission and while stored.",
+              "accessControl": "Access Control: Access to your personal data is restricted to authorized personnel only, and we use multi-factor authentication (MFA) to enhance account security.",
+              "regularAudits": "Regular Audits: We perform regular security audits and assessments to identify and mitigate any vulnerabilities."
+            }
+          }
+        },
+        "summary": "While we take reasonable measures to safeguard your personal information, no security system is 100% secure. We cannot guarantee the absolute security of your data."
+      },
+      "section6": {
+        "title": "Your Rights Under UAE Data Protection Law",
+        "description": "As per the UAE Data Protection Law (2021) and other applicable regulations, you have the following rights:",
+        "subsections": {
+          "userRights": {
+            "bullets": {
+              "rightToAccess": "Right to Access: You may request access to the personal data we hold about you.",
+              "rightToRectification": "Right to Rectification: You have the right to correct any inaccurate or incomplete data.",
+              "rightToDeletion": "Right to Deletion: You may request that we delete your personal data, subject to legal retention obligations.",
+              "rightToObject": "Right to Object or Restrict Processing: You may object to the processing of your personal data or request restrictions on how it is used.",
+              "rightToPortability": "Right to Data Portability: You may request a copy of your data in a structured, commonly used, and machine-readable format.",
+              "rightToWithdraw": "Right to Withdraw Consent: Where we rely on consent for processing, you can withdraw your consent at any time."
+            }
+          }
+        },
+        "summary": "To exercise any of these rights, please contact us at the contact details provided below."
+      },
+      "section7": {
+        "title": "Cookies and Tracking Technologies",
+        "description": "We use cookies and similar technologies to enhance your experience on our platform:",
+        "subsections": {
+          "cookiesInfo": {
+            "bullets": {
+              "cookiesPurpose": "Cookies allow us to remember your preferences and offer personalized services.",
+              "consentToCookies": "By using our platform, you consent to our use of cookies as described in this Privacy Policy.",
+              "cookieControl": "You may control cookies through your browser settings, but please note that disabling cookies may affect the functionality of our platform."
+            }
+          }
+        }
+      },
+      "section8": {
+        "title": "Compliance with FATF, UAE, and VARA Regulations",
+        "description": "As a licensed virtual asset service provider, McCoin Virtual Assets LLC adheres to the Financial Action Task Force (FATF) guidelines on Anti-Money Laundering (AML) and Counter-Terrorism Financing (CTF). This includes:",
+        "subsections": {
+          "complianceInfo": {
+            "bullets": {
+              "kycCompliance": "Know Your Customer (KYC): We collect and verify your identity, address, and other relevant details before allowing you to transact on our platform.",
+              "transactionMonitoring": "Transaction Monitoring: We continuously monitor transactions for suspicious activity and comply with FATF's requirements on reporting such activities.",
+              "amlCtfProcedures": "AML & CTF Procedures: We use advanced tools and processes to detect and prevent money laundering and financing of terrorism in alignment with FATF's 40 recommendations.",
+              "varaCompliance": "Compliance with VARA Regulations: As per VARA's guidelines, we ensure that virtual asset services we provide are compliant with UAE regulations for data protection, financial security, and consumer protection."
+            }
+          }
+        }
+      },
+      "section9": {
+        "title": "Changes to This Privacy Policy",
+        "description": "We reserve the right to update or amend this Privacy Policy from time to time:",
+        "subsections": {
+          "policyChanges": {
+            "bullets": {
+              "updatesReflect": "Updates will reflect changes in our practices, legal requirements, or technological advancements.",
+              "updatesPosted": "Any updates will be posted on this page, and the effective date will be revised accordingly.",
+              "checkPeriodically": "Please check this page periodically for the latest information."
+            }
+          }
+        }
+      },
+      "section10": {
+        "title": "Contact Us",
+        "description": "If you have any questions about this Privacy Policy or how we handle your personal data, or if you wish to exercise your rights under this policy, please contact us at:",
+        "subsections": {
+          "contactInfo": {
+            "bullets": {
+              "companyName": "McCoin Virtual Assets LLC",
+              "email": "Email: compliance@mccoin.com",
+              "phone": "Phone: 0585798074"
+            }
+          }
+        }
+      }
+    }
+  },
+  "TermsAndConditions": {
+    "header": {
+      "title1": "MCCOIN",
+      "title2": "TERMS OF USE",
+      "lastUpdated": "Last Updated: 02 September 2025 | Effective Date: 20 October 2025"
+    },
+    "downloadPdf": "Download PDF",
+    "sections": {
+      "section1": {
+        "title": "1. Acceptance of Terms",
+        "description": "By accessing or using the MCcoin Cryptocurrency Exchange platform (\"MCcoin\" or \"the Platform\"), you agree to comply with and be bound by the following Terms and Conditions (\"Terms\"). If you do not agree to these Terms, please do not use the platform."
+      },
+      "section2": {
+        "title": "2. User Eligibility",
+        "description": "To use the MCcoin platform, you must be of legal age in your jurisdiction and comply with all applicable laws and regulations. By accessing the platform, you confirm that you meet these eligibility requirements."
+      },
+      "section3": {
+        "title": "3. Account Registration",
+        "description": "To access certain features of the platform, you may be required to register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete."
+      },
+      "section4": {
+        "title": "4. Security and Confidentiality",
+        "description": "You are responsible for maintaining the confidentiality of your account information, including your password and any 2FA credentials. You agree to notify MCcoin immediately of any unauthorized use of your account or any other breach of security."
+      },
+      "section5": {
+        "title": "5. Trading Risks",
+        "description": "Cryptocurrency trading involves risks, and prices can be highly volatile. MCcoin does not guarantee profits, and users are advised to conduct their own research and seek financial advice before making any trading decisions."
+      },
+      "section6": {
+        "title": "6. Compliance with Laws",
+        "description": "Users are responsible for complying with all local and international laws and regulations applicable to their use of the MCcoin platform. MCcoin reserves the right to refuse service to anyone at its discretion."
+      },
+      "section7": {
+        "title": "7. User Conduct",
+        "description": "Users agree not to engage in any activity that may disrupt the operation of the platform or compromise its security. Prohibited activities include, but are not limited to, hacking, fraud, market manipulation, and any other illegal or unethical conduct."
+      },
+      "section8": {
+        "title": "8. KYC Verification",
+        "description": "MCcoin may require users to undergo Know Your Customer (KYC) verification for security and regulatory compliance. Users agree to provide accurate and complete information during the verification process."
+      },
+      "section9": {
+        "title": "9. Fees and Charges",
+        "description": "Users are responsible for understanding and paying any fees associated with their use of the platform. MCcoin reserves the right to modify fee structures and introduce new fees with prior notice."
+      },
+      "section10": {
+        "title": "10. Termination of Services",
+        "description": "MCcoin reserves the right to terminate or suspend your account and access to the platform at its discretion, with or without cause, and with or without notice."
+      },
+      "section11": {
+        "title": "11. Intellectual Property",
+        "description": "All intellectual property rights related to the MCcoin platform, including but not limited to trademarks, logos, and software, are the property of MCcoin. Users agree not to use, reproduce, or distribute any intellectual property without the express written consent of MCcoin."
+      },
+      "section12": {
+        "title": "12. Limitation of Liability",
+        "description": "MCcoin is not liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of the platform."
+      },
+      "section13": {
+        "title": "13. Amendments to Terms",
+        "description": "MCcoin reserves the right to modify these Terms at any time. Users will be notified of any changes, and continued use of the platform after such modifications constitutes acceptance of the updated Terms."
+      },
+      "section14": {
+        "title": "14. Governing Law and Dispute Resolution",
+        "description": "These Terms are governed by and construed in accordance with the laws of Dubai, UAE. Any dispute arising out of or in connection with these Terms will be resolved through arbitration in accordance with the rules of Dubai Courts."
+      },
+      "section15": {
+        "title": "15. Contact Information",
+        "description": "For any inquiries regarding these Terms and Conditions, please contact MCcoin at info@mccoin.com.\n\nBy using the MCcoin platform, you acknowledge that you have read, understood, and agreed to these Terms and Conditions."
+      }
+    }
+  },
+  "RiskDisclosure": {
+    "header": {
+      "title1": "MCCOIN",
+      "title2": "RISK DISCLOSURE STATEMENT",
+      "lastUpdated": "Last Updated: 02 September 2025 | Effective Date: 20 October 2025"
+    },
+    "downloadPdf": "Download PDF",
+    "sections": {
+      "section1": {
+        "title": "I. General risks",
+        "description": "This Risk Disclosure Statement outlines a non-exhaustive list of risks which may be associated with the Services we offer, relating in particular to entering into Transactions. In this Risk Disclosure Statement, references to \"MCCOIN\" or \"we\", \"us\" or \"our\" means MCCOIN Virtual Assets L.L.C.\n\nThis Risk Disclosure Statement does not set out all risks arising in relation to the Investments and Services we may offer, and should not be relied upon as doing so. The risks applicable to any particular Investment or Service will depend on your particular circumstances and the terms of the relevant transaction. You should not deal in any Investment unless you understand the nature of the product you are dealing in (or a contract you are entering into), the extent of your exposure to risk, and unless you are satisfied that the product is appropriate for you.\n\nYou should consider carefully whether or not any product is suitable for you in light of your circumstances and financial position, and if in any doubt, seek professional advice.\n\nAll financial products carry a degree of risk and even low-risk investment strategies contain an element of uncertainty. Prices may fluctuate and there is a risk you may lose some or all of your investment, and in some cases, more than the amount equal to your entire original investment. The types of risk that might be of concern will depend on various matters. The specific risks of a particular product will depend upon the nature of the asset and the circumstances of the relevant parties involved.\n\nThe nature and extent of investment risks varies with, amongst other things, the type of investment, the diversification or concentration in a portfolio and the complexity of the transaction. The price or value of an investment will depend on fluctuations in the financial markets and current performance, past performance, stimulated past performance or forecast performance are no indicator of future performance.\n\nTypes of risks that may have an impact on your investment include (without limitation) liquidity risk, market risk (including volatility risk and the impact of market conditions), settlement risk, currency risk, credit risk, operational risk, business risk, tax risk, regulatory risk, legal risk, barriers to or restrictions on divestment, risks inherent in \"over the counter trading\" and/or risks as a result of you assuming additional obligations in relation to the investment. These risks may occur simultaneously and may have an unpredictable effect on the value of your investment. The types of risks outlined in this Risk Disclosure Statement are not an exhaustive list of the risks which may occur in relation to Investments and you should consider any and all additional material provided to you in connection with your investment when assessing your risk exposure.\n\nRisks arising generally in relation to Investments include:\n\na. Risk relating to market conditions: the price of an Investment and its disinvestment risk may each be affected by factors relating to wider market conditions, both positive and negative, and such market conditions will affect each Investment differently.\n\nb. Disinvestment risk: Investments may be affected by impediments to disinvestment, (e.g., Investments may prove illiquid or difficult to sell and/or may be difficult to sell at a price equal to or greater than the transaction price at the point in time that you wish to sell)."
+      },
+      "section2": {
+        "title": "II. Over-the-counter-transactions",
+        "description": "The Transactions you enter with us will be over-the-counter transactions and therefore will be off-exchange. There are different levels of liquidity in the over-the-counter markets for specific instruments, and while some markets are highly liquid, transactions in off- exchange, over-the-counter transactions may involve greater risk than investing in on-exchange transactions due to low liquidity as there is no exchange market on which to close out an open position. It may be difficult and, in some cases, impossible to liquidate in full or in part an existing position or assess the value of the position arising from an off-exchange transaction or to assess the exposure to risk associated with holding or liquidating the position. In over-the-counter markets, offer and bid prices need not be quoted, and even where they are, they will be established by dealers in these instruments and consequently it may be difficult to establish what is a fair price or valuation for a specific instrument."
+      },
+      "section3": {
+        "title": "III. Default and termination",
+        "description": "If any Event of Default occurs in relation to you, or at any time after we have determined, in our sole and absolute discretion, that you have not performed (or we reasonably believe that you will not be able or willing in the future to perform) any of your obligations to us, we shall be entitled without prior notice to you (i) to close out, terminate, accelerate, cancel, replace or reverse any Transaction, buy, sell, borrow or lend any Investment or enter into any other Transaction or take, or refrain from taking, such other action at such time or times and in such manner as we consider (at our discretion) necessary or appropriate to cover, reduce or eliminate our loss or liability under or in respect of any of your Transactions, contracts, positions or commitments, including refraining from delivering any Investments due to you and/or (ii) terminate any Transaction and to terminate the Terms of Business immediately. A termination may involve the payment of a Termination Amount from you, which may be netted and/or set-off against other payment obligations due between us and you."
+      },
+      "section4": {
+        "title": "IV. Disruption Events",
+        "description": "If a Disruption Event occurs we may, in our sole and absolute discretion, make such changes, conversions, adjustments or modifications to the exercise, settlement, payment or any other terms of such Transaction as we determine to be appropriate (which may include cancelling any relevant Transaction and calculating any payment due to or from you based on the closing prices we reasonably deem to be appropriate). We make no assurances in relation to the nature of any adjustments we decide to make."
+      },
+      "section5": {
+        "title": "V. Collateral",
+        "description": "You may be required to transfer Collateral to us on demand, in such amounts and types as we may require in our absolute discretion, which may be in the form of cash or Digital Assets as specified by us prior to the entry into a Transaction and from time to time during the term of a Transaction. Collateral may be required in relation to any Transaction, whether entered under the Terms of Business or any Trading Agreement.\n\nWe reserve the right to vary the amount and type of Collateral required at our sole and absolute discretion. You are responsible for ensuring arrangements are in place to deal at all times with calls for further and/or replacement Collateral to be transferred, including sourcing Collateral of the type we require to be delivered (in the event you do not already hold such Collateral at the relevant time).\n\nAny Collateral which is paid or delivered to us will be by way of outright transfer of ownership and will not be held by us in an account on your behalf and our only obligation to you in relation to such Collateral will be a contractual obligation to return an equivalent amount or asset if we decide such Collateral is no longer required. As such, you will not enjoy the same protections in relation to the Collateral that you would otherwise have enjoyed had the Collateral been placed in an account held with a third party. This creates the risk that, in the event we were subject to insolvency proceedings, you may not recover some or all of any Collateral that we were due to return to you.\n\nAllowing for only the partial collateralisation of a position (for example, in relation to contracts for difference) creates leverage and this can work for you or against you. A small price movement in your favour can result in a high return on the Collateral transferred to us in relation to the contract for difference but conversely a small price movement against you may result in substantial losses."
+      },
+      "section6": {
+        "title": "VI. Foreign currency risks",
+        "description": "Entering into Transactions involving foreign exchange exposes you to the risk of adverse changes in foreign currency exchange rates. Foreign currency exchange rates can be volatile and are driven by a variety of factors relating to the economics of the territories whose currencies are being traded. A movement in foreign currency exchange rates may have a favourable or an unfavourable effect on the gain or loss achieved on such Transactions. The profit or loss on Transactions in foreign currency-denominated contracts (whether they are traded in your own or another jurisdiction) may be affected by fluctuations in currency exchange rates where there is a need due to the nature of the instrument or otherwise to conduct conversion from the currency denomination of the contract to another currency. If you enter into Transactions involving foreign exchange, you are exposed to the risk that exchange rates may significantly change (including changes due to devaluation of one of the underlying currencies) and the risk that the relevant authorities with jurisdiction over one of the underlying currencies may impose or modify certain exchange controls. Government and monetary authorities may impose (as some have done in the past) exchange controls that could adversely affect an applicable exchange rate."
+      },
+      "section7": {
+        "title": "VII. Digital Assets risks",
+        "description": "The nascent nature of Digital Assets presents unique risks that investors should carefully consider:\n\na. The nascent nature of Digital Assets: Digital Assets are a new and evolving asset class and are part of a new and rapidly evolving industry that is subject to a high degree of uncertainty. The characteristics of particular Digital Assets within the \"class\" may differ significantly, and the investment characteristics of Digital Assets as an asset class differ from those of traditional currencies, securities and commodities. Digital Assets present a constantly changing environment in which the associated risks are also constantly changing. Accordingly, the risks described herein, which may become outdated, are only a brief summary of certain aspects of the risks associated with investing in Digital Assets and are not exhaustive.\n\nb. Price volatility: The price of a Digital Asset is ultimately based on the perceived value of the Digital Asset and can be subject to changes in sentiment, which may make these products highly volatile. You should be aware of the potentially extreme price volatility of some Digital Assets and the possibility of rapid and substantial price movements, which could result in significant losses, including the loss of the full value, and in some cases, more than the amount equal to the full value of such Digital Assets. Moreover, Digital Assets are not backed by a central bank, a national or international organisation, assets or other forms of credit, although in some specific cases may be backed to an extent by physical assets. Digital Assets may have no inherent value; in most cases, the price of Digital Assets is entirely dependent on the value that market participants place on them, meaning that any increase or loss of confidence in Digital Assets may affect their value.\nDigital Assets may also be subject to momentum pricing due to speculation regarding future appreciation in value, leading to greater volatility. Momentum pricing typically is associated with growth stocks and other assets whose valuation, as determined by the investing public, accounts for future appreciation in value, if any. It is possible that momentum pricing of Digital Assets has resulted, and may continue to result, in speculation regarding future appreciation in the value of Digital Assets, making Digital Asset prices more volatile. As a result, Digital Assets may be more likely to fluctuate in value due to changing investor confidence, which could impact future appreciation or depreciation in Digital Assets prices.\nThere is no assurance that Digital Assets will maintain their long-term value or become more widely adopted (whether as a form of currency or otherwise). On the contrary, they may cease to be used altogether.\n\nc. Valuation: It may prove difficult to determine the value of a given Digital Asset from time to time, due to price volatility and the fragmentation of the Digital Asset markets. Published Digital Asset prices may deviate significantly between different exchanges and other market venues as a result of liquidity imbalances, and weighted average prices may not provide an accurate representation of value. We do not guarantee that the price we provide in respect of any Digital Asset will be better than the price available from another exchange or market venue.\n\nd. Liquidity: Liquidity risk exists when particular investments are difficult to purchase or sell, possibly preventing you from selling out of these illiquid investments at an advantageous price, or at all. Thin markets can also amplify volatility and cause significant delays in executing trades. Any markets for these investments can be expected to involve wider price spreads and more sensitivity to buying and selling pressures than is found in more active markets. Illiquidity can be caused by various factors, including but not limited to market conditions, regulatory actions, technological issues, or other unforeseen circumstances. Illiquidity may impact the ability to open or close positions, leading to potential losses or delays in accessing funds.\nDigital Assets may be illiquid investments that are not easily and readily convertible into fiat currencies, and some Digital Asset markets may be thinner than others.\n\ne. Cybersecurity and malicious activity: Digital Assets are subject to increased cybersecurity risks when compared to other asset classes. The cybersecurity risks of Digital Assets and related \"wallets\" or spot exchanges include hacking vulnerabilities, and a risk that publicly distributed ledgers may not be immutable. A cybersecurity event could potentially result in a substantial, immediate and irreversible loss for market participants that trade Digital Assets, including you and your holding of Digital Assets. Even a minor cybersecurity event in a Digital Asset is likely to result in downward price pressure on that product and potentially other Digital Assets. Digital Assets may be subject to fraud, manipulation and theft (which are not uncommon), not only through hacks but through other means, such as targeted schemes, and you may not benefit from legal protections in such circumstances. Moreover, cybersecurity risks may arise by virtue of the structure of one or a series of smart contracts or decentralised finance applications in ways that do not technically constitute exploitation of a \"bug\" or flaw in the smart contract or application. If such features are exploited in the context of a decentralised finance (\"DeFi\") application, this could also trigger certain second order consequences which may ultimately (and adversely) affect the value of the Digital Asset native to any associated blockchain network(s). The occurrence of any of the abovementioned risks could result in significant loss and/or other market impacts (such as greater price volatility) that may adversely impact your interests.\nSimilarly, Digital Asset networks, platforms and exchanges may be subject to attack by malicious persons, entities or malware. For instance, a malicious actor or group of actors could obtain a majority of the processing or 'hash' power on a particular Digital Asset network, and could implement modifications to the network in a way that is detrimental to the liquidity or value of the Digital Asset (commonly referred to as a '51% attack'), such as preventing transactions from posting accurately on the blockchain, or at all, and/or allowing certain coins to be spent more than once. To the extent that such malicious person(s) does not yield its majority control of the processing power on the network, reversing any changes made to the source code or blockchain may not be possible. Malicious activities such as these may reduce confidence in Digital Assets and result in greater price volatility and could adversely affect your investment in Digital Assets.\n\nf. Development and maintenance of Digital Assets networks: Several Digital Assets networks operate on an open-source protocol maintained by a group of uncompensated volunteer developers. Consequently, there may be a lack of financial incentive for developers to maintain or develop the network, and the developers may lack the resources to adequately address emerging issues with the relevant Digital Asset protocol. There can be no assurance that the core developers of a Digital Asset network will continue to be involved in the network, or that new volunteer developers will emerge to replace them. To the extent that material issues arise with a Digital Asset protocol and the developers are unable or unwilling to address the issues adequately or in a timely manner, the Digital Asset may diminish in value or become worthless.\nIn addition, several Digital Assets rely on decentralised participants to operate the Digital Asset network through verifying transactions in Digital Assets on an ongoing basis. The failure of decentralised participants to continue to maintain a network by verifying Digital Asset transactions may result in the relevant Digital Asset losing value or becoming worthless.\n\ng. Risks of 'proof of stake' consensus mechanisms: Certain Digital Assets rely in whole or in part on a \"proof of stake\" method of generating a distributed consensus. Proof of stake algorithms do not rely on resource intensive calculations to validate transactions and create new blocks in a blockchain; instead, the validator of the next block is determined by reference to the amount of Digital Assets a user has \"staked\" and the amount of time it has been \"staked,\" which generates payments to such user in additional Digital Assets. While the advantage of a \"proof of stake\" system is that it is far less energy intensive than a \"proof of work\" system, this may result in lower barriers for entry, which may allow for increased participation by malicious actors with small stakes that attempt to manipulate the blockchain or increase the risk that the Digital Asset will experience one or more forks, which could impact its value.\nFounders of Digital Assets or Digital Asset networks may retain large amounts of the generated Digital Asset, which large positions may result in such founders having an effective veto or ability to control the Digital Asset or its associated blockchain network. As returns associated with staking are connected to the amount of the wealth staked, \"proof of stake\" systems may encourage hoarding of the Digital Asset. While there are advantages to having users \"buy in\" to a Digital Asset and support its development, excessive hoarding reduces the \"decentralised\" nature of verification of the blockchain and may impair the spread of such Digital Asset, including interfering with the widespread adoption of such Digital Assets for use in transactions.\n\nh. Opaque market: Digital Asset balances are generally maintained as an address on the blockchain and are accessed through private keys, which may be held by a market participant or a custodian. Although Digital Asset transactions are not typically private and are publicly available on a blockchain or distributed ledger, the public address does not identify the controller, owner or holder of the private key. Unlike bank and brokerage accounts, Digital Asset exchanges and custodians that hold Digital Assets do not always identify the owner. The opaque underlying or spot market may pose asset verification challenges for market participants, regulators and auditors and potentially give rise to an increased risk of manipulation and fraud.\n\ni. Legality of Digital Assets: It may be illegal, now or in the future, to own, hold, sell or use Digital Assets in one or more countries. Although currently most Digital Assets are not regulated or are lightly regulated in most countries, one or more countries may take regulatory actions in the future that severely restrict the right to acquire, own, hold, sell or use Digital Assets or to exchange Digital Assets for fiat currency. Such actions may restrict your ability to hold or trade Digital Assets (directly or indirectly).\n\nj. 24/7 markets: Unlike conventional securities exchanges and other similar exchanges that are only available for transactions during standard trading hours, Digital Assets may be traded 24 hours a day, 7 days a week so long as the network that the Digital Assets exist on is operational. Most Digital Asset networks are available at any time and are supported by global cryptocurrency exchanges with continuous availability. As such, Digital Asset investments will likely be subject to changing market conditions at all times. This phenomenon may result in situations where you may not be able to respond to rapidly changing market conditions outside of regular business hours.\n\nk. Digital asset exchanges, intermediaries and custodians: Digital asset exchanges are relatively new and largely unregulated in many jurisdictions. The opaque underlying spot market and lack of regulatory oversight potentially creates a risk that a digital asset exchange may not hold sufficient digital assets and funds to satisfy its obligations to its customers and that such deficiency may not be easily identified or discovered. Many digital asset exchanges have experienced significant outages, downtime and transaction processing delays and may have a higher level of operational risk than regulated futures or securities exchanges. The same sorts of risks apply to other intermediaries, custodians and vendors used to facilitate digital assets transactions. This poses risks to the customers of such digital assets exchanges, intermediaries, custodians and vendors and may have adverse consequences for the Digital Assets that are the subject of any Transaction, and the digital assets markets more generally.\n\nl. Custody and security risks: Customers of third-party service providers for digital asset custody, trading, lending, staking or other purposes may not directly control the digital assets held through such third-party service providers. The obligations associated with these custodial and other arrangements to safeguard digital assets involve unique risks and uncertainties that are not present in arrangements for safeguarding conventional assets. For example, due to the unique characteristics of digital assets and the lack of legal precedent, there are significant legal questions surrounding how such arrangements would be treated in a court proceeding arising from an adverse event (e.g., fraud, loss, theft or bankruptcy).\nFurthermore, as compared to many common arrangements to safeguard assets for third parties, there are significantly fewer regulatory requirements for holding digital assets or entities may not be complying with regulatory requirements that do apply, which results in increased risks. In addition, the contractual terms with custodians (particularly liability terms) may be less favorable than contractual terms typically negotiated with custodians in respect of other assets and, in the event of any disputes under the terms of the custody agreement between the customer and the relevant custodian, the customer may be in a worse position than if it had appointed a custodian in respect of other assets. The financial institutions, exchanges or other third parties appointed to act as custodians may become insolvent, causing the relevant customer to lose all or a portion of the digital assets held by those custodians. In the event of bankruptcy of a third-party service provider, digital assets held by a third party may, in certain circumstances, be considered property of the bankruptcy estate and the customer could be treated as a general unsecured creditor in bankruptcy proceedings.\nThe aforementioned risks may apply to you to the extent you engage third-party service providers in relation to digital asset custody, trading, lending, staking or other purposes, and could potentially lead to substantial losses (that we are not responsible for). They may also pose indirect risks, as we may rely on third-party service providers in relation to Digital Assets and/or Transactions from time to time.\n\nm. Loss or destruction of private keys: Digital Assets are generally only controllable by the possessor of the unique private key or keys relating to the wallet in which the Digital Asset is held. These keys are typically created by and stored within software known as a \"digital wallet.\" While each Digital Asset network may require a public key be published when used in a transaction, any private keys linked with such public key must be safeguarded and kept private in order to prevent a third party from accessing the Digital Asset held in a digital wallet. To the extent a private key is lost, destroyed or otherwise compromised and no backup of the private key is accessible, you (or any custodian acting on your behalf) will be unable to access the Digital Assets held in the related wallet and, in most cases, the private key will not be capable of being restored. The loss or destruction of a private key required to access a Digital Asset may be irreversible. Any loss of private keys relating to Digital Assets could lead to substantial losses. The risk of loss due to losses of private keys or similar methodologies of secure access is generally greater for Digital Assets than that of other asset classes, given the variations in the sophistication of access methodologies and the inherent technological designs of Digital Assets.\n\nn. Risks in respect of blockchain technology: Digital Assets and Digital Asset networks typically involve cryptographic and other algorithmic protocols governing the issuance of Digital Assets that represent a new and rapidly evolving industry that is subject to a variety of factors that are difficult to evaluate. As Digital Asset networks continue to develop and grow, certain technical issues might be uncovered and the troubleshooting and resolution of such issues will likely require the attention and efforts of decentralised development communities. Moreover, in the past, flaws in the source code for Digital Asset networks have been exposed and exploited, including flaws that disabled some functionality for users, exposed users' personal information and/or resulted in the theft of users' Digital Assets. The cryptography underlying Digital Assets could prove to be flawed or ineffective, or developments in mathematics and/or technology, including advances in digital computing, algebraic geometry and quantum computing, could result in such cryptography becoming ineffective. In any of these circumstances, a malicious actor may be able to misappropriate your Digital Assets. Moreover, functionality of Digital Asset networks may be negatively affected such that it is no longer attractive to users, thereby reducing demand for the relevant Digital Asset.\nEven if only a particular Digital Asset was affected by such circumstances, any reduction in confidence in the source code or cryptography underlying Digital Assets generally could negatively affect the demand for Digital Assets.\n\no. Uneven protocol adoption and forking: Often, there is no official developer or group of developers that formally controls a given Digital Asset network. Any individual can download the software that facilitates the operation of a Digital Asset network, and generally any user can make any desired modifications to such software. Such modifications in the protocol governing the Digital Asset network are proposed to users of the Digital Asset network through software downloads and upgrades. A substantial economic majority of users may need to consent to such software modifications by downloading and running the modified software in order for the proposed modifications to become part of the Digital Asset network. This process ensures that the Digital Asset network remains coherent over time. However, to the extent that the substantial economic majority of users do not accept a proposed modification to a Digital Asset network, but a material portion of the users do consent to the modification, it can create \"forks\" in the Digital Asset network's blockchain. Such forks create two alternative versions of the blockchain, starting from the point of the fork forward, and essentially cause the creation of two versions of the Digital Asset recorded on the blockchain. Such a fork in a blockchain typically would be addressed by community-led efforts to merge the forked blockchains, and several prior forks have been so merged. However, there can be no assurance that a fork in a blockchain will be resolved and permanent forks in blockchains have resulted.\nWhile theoretically the \"splitting\" of a Digital Asset that occurs when there is a hard fork in the blockchain should result in each user owning two assets that collectively are valued at the same level as the pre-split assets, this may not always be the case. The post-fork value of Digital Assets can be volatile and unpredictable. This could result in the holder owning the same asset after the fork as before the fork, but at a lower market value. Further, one or both of the post-fork Digital Asset(s) may not be supported by an adequate amount of network participants or developers and may be vulnerable to attacks and other risks. A market participant holding a Digital Asset may also be adversely impacted if its custodian does not allow its customers to participate in a fork that creates a new product. To the extent that Digital Assets in which you invested experience a fork in their blockchains, you could experience significant losses.\nAdditionally, in certain circumstances forks may be deliberately created by malicious actors. In the event that a majority of the users, or processing power, associated with a Digital Asset have adopted an adverse amendment to a protocol, the investment in such Digital Asset, or the ability to trade such Digital Asset, may be materially impacted.\n\np. Regulatory uncertainty: The value and liquidity of Digital Asset markets may be influenced by new laws, regulations, policies and guidance which may vary significantly among international, federal, state and local jurisdictions and are subject to significant uncertainty. The regulatory environment for Digital Assets is constantly evolving, and new regulations or policies may materially adversely affect your ability to invest in Digital Assets. Regulation of Digital Assets may also vary significantly among international, federal, state, and local jurisdictions and is subject to a level of uncertainty. Various legislative and executive bodies in the United States and in other countries may in the future adopt laws, regulations, or guidance, or take other actions, which may severely impact the use of Digital Assets generally and the technology behind them or the means of transacting in or transferring them. Failure by you to comply with any current or future laws, rules and regulations, some of which may be subject to change, could result in a variety of adverse consequences.\n\nq. Irreversibility and irrecoverability: Digital Asset transactions and transfers are generally irreversible without the consent and active participation from the recipient of the transaction. To the extent that any of your Digital Assets are incorrectly or fraudulently transferred, they are likely to be irretrievable. Furthermore, where Digital Assets have been lost, stolen or destroyed under circumstances rendering a party liable to you, then you may have limited recourse against the responsible party. For example, as to a particular event of loss, the only source of recovery might be limited to your custodian or, to the extent identifiable, other responsible third parties (e.g. a thief or terrorist), which may not have the financial resources (including liability insurance coverage) to satisfy a valid claim.\n\nr. Risks in relation to stablecoins: Stablecoins are Digital Assets that seek to minimise volatility and maintain a stable value, including by being backed by an asset or portfolio of assets, such as fiat currency, or other methods, such as algorithmically controlled supply. There is a risk that the sponsor or issuer (including a smart contract) of a stablecoin does not hold the corresponding asset underlying each stablecoin in circulation and is therefore unable to fulfil one-for-one or other forms of redemptions. Alternatively, software designed to maintain the value of a stablecoin may be subject to errors, flaws, bugs or be subject to hacking or manipulation. Such risks may result in losses in the wider digital assets markets.\nIn addition, stablecoin issuers or sponsors (including smart contracts and their programmers) may be unregulated and may not provide transparent disclosure regarding their compliance with applicable licensing and regulatory requirements or the financial institutions that hold the underlying assets. Moreover, statements from the regulators in certain jurisdictions suggest that stablecoins may be regulated as securities in those jurisdictions, and some have initiated and settled enforcement proceedings. If a stablecoin issuer or sponsor fails to maintain required licenses to issue a stablecoin, it could subject the issuer or sponsor to regulatory enforcement and injunctive actions, such as freezing funds underlying the stablecoin. The stablecoin issuer or sponsor could also lose its relationships with banks and bank accounts where the underlying assets are deposited if it is engaged in unlicensed activities. If any of these events occur, the value of the affected stablecoins could materially decline, which could have an adverse effect on any Transaction you have entered in respect of such stablecoin."
+      },
+      "section8": {
+        "title": "VIII. Instructions and settlement",
+        "description": "We may, in accordance with Applicable Regulations and at our discretion, refuse to accept Instructions from you, including (but not limited to) cases where Instructions require us to make any payment or incur any liability before receipt of sufficient cleared funds from you. Similarly, we will not be obliged to settle any Transaction or make certain payments or deliveries to you until we (or our settlement agent) have received all necessary documents or cleared funds from you. We shall not be deemed to be holding property on your behalf pending settlement of a Transaction."
+      },
+      "section9": {
+        "title": "IX. Liability, indemnity, and force majeure",
+        "description": "Neither we nor any Associate nor any of the Indemnified Parties shall be liable for any Loss arising from any act or omission in the course of or relating to the activities to which the Terms of Business or any Trading Agreement apply, subject to certain limitations. Moreover, you undertake to indemnify and hold us, our Associates (including in respect of any Associate that is a broker) and the Indemnified Parties harmless against any Loss which any of the foregoing may suffer or incur directly or indirectly in connection with or as a result of anything done or omitted to be done for the purpose of carrying out any Transaction for your account or providing any Service to you or otherwise acting on your Instructions under these Terms of Business or any Trading Agreement, subject to certain limitations. You shall also pay any penalties arising in respect of the Transactions you enter. In the event of any failure, interruption or delay in the performance of our obligations resulting from acts, events or circumstances not reasonably within our or any Associate's control, neither we nor any Associate shall be liable or have any responsibility for any Loss whatsoever thereby incurred or suffered by you, and we shall not be obliged to take or refrain from taking any action in such circumstances."
+      },
+      "section10": {
+        "title": "X. No investment advice",
+        "description": "Information provided by MCCOIN does not constitute investment advice, financial advice, trading advice, or any other type of advice whatsoever and is presented rather as general market commentary. We shall not provide any investment advice in relation to a transaction in the form of personal recommendations or advise on the merits of buying, selling, or otherwise dealing in particular instruments and/or investments or executing particular transactions, any tax, legal or other economic consequences or any other rights or obligations attaching to such instruments, investments or transactions. Therefore, you must rely solely on your own judgment in deciding to enter into or close a transaction and we make no assessment of the suitability of such actions for you. We give no warranty as to the performance or profitability of any transaction or investment that you may effect through us. We will not be held responsible for any investment decisions made based on the information provided by MCCOIN."
+      },
+      "section11": {
+        "title": "XI. You are not acting as intermediary",
+        "description": "We will deal with you on the basis that you act as principal and not as agent acting on behalf of or for the benefit of a principal. Furthermore, your failure to inform us that another person or any software and/or algorithm is operating your account on your behalf may result in us terminating the agreement, voiding any transactions, undertaking or closing any open transactions."
+      },
+      "section12": {
+        "title": "XII. Charges, fees and taxes",
+        "description": "Interest, taxes, costs, spreads, fees, and charges may be payable by you to us when you trade or on such other basis as agreed between us or as notified by us to you from time to time. These taxes, charges, costs, spreads and fees will reduce your trading net profits (if any) or increase your trading losses. It is possible that your intended treatment of the services provided by us to you under the Terms of Business or any Trading Agreement may be challenged by tax authorities. You must seek your own tax advice as to such services which may result in adverse tax consequences to you."
+      },
+      "section13": {
+        "title": "XIII. Conflicts of interest",
+        "description": "While we have put in place and will maintain effective organisational and administrative arrangements with a view to taking all appropriate steps to identify and manage conflicts of interest between us and our clients and relevant third parties, conflicts of interest may nevertheless arise. You irrevocably waive any claim you may have against us or any Associate (and release us and them from all liability) in respect of any material interest or conflict that we or any Associate may have, whether or not disclosed to you. If we cannot avoid conflicts of interest after using all reasonable efforts, we will disclose such conflicts to affected clients. Otherwise, we need not disclose to you, or any other client, the nature or extent of any interest we or any Associate may have in any Transaction or in any resulting transactions, that we may owe duties to other clients which otherwise conflict with our duties owed to you, or that we may have a relationship which gives rise to a conflict of interest, unless obliged to do so under Applicable Regulations. We shall be entitled to retain any profit or benefit arising as if no such interest, other duties or relationship existed."
+      },
+      "section14": {
+        "title": "XIV. Acknowledgement",
+        "description": "By entering into any Transaction, you understand, acknowledge and agree that:\n\na. you have received a copy of this Risk Disclosure Statement and read and understood the nature and consequences of the risk factors described herein and have had an opportunity to raise questions and to discuss those risks with any advisors as you have deemed to be necessary or desirable;\n\nb. the risk factors cannot disclose all the risks and other significant aspects of the Transactions to be entered into with us and thus cannot be taken as a comprehensive or exhaustive list of all possible risks;\n\nc. you are acting on your own account and have reviewed carefully your specific financial needs and investment objectives before entering into any Transaction, and you have made your own independent decision to enter into any Transaction and as to the legality, suitability and appropriateness of any Transaction based upon your own judgment and upon advice from such advisers as you have deemed necessary or desirable;\n\nd. you confirm that neither MCCOIN, nor any Associate of MCCOIN, is acting as a fiduciary for or an adviser to you in respect of any Transaction;\n\ne. you are not relying on any communication (written or oral) from MCCOIN or from any Associate of MCCOIN as investment advice or as a recommendation to enter into any Transaction and you understand that the information and explanations of the terms of any Transaction as contained in any Confirmation shall not be considered to be investment advice or a recommendation to enter into such Transaction;\n\nf. you understand the tax implications of any Transactions, particularly as regards to Transactions involving Digital Assets, in your jurisdiction including, without limitation, income tax, corporation tax, capital gains tax or any sales tax or value added tax and any other tax framework in place within your country of residence for tax purposes;\n\ng. MCCOIN assumes no responsibility for your portfolio or for any investment or Transaction which you have entered into, and any opinions, projections, estimates, forecasts and/or targets expressed in any communication (written or oral) from MCCOIN should not be construed as or relied upon in any manner as investment, legal, tax or other advice, are provided for informational purposes only, and are subject to change without notice;\n\nh. in the event of any inconsistency between the English version of this document and any translation, the English version will prevail and that if you are in any doubt as to the meaning of the English language version or the accuracy of any translation, you should seek independent advice before entering into any Transaction;\n\ni. this Risk Disclosure Statement may be varied, amended or supplemented from time to time and by using the Services after any changes to the Risk Disclosure Statement is varied, amended or supplemented, your agreement to such variations, amendments or supplementation is deemed to have been given to MCCOIN;\n\nj. no communication (written or oral) received from MCCOIN or from any Associate of MCCOIN shall be deemed to be an assurance or guarantee as to the expected results of any Transaction;\n\nk. you are a professional investor, market counterparty or equivalent definition as set out under the applicable law in your country of residence/registration and you are eligible, in accordance with the applicable law, to request such information and/or be offered/avail of one or more of the products/services indicated herein;\n\nl. you have approached MCCOIN on your own exclusive initiative and that this approach does not come about as a result of any direct or indirect contact, solicitation, intervention, marketing and/or pre-marketing, arranging, advice, offering or placement efforts nor as result of any form of general solicitation or advertising such as media advertising or public seminars by or on behalf of MCCOIN and its Associate;\n\nm. to the extent you have already received any of the information, documentation above and/or any other communication concerning MCCOIN, this information, documentation, including this form and/or communication was sent to the undersigned at and after your request and otherwise only upon your own initiative;\n\nn. the decision to avail yourself of our services/products is/will be based solely on your own due diligence and review of information and materials received/to be received at your request; and\n\no. if any of the above become untrue or inaccurate, you will promptly inform us in writing, acknowledging that this may cause MCCOIN to stop or otherwise refrain from providing you with its services/products."
+      }
+    }
+  },
+  "Careers": {
+    "Hero": {
+      "title": "Find the job of your",
+      "title_highlight": "Dreams",
+      "subtitle": "Lorem ipsum dolor sit amet consectetur. Viverra lacinia sed praesent pharetra quisque consectetur telius elit. Suspendisse ultrices vitae",
+      "stats": {
+        "people_hired": "People got hired",
+        "freelancers_hired": "Freelancers hired",
+        "quick_process": "It only takes few seconds"
+      },
+      "testimonial": "Over",
+      "testimonial_highlight": "800+",
+      "testimonial_suffix": "people found their future with McCoin"
+    },
+    "Perks": {
+      "title": "Our Perks & Benefits",
+      "subtitle": "We invest in our team's success with comprehensive benefits that support your whole life.",
+      "perks": {
+        "learning_growth": {
+          "title": "Learning & Growth",
+          "description": "We offer world class quality driven learning resources for employees",
+          "details": [
+            "Weekly expert lectures",
+            "Free learning resources",
+            "In-House library access",
+            "E-books and video courses",
+            "$2,000 annual education budget"
+          ]
+        },
+        "health_wellness": {
+          "title": "Health & Wellness",
+          "description": "Comprehensive health benefits to keep you at your best",
+          "details": [
+            "Premium medical insurance",
+            "Mental health support",
+            "Fitness reimbursement",
+            "On-site wellness programs",
+            "Generous sick leave policy"
+          ]
+        },
+        "financial_benefits": {
+          "title": "Financial Benefits",
+          "description": "Competitive compensation and financial security",
+          "details": [
+            "Competitive salaries",
+            "401(k) with company match",
+            "Performance bonuses",
+            "Stock options",
+            "Financial planning services"
+          ]
+        },
+        "team_culture": {
+          "title": "Team Culture",
+          "description": "Work with talented people in a supportive environment",
+          "details": [
+            "Collaborative workspace",
+            "Quarterly team retreats",
+            "Diversity & inclusion programs",
+            "Mentorship opportunities",
+            "Regular social events"
+          ]
+        }
+      }
+    },
+    "Jobs": {
+      "title": "Available Jobs",
+      "subtitle": "Search our list of available jobs",
+      "search_placeholder": "Search jobs...",
+      "popular_searches_label": "Popular searches:",
+      "current_openings": "Current Openings",
+      "key_skills": "Key Skills:",
+      "apply_now": "Apply now",
+      "no_jobs_found": "No jobs match your search criteria.",
+      "clear_search": "Clear search",
+      "clear_filters": "Clear filters",
+      "popular_searches": [
+        "Technology jobs",
+        "Compliance roles",
+        "HR positions",
+        "Marketing careers",
+        "Customer support"
+      ],
+      "available_jobs": [
+        {
+          "id": 1,
+          "title": "IT Engineer",
+          "description": "Design, implement, and maintain our technology infrastructure and systems.",
+          "skills": ["Networking", "System Administration", "Cloud Computing", "Cybersecurity"],
+          "iconName": "Code",
+          "tags": ["technology", "engineering", "development"]
+        },
+        {
+          "id": 2,
+          "title": "Compliance Officer",
+          "description": "Ensure company operations comply with regulatory requirements and internal policies.",
+          "skills": ["Regulatory Knowledge", "Risk Assessment", "Auditing", "Policy Development"],
+          "iconName": "ShieldCheck",
+          "tags": ["compliance", "legal", "regulation"]
+        },
+        {
+          "id": 3,
+          "title": "HR Executive",
+          "description": "Manage human resources functions including recruitment, training, and employee relations.",
+          "skills": ["Recruitment", "Employee Relations", "Training", "Performance Management"],
+          "iconName": "Users",
+          "tags": ["human resources", "recruitment", "management"]
+        },
+        {
+          "id": 4,
+          "title": "Marketing Specialist",
+          "description": "Develop and implement marketing strategies to promote our products and services.",
+          "skills": ["Digital Marketing", "Content Creation", "SEO", "Social Media"],
+          "iconName": "Megaphone",
+          "tags": ["marketing", "advertising", "branding"]
+        },
+        {
+          "id": 5,
+          "title": "Customer Service Professional",
+          "description": "Provide exceptional support to our clients and resolve their inquiries efficiently.",
+          "skills": ["Communication", "Problem Solving", "Product Knowledge", "Patience"],
+          "iconName": "Headset",
+          "tags": ["customer service", "support", "communication"]
+        }
+      ]
+    },
+    "JobDetails": {
+      "back_to_jobs": "Back to all jobs",
+      "job_description": "Job Description",
+      "requirements": "Requirements",
+      "job_details": "Job Details",
+      "share_job": "Share this job",
+      "apply_position": "Apply for this position",
+      "department": "Department",
+      "location": "Location",
+      "employment_type": "Employment Type",
+      "location_value": "Remote / Office (Flexible)",
+      "employment_type_value": "Full-time",
+      "description_intro": "We're looking for a talented {title} to join our growing team. In this role, you'll be responsible for:",
+      "description_outro": "Our ideal candidate has experience with these technologies and a passion for continuous learning.",
+      "requirements_list": [
+        "Bachelor's degree in a related field or equivalent experience",
+        "3+ years of professional experience in a similar role",
+        "Strong problem-solving skills and attention to detail",
+        "Excellent communication and teamwork abilities"
+      ]
+    },
+    "JobNotFound": {
+      "title": "Job not found",
+      "description": "The job you're looking for doesn't exist or has been removed."
+    },
+    "ApplyForm": {
+      "fields": {
+        "fullName": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "visaStatus": "Visa Status",
+        "salaryExpectations": "Salary Expectations",
+        "availability": "Availability",
+        "resume": "Attach Resume (PDF, max 5MB)"
+      },
+      "placeholders": {
+        "fullName": "Enter full name",
+        "email": "Enter email",
+        "phone": "Enter phone number",
+        "visaStatus": "e.g. Visit, Employment",
+        "salaryExpectations": "e.g. 10,000 AED",
+        "availability": "Select availability date"
+      },
+      "validation": {
+        "fullNameRequired": "Full Name is required",
+        "invalidEmail": "Invalid email address",
+        "invalidPhone": "Invalid phone number",
+        "visaStatusRequired": "Visa status is required",
+        "salaryExpectationsRequired": "Salary expectations are required",
+        "availabilityRequired": "Availability is required",
+        "resumeRequired": "Resume is required",
+        "onlyPdfAllowed": "Only PDF allowed",
+        "maxFileSize": "Max 5MB allowed"
+      },
+      "buttons": {
+        "submit": "Submit Application",
+        "submitting": "Submitting..."
+      },
+      "messages": {
+        "success": "Application submitted successfully!",
+        "failed": "Failed to submit application.",
+        "error": "Submission error."
       }
     }
   }

@@ -65,7 +65,7 @@ export default function AllArticlesNews({ newsItems }: { newsItems: NewsItem[] }
                   </div>
                   <div className="flex flex-wrap items-center gap-x-1 gap-y-2 mt-2">
                     <p className="mr-2">{t('tags')}</p>
-                    {news.tags.slice(0, 3).map((tag, index) => (
+                    {news.tags?.slice(0, 3).map((tag, index) => (
                       <span key={index} className="px-2 py-1 bg-[#EC3B3B] rounded-xl">
                         {tag}
                       </span>

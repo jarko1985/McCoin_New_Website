@@ -1,9 +1,15 @@
-import RiskDisclosurePage from '@/pages/RiskDisclosurePage'
-import React from 'react'
+import RiskDisclosureContent from '@/components/risk-disclosure/RiskDisclosureContent'
+import LegalHeader from '@/components/shared/LegalHeader'
+import { getTranslations } from 'next-intl/server'
 
-const page = () => {
+
+const page = async () => {
+  const t = await getTranslations('RiskDisclosure.header')
   return (
-    <RiskDisclosurePage/>
+    <>
+    <LegalHeader title1={t('title1')} title2={t('title2')} description={t('lastUpdated')}/>
+    <RiskDisclosureContent/>
+    </>
   )
 }
 

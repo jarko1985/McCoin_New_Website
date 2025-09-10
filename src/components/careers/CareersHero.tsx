@@ -2,12 +2,15 @@
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const CareersHero = () => {
+  const t = useTranslations('Careers.Hero');
+  
   const stats = [
-    { value: '30K+', label: 'People got hired', position: 'top-4 -left-4' },
-    { value: '800+', label: 'Freelancers hired', position: '-bottom-4 -right-4' },
-    { label: 'It only takes few seconds', position: 'top-1/8 -right-10' },
+    { value: '30K+', label: t('stats.people_hired'), position: 'top-4 -left-4' },
+    { value: '800+', label: t('stats.freelancers_hired'), position: '-bottom-4 -right-4' },
+    { label: t('stats.quick_process'), position: 'top-1/8 -right-10' },
   ];
 
   return (
@@ -22,11 +25,10 @@ const CareersHero = () => {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl font-bold tracking-tight text-[#07153B] md:text-5xl lg:text-6xl">
-                Find the job of your <span className="text-[#EC3B3B]">Dreams</span>
+                {t('title')} <span className="text-[#EC3B3B]">{t('title_highlight')}</span>
               </h1>
               <p className="mt-6 text-lg text-[#07153B]/80 md:text-xl">
-                Lorem ipsum dolor sit amet consectetur. Viverra lacinia sed praesent pharetra
-                quisque consectetur telius elit. Suspendisse ultrices vitae
+                {t('subtitle')}
               </p>
             </motion.div>
 
@@ -45,7 +47,7 @@ const CareersHero = () => {
                 ))}
               </div>
               <p className="text-sm font-medium text-[#07153B] md:text-base">
-                Over <span className="font-bold">800+</span> people found their future with McCoin
+                {t('testimonial')} <span className="font-bold">{t('testimonial_highlight')}</span> {t('testimonial_suffix')}
               </p>
             </motion.div>
           </div>
