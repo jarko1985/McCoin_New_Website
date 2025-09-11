@@ -1673,28 +1673,28 @@
     "readMore": "Read More"
   },
   "Faqs": {
-    "title": "Frequently Asked Questions",
+    "title": "Frequently Asked Questions (FAQs)",
     "subtitle": "Got questions? We've got answers. Explore our FAQ section to learn more about how our crypto brokerage works, including trading, account management, funding options, security protocols, and more.",
     "faqs": {
       "faq-1": {
         "question": "What is MCcoin and what services does it offer?",
-        "answer": "MCcoin is a cryptocurrency exchange platform that allows users to buy, sell, and trade various digital assets. We offer spot trading, futures trading, and staking services with competitive fees and advanced trading tools."
+        "answer": "McCoin is a Dubai-born, global cryptocurrency exchange built for everyone. We offer secure trading of digital assets, advanced tools, and educational resources; combining reliability, innovation, and accessibility in one platform."
       },
       "faq-2": {
         "question": "How do I create an account on MCcoin?",
-        "answer": "You can create an account by visiting our website or mobile app, clicking 'Sign Up', and providing your email address and creating a secure password. You'll need to complete identity verification (KYC) to access all features."
+        "answer": "Visit our signup page, enter your email, set a password, and verify your identity. Once confirmed, you can fund your account and begin trading in minutes."
       },
       "faq-3": {
         "question": "What cryptocurrencies can I trade on MCcoin?",
-        "answer": "MCcoin supports major cryptocurrencies like Bitcoin (BTC), Ethereum (ETH), and many altcoins. The full list of supported coins is available in our Markets section, with new assets added regularly."
+        "answer": "McCoin supports major coins like Bitcoin, Ethereum, Tether, and a growing list of altcoins. Our platform is regularly updated with new tokens to meet market demand."
       },
       "faq-4": {
         "question": "Is MCcoin regulated and licensed?",
-        "answer": "Yes, MCcoin operates under strict regulatory compliance. We are registered with relevant financial authorities and adhere to all required anti-money laundering (AML) and know-your-customer (KYC) regulations."
+        "answer": "Yes. McCoin complies with Dubai’s Virtual Asset Regulatory Authority (VARA) guidelines and follows international standards for security, compliance, and customer protection."
       },
       "faq-5": {
         "question": "What security measures does MCcoin have to protect my funds?",
-        "answer": "We use industry-leading security including two-factor authentication (2FA), cold storage for 98% of user funds, encrypted data transmission, and regular security audits to ensure platform safety."
+        "answer": "We use bank-grade encryption, multi-layer security protocols, cold wallet storage, and two-factor authentication (2FA) to protect your assets and personal data."
       },
       "faq-6": {
         "question": "What are the trading fees on MCcoin?",
@@ -1719,8 +1719,8 @@
     }
   },
   "Contact": {
-    "title": "Contact Us",
-    "subtitle": "Please fill in the below information, Our Customer service team will contact you at the earliest",
+    "title": "Get in Touch with McCoin",
+    "subtitle": "Have a question, need support, or want to partner with us? Our team is here to help you on your McCoin journey.",
     "full_name": "Full Name",
     "enter_your_full_name": "Enter your full name",
     "email": "Email",
@@ -1733,70 +1733,70 @@
     "enter_your_message": "Enter your message",
     "send_message": "Send Message",
     "sending": "Sending...",
-    "name_error": "Name must be at least 2 characters",
+    "name_error": "Name must be at least 2 characters long",
     "email_error": "Please enter a valid email address",
-    "phone_error": "Phone number must be at least 10 characters",
-    "subject_error": "Subject must be at least 5 characters",
-    "message_error": "Message must be at least 10 characters",
-    "form_error": "An error occurred while submitting the form.",
+    "phone_error": "Phone number must be at least 10 digits",
+    "subject_error": "Subject must be at least 5 characters long",
+    "message_error": "Message must be at least 10 characters long",
+    "form_error": "Oops! Something went wrong while submitting the form. Please try again",
     "success_title": "Thank You for Reaching Out!",
     "success_message": "We've received your message and our team will get back to you as soon as possible. You can expect a reply within 24–48 hours.",
-    "success_faq_text": "In the meantime, feel free to explore our",
+    "success_faq_text": "Meanwhile,  feel free to explore our",
     "success_faq_link": "FAQ",
     "success_faq_continue": "or continue browsing our website.",
-    "success_important": "Your inquiry is important to us, and we're committed to assisting you promptly.",
+    "success_important": "Your inquiry matters to us, and we’re committed to assisting you promptly",
     "close": "Close",
     "back_to_home": "Back to Home"
   },
   "HelpTopics": {
-    "title": "Welcome to the Help Center",
-    "subtitle": "How can we help you?",
+    "title": "Welcome to McCoin Help Center",
+    "subtitle": "Your guide to smarter, safer, and faster trading with McCoin.",
     "search_placeholder": "Search...",
     "popular_searches": "Popular searches:",
     "clear_filters": "Clear filters",
     "help_topics": "Help Topics",
     "read_more": "Read more",
-    "no_results": "No results found for your search.",
+    "no_results": "No results found. Try another keyword",
     "clear_search": "Clear search",
     "topics": {
       "trading_platform": {
         "title": "Trading Platform",
-        "description": "Learn how to navigate our trading platform and execute trades efficiently.",
+        "description": "Navigate our trading platform and execute trades like a pro.",
         "tag1": "trading",
         "tag2": "platform",
         "tag3": "errors"
       },
       "wallet_management": {
         "title": "Wallet Management",
-        "description": "Secure your assets with proper wallet setup and management techniques.",
+        "description": "Keep your assets safe with secure wallet setup and management tips.",
         "tag1": "wallet",
         "tag2": "security",
         "tag3": "transfer"
       },
       "api_integration": {
         "title": "API Integration",
-        "description": "Connect your applications with our powerful trading API.",
+        "description": "Seamlessly connect your applications with McCoin’s powerful trading API.",
         "tag1": "api",
         "tag2": "integration",
         "tag3": "developers"
       },
       "account_security": {
         "title": "Account Security",
-        "description": "Protect your account with 2FA and other security measures.",
+        "description": "Protect your account with 2FA, authentication tools, and best practices",
         "tag1": "security",
         "tag2": "authentication",
         "tag3": "2fa"
       },
       "market_analysis": {
         "title": "Market Analysis",
-        "description": "Master technical analysis and trading strategies.",
+        "description": "Master trading strategies and technical analysis to boost your edge.",
         "tag1": "analysis",
         "tag2": "trading",
         "tag3": "charts"
       },
       "getting_started": {
         "title": "Getting Started",
-        "description": "New to crypto? Start your journey with our beginner's guide.",
+        "description": "New to crypto? Begin your journey with our step-by-step beginner’s guide.",
         "tag1": "beginner",
         "tag2": "guide",
         "tag3": "basics"
@@ -1812,166 +1812,166 @@
   },
   "HelpTopicDetail": {
     "back_to_help_center": "Back to Help Center",
-    "topic_not_found": "Topic Not Found",
-    "topic_not_found_description": "The help topic you're looking for doesn't exist or has been moved.",
-    "browse_all_topics": "Browse All Topics",
+    "topic_not_found": "Topic Not Available",
+    "topic_not_found_description": "The topic you’re looking for has been moved or doesn’t exist. Try browsing our Help Center for more resources.",
+    "browse_all_topics": "Explore All Help Topics",
     "frequently_asked_questions": "Frequently Asked Questions",
-    "related_topics": "Related Topics",
-    "need_more_help": "Need More Help?",
-    "support_description": "Our support team is available 24/7 to assist you with any questions or issues.",
-    "contact_support": "Contact Support",
-    "download_guide": "Download Guide",
-    "download_guide_description": "Get the complete guide to {topic} as a PDF for offline reference.",
-    "download_pdf": "Download PDF",
+    "related_topics": "You May Also Find Helpful",
+    "need_more_help": "Still Need Assistance",
+    "support_description": "Our support team is here for you 24/7 — ready to guide you through any questions or issues.",
+    "contact_support": "Reach Out to Support",
+    "download_guide": "Download Full Guide",
+    "download_guide_description": "Download the full guide as a PDF and keep it handy for offline reference.",
+    "download_pdf": "Get PDF Guide",
     "faq": {
       "faq1": {
         "question": "How do I get started with this feature?",
-        "answer": "Getting started is simple. Follow our step-by-step guide above or contact our support team for personalized assistance."
+        "answer": "It’s simple to get started; just follow the step-by-step guide above. Need extra help? Our support team is always available for personalized guidance."
       },
       "faq2": {
         "question": "What are the common issues users face?",
-        "answer": "Most issues can be resolved by checking our troubleshooting guide. Common solutions include clearing cache, updating your app, or verifying your connection."
+        "answer": "Most issues can be solved quickly by checking our troubleshooting guide; from clearing cache and updating your app to verifying your internet connection."
       },
       "faq3": {
         "question": "Where can I find more advanced documentation?",
-        "answer": "Advanced users can access our developer documentation portal which includes API references, SDKs, and technical white papers."
+        "answer": "Advanced users can dive deeper in our developer documentation portal — with API references, SDKs, and detailed technical papers."
       }
     },
     "topics": {
       "trading_platform": {
         "title": "Trading Platform",
-        "description": "Learn how to navigate our trading platform and execute trades efficiently.",
-        "long_description": "Our trading platform is designed for both beginners and experienced traders, offering a seamless experience with advanced charting tools, real-time market data, and lightning-fast execution.",
+        "description": "Discover how to navigate McCoin’s trading platform and place trades with speed and confidence.",
+        "long_description": "McCoin’s trading platform is built for everyone; from first-time traders to market pros. Enjoy a seamless experience with real-time data, professional charting tools, and lightning-fast execution designed to keep you ahead of the market.",
         "key_features": "Key Features",
         "key_features_list": [
-          "Real-time price charts with technical indicators",
-          "One-click trading for instant execution",
-          "Advanced order types (limit, stop-loss, take-profit)",
-          "Portfolio tracking and performance analytics"
+          "1. Real-time charts packed with professional indicators",
+          "2. One-click trading for instant execution",
+          "3. Advanced order types: limit, stop-loss, take-profit",
+          "4. Portfolio tracking with performance analytics"
         ],
         "getting_started": "Getting Started",
-        "getting_started_description": "To begin trading:",
+        "getting_started_description": "Start trading in four simple steps",
         "getting_started_steps": [
-          "Connect your wallet or exchange account",
-          "Fund your account with your preferred cryptocurrency",
-          "Explore the interface using our interactive tutorial",
-          "Place your first trade with our risk-free demo mode"
+          "1. Connect your wallet or exchange account",
+          "2. Fund your account with your preferred cryptocurrency",
+          "3. Explore the platform with our interactive tutorial",
+          "4. Place your first trade using our risk-free demo mode"
         ],
-        "advanced_users": "For advanced users, we offer API access and algorithmic trading tools that integrate directly with our platform.",
+        "advanced_users": "Advanced traders can unlock API access and algorithmic trading tools, fully integrated for building custom strategies and high-frequency solutions.",
         "tag1": "trading",
         "tag2": "platform",
         "tag3": "errors"
       },
       "wallet_management": {
         "title": "Wallet Management",
-        "description": "Secure your assets with proper wallet setup and management techniques.",
-        "long_description": "Proper wallet management is crucial for securing your digital assets. Our platform supports multiple wallet types and provides enterprise-grade security features.",
+        "description": "Keep your assets safe with secure wallet setup, management tips, and best practices.",
+        "long_description": "Wallet management is key to protecting your digital wealth. McCoin supports multiple wallet types and equips you with enterprise-grade security to safeguard every transaction.",
         "wallet_types": "Wallet Types",
         "wallet_types_list": [
-          "Hot Wallets: For frequent trading with instant access",
-          "Cold Wallets: For long-term storage with enhanced security",
-          "Multi-Sig Wallets: Require multiple approvals for transactions"
+          "Hot Wallets: instant access for frequent trading",
+          "Cold Wallets: maximum security for long-term storage",
+          "Multi-Sig Wallets: multiple approvals required for transactions"
         ],
         "security_best_practices": "Security Best Practices",
         "security_steps": [
-          "Always enable two-factor authentication (2FA)",
-          "Use hardware wallets for large holdings",
-          "Regularly backup your wallet seed phrases",
-          "Verify wallet addresses before transactions"
+          "1.Always enable two-factor authentication (2FA)",
+          "2.Use hardware wallets for larger holdings",
+          "3.Back up your wallet seed phrase securely and regularly",
+          "4.Double-check wallet addresses before confirming transfers"
         ],
-        "wallet_integration": "Our wallet integration allows you to manage multiple wallets from a single interface while maintaining complete control over your private keys.",
+        "wallet_integration": "McCoin’s wallet integration lets you manage multiple wallets in one place while keeping full control of your private keys.",
         "tag1": "wallet",
         "tag2": "security",
         "tag3": "transfer"
       },
       "api_integration": {
         "title": "API Integration",
-        "description": "Connect your applications with our powerful trading API.",
-        "long_description": "Our REST and WebSocket APIs provide programmatic access to all platform features, enabling developers to build custom trading solutions and integrations.",
+        "description": "Seamlessly connect your applications to McCoin with our robust trading API.",
+        "long_description": "McCoin offers REST and WebSocket APIs for programmatic access to every feature of the platform; empowering developers to build custom trading tools, bots, and seamless integrations.",
         "api_features": "API Features",
         "api_features_list": [
-          "Real-time market data streaming",
-          "Order management and execution",
-          "Historical data access",
-          "Webhook support for event notifications"
+          "1.Real-time market data streaming",
+          "2.Full order management and instant execution",
+          "3.Access to historical trading data",
+          "4.Webhook support for live event notifications"
         ],
         "getting_started_api": "Getting Started with the API",
         "api_steps": [
-          "Generate API keys from your account settings",
-          "Review our comprehensive API documentation",
-          "Test with our sandbox environment",
-          "Implement rate limiting and error handling"
+          "1. Generate your API keys from account settings",
+          "2. Review our detailed API documentation",
+          "3. Test your setup in the sandbox environment",
+          "4. Implement rate limits and proper error handling"
         ],
-        "sdk_support": "We provide SDKs in multiple languages (Python, JavaScript, Go) to accelerate your development process. For high-frequency trading, consider our FIX API with ultra-low latency connections.",
+        "sdk_support": "We offer SDKs in Python, JavaScript, and Go to speed up your development. For advanced needs like high-frequency trading, our FIX API delivers ultra-low latency performance.",
         "tag1": "api",
         "tag2": "integration",
         "tag3": "developers"
       },
       "account_security": {
         "title": "Account Security",
-        "description": "Protect your account with 2FA and other security measures.",
-        "long_description": "Account security is our top priority. We employ bank-level security measures and provide tools to help you protect your account from unauthorized access.",
+        "description": "Keep your account safe with 2FA and McCoin’s advanced security features.",
+        "long_description": "Your security comes first. McCoin uses A-grade protection and offers powerful tools to shield your account from unauthorized access.",
         "security_features": "Security Features",
         "security_features_list": [
-          "Two-factor authentication (2FA) via SMS or authenticator apps",
-          "Biometric login (Face ID, Touch ID)",
-          "Device management and login notifications",
-          "Withdrawal whitelisting and time locks"
+          "1. Two-factor authentication (2FA) via SMS or authenticator apps",
+          "2. Biometric login with Face ID or Touch ID",
+          "3. Device management and instant login alerts",
+          "4. Withdrawal whitelisting and time-locked protection"
         ],
         "enhancing_security": "Enhancing Your Security",
         "security_enhancement_steps": [
-          "Enable all available security features",
-          "Use a unique, strong password",
-          "Be cautious of phishing attempts",
-          "Regularly review account activity"
+          "1.Activate all available security features",
+          "2.Create a strong, unique password",
+          "3.Stay alert to phishing links and fake sites",
+          "4.Review your account activity regularly"
         ],
-        "institutional_accounts": "For institutional accounts, we offer advanced security options including IP restrictions, multi-user access controls, and compliance reporting tools.",
+        "institutional_accounts": "For institutional clients, McCoin provides advanced protections; from IP restrictions and multi-user access controls to detailed compliance reporting.",
         "tag1": "security",
         "tag2": "authentication",
         "tag3": "2fa"
       },
       "market_analysis": {
         "title": "Market Analysis",
-        "description": "Master technical analysis and trading strategies.",
-        "long_description": "Our advanced market analysis tools give you the edge in cryptocurrency trading with professional-grade charting, indicators, and research tools.",
+        "description": "Sharpen your edge with advanced technical analysis and smart trading strategies.",
+        "long_description": "McCoin’s market analysis suite equips you with professional-grade tools — from advanced charting and indicators to real-time insights — helping you trade with confidence in a volatile market.",
         "analysis_tools": "Analysis Tools",
         "analysis_tools_list": [
-          "100+ technical indicators and drawing tools",
-          "Customizable chart layouts and timeframes",
-          "Market sentiment indicators",
-          "On-chain analytics integration"
+          "1. 100+ technical indicators and drawing tools",
+          "2. Customizable charts with flexible layouts and timeframes",
+          "3. Market sentiment and behavioral indicators",
+          "4. On-chain analytics for deeper insights"
         ],
         "trading_strategies": "Trading Strategies",
         "trading_strategy_steps": [
-          "Learn basic candlestick patterns",
-          "Understand support and resistance levels",
-          "Implement risk management techniques",
-          "Backtest strategies with historical data"
+          "1. Learn core candlestick patterns",
+          "2. Understand support and resistance dynamics",
+          "3. Apply disciplined risk management",
+          "4. Backtest strategies with historical data before execution"
         ],
-        "educational_resources": "Our platform includes educational resources and trading signals to help both novice and experienced traders make informed decisions in volatile markets.",
+        "educational_resources": "McCoin provides educational resources, tutorials, and trading signals — empowering both beginners and pros to make smarter, data-driven decisions.",
         "tag1": "analysis",
         "tag2": "trading",
         "tag3": "charts"
       },
       "getting_started": {
         "title": "Getting Started",
-        "description": "New to crypto? Start your journey with our beginner's guide.",
-        "long_description": "Welcome to the world of cryptocurrency! This comprehensive guide will help you navigate your first steps in digital asset investing.",
+        "description": "New to crypto? Begin your journey with McCoin’s step-by-step beginner’s guide.",
+        "long_description": "Welcome to the cryptocurrency space! This guide will walk you through your first steps; from understanding the basics to making your first trade with confidence.",
         "crypto_basics": "Crypto Basics",
         "crypto_basics_list": [
-          "Understanding blockchain technology",
-          "How cryptocurrencies are created and transferred",
-          "The difference between coins and tokens",
-          "Introduction to decentralized finance (DeFi)"
+          "1. Understand blockchain technology",
+          "2. Learn how cryptocurrencies are created and transferred",
+          "3. Know the difference between coins and tokens",
+          "4. Get introduced to decentralized finance (DeFi)"
         ],
         "first_steps": "First Steps",
         "first_steps_list": [
-          "Set up your account and verify your identity",
-          "Start with small investments to learn",
-          "Explore different asset classes",
-          "Learn about risk management"
+          "1. Create your McCoin account and verify your identity",
+          "2. Start small — learn with modest investments",
+          "3. Explore multiple asset classes and trading pairs",
+          "4. Understand and practice risk management"
         ],
-        "demo_account": "We recommend beginning with our free demo account to practice trading without risk. Our educational resources include video tutorials, webinars, and a knowledge base to support your learning journey.",
+        "demo_account": "Start risk-free with McCoin’s demo account. Practice trading in real market conditions and learn through our tutorials, webinars, and knowledge base;  all designed to support your learning journey.",
         "tag1": "beginner",
         "tag2": "guide",
         "tag3": "basics"
