@@ -21,6 +21,7 @@ import {
   CircleHelp,
   Mail,
 } from 'lucide-react';
+import { FaBlog } from 'react-icons/fa';
 import AnimatedLogo from './AnimatedLogo';
 import { useTranslations, useLocale } from 'next-intl';
 const iconComponents = {
@@ -40,6 +41,7 @@ const iconComponents = {
   Wallet,
   CircleHelp,
   Mail,
+  FaBlog,
 };
 const Footer = () => {
   const t = useTranslations('Footer');

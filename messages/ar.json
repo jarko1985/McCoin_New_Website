@@ -987,6 +987,7 @@
         "explorer": "المستكشف"
       },
       "insider_children": {
+        "blog": "المدونة",
         "top_news": "أهم الأخبار",
         "newsroom": "غرفة الأخبار",
         "podcasts": "البودكاست"
@@ -1019,6 +1020,7 @@
       "deposit_funds": "إيداع الأموال",
       "withdraw_funds": "سحب الأموال",
       "trade_cryptocurrency": "تداول العملات المشفرة",
+      "blog": "المدونة",
       "faq": "الأسئلة الشائعة (FAQ)",
       "contact_us": "اتصل بنا",
       "help_topics": "مواضيع المساعدة",

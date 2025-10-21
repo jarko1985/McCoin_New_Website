@@ -17,7 +17,7 @@ import NEWS1 from '@/../public/images/news1_pic.png';
 import NEWS2 from '@/../public/images/news2_pic.png';
 import NEWS3 from '@/../public/images/news3_pic.png';
 import { TbArticle } from 'react-icons/tb';
-import { FaBlog } from 'react-icons/fa';
+import { FaBlog, FaBlogger } from 'react-icons/fa';
 import { TbDeviceAnalytics } from 'react-icons/tb';
 import { FaGraduationCap } from 'react-icons/fa';
 import { ImNewspaper } from 'react-icons/im';
@@ -34,6 +34,16 @@ import { FaHandsHelping, FaLandmark } from 'react-icons/fa';
 import { FooterLink } from '@/types/FooterLink';
 import { NavbarLink } from '@/types/NavbarLink';
 import { MdOutlineExplore } from 'react-icons/md';
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  description: string;
+  publishDate: string;
+  category: string;
+  image: string;
+  featured?: boolean;
+}
 
 export type PolicySubsection = {
   title?: string; // Now optional
@@ -79,6 +89,7 @@ export const NAV_DATA = [
     children: [
       { title: 'Top News', icon: ImNewspaper, href: '/top-news' },
       { title: 'Newsroom', icon: GiSattelite, href: '/news-room' },
+      { title: 'blog', icon: FaBlog, href: '/blog' },
       // { title: 'Hot Topics', icon: LiaHotjar, href: '/hot-topics' },
       { title: 'Podcasts', icon: FaPodcast, href: '/podcasts' },
     ],
@@ -476,6 +487,12 @@ export const NavbarLinks: NavbarLink[] = [
     type: 'dropdown',
     children: [
       {
+        id: 50,
+        label: 'blog',
+        href: '/blog',
+        icon: FaBlog,
+      },
+      {
         id: 51,
         label: 'top_news',
         href: '/top-news',
@@ -608,6 +625,12 @@ export const FooterLinks: FooterLink[] = [
     href: 'support',
     iconName: 'CircleHelp',
     subLinks: [
+      {
+        id: 60,
+        label: 'blog',
+        href: 'blog',
+        iconName: 'FaBlog',
+      },
       {
         id: 61,
         label: 'faq',
@@ -2302,3 +2325,103 @@ export const ordersData = [
   },
   // You can easily generate 15 more by duplicating with minor changes
 ];
+export const blogPosts: BlogPost[] = [
+  {
+    id: 1,
+    title: "Why Regulatory Compliance Matters in the Crypto World — Especially in the MENA Region.",
+    description: "Cryptocurrency’s evolution from a niche experiment to a mainstream asset class has brought unprecedented opportunities, but also significant risks.",
+    publishDate: "16 Oct 2025",
+    category: "crypto-regulations",
+    image: "/images/blogs/blog1.png",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Why We’re a Spot-Only Exchange — Understanding Real Asset Ownership and Risk.",
+    description: "In crypto, spot trading works the same way: you buy or sell digital assets at the current market price, and the exchange transfers ownership to you immediately.",
+    publishDate: "16 Oct 2025",
+    category: "ethereum",
+    image: "/images/blogs/blog2.png"
+  },
+  {
+    id: 3,
+    title: "The Evolution of Self-Custody: Why Wallet Ownership Matters.",
+    description: "Cryptocurrency adoption is surging across the Middle East and North Africa.",
+    publishDate: "16 Oct 2025",
+    category: "market-trends",
+    image: "/images/blogs/blog3.png"
+  },
+  {
+    id: 4,
+    title: "Do You Know What You're Paying For? The Importance of Fee Transparency in Crypto Trading",
+    description: "In traditional finance, transparency in fees is a matter of regulation. In crypto, it’s a matter of survival. ",
+    publishDate: "16 Oct 2025",
+    category: "risk-management",
+    image: "/images/blogs/blog4.png"
+  },
+  {
+    id: 5,
+    title: "Technical Indicators: RSI, MACD, and Bollinger Bands",
+    description: "A comprehensive guide to the most effective technical indicators for cryptocurrency trading and analysis.",
+    publishDate: "11 Jan 2025",
+    category: "technical-indicators",
+    image: "/images/blogs/blog5.jpg" 
+  },
+  {
+    id: 6,
+    title: "New Cryptocurrency Regulations: Impact on Global Markets",
+    description: "Recent regulatory developments and their potential effects on cryptocurrency adoption and market dynamics.",
+    publishDate: "10 Jan 2025",
+    category: "crypto-regulations",
+    image: "/images/blogs/blog6.jpg"
+  },
+  {
+    id: 7,
+    title: "Portfolio Diversification: Beyond Bitcoin and Ethereum",
+    description: "Exploring alternative cryptocurrencies and investment strategies for building a well-diversified crypto portfolio.",
+    publishDate: "9 Jan 2025",
+    category: "portfolio-diversification",
+    image: "/images/blogs/blog7.jpg"
+  },
+  {
+    id: 8,
+    title: "Bitcoin Mining Difficulty Adjustment: What Traders Need to Know",
+    description: "Understanding how Bitcoin's mining difficulty adjustments affect network security and market dynamics.",
+    publishDate: "8 Jan 2025",
+    category: "bitcoin",
+    image: "/images/blogs/blog8.jpg"
+  },
+  {
+    id: 9,
+    title: "Ethereum Gas Fees: Optimization Strategies for DeFi Users",
+    description: "Learn how to minimize transaction costs and optimize your DeFi interactions on the Ethereum network.",
+    publishDate: "7 Jan 2025",
+    category: "ethereum",
+    image: "/images/blogs/blog9.jpg"
+  },
+  {
+    id: 10,
+    title: "Market Sentiment Analysis: Fear and Greed Index Explained",
+    description: "How to use market sentiment indicators to make informed trading decisions in volatile cryptocurrency markets.",
+    publishDate: "6 Jan 2025",
+    category: "market-trends",
+    image: "/images/blogs/blog10.jpg"
+  },
+  {
+    id: 11,
+    title: "Advanced Risk Management: Position Sizing and Stop Losses",
+    description: "Master the art of position sizing and stop-loss strategies to protect your capital in high-risk crypto markets.",
+    publishDate: "5 Jan 2025",
+    category: "risk-management",
+    image: "/images/blogs/blog11.jpg"
+  },
+  {
+    id: 12,
+    title: "Altcoin Analysis: Finding the Next Big Opportunity",
+    description: "Research methodologies and analysis techniques for identifying promising altcoin investments before they explode.",
+    publishDate: "4 Jan 2025",
+    category: "portfolio-diversification",
+    image: "/images/blogs/blog12.jpg"
+  }
+];
+

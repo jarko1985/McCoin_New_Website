@@ -660,6 +660,7 @@
         "explorer": "Explorer"
       },
       "insider_children": {
+        "blog": "Blog",
         "top_news": "Top News",
         "newsroom": "Newsroom",
         "podcasts": "Podcasts"
@@ -692,6 +693,7 @@
       "deposit_funds": "Deposit Funds",
       "withdraw_funds": "Withdraw Funds",
       "trade_cryptocurrency": "Trade Cryptocurrency",
+      "blog": "Blog",
       "faq": "FAQ",
       "contact_us": "Contact Us",
       "help_topics": "Help Topics",
