@@ -32,7 +32,7 @@ export default function BlogContent({ content }: BlogContentProps) {
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-[#DAE6EA]/10 z-50">
         <div 
-          className="h-full bg-gradient-to-r from-[#EC3B3B] to-[#DAE6EA] transition-all duration-300 ease-out"
+          className="h-full bg-[#EC3B3B] transition-all duration-300 ease-out"
           style={{ width: `${readingProgress}%` }}
         />
       </div>

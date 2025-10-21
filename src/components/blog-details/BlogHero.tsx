@@ -1,7 +1,9 @@
 "use client";
 
 import React from 'react';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 interface BlogHeroProps {
   title: string;
@@ -9,21 +11,26 @@ interface BlogHeroProps {
   author: string;
   publishDate: string;
   category: string;
+  locale: string;
 }
 
-export default function BlogHero({ title, image, author, publishDate, category }: BlogHeroProps) {
+export default function BlogHero({ title, image, author, publishDate, category, locale }: BlogHeroProps) {
+  const router = useRouter();
+
+  const handleBackToBlogs = () => {
+    router.push(`/${locale}/blog`);
+  };
   return (
     <section className="relative">
       {/* Hero Image */}
       <div className="relative h-[300px] md:h-[600px] w-full overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-contain transition-transform duration-700 hover:scale-105"
-          priority
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-10" />
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 hover:scale-105"
+          style={{
+            backgroundImage: `url(${image})`,
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         
         {/* Enhanced Floating decorations */}
         {/* Top decorations */}
@@ -49,8 +56,22 @@ export default function BlogHero({ title, image, author, publishDate, category }
         <div className="absolute top-40 left-48 w-5 h-5 bg-[#EC3B3B]/40 rounded-full animate-float" style={{ animationDelay: '1.7s' }} />
       </div>
 
-      {/* Blog Metadata */}
+      {/* Back to Blogs Button */}
       <div className="xl:max-w-[70%] mx-auto mt-8 relative z-10">
+        <div className="flex justify-start mb-4">
+          <Button
+            onClick={handleBackToBlogs}
+            variant="ghost"
+            className="flex items-center gap-2 px-6 py-3 text-[#DAE6EA] hover:text-white hover:bg-[#EC3B3B] transition-all duration-300 transform hover:scale-105 border border-[#DAE6EA]/20 hover:border-[#EC3B3B]/40 rounded-xl shadow-lg hover:shadow-xl"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="font-medium">Back to Blogs</span>
+          </Button>
+        </div>
+      </div>
+
+      {/* Blog Metadata */}
+      <div className="xl:max-w-[70%] mx-auto relative z-10">
         <div className="bg-[#07153B] border border-[#DAE6EA]/20 rounded-2xl p-4 shadow-4xl">
           <div className="flex flex-wrap items-center gap-6 text-[#DAE6EA]/80 mb-6">
             <div className="flex items-center">

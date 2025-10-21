@@ -68,8 +68,8 @@ export default function LikeDislikeButtons({
                 variant="ghost"
                 className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 ${
                   userAction === 'like'
-                    ? 'bg-[#EC3B3B] text-white hover:bg-[#EC3B3B]/90 glow-effect'
-                    : 'bg-transparent text-[#DAE6EA] hover:bg-[#EC3B3B] hover:text-white border border-[#DAE6EA]/20'
+                    ? 'bg-green-500 text-white hover:bg-green-600 glow-effect'
+                    : 'bg-transparent text-[#DAE6EA] hover:bg-green-500 hover:text-white border border-[#DAE6EA]/20'
                 }`}
               >
                 <ThumbsUp className={`h-5 w-5 ${userAction === 'like' ? 'animate-bounce' : ''}`} />
@@ -83,8 +83,8 @@ export default function LikeDislikeButtons({
                 variant="ghost"
                 className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 ${
                   userAction === 'dislike'
-                    ? 'bg-[#DAE6EA] text-[#07153B] hover:bg-[#DAE6EA]/90 glow-effect'
-                    : 'bg-transparent text-[#DAE6EA] hover:bg-[#DAE6EA] hover:text-[#07153B] border border-[#DAE6EA]/20'
+                    ? 'bg-red-500 text-white hover:bg-red-600 glow-effect'
+                    : 'bg-transparent text-[#DAE6EA] hover:bg-red-500 hover:text-white border border-[#DAE6EA]/20'
                 }`}
               >
                 <ThumbsDown className={`h-5 w-5 ${userAction === 'dislike' ? 'animate-bounce' : ''}`} />

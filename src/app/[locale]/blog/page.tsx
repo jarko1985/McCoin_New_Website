@@ -22,6 +22,8 @@ import { blogPosts } from '../../../../utils/data';
 
 // Filter categories
 const categories = [
+  { id: 'crypto-security', label: 'Crypto Security', icon: Shield, color: 'text-red-400' },
+  { id: 'cryptomarket', label: 'Crypto Market', icon: TrendingUp, color: 'text-blue-400' },
   { id: 'bitcoin', label: 'Bitcoin', icon: Bitcoin, color: 'text-orange-500' },
   { id: 'ethereum', label: 'Ethereum', icon: TrendingUp, color: 'text-blue-400' },
   { id: 'market-trends', label: 'Market Trends', icon: BarChart3, color: 'text-green-400' },
@@ -37,6 +39,36 @@ export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [email, setEmail] = useState('');
 
+  // Generate structured data for the blog page
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "McCoin Crypto Blog",
+    "description": "Stay updated with the latest cryptocurrency news, market analysis, and trading insights from McCoin. Expert articles on crypto security, market trends, and blockchain technology in the MENA region.",
+    "url": `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/blog`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "McCoin", 
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/images/mc_logo.png`
+      }
+    },
+    "blogPost": blogPosts.map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.description,
+      "url": `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/blog/${post.id}`,
+      "datePublished": new Date(post.publishDate).toISOString(),
+      "author": {
+        "@type": "Organization",
+        "name": post.author || "McCoin Editorial Team"
+      },
+      "image": `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}${post.image}`,
+      "articleSection": post.category
+    }))
+  };
+
   // Filter posts based on selected category
   const filteredPosts = selectedCategory === 'all' 
     ? blogPosts 
@@ -44,6 +76,14 @@ export default function BlogPage() {
 
   // Get featured post
   const featuredPost = blogPosts.find(post => post.featured);
+
+  // Calculate reading time (average 200 words per minute)
+  const calculateReadingTime = (content: string) => {
+    const wordsPerMinute = 200;
+    const wordCount = content.split(' ').length;
+    const readingTime = Math.ceil(wordCount / wordsPerMinute);
+    return readingTime;
+  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +94,11 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-[#07153B]">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero Section */}
       <section className="relative h-[600px] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-10" />
@@ -73,10 +118,10 @@ export default function BlogPage() {
           <div className="absolute bottom-40 left-40 w-20 h-20 bg-gradient-to-r from-[#EC3B3B]/20 to-[#DAE6EA]/20 rounded-full animate-float opacity-60" style={{ animationDelay: '2s' }} />
         </div>
         
-        <div className="relative z-20 h-full flex items-center">
-          <div className="container mx-auto px-6">
+        <div className="relative z-20 h-full">
+          <div className="container mx-auto px-6 relative h-full">
             <div className="max-w-2xl slide-in-up">
-              <Badge className="mt-2 bg-[#EC3B3B] text-white hover:bg-[#EC3B3B]/90 glow-effect">
+              <Badge className="absolute top-2 left-0 bg-[#EC3B3B] text-white hover:bg-[#EC3B3B]/90 glow-effect">
                 Featured Article
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -85,11 +130,11 @@ export default function BlogPage() {
               <p className="text-xl text-white/90 mb-8 leading-relaxed">
                 {featuredPost?.description}
               </p>
-                <Button 
-                  size="lg" 
-                  className="bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 mb-2"
-                  onClick={() => router.push(`/en/blog/${featuredPost?.id}`)}
-                >
+              <Button 
+                size="lg" 
+                className="absolute bottom-2 left-0 bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+                onClick={() => router.push(`/en/blog/${featuredPost?.id}`)}
+              >
                 Read Full Article
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -161,7 +206,7 @@ export default function BlogPage() {
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <Button 
                       size="sm" 
-                      className="bg-[#EC3B3B]/20 hover:bg-[#EC3B3B]/30 text-white border-0"
+                      className="bg-[#EC3B3B]/20 hover:bg-[#EC3B3B] text-white border-0 cursor-pointer"
                       onClick={() => router.push(`/en/blog/${post.id}`)}
                     >
                       <ArrowRight className="h-4 w-4" />
@@ -170,9 +215,16 @@ export default function BlogPage() {
                 </div>
                 
                 <CardContent className="p-6">
-                  <div className="flex items-center text-[#DAE6EA]/70 text-sm mb-3">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    {post.publishDate}
+                  <div className="flex items-center justify-between text-[#DAE6EA]/70 text-sm mb-3">
+                    <div className="flex items-center">
+                      <Calendar className="h-4 w-4 mr-2" />
+                      {post.publishDate}
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-xs bg-[#EC3B3B]/20 text-[#EC3B3B] px-2 py-1 rounded-full">
+                        {calculateReadingTime(post.content || '')} min read
+                      </span>
+                    </div>
                   </div>
                   
                   <h3 className="text-xl font-bold text-[#DAE6EA] mb-3 line-clamp-2 group-hover:text-[#EC3B3B] transition-colors duration-300">
@@ -184,8 +236,8 @@ export default function BlogPage() {
                   </p>
                   
                   <Button 
-                    variant="ghost" 
-                    className="w-full text-[#EC3B3B] hover:text-white hover:bg-[#EC3B3B] transition-all duration-300 group-hover:shadow-lg"
+                    // variant="ghost" 
+                    className="w-full text-[#EC3B3B] hover:text-white hover:bg-[#EC3B3B] transition-all duration-300 group-hover:shadow-lg cursor-pointer"
                     onClick={() => router.push(`/en/blog/${post.id}`)}
                   >
                     Read More
@@ -241,7 +293,7 @@ export default function BlogPage() {
                   <span className="text-[#EC3B3B]"> Wealth?</span>
                 </h2>
                   <p className="text-xl text-[#DAE6EA]/90 leading-relaxed">
-                    <span className='text-[#EC3B3B]'>DHS</span> is your key to profitable trading! Learn, trade, and grow with our expert insights, 
+                    <span className='text-[#EC3B3B]'>McCoin</span> is your key to profitable trading! Learn, trade, and grow with our expert insights, 
                     live trade signals, and mentorship programs. Don't wait - start your journey to financial success today.
                   </p>
               </div>
