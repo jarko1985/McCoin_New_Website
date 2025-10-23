@@ -10,3 +10,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/sitemap.xml`,
   };
 }
+

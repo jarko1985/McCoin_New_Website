@@ -58,7 +58,7 @@ export default function BlogPage() {
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.description,
-      "url": `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/blog/${post.id}`,
+      "url": `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/blog/${post.slug}`,
       "datePublished": new Date(post.publishDate).toISOString(),
       "author": {
         "@type": "Organization",
@@ -133,7 +133,7 @@ export default function BlogPage() {
               <Button 
                 size="lg" 
                 className="absolute bottom-2 left-0 bg-[#EC3B3B] hover:bg-[#EC3B3B]/90 text-white border-0 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-                onClick={() => router.push(`/en/blog/${featuredPost?.id}`)}
+                onClick={() => router.push(`/en/blog/${featuredPost?.slug}`)}
               >
                 Read Full Article
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -207,7 +207,7 @@ export default function BlogPage() {
                     <Button 
                       size="sm" 
                       className="bg-[#EC3B3B]/20 hover:bg-[#EC3B3B] text-white border-0 cursor-pointer"
-                      onClick={() => router.push(`/en/blog/${post.id}`)}
+                      onClick={() => router.push(`/en/blog/${post.slug}`)}
                     >
                       <ArrowRight className="h-4 w-4" />
                     </Button>
@@ -238,7 +238,7 @@ export default function BlogPage() {
                   <Button 
                     // variant="ghost" 
                     className="w-full text-[#EC3B3B] hover:text-white hover:bg-[#EC3B3B] transition-all duration-300 group-hover:shadow-lg cursor-pointer"
-                    onClick={() => router.push(`/en/blog/${post.id}`)}
+                    onClick={() => router.push(`/en/blog/${post.slug}`)}
                   >
                     Read More
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

@@ -26,10 +26,10 @@ interface BlogPost {
 export async function generateMetadata({ 
   params 
 }: { 
-  params: Promise<{ id: string; locale: string }> 
+  params: Promise<{ slug: string; locale: string }> 
 }): Promise<Metadata> {
-  const { id, locale } = await params;
-  const blogPost = blogPosts.find(post => post.id === parseInt(id));
+  const { slug, locale } = await params;
+  const blogPost = blogPosts.find(post => post.slug === slug);
   
   if (!blogPost) {
     return {
@@ -41,7 +41,7 @@ export async function generateMetadata({
   const title = `${blogPost.title} | DHS.exchange`;
   const description = blogPost.description;
   const imageUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://dhs.exchange'}${blogPost.image}`;
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://dhs.exchange'}/${locale}/blog/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://dhs.exchange'}/${locale}/blog/${slug}`;
 
   return {
     title,
@@ -70,8 +70,8 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
       languages: {
-        'en': `/en/blog/${id}`,
-        'ar': `/ar/blog/${id}`,
+        'en': `/en/blog/${slug}`,
+        'ar': `/ar/blog/${slug}`,
       },
     },
     openGraph: {
@@ -123,20 +123,19 @@ export async function generateMetadata({
 export default async function BlogDetailPage({ 
   params 
 }: { 
-  params: Promise<{ id: string; locale: string }> 
+  params: Promise<{ slug: string; locale: string }> 
 }) {
-  const { id, locale } = await params;
-  const blogId = parseInt(id);
+  const { slug, locale } = await params;
 
-  // Find the blog post by ID from the consolidated data
-  const blogPost = blogPosts.find(post => post.id === blogId);
+  // Find the blog post by slug from the consolidated data
+  const blogPost = blogPosts.find(post => post.slug === slug);
 
   if (!blogPost) {
     notFound();
   }
 
   // Use a stable URL for SSR compatibility
-  const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://dhs.exchange'}/${locale}/blog/${blogId}`;
+  const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://dhs.exchange'}/${locale}/blog/${slug}`;
 
   // Calculate reading time
   const calculateReadingTime = (content: string) => {
@@ -221,3 +220,4 @@ export default async function BlogDetailPage({
     </div>
   );
 }
+

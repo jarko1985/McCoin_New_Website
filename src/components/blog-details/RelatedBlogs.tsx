@@ -28,8 +28,8 @@ export default function RelatedBlogs({ currentBlogId, category }: RelatedBlogsPr
     .filter(blog => blog.id !== currentBlogId)
     .slice(0, 6);
 
-  const handleBlogClick = (blogId: number) => {
-    router.push(`/en/blog/${blogId}`);
+  const handleBlogClick = (blogSlug: string) => {
+    router.push(`/en/blog/${blogSlug}`);
   };
 
   return (
@@ -82,7 +82,7 @@ export default function RelatedBlogs({ currentBlogId, category }: RelatedBlogsPr
                   <Card 
                     className="group bg-[#07153B] border border-[#DAE6EA]/20 hover:border-[#EC3B3B]/40 transition-all duration-500 transform hover:scale-105 hover:shadow-4xl hover:shadow-black/50 overflow-hidden cursor-pointer fade-in-scale"
                     style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={() => handleBlogClick(blog.id)}
+                    onClick={() => handleBlogClick(blog.slug || '')}
                   >
                       <div className="relative overflow-hidden">
                         <Image 
