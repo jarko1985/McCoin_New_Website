@@ -16,12 +16,6 @@ const getTeamData = (t: any) => [
     avatar: '/images/team/kiyan.png',
   },
   {
-    name: t('team.members.sunil.name'),
-    role: t('team.members.sunil.role'),
-    bio: t('team.members.sunil.bio'),
-    avatar: '/images/team/sunil.png',
-  },
-  {
     name: t('team.members.vahid.name'),
     role: t('team.members.vahid.role'),
     bio: t('team.members.vahid.bio'),
