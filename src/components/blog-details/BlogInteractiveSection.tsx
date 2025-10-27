@@ -43,7 +43,7 @@ export default function BlogInteractiveSection({
       <SocialShareButtons
         url={currentUrl}
         title={title}
-        description={`Read this article about ${category.toLowerCase()} on DHS.exchange`}
+        description={`Read this article about ${category.toLowerCase()} on McCoin`}
       />
 
       {/* Comments Section */}

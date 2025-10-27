@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { renderFormattedContent } from '@/lib/blog-api';
 
 interface BlogContentProps {
   content: string;
@@ -76,7 +77,7 @@ export default function BlogContent({ content }: BlogContentProps) {
                  [&_ol_li]:relative [&_ol_li]:pl-4 [&_ol_li]:before:content-[''] [&_ol_li]:before:absolute [&_ol_li]:before:left-0 [&_ol_li]:before:top-2 [&_ol_li]:before:w-2 [&_ol_li]:before:h-2 [&_ol_li]:before:bg-[#EC3B3B] [&_ol_li]:before:rounded-full
                  [&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-3
                  [&_ul_li]:relative [&_ul_li]:pl-4 [&_ul_li]:before:content-[''] [&_ul_li]:before:absolute [&_ul_li]:before:left-0 [&_ul_li]:before:top-2 [&_ul_li]:before:w-1.5 [&_ul_li]:before:h-1.5 [&_ul_li]:before:bg-[#DAE6EA] [&_ul_li]:before:rounded-full"
-             dangerouslySetInnerHTML={{ __html: content }}
+             dangerouslySetInnerHTML={renderFormattedContent(content)}
            />
         </div>
       </div>
