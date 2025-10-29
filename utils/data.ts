@@ -649,6 +649,12 @@ export const FooterLinks: FooterLink[] = [
         href: 'help-topics',
         iconName: 'CircleHelp',
       },
+      {
+        id: 64,
+        label: 'raise_a_ticket',
+        href: 'tickets',
+        iconName: 'MessageSquare',
+      }
     ],
   },
   {
