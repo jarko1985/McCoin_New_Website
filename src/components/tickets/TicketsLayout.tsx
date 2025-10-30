@@ -55,22 +55,22 @@ export default function TicketsLayout({ userId, locale }: TicketsLayoutProps) {
 
   const sidebarItems = [
     {
-      id: 'my-tickets',
-      label: 'My Tickets',
-      icon: MessageCircle,
-      count: tickets.length,
-    },
-    {
       id: 'create-ticket',
       label: 'Create New Ticket',
       icon: Plus,
       action: () => setShowNewTicket(true),
     },
     {
-      id: 'contact-support',
-      label: 'Contact Support',
-      icon: Phone,
-    },
+        id: 'my-tickets',
+        label: 'My Tickets',
+        icon: MessageCircle,
+        count: tickets.length,
+      }
+    // {
+    //   id: 'contact-support',
+    //   label: 'Contact Support',
+    //   icon: Phone,
+    // },
   ];
 
   // Fetch tickets on component mount
@@ -394,7 +394,7 @@ export default function TicketsLayout({ userId, locale }: TicketsLayoutProps) {
 
           {/* Mobile Navigation Tabs */}
           <div className="lg:hidden bg-[#0d1635] border-b border-[#e2dedc]/20">
-            <div className="flex overflow-x-auto">
+            <div className="flex overflow-x-auto justify-center items-center">
               {sidebarItems.map((item) => {
                 const Icon = item.icon;
                 return (

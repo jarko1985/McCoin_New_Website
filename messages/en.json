@@ -132,8 +132,14 @@
       "title": "Crypto News UAE",
       "refresh_button": "Refresh news",
       "last_updated": "Last updated: {time}",
-      "error_fetch": "News couldn’t load this time.  Refresh to stay McCoinnected.",
+      "error_fetch": "News couldn't load this time.  Refresh to stay McCoinnected.",
       "try_again": "Reload to Stay McCoinnected"
+    },
+    "BlogSection": {
+      "title": "Latest Insights & Updates",
+      "subtitle": "Stay informed with our latest blog posts, market analysis, and trading insights",
+      "readMore": "Read More",
+      "viewAll": "View All Blog Posts"
     },
     "Testimonials": {
       "title": "What Our Traders Say",

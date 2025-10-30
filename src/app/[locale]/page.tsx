@@ -3,6 +3,7 @@ import AnimatedLogo from '@/components/custom/AnimatedLogo';
 import LocationDisplay from '@/components/custom/LocationDisplay';
 import MultiSwiper from '@/components/custom/MultiSwiper';
 import StackCards from '@/components/custom/StackCards';
+import BlogSection from '@/components/homepage/BlogSection';
 import PodcastTeaserBanner from '@/components/homepage/PodcastBanner';
 import TradeNow from '@/components/homepage/TradeNow';
 import CryptoNewsUAE from '@/components/sections/CryptoNewsUAE';
@@ -48,6 +49,7 @@ export default function Home() {
         <OurPartners />
         <WhyMccoin />
         <Steps />
+        <BlogSection />
         <MultiSwiper />
         <CryptoNewsUAE />
         <Testimonials />

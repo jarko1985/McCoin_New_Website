@@ -146,7 +146,14 @@ export default function LoginPage() {
         // Success
         toast.success(t('login_success'));
         const locale = isArabic ? 'ar' : 'en';
-        router.push(`/${locale}`);
+        
+        // Check for callbackUrl parameter
+        const callbackUrl = searchParams?.get('callbackUrl');
+        if (callbackUrl) {
+          router.push(callbackUrl);
+        } else {
+          router.push(`/${locale}`);
+        }
       } else {
         toast.error(t('login_failed'));
       }

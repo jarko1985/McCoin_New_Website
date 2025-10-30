@@ -15,10 +15,13 @@ export default async function TicketsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  
+  // Get the current session
   const session = await auth();
 
-  if (!session?.user) {
-    redirect(`/${locale}/login`);
+  // Redirect to login if no session or user
+  if (!session?.user?.id) {
+    redirect(`/${locale}/login?callbackUrl=/${locale}/tickets`);
   }
 
   return (
