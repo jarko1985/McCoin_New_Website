@@ -16,11 +16,7 @@ const ALLOW = (process.env.ALLOW_IPS ?? '')
 const BYPASS_IN_DEV = process.env.NODE_ENV !== 'production';
 
 export default async function middleware(request: NextRequest) {
-  // 1) Handle internationalization first (may rewrite/redirect)
-  const intlResponse = intlMiddleware(request);
-  if (intlResponse) return intlResponse;
-
-  // 2) IP allowlist (Edge-safe)
+  // 1) IP allowlist (Edge-safe) — run BEFORE i18n to avoid bypass via rewrites
   if (!BYPASS_IN_DEV) {
     const xff = request.headers.get('x-forwarded-for');
     const xri = request.headers.get('x-real-ip');
@@ -30,6 +26,10 @@ export default async function middleware(request: NextRequest) {
       return new NextResponse('Forbidden', { status: 403 });
     }
   }
+
+  // 2) Handle internationalization (may rewrite/redirect)
+  const intlResponse = intlMiddleware(request);
+  if (intlResponse) return intlResponse;
 
   // 3) Continue
   return NextResponse.next();
