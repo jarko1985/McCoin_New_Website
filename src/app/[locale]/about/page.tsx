@@ -1,5 +1,6 @@
 import AboutHero from '@/components/about/AboutHero';
 import MissionAndVision from '@/components/about/MissionAndVision';
+import { MissionVisionSection } from '@/components/about/MissionAndVision2';
 import { OurHistory } from '@/components/about/OurHistory';
 import OurTeam from '@/components/about/OurTeam';
 import OurValues from '@/components/about/OurValues';
@@ -9,7 +10,8 @@ const page = () => {
   return (
     <>
       <AboutHero />
-      <MissionAndVision />
+      {/* <MissionAndVision /> */}
+      <MissionVisionSection />
       <OurValues />
       <OurHistory />
       <OurTeam />

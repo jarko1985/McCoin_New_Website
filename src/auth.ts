@@ -30,7 +30,7 @@ if (!process.env.NEXTAUTH_SECRET) {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.NEXTAUTH_DEBUG === 'true' || process.env.AUTH_DEBUG === 'true',
   basePath: '/api/auth',
   providers: [
     Credentials({

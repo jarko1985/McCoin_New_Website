@@ -27,6 +27,12 @@ const getTeamData = (t: any) => [
     bio: t('team.members.mohamed.bio'),
     avatar: '/images/team/moe.png',
   },
+  {
+    name: t('team.members.wai.name'),
+    role: t('team.members.wai.role'),
+    bio: t('team.members.wai.bio'),
+    avatar: '/images/team/wai.jpeg',
+  },
 ];
 
 const OurTeam = () => {
@@ -61,8 +67,8 @@ const OurTeam = () => {
                 className="cursor-pointer absolute inset-0 bg-[#DAE6EA]  dark:bg-[#07153B] border border-[#07153B] dark:border-white rounded-xl p-6 flex flex-col items-center justify-center backface-hidden"
                 style={{ backfaceVisibility: 'hidden' }}
               >
-                <Avatar className="w-24 h-24 mb-4 border-2 border-[#EC3B3B]">
-                  <AvatarImage src={member.avatar} />
+				<Avatar className="w-24 h-24 mb-4 border-2 border-[#EC3B3B] ">
+					<AvatarImage className="grayscale" src={member.avatar} />
                   <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <h3 className="text-xl font-bold text-[#07153B] dark:text-white">{member.name}</h3>

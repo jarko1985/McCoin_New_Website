@@ -456,6 +456,11 @@
           "name": "Mohamed Elsayed",
           "role": "CIO | Navigator of intelligence",
           "bio": "With 10+ years in blockchain, he maps data constellations, aligning information systems for secure, real-time decision-making."
+        },
+        "wai": {
+          "name": "Wai Yan Phyo",
+          "role": "CISO",
+          "bio": "Wai is the security expert of the mission, ensuring the security and integrity of the spacecraft and the mission."
         }
       }
     },
@@ -682,6 +687,8 @@
   },
   "Footer": {
     "copyright": "© 2025 McCoin. All rights reserved.",
+    "compliance_line1": "McCoin Virtual Assets L.L.C. operates under an Initial Permission from the Virtual Assets Regulatory Authority (VARA).",
+    "compliance_line2": "No regulated activities, client onboarding, or trading services are currently being conducted.",
     "sections": {
       "about": "About",
       "learn": "Learn",
@@ -929,6 +936,9 @@
       "deposit": "Deposit",
       "records": "Deposit Records",
       "orderHistory": "Order History",
+      "promotions": "Promotions",
+      "activities": "Activities",
+      "notifications": "Notifications",
       "preferences": "Preferences",
       "logout": "Logout",
       "withdraw": "Withdraw",

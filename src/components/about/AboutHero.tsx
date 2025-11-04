@@ -71,7 +71,7 @@ const AboutHero = () => {
   return (
     <div className="text-[#07153B] dark:text-[#DAE6EA] min-h-[40vh] relative">
       <section className="relative py-20 px-4 overflow-hidden z-10">
-        <FloatingCryptoSymbols />
+        {/* <FloatingCryptoSymbols /> */}
 
         <div className="max-w-6xl mx-auto text-center relative -z-10">
           <motion.h1

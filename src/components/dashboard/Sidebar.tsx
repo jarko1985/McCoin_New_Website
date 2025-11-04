@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, History, User, LogOut, Cog, ChevronDown, ChevronUp } from 'lucide-react';
+import { LayoutDashboard, History, User, LogOut, Cog, ChevronDown, ChevronUp, Gift, Activity, Bell } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -292,7 +292,87 @@ const Sidebar = () => {
             </Link>
           </motion.div>
         )}
-
+        {/* Promotions */}
+        <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
+          <Link 
+           className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+            isActive('/dashboard/order-history')
+              ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+              : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+          } border border-transparent hover:border-[#EC3B3B]/20`}
+          href="/dashboard/promotions">
+          <motion.div
+                animate={isActive('/dashboard/promotions') ? 'active' : {}}
+                variants={activeVariants}
+                className="flex items-center gap-3 w-full"
+              >
+                <div
+                  className={`p-2 rounded-lg ${
+                    isActive('/dashboard/promotions')
+                      ? 'bg-white/20'
+                      : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                  } transition-all duration-300`}
+                >
+                  <Gift className="w-5 h-5" />
+                </div>
+                <span className="font-medium">{t('sidebar.promotions')}</span>
+              </motion.div>
+              </Link>
+        </motion.div>
+         {/* Activities */}
+         <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
+          <Link 
+           className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+            isActive('/dashboard/activities')
+              ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+              : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+          } border border-transparent hover:border-[#EC3B3B]/20`}
+          href="/dashboard/activities">
+          <motion.div
+                animate={isActive('/dashboard/activities') ? 'active' : {}}
+                variants={activeVariants}
+                className="flex items-center gap-3 w-full"
+              >
+                <div
+                  className={`p-2 rounded-lg ${
+                    isActive('/dashboard/activities')
+                      ? 'bg-white/20'
+                      : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                  } transition-all duration-300`}
+                >
+                  <Activity className="w-5 h-5" />
+                </div>
+                <span className="font-medium">{t('sidebar.activities')}</span>
+              </motion.div>
+              </Link>
+        </motion.div>
+         {/* Notifications */}
+         <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
+          <Link 
+           className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+            isActive('/dashboard/notifications')
+              ? 'bg-gradient-to-r from-[#EC3B3B] to-[#D13535] text-white shadow-lg shadow-[#EC3B3B]/30'
+              : 'text-[#DAE6EA] hover:text-white hover:bg-gradient-to-r hover:from-[#1a2f4d] hover:to-[#22304A]'
+          } border border-transparent hover:border-[#EC3B3B]/20`}
+          href="/dashboard/notifications">
+          <motion.div
+                animate={isActive('/dashboard/notifications') ? 'active' : {}}
+                variants={activeVariants}
+                className="flex items-center gap-3 w-full"
+              >
+                <div
+                  className={`p-2 rounded-lg ${
+                    isActive('/dashboard/notifications')
+                      ? 'bg-white/20'
+                      : 'bg-[#1a2f4d]/50 group-hover:bg-[#EC3B3B]/20'
+                  } transition-all duration-300`}
+                >
+                  <Bell className="w-5 h-5" />
+                </div>
+                <span className="font-medium">{t('sidebar.notifications')}</span>
+              </motion.div>
+              </Link>
+        </motion.div>
         {/* Preferences */}
         <motion.div variants={itemVariants} whileHover="hover" whileTap={{ scale: 0.95 }}>
           <Link

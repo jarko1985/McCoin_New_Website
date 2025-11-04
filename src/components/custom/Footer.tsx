@@ -83,6 +83,11 @@ const Footer = () => {
           </div>
         ))}
       </div>
+      <div className="rounded-lg border-2 border-[#EC3B3B] bg-[#EC3B3B]/10 p-5 text-center flex flex-col items-center gap-2">
+        {/* <Info className="text-[#EC3B3B]" size={24} /> */}
+        <p className="dark:text-[#DAE6EA] text-[#050e27] font-semibold">{t('compliance_line1')}</p>
+        <p className="dark:text-gray-300 text-[#050e27] text-sm">{t('compliance_line2')}</p>
+      </div>
       <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-y-6 lg:gap-y-0">
         <div className="bg-[#050E27]">
           <AnimatedLogo />
