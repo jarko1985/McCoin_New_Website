@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signupFormSchema, type SignupFormData } from '@/lib/schemas';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
@@ -21,27 +21,7 @@ import { useLocale } from 'next-intl';
 import ReCAPTCHA from 'react-google-recaptcha';
 import PasswordRequirements from '@/components/custom/PasswordRequirements';
 
-// Create schema function that accepts translations
-const createSignUpSchema = (t: any) =>
-  z
-    .object({
-      name: z.string().min(2, t('validations.name_min')),
-      email: z.string().email(t('validations.email_invalid')),
-      password: z
-        .string()
-        .min(8, t('validations.password_min'))
-        .regex(/[A-Z]/, t('validations.password_uppercase'))
-        .regex(/[0-9]/, t('validations.password_number'))
-        .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, t('validations.password_special')),
-      confirmPassword: z.string(),
-      acceptTerms: z.boolean().refine(val => val === true, {
-        message: t('validations.terms_required'),
-      }),
-    })
-    .refine(data => data.password === data.confirmPassword, {
-      message: t('validations.passwords_match'),
-      path: ['confirmPassword'],
-    });
+// Using shared schema with sanitization
 
 export default function SignUpPage() {
   const t = useTranslations('signUp');
@@ -75,7 +55,7 @@ export default function SignUpPage() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm({ resolver: zodResolver(createSignUpSchema(t)) });
+  } = useForm<SignupFormData>({ resolver: zodResolver(signupFormSchema) });
 
   // useEffect for session redirect
   useEffect(() => {

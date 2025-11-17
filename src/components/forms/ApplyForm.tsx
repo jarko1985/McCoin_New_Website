@@ -1,5 +1,4 @@
 "use client";
-import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -17,29 +16,16 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
+import { applyFormSchema, type ApplyFormData } from '@/lib/schemas';
 
-const getApplySchema = (t: any) => z.object({
-  fullName: z.string().min(2, t('validation.fullNameRequired')),
-  email: z.string().email(t('validation.invalidEmail')),
-  phone: z.string().min(7, t('validation.invalidPhone')),
-  visaStatus: z.string().min(1, t('validation.visaStatusRequired')),
-  salaryExpectations: z.string().min(1, t('validation.salaryExpectationsRequired')),
-  availability: z.string().min(1, t('validation.availabilityRequired')),
-  resume: z
-    .any()
-    .refine((file) => file?.[0], t('validation.resumeRequired'))
-    .refine((file) => file?.[0]?.type === "application/pdf", t('validation.onlyPdfAllowed'))
-    .refine((file) => file?.[0]?.size <= 5 * 1024 * 1024, t('validation.maxFileSize')),
-});
-
-type FormValues = z.infer<ReturnType<typeof getApplySchema>>;
+type FormValues = ApplyFormData;
 
 const ApplyForm = () => {
   const locale = (useParams() as { locale?: string })?.locale ?? "en";
   const t = useTranslations('Careers.ApplyForm');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<FormValues>({
-    resolver: zodResolver(getApplySchema(t)),
+    resolver: zodResolver(applyFormSchema),
     defaultValues: {
       fullName: "",
       email: "",

@@ -4,20 +4,30 @@ import mongoose from 'mongoose';
 import { hash } from 'bcryptjs';
 import { randomBytes, createHash } from 'crypto';
 import { sendVerificationEmail } from '@/lib/mail';
+import { signupApiSchema, type SignupApiData } from '@/lib/schemas';
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password, recaptchaToken } = await req.json();
+    const body: unknown = await req.json();
+    
+    // Re-validate on server using API schema (sanitization happens in transform)
+    // Note: confirmPassword and acceptTerms are validated client-side only
+    const validatedData = signupApiSchema.safeParse(body);
 
-    if (!name || !email || !password) {
+    if (!validatedData.success) {
+      console.warn('Signup form validation failed:', validatedData.error.flatten());
       return NextResponse.json(
         {
           success: false,
-          message: 'All fields are required',
+          message: 'Validation failed',
+          errors: validatedData.error.flatten(),
         },
         { status: 400 },
       );
     }
+
+    // Data is already sanitized by the schema transform
+    const { name, email, password }: SignupApiData = validatedData.data;
 
     // Validate reCAPTCHA token (optional - you can add reCAPTCHA verification here)
     // if (!recaptchaToken) {
