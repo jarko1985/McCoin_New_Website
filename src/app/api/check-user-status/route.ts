@@ -2,14 +2,29 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import {
+  loginSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+} from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, password } = await req.json();
+    const body = await req.json();
 
-    if (!email || !password) {
-      return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
+    // Validate and sanitize input
+    const validation = validateAndSanitize(loginSchema, body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'validation_error',
+          message: getValidationErrorMessage(validation.error),
+        },
+        { status: 400 },
+      );
     }
+
+    const { email, password } = validation.data;
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
@@ -61,7 +76,6 @@ export async function POST(req: NextRequest) {
       needs2FA: user.twoFactorEnabled || false,
     });
   } catch (error) {
-    console.error('Check user status error:', error);
     return NextResponse.json(
       {
         error: 'server_error',

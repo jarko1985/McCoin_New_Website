@@ -3,14 +3,26 @@ import { User } from '@/lib/models/User';
 import { sendPasswordResetEmail } from '@/lib/mail';
 import mongoose from 'mongoose';
 import crypto from 'crypto';
+import {
+  forgotPasswordSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+} from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const body = await request.json();
 
-    if (!email) {
-      return NextResponse.json({ message: 'Email is required' }, { status: 400 });
+    // Validate and sanitize input
+    const validation = validateAndSanitize(forgotPasswordSchema, body);
+    if (!validation.success) {
+      return NextResponse.json(
+        { message: getValidationErrorMessage(validation.error) },
+        { status: 400 },
+      );
     }
+
+    const { email } = validation.data;
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
@@ -43,7 +55,6 @@ export async function POST(request: NextRequest) {
     try {
       await sendPasswordResetEmail(email, resetToken);
     } catch (emailError) {
-      console.error('Failed to send password reset email:', emailError);
       return NextResponse.json(
         { message: 'Failed to send reset email. Please try again.' },
         { status: 500 },
@@ -55,7 +66,6 @@ export async function POST(request: NextRequest) {
       { status: 200 },
     );
   } catch (error) {
-    console.error('Forgot password error:', error);
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

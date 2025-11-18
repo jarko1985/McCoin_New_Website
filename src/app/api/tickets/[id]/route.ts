@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import { randomBytes } from 'crypto';
+import { verifyTicketOwnership } from '@/lib/security';
+import {
+  updateTicketSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+  sanitizeText,
+  sanitizeHtml,
+  ticketIdSchema,
+} from '@/lib/validation';
 
 // GET /api/tickets/[id] - Get specific ticket
 export async function GET(
@@ -11,27 +20,25 @@ export async function GET(
   try {
     const { id } = await params;
 
-    // Connect to MongoDB
-    if (mongoose.connection.readyState !== 1) {
-      await mongoose.connect(process.env.MONGODB_URI!);
+    // Validate ticket ID format
+    const idValidation = ticketIdSchema.safeParse(id);
+    if (!idValidation.success) {
+      return NextResponse.json(
+        { error: 'Invalid ticket ID format' },
+        { status: 400 }
+      );
     }
 
-    // Find user with the specific ticket
-    const user = await User.findOne({ 'tickets.id': id });
-    
-    if (!user) {
-      return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
-    }
+    // Verify ticket ownership
+    const { ticket, error } = await verifyTicketOwnership(id);
+    if (error) return error;
 
-    const ticket = user.tickets.find((t: any) => t.id === id);
-    
     if (!ticket) {
       return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
     }
 
     return NextResponse.json(ticket);
   } catch (error) {
-    console.error('Error fetching ticket:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -46,18 +53,41 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params;
+
+    // Validate ticket ID format
+    const idValidation = ticketIdSchema.safeParse(id);
+    if (!idValidation.success) {
+      return NextResponse.json(
+        { error: 'Invalid ticket ID format' },
+        { status: 400 }
+      );
+    }
+
     const updates = await request.json();
+
+    // Validate and sanitize updates
+    const validation = validateAndSanitize(updateTicketSchema, updates);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          message: getValidationErrorMessage(validation.error),
+        },
+        { status: 400 }
+      );
+    }
+
+    // Verify ticket ownership
+    const { ticket, user, error } = await verifyTicketOwnership(id);
+    if (error) return error;
+
+    if (!ticket || !user) {
+      return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
+    }
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
       await mongoose.connect(process.env.MONGODB_URI!);
-    }
-
-    // Find user with the specific ticket
-    const user = await User.findOne({ 'tickets.id': id });
-    
-    if (!user) {
-      return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
     }
 
     const ticketIndex = user.tickets.findIndex((t: any) => t.id === id);
@@ -66,24 +96,32 @@ export async function PATCH(
       return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
     }
 
-    const ticket = user.tickets[ticketIndex];
+    const ticketToUpdate = user.tickets[ticketIndex];
     
-    // Update ticket fields
-    if (updates.subject) ticket.subject = updates.subject;
-    if (updates.description) ticket.description = updates.description;
-    if (updates.category) ticket.category = updates.category;
-    if (updates.priority) ticket.priority = updates.priority;
-    if (updates.status) {
-      const oldStatus = ticket.status;
-      ticket.status = updates.status;
+    // Update ticket fields with sanitized values
+    if (validation.data.subject) {
+      ticketToUpdate.subject = sanitizeText(validation.data.subject);
+    }
+    if (validation.data.description) {
+      ticketToUpdate.description = sanitizeHtml(validation.data.description);
+    }
+    if (validation.data.category) {
+      ticketToUpdate.category = validation.data.category;
+    }
+    if (validation.data.priority) {
+      ticketToUpdate.priority = validation.data.priority;
+    }
+    if (validation.data.status) {
+      const oldStatus = ticketToUpdate.status;
+      ticketToUpdate.status = validation.data.status;
       
       // Add timeline event for status change
-      ticket.timeline.push({
+      ticketToUpdate.timeline.push({
         id: randomBytes(8).toString('hex'),
         type: 'status_changed',
-        description: `Status changed from ${oldStatus} to ${updates.status}`,
+        description: `Status changed from ${oldStatus} to ${validation.data.status}`,
         actor: {
-          id: ticket.userId,
+          id: ticketToUpdate.userId,
           name: user.name || user.email,
           type: 'user',
         },
@@ -91,15 +129,14 @@ export async function PATCH(
       });
     }
     
-    ticket.updatedAt = new Date();
-    ticket.lastActivityAt = new Date();
+    ticketToUpdate.updatedAt = new Date();
+    ticketToUpdate.lastActivityAt = new Date();
 
     // Save user
     await user.save();
 
-    return NextResponse.json(ticket);
+    return NextResponse.json(ticketToUpdate);
   } catch (error) {
-    console.error('Error updating ticket:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -115,16 +152,26 @@ export async function DELETE(
   try {
     const { id } = await params;
 
+    // Validate ticket ID format
+    const idValidation = ticketIdSchema.safeParse(id);
+    if (!idValidation.success) {
+      return NextResponse.json(
+        { error: 'Invalid ticket ID format' },
+        { status: 400 }
+      );
+    }
+
+    // Verify ticket ownership
+    const { user, error } = await verifyTicketOwnership(id);
+    if (error) return error;
+
+    if (!user) {
+      return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
+    }
+
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
       await mongoose.connect(process.env.MONGODB_URI!);
-    }
-
-    // Find user with the specific ticket
-    const user = await User.findOne({ 'tickets.id': id });
-    
-    if (!user) {
-      return NextResponse.json({ error: 'Ticket not found' }, { status: 404 });
     }
 
     // Remove ticket from user's tickets array
@@ -133,7 +180,6 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'Ticket deleted successfully' });
   } catch (error) {
-    console.error('Error deleting ticket:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

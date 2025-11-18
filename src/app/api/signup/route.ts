@@ -4,20 +4,34 @@ import mongoose from 'mongoose';
 import { hash } from 'bcryptjs';
 import { randomBytes, createHash } from 'crypto';
 import { sendVerificationEmail } from '@/lib/mail';
+import {
+  signupSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+  sanitizeText,
+} from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password, recaptchaToken } = await req.json();
+    const body = await req.json();
 
-    if (!name || !email || !password) {
+    // Validate and sanitize input
+    const validation = validateAndSanitize(signupSchema, body);
+    if (!validation.success) {
       return NextResponse.json(
         {
           success: false,
-          message: 'All fields are required',
+          message: getValidationErrorMessage(validation.error),
+          errors: validation.error.errors,
         },
         { status: 400 },
       );
     }
+
+    const { name, email, password, recaptchaToken } = validation.data;
+
+    // Sanitize name
+    const sanitizedName = sanitizeText(name);
 
     // Validate reCAPTCHA token (optional - you can add reCAPTCHA verification here)
     // if (!recaptchaToken) {
@@ -57,7 +71,7 @@ export async function POST(req: NextRequest) {
 
     // Create user with verification fields
     await User.create({
-      name,
+      name: sanitizedName,
       email: email.toLowerCase(),
       password: hashedPassword,
       verifyToken: hashedToken,
@@ -69,8 +83,8 @@ export async function POST(req: NextRequest) {
     try {
       await sendVerificationEmail(email.toLowerCase(), rawToken);
     } catch (emailError) {
-      console.error('Error sending verification email:', emailError);
       // Don't fail the signup if email sending fails
+      // Log error in production but don't expose details
     }
 
     return NextResponse.json({
@@ -79,7 +93,6 @@ export async function POST(req: NextRequest) {
       requiresVerification: true,
     });
   } catch (error) {
-    console.error('Signup error:', error);
     return NextResponse.json(
       {
         success: false,

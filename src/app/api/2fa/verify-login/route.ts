@@ -3,11 +3,29 @@ import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import speakeasy from 'speakeasy';
+import {
+  twoFactorVerifyLoginSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+} from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
-  try {  
-    // Data is already sanitized by the schema transform
-    const { email, password, token } = await req.json();
+  try {
+    const body = await req.json();
+
+    // Validate and sanitize input
+    const validation = validateAndSanitize(twoFactorVerifyLoginSchema, body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'validation_error',
+          message: getValidationErrorMessage(validation.error),
+        },
+        { status: 400 },
+      );
+    }
+
+    const { email, password, token } = validation.data;
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

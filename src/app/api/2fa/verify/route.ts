@@ -3,6 +3,11 @@ import { auth } from '@/auth';
 import { User } from '@/lib/models/User';
 import speakeasy from 'speakeasy';
 import mongoose from 'mongoose';
+import {
+  twoFactorVerifySchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+} from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,11 +17,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { token } = await request.json();
+    const body = await request.json();
 
-    if (!token) {
-      return NextResponse.json({ error: 'Token is required' }, { status: 400 });
+    // Validate and sanitize input
+    const validation = validateAndSanitize(twoFactorVerifySchema, body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          message: getValidationErrorMessage(validation.error),
+        },
+        { status: 400 },
+      );
     }
+
+    const { token } = validation.data;
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

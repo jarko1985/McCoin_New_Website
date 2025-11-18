@@ -3,6 +3,12 @@ import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import { createHash } from 'crypto';
 import { sendWelcomeEmail } from '@/lib/mail';
+import {
+  verifyEmailSchema,
+  resendVerificationSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+} from '@/lib/validation';
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,18 +16,22 @@ export async function GET(req: NextRequest) {
     const token = searchParams.get('token');
     const email = searchParams.get('email');
 
-    if (!token || !email) {
+    // Validate input
+    const validation = validateAndSanitize(verifyEmailSchema, { token, email });
+    if (!validation.success) {
       return NextResponse.json(
         {
           success: false,
-          message: 'Missing verification token or email',
+          message: getValidationErrorMessage(validation.error),
         },
         { status: 400 },
       );
     }
 
+    const { token: validatedToken, email: validatedEmail } = validation.data;
+
     // Hash the token to compare with stored hash
-    const hashedToken = createHash('sha256').update(token).digest('hex');
+    const hashedToken = createHash('sha256').update(validatedToken).digest('hex');
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
@@ -30,7 +40,7 @@ export async function GET(req: NextRequest) {
 
     // Find user with matching token and email
     const user = await User.findOne({
-      email: email.toLowerCase(),
+      email: validatedEmail.toLowerCase(),
       verifyToken: hashedToken,
       verifyTokenExpires: { $gt: Date.now() }, // Token not expired
     });
@@ -70,9 +80,8 @@ export async function GET(req: NextRequest) {
 
     // Send welcome email after successful verification
     try {
-      await sendWelcomeEmail(email.toLowerCase(), user.name);
+      await sendWelcomeEmail(validatedEmail.toLowerCase(), user.name);
     } catch (emailError) {
-      console.error('Error sending welcome email:', emailError);
       // Don't fail the verification process if welcome email fails
       // Just log the error and continue
     }
@@ -82,7 +91,6 @@ export async function GET(req: NextRequest) {
       message: 'Email verified successfully',
     });
   } catch (error) {
-    console.error('Email verification error:', error);
     return NextResponse.json(
       {
         success: false,
@@ -95,17 +103,21 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const body = await req.json();
 
-    if (!email) {
+    // Validate input
+    const validation = validateAndSanitize(resendVerificationSchema, body);
+    if (!validation.success) {
       return NextResponse.json(
         {
           success: false,
-          message: 'Email is required',
+          message: getValidationErrorMessage(validation.error),
         },
         { status: 400 },
       );
     }
+
+    const { email } = validation.data;
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
@@ -153,7 +165,6 @@ export async function POST(req: NextRequest) {
     try {
       await sendVerificationEmail(email.toLowerCase(), rawToken);
     } catch (emailError) {
-      console.error('Error sending verification email:', emailError);
       return NextResponse.json(
         {
           success: false,
@@ -168,7 +179,6 @@ export async function POST(req: NextRequest) {
       message: 'New verification email sent successfully',
     });
   } catch (error) {
-    console.error('Resend verification error:', error);
     return NextResponse.json(
       {
         success: false,
