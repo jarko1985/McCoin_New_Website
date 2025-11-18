@@ -1,6 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -17,7 +18,6 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { SuccessModal } from '@/components/ui/success-modal';
-import { contactFormSchema, type ContactFormData } from '@/lib/schemas';
 
 const ContactForm = () => {
   const t = useTranslations('Contact');
@@ -25,9 +25,26 @@ const ContactForm = () => {
   const locale = pathname?.split('/')[1] ?? 'en';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  type FormValues = ContactFormData;
+  const formSchema = z.object({
+    name: z.string().min(2, {
+      message: t('name_error'),
+    }),
+    email: z.string().email({
+      message: t('email_error'),
+    }),
+    phone: z.string().min(10, {
+      message: t('phone_error'),
+    }),
+    subject: z.string().min(5, {
+      message: t('subject_error'),
+    }),
+    message: z.string().min(10, {
+      message: t('message_error'),
+    }),
+  });
+  type FormValues = z.infer<typeof formSchema>;
   const form = useForm<FormValues>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       email: '',

@@ -3,29 +3,11 @@ import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import speakeasy from 'speakeasy';
-import { verify2FALoginSchema, type Verify2FALoginData } from '@/lib/schemas';
 
 export async function POST(req: NextRequest) {
-  try {
-    const body: unknown = await req.json();
-    
-    // Re-validate on server using shared schema (sanitization happens in transform)
-    const validatedData = verify2FALoginSchema.safeParse(body);
-
-    if (!validatedData.success) {
-      console.warn('2FA login validation failed:', validatedData.error.flatten());
-      return NextResponse.json(
-        {
-          error: 'validation_failed',
-          message: 'Invalid input format',
-          errors: validatedData.error.flatten(),
-        },
-        { status: 400 },
-      );
-    }
-
+  try {  
     // Data is already sanitized by the schema transform
-    const { email, password, token }: Verify2FALoginData = validatedData.data;
+    const { email, password, token } = await req.json();
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

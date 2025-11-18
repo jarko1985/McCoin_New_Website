@@ -20,7 +20,7 @@ interface Article {
 }
 
 const shimmer = 'animate-pulse bg-[#DAE6EA]/10';
-const fallbackImage = '/images/fallback-image.jpeg';
+const fallbackImage = '/images/crypto_news_alt.png';
 
 export default function CryptoNewsUAE() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -28,10 +28,19 @@ export default function CryptoNewsUAE() {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const locale = (useParams() as { locale?: string })?.locale ?? 'en';
   const t = useTranslations('HomePage.CryptoNewsUAE');
   const currentLocale = useLocale();
   const isArabic = currentLocale === 'ar';
+
+  const handleImageError = (imageUrl: string) => {
+    setFailedImages((prev) => new Set(prev).add(imageUrl));
+  };
+
+  const getImageSrc = (imageUrl: string) => {
+    return failedImages.has(imageUrl) ? fallbackImage : (imageUrl || fallbackImage);
+  };
 
   const fetchNews = useCallback(
     async (isRefresh = false) => {
@@ -159,13 +168,15 @@ export default function CryptoNewsUAE() {
                 >
                   <div className="relative aspect-square w-20 h-20 rounded overflow-hidden flex-shrink-0">
                     <Image
-                      src={article.image || fallbackImage}
+                      src={getImageSrc(article.image)}
                       alt={article.title}
                       fill
                       className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
                       sizes="80px"
                       onError={() => {
-                        // Fallback is handled by the src prop
+                        if (article.image) {
+                          handleImageError(article.image);
+                        }
                       }}
                     />
                   </div>
@@ -199,13 +210,15 @@ export default function CryptoNewsUAE() {
             <a href={featured.url} target="_blank" rel="noreferrer">
               <div className="relative aspect-video w-full">
                 <Image
-                  src={featured.image || fallbackImage}
+                  src={getImageSrc(featured.image)}
                   alt={featured.title}
                   fill
                   className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   onError={() => {
-                    // Fallback is handled by the src prop
+                    if (featured.image) {
+                      handleImageError(featured.image);
+                    }
                   }}
                 />
               </div>

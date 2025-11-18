@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { kycVerificationSchema, type KYCVerificationData } from '@/lib/schemas';
+import { z } from 'zod';
 import { useState, useEffect } from 'react';
 import {
   Form,
@@ -31,8 +31,41 @@ import SumsubLogo from '@/components/custom/SumsubLogo';
 import Image from 'next/image';
 import { setVerificationStatus } from '@/lib/verification';
 
-// Using shared schema with sanitization
-type VerificationFormValues = KYCVerificationData;
+// Zod schema for the entire form – individual steps will validate subsets
+const verificationSchema = z.object({
+  introConfirmed: z.boolean().refine(v => v === true, {
+    message: 'You must acknowledge the introduction to continue',
+  }),
+  firstName: z.string().min(2, { message: 'First name is required' }),
+  lastName: z.string().min(2, { message: 'Last name is required' }),
+  dateOfBirth: z
+    .string()
+    .min(1, { message: 'Date of birth is required' })
+    .refine(
+      dateString => {
+        const birthDate = new Date(dateString);
+        const today = new Date();
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+
+        // Calculate exact age considering month and day
+        const exactAge = age - (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? 1 : 0);
+
+        return exactAge >= 18;
+      },
+      {
+        message: 'You must be at least 18 years old to proceed',
+      },
+    ),
+  country: z.string().min(1, { message: 'Country is required' }),
+  documentType: z.enum(['passport', 'driver_license', 'national_id']).optional(),
+  documentFront: z.instanceof(File).optional(),
+  documentBack: z.instanceof(File).optional(),
+  selfie: z.instanceof(File).optional(),
+});
+
+type VerificationFormValues = z.infer<typeof verificationSchema>;
 
 type CountryOption = {
   code: string;
@@ -83,7 +116,7 @@ export default function KYCVerificationForm() {
   }, []);
 
   const form = useForm<VerificationFormValues>({
-    resolver: zodResolver(kycVerificationSchema),
+    resolver: zodResolver(verificationSchema),
     mode: 'onBlur',
     defaultValues: {
       firstName: '',

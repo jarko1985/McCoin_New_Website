@@ -3,8 +3,8 @@ import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginFormSchema, type LoginFormData } from '@/lib/schemas';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
@@ -20,7 +20,12 @@ import { FaArrowRight } from 'react-icons/fa';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useSearchParams } from 'next/navigation';
 
-// Using shared schema with sanitization
+// Create schema function that accepts translations
+const createFormSchema = (t: any) =>
+  z.object({
+    email: z.string().email(t('validations.email_invalid')),
+    password: z.string().min(1, t('validations.password_required')),
+  });
 
 export default function LoginPage() {
   const t = useTranslations('signIn');
@@ -39,7 +44,7 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<LoginFormData>({ resolver: zodResolver(loginFormSchema) });
+  } = useForm({ resolver: zodResolver(createFormSchema(t)) });
 
   // Check for NextAuth error parameters and pre-fill email
   useEffect(() => {

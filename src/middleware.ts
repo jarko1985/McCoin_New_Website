@@ -2,7 +2,6 @@
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
-import logger from './lib/logger-edge';
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -17,19 +16,6 @@ const ALLOW = (process.env.ALLOW_IPS ?? '')
 const BYPASS_IN_DEV = process.env.NODE_ENV !== 'production';
 
 export default async function middleware(request: NextRequest) {
-  const startTime = Date.now();
-  const url = request.url;
-  const method = request.method;
-  
-  // Log request start
-  logger.debug({
-    method,
-    url,
-    pathname: request.nextUrl.pathname,
-    userAgent: request.headers.get('user-agent'),
-    ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
-  }, 'Incoming request');
-
   // 1) IP allowlist (Edge-safe) — run BEFORE i18n to avoid bypass via rewrites
   if (!BYPASS_IN_DEV) {
     const xff = request.headers.get('x-forwarded-for');
@@ -37,24 +23,16 @@ export default async function middleware(request: NextRequest) {
     const clientIp = xff?.split(',')[0]?.trim() || xri?.trim() || null;
 
     if (!clientIp || !isAllowed(clientIp, ALLOW)) {
-      logger.warn({ ip: clientIp, url }, 'IP blocked by allowlist');
       return new NextResponse('Forbidden', { status: 403 });
     }
   }
 
   // 2) Handle internationalization (may rewrite/redirect)
   const intlResponse = intlMiddleware(request);
-  if (intlResponse) {
-    const duration = Date.now() - startTime;
-    logger.debug({ method, url, status: intlResponse.status, duration }, 'Request completed');
-    return intlResponse;
-  }
+  if (intlResponse) return intlResponse;
 
   // 3) Continue
-  const response = NextResponse.next();
-  const duration = Date.now() - startTime;
-  logger.debug({ method, url, status: response.status, duration }, 'Request completed');
-  return response;
+  return NextResponse.next();
 }
 
 // Keep your existing matcher so assets, api, etc. are skipped

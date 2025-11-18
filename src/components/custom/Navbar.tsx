@@ -38,7 +38,6 @@ import { useSession, signOut } from 'next-auth/react';
 import { LuMailQuestion } from 'react-icons/lu';
 import { GrContact } from 'react-icons/gr';
 import { FaHandsHelping } from 'react-icons/fa';
-import VerificationRequiredModal from './VerificationRequiredModal';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -515,10 +514,7 @@ const Navbar = () => {
       </div>
 
       {/* Verification Required Modal */}
-      <VerificationRequiredModal
-        open={showVerificationModal}
-        onOpenChange={setShowVerificationModal}
-      />
+    
     </nav>
   );
 };
