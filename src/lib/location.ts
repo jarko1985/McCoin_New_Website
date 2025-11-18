@@ -32,7 +32,7 @@ export async function getLocation(locale: string): Promise<LocationData | null> 
       city: data.city
     };
   } catch (error) {
-    console.error('Location detection failed:', error);
+    // Location detection failed silently
     return null;
   }
 }

@@ -41,7 +41,6 @@ export async function GET(request: Request) {
 
     return NextResponse.json(mapped);
   } catch (error) {
-    console.error('❌ CoinDesk API error:', error);
-    return NextResponse.json({ error: 'Server error', message: (error as Error).message }, { status: 500 });
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

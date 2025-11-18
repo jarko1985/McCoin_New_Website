@@ -22,7 +22,6 @@ export async function GET(req: NextRequest) {
     const data = await res.json();
     return NextResponse.json({ prices: data.prices });
   } catch (error) {
-    console.error('[Chart Fetch Error]', error);
     return NextResponse.json({ error: 'Failed to fetch chart' }, { status: 500 });
   }
 }

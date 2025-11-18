@@ -47,7 +47,6 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ results });
   } catch (error) {
-    console.error('[CEX Volume Error]', error);
     return NextResponse.json({ error: 'Failed to fetch CEX volume data' }, { status: 500 });
   }
 }

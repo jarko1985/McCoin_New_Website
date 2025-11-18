@@ -24,13 +24,11 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await response.json();
-    console.log('OpenAI Response:', data);
     if (!data.choices || data.choices.length === 0) {
       return NextResponse.json({ response: "Sorry, I couldn't process your request." });
     }
     return NextResponse.json({ response: data.choices[0].message.content });
   } catch (error) {
-    console.error('Chat API Error:', error);
     return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
   }
 }

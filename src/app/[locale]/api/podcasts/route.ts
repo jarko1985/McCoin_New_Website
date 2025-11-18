@@ -116,7 +116,6 @@ export async function GET() {
       allSeries: allSeries.slice(0, 20),
     });
   } catch (err) {
-    console.error('Taddy API error:', err);
     return NextResponse.json({ error: 'Failed to fetch podcast data' }, { status: 500 });
   }
 }

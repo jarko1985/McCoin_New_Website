@@ -24,7 +24,6 @@ async function getAccessToken(): Promise<string> {
 
     return result.accessToken;
   } catch (error) {
-    console.error('Error acquiring access token:', error);
     throw error;
   }
 }

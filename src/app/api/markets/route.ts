@@ -38,14 +38,7 @@ export async function GET(request: Request) {
       'ripple',
     ];
 
-    // Log API key status for debugging (only in development)
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`API Key present: ${!!apiKey}`);
-      console.log(`API Key value: ${apiKey ? apiKey.substring(0, 10) + '...' : 'NOT SET'}`);
-      console.log(
-        `Environment variable: ${process.env.NEXT_PUBLIC_COINGECKO_API_KEY ? 'SET' : 'NOT SET'}`,
-      );
-    }
+    // API key validation (no logging to prevent exposure)
 
     // Add a small delay to help with rate limiting
     await new Promise(resolve => setTimeout(resolve, 100));
@@ -67,16 +60,12 @@ export async function GET(request: Request) {
         next: { revalidate: 30 }, // Cache for 30 seconds to reduce rate limiting
       });
     } catch (fetchError) {
-      console.error('Fetch error:', fetchError);
       throw new Error(
         `Network error: ${fetchError instanceof Error ? fetchError.message : 'Unknown error'}`,
       );
     }
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`CoinGecko API error: ${response.status} ${response.statusText}`);
-      console.error(`Error response: ${errorText}`);
       throw new Error(`Failed to fetch markets data: ${response.status} ${response.statusText}`);
     }
 
@@ -166,7 +155,7 @@ export async function GET(request: Request) {
       !error.message.includes('429') &&
       !error.message.includes('403')
     ) {
-      console.error('Error fetching markets data:', error);
+      // Error handled silently to prevent information disclosure
     }
 
     // Return fallback data on error

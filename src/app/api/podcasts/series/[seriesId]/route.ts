@@ -10,8 +10,7 @@ export async function GET(req: NextRequest, context: { params: Promise<{ seriesI
     return NextResponse.json({ error: 'Missing Taddy credentials' }, { status: 500 });
   }
 
-  // Add debugging
-  console.log('Fetching episodes for series:', seriesId);
+  // Fetch episodes for series
 
   // GraphQL query to get episodes for a specific podcast series
   const query = `
@@ -60,12 +59,10 @@ export async function GET(req: NextRequest, context: { params: Promise<{ seriesI
     });
 
     const json = await response.json();
-    console.log('Taddy API response:', JSON.stringify(json, null, 2));
 
     if (json.errors) {
-      console.error('Taddy API errors:', json.errors);
       return NextResponse.json(
-        { error: 'Failed to fetch series episodes', details: json.errors },
+        { error: 'Failed to fetch series episodes' },
         { status: 500 },
       );
     }
@@ -73,7 +70,6 @@ export async function GET(req: NextRequest, context: { params: Promise<{ seriesI
     const series = json.data?.getPodcastSeries;
 
     if (!series) {
-      console.log('No series found for UUID:', seriesId);
       return NextResponse.json({ error: 'Series not found' }, { status: 404 });
     }
 
@@ -94,8 +90,6 @@ export async function GET(req: NextRequest, context: { params: Promise<{ seriesI
       publishedAt: ep.datePublished, // Map datePublished to publishedAt for consistency
     }));
 
-    console.log(`Found ${episodes.length} episodes for series: ${series.name}`);
-
     return NextResponse.json({
       series: {
         ...series,
@@ -105,7 +99,6 @@ export async function GET(req: NextRequest, context: { params: Promise<{ seriesI
       episodes,
     });
   } catch (err) {
-    console.error('API error:', err);
     return NextResponse.json({ error: 'Failed to fetch series episodes' }, { status: 500 });
   }
 }

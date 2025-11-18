@@ -21,7 +21,6 @@ export async function GET(req: NextRequest) {
     const btcUsd = btcJson?.bitcoin?.usd ?? null;
 
     if (!btcUsd || isNaN(btcUsd)) {
-      console.error('[BTC PRICE] Unexpected response:', btcJson);
       return NextResponse.json({ error: 'Invalid BTC price' }, { status: 502 });
     }
 
@@ -43,14 +42,12 @@ export async function GET(req: NextRequest) {
 
         results[id] = parsed;
       } catch (dexErr) {
-        console.warn(`Failed to fetch volume for DEX: ${id}`, dexErr);
         results[id] = [];
       }
     }
 
     return NextResponse.json({ results });
   } catch (error) {
-    console.error('[DEX API Error]', error);
     return NextResponse.json({ error: 'Failed to fetch DEX volume data' }, { status: 500 });
   }
 }

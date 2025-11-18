@@ -24,5 +24,5 @@ export const toggleVerificationStatus = () => {
   const currentStatus = getVerificationStatus();
   const newStatus = currentStatus === 'verified' ? 'unverified' : 'verified';
   setVerificationStatus(newStatus);
-  console.log(`Verification status toggled to: ${newStatus}`);
+  // Status change logged silently
 };

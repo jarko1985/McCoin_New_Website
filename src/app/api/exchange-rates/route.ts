@@ -50,7 +50,6 @@ export async function GET() {
 
     return NextResponse.json(exchangeRates);
   } catch (error) {
-    console.error("Error fetching exchange rates:", error);
 
     // Return fallback static rates on error
     const fallbackRates = {

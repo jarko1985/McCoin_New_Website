@@ -119,7 +119,6 @@ export async function GET(request: Request) {
 
     return NextResponse.json(cryptoData);
   } catch (error) {
-    console.error('Error fetching crypto data:', error);
 
     // Return fallback data on error
     const fallbackData: CryptoData = {

@@ -42,15 +42,12 @@ export async function POST(request: Request) {
         message,
       });
     } catch (acknowledgmentError) {
-      console.error('Error sending acknowledgment email:', acknowledgmentError);
       // Don't fail the contact form submission if acknowledgment email fails
-      // Just log the error and continue
+      // Error handled silently
     }
 
     return NextResponse.json({ message: 'Email sent successfully!' }, { status: 200 });
   } catch (error: any) {
-    console.error('Full error:', error);
-
     // Handle SMTP-specific errors
     if (error.responseCode) {
       return NextResponse.json(
@@ -58,7 +55,7 @@ export async function POST(request: Request) {
           error: 'SMTP Error',
           details: {
             code: error.responseCode,
-            message: error.response,
+            message: 'Email service error',
           },
         },
         { status: 502 },
@@ -68,7 +65,6 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: 'Failed to send email',
-        details: error.message,
       },
       { status: 500 },
     );

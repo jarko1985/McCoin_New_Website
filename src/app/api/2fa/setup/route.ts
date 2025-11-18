@@ -49,7 +49,6 @@ export async function POST(request: NextRequest) {
       otpauthUrl: secret.otpauth_url,
     });
   } catch (error) {
-    console.error('2FA setup error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

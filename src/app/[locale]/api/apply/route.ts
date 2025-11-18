@@ -115,7 +115,6 @@ export async function POST(req: NextRequest) {
       message: 'Application submitted successfully.',
     });
   } catch (error) {
-    console.error('Error sending email:', error);
     return NextResponse.json({ error: 'Failed to send application.' }, { status: 500 });
   }
 }

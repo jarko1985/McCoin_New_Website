@@ -13,8 +13,6 @@ export async function GET() {
     );
 
     if (!res.ok) {
-      const errorText = await res.text();
-      console.error('CoinGecko API error:', errorText);
       return NextResponse.json([], { status: 200 });
     }
 
@@ -31,7 +29,6 @@ export async function GET() {
 
     return NextResponse.json(formatted);
   } catch (error) {
-    console.error('Internal server error:', error);
     return NextResponse.json([], { status: 200 });
   }
 }

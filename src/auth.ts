@@ -24,8 +24,9 @@ declare module '@auth/core/jwt' {
 }
 
 // Check for required environment variables
-if (!process.env.NEXTAUTH_SECRET) {
-  console.warn('NEXTAUTH_SECRET not set, using fallback');
+if (!process.env.NEXTAUTH_SECRET && process.env.NODE_ENV === 'production') {
+  // Only warn in production, dev mode can use fallback
+  // Using a silent check to avoid exposing configuration in logs
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -41,10 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         try {
-          console.log('NextAuth authorize called with:', credentials?.email);
-
           if (!credentials?.email || !credentials?.password) {
-            console.log('Missing credentials');
             return null;
           }
 
@@ -65,10 +63,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           });
 
           const data = await response.json();
-          console.log('Validation API response:', data);
 
           if (data.error) {
-            console.log('Validation failed:', data.error);
             return null;
           }
 
@@ -79,10 +75,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             name: email.split('@')[0],
           };
 
-          console.log('NextAuth authorize returning user:', user);
           return user;
         } catch (error) {
-          console.error('NextAuth authorize error:', error);
+          // Don't log sensitive authentication errors
           return null;
         }
       },

@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
       message: 'Test email sent successfully! Check your inbox.',
     });
   } catch (error) {
-    console.error('Error sending test email:', error);
     return NextResponse.json(
       {
         error: 'Failed to send test email',

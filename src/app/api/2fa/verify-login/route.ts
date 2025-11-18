@@ -104,7 +104,6 @@ export async function POST(req: NextRequest) {
       message: 'Login successful',
     });
   } catch (error) {
-    console.error('2FA login verification error:', error);
     return NextResponse.json(
       {
         error: 'server_error',

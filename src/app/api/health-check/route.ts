@@ -32,18 +32,16 @@ export async function GET(req: NextRequest) {
       healthStatus.database.connected = true;
       healthStatus.database.readyState = mongoose.connection.readyState;
     } catch (dbError) {
-      console.error('Database connection error:', dbError);
       healthStatus.database.connected = false;
     }
 
     return NextResponse.json(healthStatus);
   } catch (error) {
-    console.error('Health check error:', error);
     return NextResponse.json(
       {
         status: 'error',
         timestamp: new Date().toISOString(),
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: 'Internal server error',
       },
       { status: 500 },
     );
