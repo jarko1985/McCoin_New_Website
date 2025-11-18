@@ -685,6 +685,13 @@
       }
     }
   },
+  "VerificationModal": {
+    "title": "Verification Required",
+    "description": "You need to verify your account to access Spot Trading",
+    "message": "Please complete your identity verification (KYC) to start trading on our platform.",
+    "cancel": "Cancel",
+    "verify_now": "Verify Now"
+  },
   "Footer": {
     "copyright": "© 2025 McCoin. All rights reserved.",
     "compliance_line1": "McCoin Virtual Assets L.L.C. operates under an Initial Permission from the Virtual Assets Regulatory Authority (VARA).",

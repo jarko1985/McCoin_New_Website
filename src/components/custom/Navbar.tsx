@@ -38,6 +38,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { LuMailQuestion } from 'react-icons/lu';
 import { GrContact } from 'react-icons/gr';
 import { FaHandsHelping } from 'react-icons/fa';
+import VerificationRequiredModal from './VerificationRequiredModal';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -45,6 +46,7 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [showVerificationModal, setShowVerificationModal] = useState(false);
   const t = useTranslations('Navbar');
   const locale = useLocale();
   const isArabic = locale === 'ar';
@@ -198,6 +200,26 @@ const Navbar = () => {
                 }
 
                 if (item.type === 'link' && item.href) {
+                  // Handle Spot Trading link - show modal if not verified
+                  if (item.label === 'spot' && !isVerified) {
+                    return (
+                      <NavigationMenuItem
+                        key={item.id}
+                        className="text-[#07153b]! dark:text-white! p-0 dark:bg-[#07153b]! bg-[#DAE6EA]! hover:font-bold cursor-pointer!"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowVerificationModal(true);
+                          }}
+                          className="hover:text-[#EC3B3B] transition-colors"
+                        >
+                          {t(`menu_items.${item.label}`)}
+                        </button>
+                      </NavigationMenuItem>
+                    );
+                  }
+
                   return (
                     <NavigationMenuItem
                       key={item.id}
@@ -389,6 +411,25 @@ const Navbar = () => {
                   }
 
                   if (item.type === 'link' && item.href) {
+                    // Handle Spot Trading link - show modal if not verified
+                    if (item.label === 'spot' && !isVerified) {
+                      return (
+                        <div key={item.id}>
+                          <div className="py-4 border-b border-gray-600/20 hover:bg-gray-800/20 rounded-lg px-3 transition-all duration-200">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setShowVerificationModal(true);
+                              }}
+                              className="hover:text-[#EC3B3B] font-semibold block text-base transition-colors duration-200 w-full text-left"
+                            >
+                              {t(`menu_items.${item.label}`)}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    }
+
                     return (
                       <div key={item.id}>
                         <div className="py-4 border-b border-gray-600/20 hover:bg-gray-800/20 rounded-lg px-3 transition-all duration-200">
@@ -472,6 +513,12 @@ const Navbar = () => {
           </Sheet>
         </div>
       </div>
+
+      {/* Verification Required Modal */}
+      <VerificationRequiredModal
+        open={showVerificationModal}
+        onOpenChange={setShowVerificationModal}
+      />
     </nav>
   );
 };

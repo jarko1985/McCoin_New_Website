@@ -176,6 +176,13 @@ export const loginFormSchema = z.object({
   password: loginPasswordSchema,
 });
 
+// 2FA verify login schema
+export const verify2FALoginSchema = z.object({
+  email: emailSchema,
+  password: loginPasswordSchema,
+  token: z.string().min(1, '2FA token is required').transform(sanitizePlainString),
+});
+
 // KYC verification form schema
 export const kycVerificationSchema = z.object({
   introConfirmed: z.boolean().refine((v) => v === true, {
@@ -243,6 +250,7 @@ export type ApplyFormData = z.infer<typeof applyFormSchema>;
 export type SignupFormData = z.infer<typeof signupFormSchema>;
 export type SignupApiData = z.infer<typeof signupApiSchema>;
 export type LoginFormData = z.infer<typeof loginFormSchema>;
+export type Verify2FALoginData = z.infer<typeof verify2FALoginSchema>;
 export type KYCVerificationData = z.infer<typeof kycVerificationSchema>;
 export type ForgotPasswordData = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordData = z.infer<typeof resetPasswordSchema>;

@@ -3,17 +3,31 @@ import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { createRequestLogger, logError } from '@/lib/api-logger';
+import { loginFormSchema, type LoginFormData } from '@/lib/schemas';
 
 export async function POST(req: NextRequest) {
   const logger = createRequestLogger(req, { endpoint: 'check-user-status' });
 
   try {
-    const { email, password } = await req.json();
+    const body: unknown = await req.json();
+    
+    // Re-validate on server using shared schema (sanitization happens in transform)
+    const validatedData = loginFormSchema.safeParse(body);
 
-    if (!email || !password) {
-      logger.warn('Missing email or password in request');
-      return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
+    if (!validatedData.success) {
+      console.warn('Login form validation failed:', validatedData.error.flatten());
+      return NextResponse.json(
+        {
+          error: 'invalid_credentials',
+          message: 'Invalid email or password format',
+          errors: validatedData.error.flatten(),
+        },
+        { status: 400 },
+      );
     }
+
+    // Data is already sanitized by the schema transform
+    const { email, password }: LoginFormData = validatedData.data;
 
     logger.debug({ email: email.toLowerCase() }, 'Checking user status');
 
