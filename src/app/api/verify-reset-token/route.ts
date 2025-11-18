@@ -1,29 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/models/User';
 import mongoose from 'mongoose';
+import { createHash } from 'crypto';
+import {
+  verifyEmailSchema,
+  validateAndSanitize,
+  getValidationErrorMessage,
+} from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
-    const { token, email } = await request.json();
+    const body = await request.json();
 
-    if (!token || !email) {
+    // Validate input (reuse verifyEmailSchema as it has same structure: token + email)
+    const validation = validateAndSanitize(verifyEmailSchema, body);
+    if (!validation.success) {
       return NextResponse.json(
-        { valid: false, message: 'Token and email are required' },
+        {
+          valid: false,
+          message: getValidationErrorMessage(validation.error),
+        },
         { status: 400 },
       );
     }
 
-    console.log('Verifying token for email:', email.toLowerCase());
+    const { token, email } = validation.data;
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {
       await mongoose.connect(process.env.MONGODB_URI!);
     }
 
-    // Find user with matching token and email
+    // Hash the incoming token to compare with stored hash
+    const hashedToken = createHash('sha256').update(token).digest('hex');
+
+    // Find user with matching hashed token and email
     const user = await User.findOne({
       email: email.toLowerCase(),
-      resetPasswordToken: token,
+      resetPasswordToken: hashedToken,
       resetPasswordExpires: { $gt: new Date() }, // Token must not be expired
       $or: [
         { resetPasswordTokenUsed: false }, // Token explicitly not used
@@ -31,29 +45,15 @@ export async function POST(request: NextRequest) {
       ],
     });
 
-    console.log('Found valid token user:', !!user);
-
     if (!user) {
-      console.log('No valid token found, checking if token was used...');
-
-      // Check if this exact token exists and is marked as used
+      // Check if token exists but is used (compare hashed token)
       const usedTokenUser = await User.findOne({
         email: email.toLowerCase(),
-        resetPasswordToken: token,
+        resetPasswordToken: hashedToken,
         resetPasswordTokenUsed: true,
       });
 
-      console.log('Checking for used token. Found used token user:', !!usedTokenUser);
       if (usedTokenUser) {
-        console.log('Token state - resetPasswordTokenUsed:', usedTokenUser.resetPasswordTokenUsed);
-        console.log(
-          'Token state - resetPasswordToken present:',
-          !!usedTokenUser.resetPasswordToken,
-        );
-      }
-
-      if (usedTokenUser) {
-        console.log('Token was found but already used');
         return NextResponse.json(
           {
             valid: false,
@@ -63,18 +63,14 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      console.log('Token not found - may be invalid, expired, or user not found');
       return NextResponse.json(
         { valid: false, message: 'Invalid or expired token' },
         { status: 400 },
       );
     }
 
-    console.log('Token is valid for user:', user.email);
-
     return NextResponse.json({ valid: true, message: 'Token is valid' }, { status: 200 });
   } catch (error) {
-    console.error('Token verification error:', error);
     return NextResponse.json({ valid: false, message: 'Internal server error' }, { status: 500 });
   }
 }

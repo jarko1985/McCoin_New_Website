@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/models/User';
 import { hash } from 'bcryptjs';
 import mongoose from 'mongoose';
+import { createHash } from 'crypto';
 import {
   resetPasswordSchema,
   validateAndSanitize,
@@ -28,10 +29,13 @@ export async function POST(request: NextRequest) {
       await mongoose.connect(process.env.MONGODB_URI!);
     }
 
-    // Find user with matching token and email
+    // Hash the incoming token to compare with stored hash
+    const hashedToken = createHash('sha256').update(token).digest('hex');
+
+    // Find user with matching hashed token and email
     const user = await User.findOne({
       email: email.toLowerCase(),
-      resetPasswordToken: token,
+      resetPasswordToken: hashedToken,
       resetPasswordExpires: { $gt: new Date() }, // Token must not be expired
       $or: [
         { resetPasswordTokenUsed: false }, // Token explicitly not used
@@ -40,10 +44,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (!user) {
-      // Check if token exists but is used
+      // Check if token exists but is used (compare hashed token)
       const usedTokenUser = await User.findOne({
         email: email.toLowerCase(),
-        resetPasswordToken: token,
+        resetPasswordToken: hashedToken,
         resetPasswordTokenUsed: true,
       });
 

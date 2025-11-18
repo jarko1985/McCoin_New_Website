@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/models/User';
 import { sendPasswordResetEmail } from '@/lib/mail';
 import mongoose from 'mongoose';
-import crypto from 'crypto';
+import { randomBytes, createHash } from 'crypto';
 import {
   forgotPasswordSchema,
   validateAndSanitize,
@@ -40,13 +40,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate reset token
-    const resetToken = crypto.randomBytes(32).toString('hex');
+    // Generate reset token (plain token for email)
+    const resetToken = randomBytes(32).toString('hex');
+    // Hash the token before storing in database (security best practice)
+    const hashedToken = createHash('sha256').update(resetToken).digest('hex');
     const resetTokenExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour from now
 
-    // Save reset token to user
+    // Save hashed reset token to user (never store plain tokens)
     await User.findByIdAndUpdate(user._id, {
-      resetPasswordToken: resetToken,
+      resetPasswordToken: hashedToken,
       resetPasswordExpires: resetTokenExpires,
       resetPasswordTokenUsed: false, // Reset the used flag for new token
     });
