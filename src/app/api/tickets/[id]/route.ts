@@ -8,7 +8,7 @@ import {
   validateAndSanitize,
   getValidationErrorMessage,
   sanitizeText,
-  sanitizeHtml,
+  sanitizeHtmlSync,
   ticketIdSchema,
 } from '@/lib/validation';
 
@@ -103,7 +103,7 @@ export async function PATCH(
       ticketToUpdate.subject = sanitizeText(validation.data.subject);
     }
     if (validation.data.description) {
-      ticketToUpdate.description = sanitizeHtml(validation.data.description);
+      ticketToUpdate.description = sanitizeHtmlSync(validation.data.description);
     }
     if (validation.data.category) {
       ticketToUpdate.category = validation.data.category;

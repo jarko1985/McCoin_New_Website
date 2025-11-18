@@ -7,7 +7,7 @@ import {
   commentSchema,
   validateAndSanitize,
   getValidationErrorMessage,
-  sanitizeHtml,
+  sanitizeHtmlSync,
   ticketIdSchema,
 } from '@/lib/validation';
 
@@ -66,7 +66,7 @@ export async function POST(
     const ticketToUpdate = user.tickets[ticketIndex];
     
     // Sanitize comment content to prevent XSS
-    const sanitizedContent = sanitizeHtml(content);
+    const sanitizedContent = sanitizeHtmlSync(content);
     
     // Create new comment
     const newComment = {

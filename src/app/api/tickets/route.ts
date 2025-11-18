@@ -9,7 +9,7 @@ import {
   validateAndSanitize,
   getValidationErrorMessage,
   sanitizeText,
-  sanitizeHtml,
+  sanitizeHtmlSync,
 } from '@/lib/validation';
 
 // Generate unique ticket ID and number
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
 
     // Sanitize user-generated content to prevent XSS
     const sanitizedSubject = sanitizeText(validatedSubject);
-    const sanitizedDescription = sanitizeHtml(validatedDescription);
+    const sanitizedDescription = sanitizeHtmlSync(validatedDescription);
 
     // Create new ticket
     const newTicket = {

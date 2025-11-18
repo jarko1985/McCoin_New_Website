@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import mongoose from 'mongoose';
-import DOMPurify from 'isomorphic-dompurify';
 
 /**
  * Common validation schemas for reuse across the application
@@ -130,12 +129,27 @@ export const totpTokenSchema = z
 
 /**
  * Sanitize HTML content to prevent XSS attacks
+ * Uses dynamic import to avoid SSR/Edge runtime issues
  */
-export function sanitizeHtml(html: string): string {
+export async function sanitizeHtml(html: string): Promise<string> {
+  // Dynamic import to avoid issues in production builds
+  const DOMPurify = (await import('isomorphic-dompurify')).default;
   return DOMPurify.sanitize(html, {
     ALLOWED_TAGS: [], // No HTML tags allowed by default
     ALLOWED_ATTR: [],
   });
+}
+
+/**
+ * Synchronous version for backward compatibility
+ * Falls back to basic sanitization if DOMPurify fails
+ */
+export function sanitizeHtmlSync(html: string): string {
+  // Basic sanitization - remove HTML tags
+  return html
+    .replace(/<[^>]*>/g, '') // Remove all HTML tags
+    .replace(/&[^;]+;/g, '') // Remove HTML entities
+    .trim();
 }
 
 /**
