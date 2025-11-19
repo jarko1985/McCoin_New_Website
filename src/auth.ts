@@ -56,9 +56,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               ? 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app'
               : 'http://10.10.80.26:3000');
 
+          // Internal call from NextAuth - skip reCAPTCHA (already validated in first call)
           const response = await fetch(`${baseUrl}/api/check-user-status`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              'Content-Type': 'application/json',
+              'x-internal-call': 'true', // Flag to indicate internal call
+            },
             body: JSON.stringify({ email, password }),
           });
 

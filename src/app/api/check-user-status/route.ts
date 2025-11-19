@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import {
   loginSchema,
+  internalLoginSchema,
   validateAndSanitize,
   getValidationErrorMessage,
 } from '@/lib/validation';
@@ -20,8 +21,15 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
 
+    // Check if this is an internal call (from NextAuth authorize callback)
+    // Internal calls have a special header or no recaptchaToken
+    const isInternalCall = !body.recaptchaToken || req.headers.get('x-internal-call') === 'true';
+
     // Validate and sanitize input
-    const validation = validateAndSanitize(loginSchema, body);
+    const validation = isInternalCall
+      ? validateAndSanitize(internalLoginSchema, body)
+      : validateAndSanitize(loginSchema, body);
+    
     if (!validation.success) {
       return NextResponse.json(
         {
@@ -32,15 +40,30 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { email, password, recaptchaToken } = validation.data;
+    const { email, password, recaptchaToken } = validation.data as {
+      email: string;
+      password: string;
+      recaptchaToken?: string;
+    };
 
-    // Verify reCAPTCHA token
-    const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
-    if (!recaptchaVerification.success) {
+    // Verify reCAPTCHA token only for external calls
+    if (!isInternalCall && recaptchaToken) {
+      const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
+      if (!recaptchaVerification.success) {
+        return NextResponse.json(
+          {
+            error: 'recaptcha_verification_failed',
+            message: recaptchaVerification.error || 'reCAPTCHA verification failed',
+          },
+          { status: 400 },
+        );
+      }
+    } else if (!isInternalCall && !recaptchaToken) {
+      // External calls must have reCAPTCHA token
       return NextResponse.json(
         {
           error: 'recaptcha_verification_failed',
-          message: recaptchaVerification.error || 'reCAPTCHA verification failed',
+          message: 'reCAPTCHA verification is required',
         },
         { status: 400 },
       );

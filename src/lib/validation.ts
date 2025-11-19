@@ -181,11 +181,17 @@ export const signupSchema = z.object({
   recaptchaToken: z.string().min(1, 'reCAPTCHA verification is required'),
 });
 
-// Login schema
+// Login schema - reCAPTCHA is required for external calls
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, 'Password is required'),
   recaptchaToken: z.string().min(1, 'reCAPTCHA verification is required'),
+});
+
+// Internal login schema (for NextAuth authorize callback - reCAPTCHA already validated)
+export const internalLoginSchema = z.object({
+  email: emailSchema,
+  password: z.string().min(1, 'Password is required'),
 });
 
 // Forgot password schema
