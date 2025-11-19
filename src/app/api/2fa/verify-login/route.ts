@@ -8,9 +8,20 @@ import {
   validateAndSanitize,
   getValidationErrorMessage,
 } from '@/lib/validation';
+import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
 
 export async function POST(req: NextRequest) {
   try {
+    // Apply rate limiting
+    const rateLimitResponse = await rateLimit(
+      req,
+      'twoFactorVerifyLogin',
+      rateLimitConfigs.twoFactorVerifyLogin
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
+
     const body = await req.json();
 
     // Validate and sanitize input

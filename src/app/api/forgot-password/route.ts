@@ -8,6 +8,7 @@ import {
   validateAndSanitize,
   getValidationErrorMessage,
 } from '@/lib/validation';
+import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,6 +24,17 @@ export async function POST(request: NextRequest) {
     }
 
     const { email } = validation.data;
+
+    // Apply rate limiting (per email address)
+    const rateLimitResponse = await rateLimit(
+      request,
+      'forgotPassword',
+      rateLimitConfigs.forgotPassword,
+      email.toLowerCase()
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

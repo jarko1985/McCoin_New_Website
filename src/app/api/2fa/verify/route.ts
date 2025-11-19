@@ -8,9 +8,20 @@ import {
   validateAndSanitize,
   getValidationErrorMessage,
 } from '@/lib/validation';
+import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    // Apply rate limiting
+    const rateLimitResponse = await rateLimit(
+      request,
+      'twoFactorVerify',
+      rateLimitConfigs.twoFactorVerify
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

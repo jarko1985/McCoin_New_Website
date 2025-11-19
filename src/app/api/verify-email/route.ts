@@ -9,6 +9,7 @@ import {
   validateAndSanitize,
   getValidationErrorMessage,
 } from '@/lib/validation';
+import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
 
 export async function GET(req: NextRequest) {
   try {
@@ -29,6 +30,17 @@ export async function GET(req: NextRequest) {
     }
 
     const { token: validatedToken, email: validatedEmail } = validation.data;
+
+    // Apply rate limiting (per email address)
+    const rateLimitResponse = await rateLimit(
+      req,
+      'verifyEmail',
+      rateLimitConfigs.verifyEmail,
+      validatedEmail.toLowerCase()
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
 
     // Hash the token to compare with stored hash
     const hashedToken = createHash('sha256').update(validatedToken).digest('hex');
@@ -118,6 +130,17 @@ export async function POST(req: NextRequest) {
     }
 
     const { email } = validation.data;
+
+    // Apply rate limiting (per email address)
+    const rateLimitResponse = await rateLimit(
+      req,
+      'verifyEmail',
+      rateLimitConfigs.verifyEmail,
+      email.toLowerCase()
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

@@ -4,9 +4,20 @@ import { User } from '@/lib/models/User';
 import speakeasy from 'speakeasy';
 import QRCode from 'qrcode';
 import mongoose from 'mongoose';
+import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    // Apply rate limiting
+    const rateLimitResponse = await rateLimit(
+      request,
+      'twoFactorSetup',
+      rateLimitConfigs.twoFactorSetup
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

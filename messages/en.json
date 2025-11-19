@@ -508,6 +508,13 @@
       "verification_required": "Please verify your email before signing in.",
       "auth_error_generic": "An authentication error occurred. Please try again.",
       "auth_service_error_generic": "Authentication service error. Please try again."
+    },
+    "rate_limit": {
+      "title": "Too Many Login Attempts",
+      "message": "You have reached the maximum number of login attempts. Please wait before trying again.",
+      "retry_after": "Please try again in {seconds} seconds",
+      "form_disabled": "Login is temporarily disabled due to too many failed attempts",
+      "countdown": "Retry in {seconds}s"
     }
   },
   "navbar": {

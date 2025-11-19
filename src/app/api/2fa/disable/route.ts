@@ -3,9 +3,20 @@ import { auth } from '@/auth';
 import { User } from '@/lib/models/User';
 import speakeasy from 'speakeasy';
 import mongoose from 'mongoose';
+import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    // Apply rate limiting
+    const rateLimitResponse = await rateLimit(
+      request,
+      'twoFactorDisable',
+      rateLimitConfigs.twoFactorDisable
+    );
+    if (rateLimitResponse) {
+      return rateLimitResponse;
+    }
+
     const session = await auth();
 
     if (!session?.user?.email) {

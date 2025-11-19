@@ -37,6 +37,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
+  const [rateLimited, setRateLimited] = useState(false);
+  const [retryAfter, setRetryAfter] = useState<number | null>(null);
   const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
 
   const {
@@ -45,6 +47,23 @@ export default function LoginPage() {
     formState: { errors },
     setValue,
   } = useForm({ resolver: zodResolver(createFormSchema(t)) });
+
+  // Countdown timer for rate limit
+  useEffect(() => {
+    if (retryAfter && retryAfter > 0) {
+      const timer = setInterval(() => {
+        setRetryAfter((prev) => {
+          if (prev === null || prev <= 1) {
+            setRateLimited(false);
+            return null;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [retryAfter]);
 
   // Check for NextAuth error parameters and pre-fill email
   useEffect(() => {
@@ -71,9 +90,15 @@ export default function LoginPage() {
     if (emailParam) {
       setValue('email', emailParam);
     }
-  }, [searchParams, setValue]);
+  }, [searchParams, setValue, t]);
 
   const onSubmit = async (data: any) => {
+    // Prevent submission if rate limited
+    if (rateLimited) {
+      toast.error(t('rate_limit.form_disabled'));
+      return;
+    }
+
     try {
       setLoading(true);
 
@@ -83,6 +108,35 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: data.email, password: data.password }),
       });
+
+      // Check for rate limit error (429)
+      if (statusResponse.status === 429) {
+        const rateLimitData = await statusResponse.json();
+        const retrySeconds = rateLimitData.retryAfter || 900; // Default to 15 minutes
+        
+        setRateLimited(true);
+        setRetryAfter(retrySeconds);
+        
+        toast.error(
+          t('rate_limit.message'),
+          {
+            duration: 5000,
+            icon: '⏱️',
+          }
+        );
+        
+        // Show countdown toast
+        toast(
+          t('rate_limit.retry_after', { seconds: retrySeconds }),
+          {
+            duration: retrySeconds * 1000,
+            icon: '⏳',
+          }
+        );
+        
+        setLoading(false);
+        return;
+      }
 
       const statusData = await statusResponse.json();
 
@@ -291,7 +345,13 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="flex flex-col gap-2">
             <label>{t('email_label')}</label>
-            <Input type="email" placeholder={t('email')} {...register('email')} />
+            <Input 
+              type="email" 
+              placeholder={t('email')} 
+              {...register('email')} 
+              disabled={rateLimited}
+              className={rateLimited ? 'opacity-50 cursor-not-allowed' : ''}
+            />
             {errors.email && <p className="text-red-400 text-sm">{errors.email.message}</p>}
           </div>
 
@@ -302,6 +362,8 @@ export default function LoginPage() {
                 type={showPassword ? 'text' : 'password'}
                 placeholder={t('password')}
                 {...register('password')}
+                disabled={rateLimited}
+                className={rateLimited ? 'opacity-50 cursor-not-allowed' : ''}
               />
               <div
                 className={`absolute ${
@@ -330,12 +392,30 @@ export default function LoginPage() {
                {t('forgotPassword1_3')}
             </Link>
           </div>
+          {/* Rate limit warning */}
+          {rateLimited && retryAfter !== null && (
+            <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-3 text-center">
+              <p className="text-red-400 text-sm font-medium mb-1">
+                {t('rate_limit.title')}
+              </p>
+              <p className="text-red-300 text-xs">
+                {t('rate_limit.countdown', { seconds: retryAfter })}
+              </p>
+            </div>
+          )}
+
           <Button
-            className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 cursor-pointer"
+            className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             type="submit"
-            disabled={loading}
+            disabled={loading || rateLimited}
           >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : t('button')}
+            {loading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : rateLimited ? (
+              t('rate_limit.countdown', { seconds: retryAfter || 0 })
+            ) : (
+              t('button')
+            )}
           </Button>
 
           <p className="text-center text-sm text-[#DAE6EA]">
