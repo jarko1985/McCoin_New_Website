@@ -152,7 +152,29 @@ export default function LoginPage() {
 
       const statusData = await statusResponse.json();
 
-      if (statusResponse.ok && statusData.needs2FA) {
+      // Check if the first API call returned an error
+      if (!statusResponse.ok) {
+        // Handle errors from the first API call
+        if (statusData.error === 'email_not_verified') {
+          toast.error(t('email_not_verified'));
+          setTimeout(() => {
+            toast.success(t('resend_verification_hint'));
+          }, 3000);
+        } else if (statusData.error === 'recaptcha_verification_failed') {
+          toast.error(statusData.message || t('recaptcha_required') || 'reCAPTCHA verification failed');
+          setRecaptchaToken(null);
+          setRecaptchaError(statusData.message || 'reCAPTCHA verification failed');
+        } else if (statusData.error === 'invalid_credentials') {
+          toast.error(t('invalid_credentials'));
+        } else {
+          toast.error(statusData.message || t('login_failed'));
+        }
+        setLoading(false);
+        return;
+      }
+
+      // If we get here, the first API call succeeded
+      if (statusData.needs2FA) {
         // User has 2FA enabled, redirect to 2FA verification page
         const locale = isArabic ? 'ar' : 'en';
         const params = new URLSearchParams({
@@ -183,30 +205,15 @@ export default function LoginPage() {
 
         // Check what specific error occurred to provide better messaging
         if (result.error === 'CredentialsSignin') {
-          // Try to get more specific error info
-          try {
-            const statusResponse = await fetch('/api/check-user-status', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email: data.email, password: data.password }),
-            });
-
-            const statusData = await statusResponse.json();
-
-            if (statusData.error === 'email_not_verified') {
-              toast.error(t('email_not_verified'));
-
-              setTimeout(() => {
-                toast.success(t('resend_verification_hint'));
-              }, 3000);
-            } else if (statusData.error === 'recaptcha_verification_failed') {
-              toast.error(statusData.message || t('recaptcha_required') || 'reCAPTCHA verification failed');
-              setRecaptchaToken(null);
-              setRecaptchaError(statusData.message || 'reCAPTCHA verification failed');
-            } else {
-              toast.error(t('invalid_credentials'));
-            }
-          } catch (statusError) {
+          // The first API call already validated credentials successfully
+          // If NextAuth fails here, it's likely a session/configuration issue
+          // Use the statusData from the first call if available
+          if (statusData.error === 'email_not_verified') {
+            toast.error(t('email_not_verified'));
+            setTimeout(() => {
+              toast.success(t('resend_verification_hint'));
+            }, 3000);
+          } else {
             toast.error(t('invalid_credentials'));
           }
         } else {
