@@ -178,13 +178,14 @@ export const signupSchema = z.object({
   name: nameSchema,
   email: emailSchema,
   password: passwordSchema,
-  recaptchaToken: z.string().optional(),
+  recaptchaToken: z.string().min(1, 'reCAPTCHA verification is required'),
 });
 
 // Login schema
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, 'Password is required'),
+  recaptchaToken: z.string().min(1, 'reCAPTCHA verification is required'),
 });
 
 // Forgot password schema

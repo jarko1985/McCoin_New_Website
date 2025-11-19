@@ -8,6 +8,7 @@ import {
   getValidationErrorMessage,
 } from '@/lib/validation';
 import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,7 +32,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { email, password } = validation.data;
+    const { email, password, recaptchaToken } = validation.data;
+
+    // Verify reCAPTCHA token
+    const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
+    if (!recaptchaVerification.success) {
+      return NextResponse.json(
+        {
+          error: 'recaptcha_verification_failed',
+          message: recaptchaVerification.error || 'reCAPTCHA verification failed',
+        },
+        { status: 400 },
+      );
+    }
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

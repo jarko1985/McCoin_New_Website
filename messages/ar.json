@@ -496,7 +496,8 @@
       "retry_after": "يرجى المحاولة مرة أخرى خلال {seconds} ثانية",
       "form_disabled": "تم تعطيل تسجيل الدخول مؤقتاً بسبب محاولات فاشلة كثيرة",
       "countdown": "إعادة المحاولة خلال {seconds}ث"
-    }
+    },
+    "recaptcha_required": "يرجى إكمال تحدي reCAPTCHA"
   },
   "navbar": {
     "verify-your-account": "التحقق من الحساب",

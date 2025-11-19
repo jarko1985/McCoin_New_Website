@@ -11,6 +11,7 @@ import {
   sanitizeText,
 } from '@/lib/validation';
 import { rateLimit, rateLimitConfigs } from '@/lib/rate-limit';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 
 export async function POST(req: NextRequest) {
   try {
@@ -40,16 +41,17 @@ export async function POST(req: NextRequest) {
     // Sanitize name
     const sanitizedName = sanitizeText(name);
 
-    // Validate reCAPTCHA token (optional - you can add reCAPTCHA verification here)
-    // if (!recaptchaToken) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: 'reCAPTCHA verification required',
-    //     },
-    //     { status: 400 },
-    //   );
-    // }
+    // Verify reCAPTCHA token
+    const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
+    if (!recaptchaVerification.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: recaptchaVerification.error || 'reCAPTCHA verification failed',
+        },
+        { status: 400 },
+      );
+    }
 
     // Connect to MongoDB
     if (mongoose.connection.readyState !== 1) {

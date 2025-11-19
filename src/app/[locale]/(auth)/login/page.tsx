@@ -99,6 +99,14 @@ export default function LoginPage() {
       return;
     }
 
+    // Validate reCAPTCHA
+    if (!recaptchaToken) {
+      setRecaptchaError(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
+      toast.error(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
+      return;
+    }
+    setRecaptchaError(null);
+
     try {
       setLoading(true);
 
@@ -106,7 +114,11 @@ export default function LoginPage() {
       const statusResponse = await fetch('/api/check-user-status', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email, password: data.password }),
+        body: JSON.stringify({ 
+          email: data.email, 
+          password: data.password,
+          recaptchaToken,
+        }),
       });
 
       // Check for rate limit error (429)
@@ -187,6 +199,10 @@ export default function LoginPage() {
               setTimeout(() => {
                 toast.success(t('resend_verification_hint'));
               }, 3000);
+            } else if (statusData.error === 'recaptcha_verification_failed') {
+              toast.error(statusData.message || t('recaptcha_required') || 'reCAPTCHA verification failed');
+              setRecaptchaToken(null);
+              setRecaptchaError(statusData.message || 'reCAPTCHA verification failed');
             } else {
               toast.error(t('invalid_credentials'));
             }
@@ -392,6 +408,39 @@ export default function LoginPage() {
                {t('forgotPassword1_3')}
             </Link>
           </div>
+
+          {/* reCAPTCHA */}
+          <div className="flex flex-col gap-2">
+            <div className="w-full flex justify-center">
+              {RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(token: string | null) => {
+                    setRecaptchaToken(token);
+                    setRecaptchaError(null);
+                  }}
+                  onExpired={() => {
+                    setRecaptchaToken(null);
+                    setRecaptchaError(t('recaptcha_required') || 'reCAPTCHA expired. Please verify again.');
+                  }}
+                  onError={() => {
+                    setRecaptchaToken(null);
+                    setRecaptchaError('reCAPTCHA error. Please try again.');
+                  }}
+                />
+              ) : (
+                <div className="bg-yellow-900/20 border border-yellow-500/50 rounded-lg p-3 text-center">
+                  <p className="text-yellow-400 text-sm">
+                    reCAPTCHA not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+                  </p>
+                </div>
+              )}
+            </div>
+            {recaptchaError && (
+              <p className="text-red-400 text-sm text-center">{recaptchaError}</p>
+            )}
+          </div>
+
           {/* Rate limit warning */}
           {rateLimited && retryAfter !== null && (
             <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-3 text-center">
@@ -407,7 +456,7 @@ export default function LoginPage() {
           <Button
             className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             type="submit"
-            disabled={loading || rateLimited}
+            disabled={loading || rateLimited || !recaptchaToken}
           >
             {loading ? (
               <Loader2 className="w-4 h-4 animate-spin" />

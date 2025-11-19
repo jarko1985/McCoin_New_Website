@@ -515,7 +515,8 @@
       "retry_after": "Please try again in {seconds} seconds",
       "form_disabled": "Login is temporarily disabled due to too many failed attempts",
       "countdown": "Retry in {seconds}s"
-    }
+    },
+    "recaptcha_required": "Please complete the reCAPTCHA challenge"
   },
   "navbar": {
     "verify-your-account": "Verify Your Account",

@@ -148,11 +148,13 @@ export default function SignUpPage() {
       return;
     }
 
-    // if (!recaptchaToken) {
-    //   setRecaptchaError(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
-    //   return;
-    // }
-    // setRecaptchaError(null);
+    // Validate reCAPTCHA
+    if (!recaptchaToken) {
+      setRecaptchaError(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
+      toast.error(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
+      return;
+    }
+    setRecaptchaError(null);
 
     try {
       setLoading(true);
@@ -165,13 +167,18 @@ export default function SignUpPage() {
           name: data.name,
           email: data.email,
           password: data.password,
-          // recaptchaToken,
+          recaptchaToken,
         }),
       });
 
       const result = await res.json();
 
       if (!res.ok) {
+        // Handle reCAPTCHA errors specifically
+        if (result.message?.includes('reCAPTCHA') || result.message?.includes('recaptcha')) {
+          setRecaptchaToken(null);
+          setRecaptchaError(result.message || t('recaptcha_required') || 'reCAPTCHA verification failed');
+        }
         throw new Error(result.message || 'Signup failed');
       }
 
@@ -465,19 +472,37 @@ export default function SignUpPage() {
               )}
             </div>
 
-            {/* <div className="flex flex-col gap-2">
-            <div className="w-full flex justify-center">
-              <ReCAPTCHA
-                sitekey={RECAPTCHA_SITE_KEY}
-                onChange={(token: string | null) => {
-                  setRecaptchaToken(token);
-                  setRecaptchaError(null);
-                }}
-                onExpired={() => setRecaptchaToken(null)}
-              />
+            {/* reCAPTCHA */}
+            <div className="flex flex-col gap-2">
+              <div className="w-full flex justify-center">
+                {RECAPTCHA_SITE_KEY ? (
+                  <ReCAPTCHA
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    onChange={(token: string | null) => {
+                      setRecaptchaToken(token);
+                      setRecaptchaError(null);
+                    }}
+                    onExpired={() => {
+                      setRecaptchaToken(null);
+                      setRecaptchaError(t('recaptcha_required') || 'reCAPTCHA expired. Please verify again.');
+                    }}
+                    onError={() => {
+                      setRecaptchaToken(null);
+                      setRecaptchaError('reCAPTCHA error. Please try again.');
+                    }}
+                  />
+                ) : (
+                  <div className="bg-yellow-900/20 border border-yellow-500/50 rounded-lg p-3 text-center">
+                    <p className="text-yellow-400 text-sm">
+                      reCAPTCHA not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+                    </p>
+                  </div>
+                )}
+              </div>
+              {recaptchaError && (
+                <p className="text-red-400 text-sm text-center">{recaptchaError}</p>
+              )}
             </div>
-            {recaptchaError && <span className="text-red-500 text-xs">{recaptchaError}</span>}
-          </div> */}
 
             {/* Terms and Conditions Checkbox */}
             <div className="flex flex-col gap-2">
@@ -546,9 +571,9 @@ export default function SignUpPage() {
             </div>
 
             <Button
-              className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 p-6 cursor-pointer"
+              className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 p-6 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               type="submit"
-              disabled={loading}
+              disabled={loading || !recaptchaToken}
             >
               {loading ? (
                 <div className="flex items-center gap-2">
