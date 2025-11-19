@@ -23,7 +23,7 @@ interface BlogPost {
 
 // ---------- Utils ----------
 const ADMIN = process.env.NEXT_PUBLIC_ADMIN_URL!;
-const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app';
 
 // Parse a date string -> ISO, fallback to now
 const safeParseDate = (dateString: string): string => {

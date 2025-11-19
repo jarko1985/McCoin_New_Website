@@ -288,7 +288,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
     process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
   }/en/reset-password?token=${token}&email=${encodeURIComponent(email)}`;
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app';
 
   // Social media URLs
   const fbUrl = 'https://facebook.com/mccoin';
@@ -498,7 +498,7 @@ export async function sendContactFormEmail(formData: {
             <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <tr>
                 <td style="background: linear-gradient(135deg, #07153B 0%, #1A0A2E 100%); padding: 30px; border-radius: 10px 10px 0 0;">
-                  <img src="https://mc-coin-new-website.vercel.app/images/logo1.png" alt="McCoin Logo" style="max-width: 150px; margin-bottom: 20px; display: block;">
+                  <img src="${baseUrl}/images/logo1.png" alt="McCoin Logo" style="max-width: 150px; margin-bottom: 20px; display: block;">
                   <h1 style="color: #EC3B3B; margin-bottom: 20px; font-size: 28px; margin-top: 0;">New Contact Form Submission</h1>
                 </td>
               </tr>
@@ -571,7 +571,7 @@ export async function sendContactAcknowledgmentEmail(formData: {
   message: string;
 }) {
   const { name, email } = formData;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app';
 
   // Social media URLs
   const fbUrl = 'https://facebook.com/mccoin';
@@ -747,7 +747,7 @@ export async function sendContactAcknowledgmentEmail(formData: {
  * @param userName - Optional user name for personalization
  */
 export async function sendWelcomeEmail(email: string, userName?: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app';
 
   // Social media URLs
   const fbUrl = 'https://facebook.com/mccoin';

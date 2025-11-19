@@ -100,7 +100,7 @@ export default function BlogPage() {
 
   // ===== Structured Data (built from fetched posts) =====
   const structuredData = useMemo(() => {
-    const base = process.env.NEXT_PUBLIC_BASE_URL || "https://mc-coin-new-website.vercel.app";
+    const base = process.env.NEXT_PUBLIC_BASE_URL || "https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app";
     return {
       "@context": "https://schema.org",
       "@type": "Blog",

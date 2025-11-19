@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website.vercel.app'}/sitemap.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app'}/sitemap.xml`,
   };
 }
 

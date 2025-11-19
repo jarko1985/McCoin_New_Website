@@ -11,7 +11,7 @@ export const openApiSpec = {
   },
   servers: [
     { url: 'http://localhost:3000', description: 'Local' },
-    { url: 'https://mc-coin-new-website.vercel.app', description: 'Production' },
+    { url: 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app', description: 'Production' },
   ],
   tags: [
     { name: 'Auth' },

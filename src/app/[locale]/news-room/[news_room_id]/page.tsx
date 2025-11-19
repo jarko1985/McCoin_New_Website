@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: PageProps) {
       description: event?.description || t('defaultDescription'),
       images: ['/og-image.svg'],
       type: 'article',
-      url: `https://mc-coin-new-website.vercel.app/${locale}/news-room/${resolvedParams.news_room_id}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app'}/${locale}/news-room/${resolvedParams.news_room_id}`,
     },
     twitter: {
       card: 'summary_large_image',

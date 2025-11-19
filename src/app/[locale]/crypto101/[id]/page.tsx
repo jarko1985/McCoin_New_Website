@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PageProps) {
       description: post.subtitle,
       images: post.images || ['/og-image.svg'],
       type: 'article',
-      url: `https://mc-coin-new-website.vercel.app/en/crypto101/${id}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app'}/en/crypto101/${id}`,
     },
     twitter: {
       card: 'summary_large_image',
