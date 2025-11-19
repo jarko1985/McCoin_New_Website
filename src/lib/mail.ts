@@ -482,6 +482,7 @@ export async function sendContactFormEmail(formData: {
   message: string;
 }) {
   const { name, email, phone, subject, message } = formData;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mc-coin-new-website-hassanjarkoyahoocoms-projects.vercel.app';
 
   const emailContent = `
     <!DOCTYPE html>
