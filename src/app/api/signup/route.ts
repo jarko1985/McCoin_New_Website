@@ -41,16 +41,18 @@ export async function POST(req: NextRequest) {
     // Sanitize name
     const sanitizedName = sanitizeText(name);
 
-    // Verify reCAPTCHA token
-    const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
-    if (!recaptchaVerification.success) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: recaptchaVerification.error || 'reCAPTCHA verification failed',
-        },
-        { status: 400 },
-      );
+    // Verify reCAPTCHA token (skip in development)
+    if (process.env.NODE_ENV !== 'development') {
+      const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
+      if (!recaptchaVerification.success) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: recaptchaVerification.error || 'reCAPTCHA verification failed',
+          },
+          { status: 400 },
+        );
+      }
     }
 
     // Connect to MongoDB

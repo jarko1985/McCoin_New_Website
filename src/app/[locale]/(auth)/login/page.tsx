@@ -40,6 +40,7 @@ export default function LoginPage() {
   const [rateLimited, setRateLimited] = useState(false);
   const [retryAfter, setRetryAfter] = useState<number | null>(null);
   const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
+  const isDevelopment = process.env.NODE_ENV === 'development';
 
   const {
     register,
@@ -99,11 +100,13 @@ export default function LoginPage() {
       return;
     }
 
-    // Validate reCAPTCHA
-    if (!recaptchaToken) {
-      setRecaptchaError(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
-      toast.error(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
-      return;
+    // Validate reCAPTCHA (skip in development)
+    if (!isDevelopment) {
+      if (!recaptchaToken) {
+        setRecaptchaError(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
+        toast.error(t('recaptcha_required') || 'Please complete the reCAPTCHA challenge.');
+        return;
+      }
     }
     setRecaptchaError(null);
 
@@ -117,7 +120,7 @@ export default function LoginPage() {
         body: JSON.stringify({ 
           email: data.email, 
           password: data.password,
-          recaptchaToken,
+          recaptchaToken: isDevelopment ? undefined : recaptchaToken,
         }),
       });
 
@@ -416,37 +419,39 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          {/* reCAPTCHA */}
-          <div className="flex flex-col gap-2">
-            <div className="w-full flex justify-center">
-              {RECAPTCHA_SITE_KEY ? (
-                <ReCAPTCHA
-                  sitekey={RECAPTCHA_SITE_KEY}
-                  onChange={(token: string | null) => {
-                    setRecaptchaToken(token);
-                    setRecaptchaError(null);
-                  }}
-                  onExpired={() => {
-                    setRecaptchaToken(null);
-                    setRecaptchaError(t('recaptcha_required') || 'reCAPTCHA expired. Please verify again.');
-                  }}
-                  onError={() => {
-                    setRecaptchaToken(null);
-                    setRecaptchaError('reCAPTCHA error. Please try again.');
-                  }}
-                />
-              ) : (
-                <div className="bg-yellow-900/20 border border-yellow-500/50 rounded-lg p-3 text-center">
-                  <p className="text-yellow-400 text-sm">
-                    reCAPTCHA not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-                  </p>
-                </div>
+          {/* reCAPTCHA - Hidden in development */}
+          {!isDevelopment && (
+            <div className="flex flex-col gap-2">
+              <div className="w-full flex justify-center">
+                {RECAPTCHA_SITE_KEY ? (
+                  <ReCAPTCHA
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    onChange={(token: string | null) => {
+                      setRecaptchaToken(token);
+                      setRecaptchaError(null);
+                    }}
+                    onExpired={() => {
+                      setRecaptchaToken(null);
+                      setRecaptchaError(t('recaptcha_required') || 'reCAPTCHA expired. Please verify again.');
+                    }}
+                    onError={() => {
+                      setRecaptchaToken(null);
+                      setRecaptchaError('reCAPTCHA error. Please try again.');
+                    }}
+                  />
+                ) : (
+                  <div className="bg-yellow-900/20 border border-yellow-500/50 rounded-lg p-3 text-center">
+                    <p className="text-yellow-400 text-sm">
+                      reCAPTCHA not configured. Please set NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+                    </p>
+                  </div>
+                )}
+              </div>
+              {recaptchaError && (
+                <p className="text-red-400 text-sm text-center">{recaptchaError}</p>
               )}
             </div>
-            {recaptchaError && (
-              <p className="text-red-400 text-sm text-center">{recaptchaError}</p>
-            )}
-          </div>
+          )}
 
           {/* Rate limit warning */}
           {rateLimited && retryAfter !== null && (
@@ -463,7 +468,7 @@ export default function LoginPage() {
           <Button
             className="w-full bg-[#EC3B3B] hover:bg-red-600 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             type="submit"
-            disabled={loading || rateLimited || !recaptchaToken}
+            disabled={loading || rateLimited || (!isDevelopment && !recaptchaToken)}
           >
             {loading ? (
               <Loader2 className="w-4 h-4 animate-spin" />

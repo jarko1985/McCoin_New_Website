@@ -22,7 +22,12 @@ export async function verifyRecaptcha(
   token: string | null | undefined,
   secretKey?: string
 ): Promise<{ success: boolean; error?: string }> {
-  // Check if token is provided
+  // In development environment, skip reCAPTCHA verification
+  if (process.env.NODE_ENV === 'development') {
+    return { success: true };
+  }
+
+  // Check if token is provided (production only)
   if (!token || typeof token !== 'string' || token.trim().length === 0) {
     return {
       success: false,
@@ -34,13 +39,6 @@ export async function verifyRecaptcha(
   const recaptchaSecret = secretKey || process.env.RECAPTCHA_SECRET_KEY;
 
   if (!recaptchaSecret) {
-    // In development, allow bypass if secret is not set (with warning)
-    if (process.env.NODE_ENV === 'development') {
-      console.warn(
-        '⚠️  RECAPTCHA_SECRET_KEY not set. reCAPTCHA verification is disabled in development.'
-      );
-      return { success: true }; // Allow in development
-    }
     return {
       success: false,
       error: 'reCAPTCHA configuration error',

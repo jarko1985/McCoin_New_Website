@@ -46,27 +46,35 @@ export async function POST(req: NextRequest) {
       recaptchaToken?: string;
     };
 
-    // Verify reCAPTCHA token only for external calls
-    if (!isInternalCall && recaptchaToken) {
-      const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
-      if (!recaptchaVerification.success) {
-        return NextResponse.json(
-          {
-            error: 'recaptcha_verification_failed',
-            message: recaptchaVerification.error || 'reCAPTCHA verification failed',
-          },
-          { status: 400 },
-        );
+    // Verify reCAPTCHA token only for external calls (skip in development)
+    if (!isInternalCall) {
+      if (process.env.NODE_ENV === 'development') {
+        // In development, skip reCAPTCHA verification
+        // No need to check token
+      } else {
+        // In production, reCAPTCHA is required
+        if (recaptchaToken) {
+          const recaptchaVerification = await verifyRecaptcha(recaptchaToken);
+          if (!recaptchaVerification.success) {
+            return NextResponse.json(
+              {
+                error: 'recaptcha_verification_failed',
+                message: recaptchaVerification.error || 'reCAPTCHA verification failed',
+              },
+              { status: 400 },
+            );
+          }
+        } else {
+          // External calls must have reCAPTCHA token in production
+          return NextResponse.json(
+            {
+              error: 'recaptcha_verification_failed',
+              message: 'reCAPTCHA verification is required',
+            },
+            { status: 400 },
+          );
+        }
       }
-    } else if (!isInternalCall && !recaptchaToken) {
-      // External calls must have reCAPTCHA token
-      return NextResponse.json(
-        {
-          error: 'recaptcha_verification_failed',
-          message: 'reCAPTCHA verification is required',
-        },
-        { status: 400 },
-      );
     }
 
     // Connect to MongoDB

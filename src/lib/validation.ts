@@ -173,19 +173,23 @@ export function sanitizeForQuery(input: string): string {
  * Validation schemas for specific endpoints
  */
 
-// Signup schema
+// Signup schema - reCAPTCHA is optional in development
 export const signupSchema = z.object({
   name: nameSchema,
   email: emailSchema,
   password: passwordSchema,
-  recaptchaToken: z.string().min(1, 'reCAPTCHA verification is required'),
+  recaptchaToken: process.env.NODE_ENV === 'development'
+    ? z.string().optional()
+    : z.string().min(1, 'reCAPTCHA verification is required'),
 });
 
-// Login schema - reCAPTCHA is required for external calls
+// Login schema - reCAPTCHA is required for external calls (optional in development)
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, 'Password is required'),
-  recaptchaToken: z.string().min(1, 'reCAPTCHA verification is required'),
+  recaptchaToken: process.env.NODE_ENV === 'development'
+    ? z.string().optional()
+    : z.string().min(1, 'reCAPTCHA verification is required'),
 });
 
 // Internal login schema (for NextAuth authorize callback - reCAPTCHA already validated)
